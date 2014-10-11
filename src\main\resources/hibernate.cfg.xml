@@ -11,8 +11,8 @@
          <mapping class="edu.asu.secure.SynnovationBank.DTO.CheckOutDTO" />
         <mapping class="edu.asu.secure.SynnovationBank.DTO.FineDTO" />
         <mapping class="edu.asu.secure.SynnovationBank.DTO.HistoryDTO" />
-         <!-- <mapping class="edu.asu.secure.SynnovationBank.DTO.CheckOutTblPK" />
-        <mapping class="edu.asu.secure.SynnovationBank.DTO.FineTblPK" />  -->
+         <!-- <mapping class="edu.asu.secure.SynnovationBank.Dto.CheckOutTblPK" />
+        <mapping class="edu.asu.secure.SynnovationBank.Dto.FineTblPK" />  -->
         
        
        

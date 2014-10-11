@@ -1,17 +1,20 @@
-package edu.asu.secure.SynnovationBank.dao;
+package edu.asu.secure.SynnovationBank.DaoImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Repository;
 
+import edu.asu.secure.SynnovationBank.Dao.UserDao;
 import edu.asu.secure.SynnovationBank.domain.DbUser;
 
 /**
  * A custom DAO for accessing data from the database.
  *
  */
-public class UserDAO {
+@Repository
+public class UserDaoImpl implements UserDao  {
 
 	protected static Logger logger = Logger.getLogger("dao");
 	

@@ -1,10 +1,11 @@
-package edu.asu.secure.SynnovationBank.service;
+package edu.asu.secure.SynnovationBank.ServiceImpl;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;
@@ -14,7 +15,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.asu.secure.SynnovationBank.dao.UserDAO;
+import edu.asu.secure.SynnovationBank.Dao.UserDao;
+import edu.asu.secure.SynnovationBank.Dao.UserDao;
+import edu.asu.secure.SynnovationBank.DaoImpl.UserDaoImpl;
 import edu.asu.secure.SynnovationBank.domain.DbUser;
 
 /**
@@ -23,11 +26,13 @@ import edu.asu.secure.SynnovationBank.domain.DbUser;
  * This custom service must implement Spring's {@link UserDetailsService}
  */
 @Transactional(readOnly = true)
-public class CustomUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsServiceImpl implements UserDetailsService {
 	
 	protected static Logger logger = Logger.getLogger("service");
-
-	private UserDAO userDAO = new UserDAO();
+	
+	@Autowired
+    private UserDao userDao;
+//	= new UserDaoImpl();
 	
 	/**
 	 * Retrieves a user record containing the user's credentials and access. 
@@ -44,7 +49,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 			// You can provide a custom DAO to access your persistence layer
 			// Or use JDBC to access your database
 			// DbUser is our custom domain user. This is not the same as Spring's User
-			DbUser dbUser = userDAO.searchDatabase(username);
+			DbUser dbUser = userDao.searchDatabase(username);
 			
 			// Populate the Spring User object with details from the dbUser
 			// Here we just pass the username, password, and access level
