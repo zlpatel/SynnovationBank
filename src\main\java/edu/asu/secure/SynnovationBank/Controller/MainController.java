@@ -1,4 +1,4 @@
-package edu.asu.secure.SynnovationBank.controller;
+package edu.asu.secure.SynnovationBank.Controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
