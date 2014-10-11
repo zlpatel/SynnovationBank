@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+ 
+<hibernate-configuration>
+    <session-factory>
+        <mapping class="edu.asu.secure.SynnovationBank.DTO.LoginDTO" />
+        <mapping class="edu.asu.secure.SynnovationBank.DTO.CustDTO" />
+         <mapping class="edu.asu.secure.SynnovationBank.DTO.BookDTO" />
+         <mapping class="edu.asu.secure.SynnovationBank.DTO.CheckOutDTO" />
+        <mapping class="edu.asu.secure.SynnovationBank.DTO.FineDTO" />
+        <mapping class="edu.asu.secure.SynnovationBank.DTO.HistoryDTO" />
+         <!-- <mapping class="edu.asu.secure.SynnovationBank.DTO.CheckOutTblPK" />
+        <mapping class="edu.asu.secure.SynnovationBank.DTO.FineTblPK" />  -->
+        
+       
+       
+    </session-factory>
+         
+</hibernate-configuration>
