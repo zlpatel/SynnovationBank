@@ -100,4 +100,28 @@ public class MainController {
     	// This will resolve to /WEB-INF/jsp/adminpage.jsp
     	return "merchantpage";
 	}
+    
+    //Redirected to sessionexpired page when user tries to access the page of an expired session
+    @RequestMapping(value = "/expiredsession", method = RequestMethod.GET)
+    public String getSessionExpiredPage() {
+    	logger.debug("Session has been expired page");
+    
+    	return "sessionexpired";
+	}
+    
+    @RequestMapping(value = "/sessioninvalid", method = RequestMethod.GET)
+    public String getInvalidSessionPage() {
+    	logger.debug("Session is invalid");
+       	
+    	return "invalidsession";
+	}
+    
+    //Redirected to maxsessionreached page when a user tries to log in to the application from two different browsers or systems simultaneously 
+    @RequestMapping(value = "/maxsession", method = RequestMethod.GET)
+    public String getMaxSessionReachedPage() {
+    	logger.debug("Max no. of sesssion reached");
+       	
+    	return "maxsessionreached";
+	}
+    
 }
