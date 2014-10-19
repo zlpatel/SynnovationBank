@@ -8,7 +8,9 @@
         
         <mapping class="edu.asu.secure.SynnovationBank.DTO.User" />
         <mapping class="edu.asu.secure.SynnovationBank.DTO.UserRole" />
-          
+        
+       
+       
     </session-factory>
          
 </hibernate-configuration>

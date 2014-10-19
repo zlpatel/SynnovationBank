@@ -22,18 +22,10 @@
 
 <h1>Login</h1>
 
-<%-- <div id="login-error">${error}</div> --%>
-
-<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
-      <font color="red">
-        Your login attempt was not successful due to <br/><br/>
-        <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
-      </font>
-    </c:if>
+<div id="login-error">${error}</div>
 
 <form action="../../j_spring_security_check" method="post" >
 
-<%-- <form action="<c:url value='/secure/auth/login_check?targetUrl=${targetUrl}' />" method="post"> --%>
 <p>	
 	<input id="j_username" name="j_username" placeholder="username" type="text" />
 </p>

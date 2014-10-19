@@ -29,7 +29,6 @@ public class LoginLogoutController {
 	public String getLoginPage(@RequestParam(value="error", required=false) boolean error, 
 			ModelMap model) {
 		logger.debug("Received request to show login page");
-		logger.debug("Error : "+error);
 
 		// Add an error message to the model if login is unsuccessful
 		// The 'error' parameter is set to true based on the when the authentication has failed. 
