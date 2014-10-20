@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
 	
+	<!-- <filter>
+	<filter-name>httpsCookieFilter</filter-name>
+		<filter-class>edu.asu.secure.SynnovationBank.Handler.HttpsCookieFilter</filter-class>
+	</filter> -->
 	<filter>
 	        <filter-name>springSecurityFilterChain</filter-name>
 	        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 	</filter>
 	
+	<!-- <filter-mapping>
+		<filter-name>httpsCookieFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> -->
 	<filter-mapping>
 	        <filter-name>springSecurityFilterChain</filter-name>
 	        <url-pattern>/*</url-pattern>
@@ -34,9 +42,13 @@
 		<servlet-name>spring</servlet-name>
 		<url-pattern>/secure/*</url-pattern>
 	</servlet-mapping>
-
-	<session-config>
-        <session-timeout>5</session-timeout>
+    
+    <session-config>
+    <session-timeout>5</session-timeout>
+    <cookie-config>
+  		<http-only>true</http-only>
+  		<secure>true</secure>
+ 		</cookie-config>
     </session-config>
     
     <security-constraint> 
@@ -47,7 +59,7 @@
     <user-data-constraint> 
     <transport-guarantee>CONFIDENTIAL</transport-guarantee> 
     </user-data-constraint> 
-    </security-constraint> 
+    </security-constraint>
     
     <error-page>
     	<error-code>405</error-code>

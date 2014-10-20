@@ -33,12 +33,7 @@ public class LoginLogoutController {
 		// Add an error message to the model if login is unsuccessful
 		// The 'error' parameter is set to true based on the when the authentication has failed. 
 		// We declared this under the authentication-failure-url attribute inside the spring-security.xml
-		/* See below:
-		 <form-login 
-				login-page="/krams/auth/login" 
-				authentication-failure-url="/krams/auth/login?error=true" 
-				default-target-url="/krams/main/common"/>
-		 */
+		
 		if (error == true) {
 			// Assign an error message
 			model.put("error", "You have entered an invalid username or password!");

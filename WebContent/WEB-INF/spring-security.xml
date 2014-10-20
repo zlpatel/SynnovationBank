@@ -20,10 +20,10 @@
 		<security:form-login
 				login-page="/secure/auth/login"
 				authentication-failure-url="/secure/auth/login?error=true" 
-				authentication-success-handler-ref="myAuthenticationSuccessHandler"
+				authentication-success-handler-ref="myAuthenticationSuccessHandler"				
 				/>
 			
-		<security:session-management invalid-session-url="/secure/auth/login" session-authentication-error-url="/secure/main/maxsession" session-fixation-protection="newSession">
+		<security:session-management invalid-session-url="/secure/auth/login" session-authentication-error-url="/secure/main/maxsession" session-fixation-protection="migrateSession">
 	    	<security:concurrency-control
 	    	   max-sessions="1"
 		       error-if-maximum-exceeded="true" 
