@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Employee Page</title>
+<title>Admin Page</title>
 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 	
@@ -16,15 +16,20 @@
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2>Employee Page</h2>
-<p>Only employees have access to this page.</p><br>
+<h2>Admin Page</h2>
+<p>Only admins have access to this page.</p><br>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#">Notifications</a></li>
-    <li><a href="#">User Accounts</a></li>
-    <li><a href="#">Change Password</a></li>
+    <li><a href="admin">Notifications</a></li>
+    <li><a href="admininternaluseraccounts">Internal User Accounts</a></li>
+    <li><a href="adminexternaluseraccounts">External User Accounts</a></li>
+    <li><a href="adminpiirequests">PII Requests</a></li>
+    <li><a href="admincriticaltransactions">Critical Transactions</a></li>
+    <li class="active"><a href="adminsystemlog">System Log</a></li>   
+    <li><a href="adminchangepassword">Change Password</a></li>
 </ul>
 
+<br><br><p>System Log File will be displayed here.</p>
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  
@@ -40,7 +45,7 @@
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-	<br><p><a href="javascript:formSubmit()"> Logout</a></p>
+<br><a href="javascript:formSubmit()"> Logout</a>
 
 </body>
 </html>
