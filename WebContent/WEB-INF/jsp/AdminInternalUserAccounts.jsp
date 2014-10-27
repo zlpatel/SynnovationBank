@@ -79,7 +79,7 @@
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-<br><a href="common">Home |</a> <a href="javascript:formSubmit()"> Logout</a>
-
+<a class="btn btn-default" href="adminaddinternaluser">Add New Internal User</a>
+<a class="btn btn-deafult" href="javascript:formSubmit()"> Logout</a>
 </body>
 </html>

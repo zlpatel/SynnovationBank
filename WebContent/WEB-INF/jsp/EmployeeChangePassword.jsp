@@ -20,12 +20,12 @@
 <p>Only employees have access to this page.</p><br>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#">Notifications</a></li>
+    <li><a href="employee">Notifications</a></li>
     <li><a href="employeeuseraccounts">User Accounts</a></li>
-    <li><a href="employeechangepassword">Change Password</a></li>
+    <li class="active"><a href="#">Change Password</a></li>
 </ul>
 
-<p align="center">Notifications Page</p>
+<p align="center">Change Password Page</p>
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  

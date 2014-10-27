@@ -83,7 +83,9 @@
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-<br><a href="common">Home |</a> <a href="javascript:formSubmit()"> Logout</a>
+<br>
+<a class="btn btn-default" href="adminaddexternaluser">Add New External User</a>
+<a class="btn btn-deafult" href="javascript:formSubmit()"> Logout</a>
 
 </body>
 </html>
