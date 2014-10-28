@@ -33,7 +33,6 @@
 
 <form action="../../j_spring_security_check" method="post" >
 
-<%-- <form action="<c:url value='/secure/auth/login_check?targetUrl=${targetUrl}' />" method="post"> --%>
 <p>	
 	<input id="j_username" name="j_username" placeholder="username" type="text" />
 </p>
@@ -43,6 +42,8 @@
 </p>
 
 <input class="btn btn-lg btn-primary" type="submit" value="Login"/>
+
+<a href="../otp/forgetpassword">ForgetPassword</a>
 
 <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	
