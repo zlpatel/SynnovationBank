@@ -14,8 +14,8 @@ public class SendMailTLS {
 	public void sendEmail(String emailId, String data, String input) {
  
 		//TODO zeel: create a gmail account and provide username and password here.
-		final String username = "zv.patel@gmail.com";
-		final String password = "";
+		final String username = "synnovationbank@gmail.com";
+		final String password = "bank@secure";
  
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -33,7 +33,7 @@ public class SendMailTLS {
 		try {
  
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("zv.patel@gmail.com"));
+			message.setFrom(new InternetAddress("synnovationbank@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,
 				InternetAddress.parse(emailId));
 			if(input.equals("OTP")){
