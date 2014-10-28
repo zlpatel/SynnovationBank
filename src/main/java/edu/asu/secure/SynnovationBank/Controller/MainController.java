@@ -100,4 +100,174 @@ public class MainController {
     	// This will resolve to /WEB-INF/jsp/adminpage.jsp
     	return "merchantpage";
 	}
+    
+    /**
+     * Handles and retrieves the admin JSP page that only admins can see
+     * 
+     * @return the name of the JSP page
+     */
+    @RequestMapping(value = "/admininternaluseraccounts", method = RequestMethod.GET)
+    public String getAdminInternalUserAccountsPage() {
+    	logger.debug("Received request to show admin internal user accounts page");
+    
+    	// Do your work here. Whatever you like
+    	// i.e call a custom service to do your business
+    	// Prepare a model to be used by the JSP page
+    	
+    	// This will resolve to /WEB-INF/jsp/AdminInternalUserAccounts.jsp
+    	return "AdminInternalUserAccounts";
+	}
+    
+    /**
+     * Handles and retrieves the admin JSP page that only admins can see
+     * 
+     * @return the name of the JSP page
+     */
+    @RequestMapping(value = "/adminexternaluseraccounts", method = RequestMethod.GET)
+    public String getAdminExternalUserAccountsPage() {
+    	logger.debug("Received request to show admin external user accounts page");
+    
+    	// Do your work here. Whatever you like
+    	// i.e call a custom service to do your business
+    	// Prepare a model to be used by the JSP page
+    	
+    	// This will resolve to /WEB-INF/jsp/AdminExternalUserAccounts.jsp
+    	return "AdminExternalUserAccounts";
+	}
+    
+    /**
+     * Handles and retrieves the admin JSP page that only admins can see
+     * 
+     * @return the name of the JSP page
+     */
+    @RequestMapping(value = "/adminpiirequests", method = RequestMethod.GET)
+    public String getAdminPIIRequestsPage() {
+    	logger.debug("Received request to show admin pii requests page");
+    	
+    	// Do your work here. Whatever you like
+    	// i.e call a custom service to do your business
+    	// Prepare a model to be used by the JSP page
+    	
+    	// This will resolve to /WEB-INF/jsp/AdminPIIRequests.jsp
+    	return "AdminPIIRequests";
+	}
+    
+    /**
+     * Handles and retrieves the admin JSP page that only admins can see
+     * 
+     * @return the name of the JSP page
+     */
+    @RequestMapping(value = "/adminsystemlog", method = RequestMethod.GET)
+    public String getAdminAdminSystemLogPage() {
+    	logger.debug("Received request to show admin system log page");
+    
+    	// Do your work here. Whatever you like
+    	// i.e call a custom service to do your business
+    	// Prepare a model to be used by the JSP page
+    	
+    	// This will resolve to /WEB-INF/jsp/AdminSystemLog.jsp
+    	return "AdminSystemLog";
+	}
+    
+    /**
+     * Handles and retrieves the admin JSP page that only admins can see
+     * 
+     * @return the name of the JSP page
+     */
+    @RequestMapping(value = "/admincriticaltransactions", method = RequestMethod.GET)
+    public String getAdminAdminCriticalTransactionsPage() {
+    	logger.debug("Received request to show admin critical transactions page");
+    
+    	// Do your work here. Whatever you like
+    	// i.e call a custom service to do your business
+    	// Prepare a model to be used by the JSP page
+    	
+    	// This will resolve to /WEB-INF/jsp/AdminCriticalTransactions.jsp
+    	return "AdminCriticalTransactions";
+	}
+    
+    /**
+     * Handles and retrieves the admin JSP page that only admins can see
+     * 
+     * @return the name of the JSP page
+     */
+    @RequestMapping(value = "/adminchangepassword", method = RequestMethod.GET)
+    public String getAdminChangePasswordPage() {
+    	logger.debug("Received request to show admin change password page");
+    
+    	// Do your work here. Whatever you like
+    	// i.e call a custom service to do your business
+    	// Prepare a model to be used by the JSP page
+    	
+    	// This will resolve to /WEB-INF/jsp/AdminChangePassword.jsp
+    	return "AdminChangePassword";
+	}
+    
+    /**
+     * Handles and retrieves the admin JSP page that only admins can see
+     * 
+     * @return the name of the JSP page
+     */
+    @RequestMapping(value = "/employeeuseraccounts", method = RequestMethod.GET)
+    public String getEmployeeUserAccountsPage() {
+    	logger.debug("Received request to show employee user accounts page");
+    
+    	// Do your work here. Whatever you like
+    	// i.e call a custom service to do your business
+    	// Prepare a model to be used by the JSP page
+    	
+    	// This will resolve to /WEB-INF/jsp/EmployeeUserAccounts.jsp
+    	return "EmployeeUserAccounts";
+	}
+    
+    /**
+     * Handles and retrieves the admin JSP page that only admins can see
+     * 
+     * @return the name of the JSP page
+     */
+    @RequestMapping(value = "/employeechangepassword", method = RequestMethod.GET)
+    public String getEmployeeChangePasswordPage() {
+    	logger.debug("Received request to show employee change password page");
+    
+    	// Do your work here. Whatever you like
+    	// i.e call a custom service to do your business
+    	// Prepare a model to be used by the JSP page
+    	
+    	// This will resolve to /WEB-INF/jsp/AdminChangePassword.jsp
+    	return "EmployeeChangePassword";
+	}
+    
+    /**
+     * Handles and retrieves the admin JSP page that only admins can see
+     * 
+     * @return the name of the JSP page
+     */
+    @RequestMapping(value = "/adminaddexternaluser", method = RequestMethod.GET)
+    public String getAdminAddExternalUser() {
+    	logger.debug("Received request to show add external user page");
+    
+    	// Do your work here. Whatever you like
+    	// i.e call a custom service to do your business
+    	// Prepare a model to be used by the JSP page
+    	
+    	// This will resolve to /WEB-INF/jsp/AdminAddExternalUser.jsp
+    	return "AdminAddExternalUser";
+	}
+    
+    /**
+     * Handles and retrieves the admin JSP page that only admins can see
+     * 
+     * @return the name of the JSP page
+     */
+    @RequestMapping(value = "/adminaddinternaluser", method = RequestMethod.GET)
+    public String getAdminAddInternalUser() {
+    	logger.debug("Received request to show add internal user page");
+    
+    	// Do your work here. Whatever you like
+    	// i.e call a custom service to do your business
+    	// Prepare a model to be used by the JSP page
+    	
+    	// This will resolve to /WEB-INF/jsp/AdminAddInternalUser.jsp
+    	return "AdminAddInternalUser";
+	}
 }

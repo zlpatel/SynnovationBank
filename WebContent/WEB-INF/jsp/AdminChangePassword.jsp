@@ -20,54 +20,16 @@
 <p>Only admins have access to this page.</p><br>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#">Notifications</a></li>
+    <li><a href="admin">Notifications</a></li>
     <li><a href="admininternaluseraccounts">Internal User Accounts</a></li>
     <li><a href="adminexternaluseraccounts">External User Accounts</a></li>
-	<li><a href="adminpiirequests">PII Requests</a></li>
+    <li><a href="adminpiirequests">PII Requests</a></li>
     <li><a href="admincriticaltransactions">Critical Transactions</a></li>
     <li><a href="adminsystemlog">System Log</a></li>   
-    <li><a href="adminchangepassword">Change Password</a></li>
+    <li class="active"><a href="#">Change Password</a></li>
 </ul>
 
-<br><br><table class="table">
-        <thead>
-            <tr>
-                <th>Sr. No.</th>
-                <th>Title</th>
-                <th>Date</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>User request One.</td>
-                <td>10/25/2014</td>
-                <td>
-                <button type="button" class="btn btn-primary">Accept</button>
-                <button type="button" class="btn btn-danger">Reject</button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>User request Two.</td>
-                <td>10/24/2014</td>
-                <td>
-                <button type="button" class="btn btn-primary">Accept</button>
-                <button type="button" class="btn btn-danger">Reject</button>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>User request Three.</td>
-                <td>10/24/2014</td>
-                <td>
-                <button type="button" class="btn btn-primary">Accept</button>
-                <button type="button" class="btn btn-danger">Reject</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<br><br><p>Change Password Screen</p>
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  

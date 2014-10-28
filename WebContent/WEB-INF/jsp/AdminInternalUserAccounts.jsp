@@ -20,10 +20,10 @@
 <p>Only admins have access to this page.</p><br>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#">Notifications</a></li>
-    <li><a href="admininternaluseraccounts">Internal User Accounts</a></li>
+    <li><a href="admin">Notifications</a></li>
+    <li class="active"><a href="#">Internal User Accounts</a></li>
     <li><a href="adminexternaluseraccounts">External User Accounts</a></li>
-	<li><a href="adminpiirequests">PII Requests</a></li>
+    <li><a href="adminpiirequests">PII Requests</a></li>
     <li><a href="admincriticaltransactions">Critical Transactions</a></li>
     <li><a href="adminsystemlog">System Log</a></li>   
     <li><a href="adminchangepassword">Change Password</a></li>
@@ -32,38 +32,34 @@
 <br><br><table class="table">
         <thead>
             <tr>
-                <th>Sr. No.</th>
-                <th>Title</th>
-                <th>Date</th>
+                <th>First Name</th>
+                <th>Last Name</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>1</td>
-                <td>User request One.</td>
-                <td>10/25/2014</td>
+                <td>Tim</td>
+                <td>Johnson</td>
                 <td>
-                <button type="button" class="btn btn-primary">Accept</button>
-                <button type="button" class="btn btn-danger">Reject</button>
+                <button type="button" class="btn btn-primary">Modify</button>
+                <button type="button" class="btn btn-danger">Delete</button>
                 </td>
             </tr>
             <tr>
-                <td>2</td>
-                <td>User request Two.</td>
-                <td>10/24/2014</td>
+                <td>Mark</td>
+                <td>Brenton</td>
                 <td>
-                <button type="button" class="btn btn-primary">Accept</button>
-                <button type="button" class="btn btn-danger">Reject</button>
+                <button type="button" class="btn btn-primary">Modify</button>
+                <button type="button" class="btn btn-danger">Delete</button>
                 </td>
             </tr>
             <tr>
-                <td>3</td>
-                <td>User request Three.</td>
-                <td>10/24/2014</td>
+                <td>Jack</td>
+                <td>Spensor</td>
                 <td>
-                <button type="button" class="btn btn-primary">Accept</button>
-                <button type="button" class="btn btn-danger">Reject</button>
+                <button type="button" class="btn btn-primary">Modify</button>
+                <button type="button" class="btn btn-danger">Delete</button>
                 </td>
             </tr>
         </tbody>
@@ -83,7 +79,7 @@
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-<br><a href="javascript:formSubmit()"> Logout</a>
-
+<a class="btn btn-default" href="adminaddinternaluser">Add New Internal User</a>
+<a class="btn btn-deafult" href="javascript:formSubmit()"> Logout</a>
 </body>
 </html>
