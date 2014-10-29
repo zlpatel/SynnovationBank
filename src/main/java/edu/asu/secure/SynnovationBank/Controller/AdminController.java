@@ -1,5 +1,8 @@
 package edu.asu.secure.SynnovationBank.Controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * the adminpage, however.
  */
 @Controller
-@RequestMapping("/main")
-public class MainController {
+@RequestMapping("/admin")
+public class AdminController {
 
 	protected static Logger logger = Logger.getLogger("controller");
 	
@@ -38,10 +41,12 @@ public class MainController {
      * 
      * @return the name of the JSP page
      */
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String getAdminPage() {
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public String getAdminPage(HttpServletRequest request) {
     	logger.debug("Received request to show admin page");
     
+    	 HttpSession ses=request.getSession();
+		 ses.setAttribute("sessionVar","admin");
     	// Do your work here. Whatever you like
     	// i.e call a custom service to do your business
     	// Prepare a model to be used by the JSP page
@@ -50,56 +55,9 @@ public class MainController {
     	return "adminpage";
 	}
     
-    /**
-     * Handles and retrieves the employee JSP page that only employees can see
-     * 
-     * @return the name of the JSP page
-     */
-    @RequestMapping(value = "/employee", method = RequestMethod.GET)
-    public String getEmployeePage() {
-    	logger.debug("Received request to show employee page");
     
-    	// Do your work here. Whatever you like
-    	// i.e call a custom service to do your business
-    	// Prepare a model to be used by the JSP page
-    	
-    	// This will resolve to /WEB-INF/jsp/adminpage.jsp
-    	return "employeepage";
-	}
     
-    /**
-     * Handles and retrieves the customer JSP page that only customers can see
-     * 
-     * @return the name of the JSP page
-     */
-    @RequestMapping(value = "/customer", method = RequestMethod.GET)
-    public String getCustomerPage() {
-    	logger.debug("Received request to show customer page");
     
-    	// Do your work here. Whatever you like
-    	// i.e call a custom service to do your business
-    	// Prepare a model to be used by the JSP page
-    	
-    	// This will resolve to /WEB-INF/jsp/adminpage.jsp
-    	return "customerpage";
-	}
-    
-    /**
-     * Handles and retrieves the merchant JSP page that only merchants can see
-     * 
-     * @return the name of the JSP page
-     */
-    @RequestMapping(value = "/merchant", method = RequestMethod.GET)
-    public String getMerchantPage() {
-    	logger.debug("Received request to show merchant page");
-    
-    	// Do your work here. Whatever you like
-    	// i.e call a custom service to do your business
-    	// Prepare a model to be used by the JSP page
-    	
-    	// This will resolve to /WEB-INF/jsp/adminpage.jsp
-    	return "merchantpage";
-	}
     
     /**
      * Handles and retrieves the admin JSP page that only admins can see

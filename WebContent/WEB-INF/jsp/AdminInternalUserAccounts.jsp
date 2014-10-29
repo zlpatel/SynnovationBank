@@ -1,6 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,7 +21,7 @@
 <p>Only admins have access to this page.</p><br>
 
 <ul class="nav nav-tabs">
-    <li><a href="admin">Notifications</a></li>
+    <li><a href="home">Notifications</a></li>
     <li class="active"><a href="#">Internal User Accounts</a></li>
     <li><a href="adminexternaluseraccounts">External User Accounts</a></li>
     <li><a href="adminpiirequests">PII Requests</a></li>
@@ -80,6 +81,6 @@
 		}
 	</script>
 <a class="btn btn-default" href="adminaddinternaluser">Add New Internal User</a>
-<a class="btn btn-deafult" href="javascript:formSubmit()"> Logout</a>
+<a href="javascript:formSubmit()"> Logout</a>
 </body>
 </html>
