@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.asu.secure.SynnovationBank.FormBean.ChangePasswordFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.ForgetPasswordFormBean;
@@ -50,8 +51,9 @@ public class OTPController {
 	    	return "changepasswordpage";
 		}
 		else{
+			model.put("error", "You have entered an invalid OTP!");
 			logger.debug("entered OTP is not correct");
-			return "changepassword";
+			return "redirect:otprequest";
 		}
     	
 	}

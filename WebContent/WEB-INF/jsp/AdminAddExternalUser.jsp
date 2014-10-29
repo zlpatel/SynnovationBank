@@ -20,7 +20,7 @@
 <p>Only admins have access to this page.</p><br>
 
 <ul class="nav nav-tabs">
-    <li><a href="admin">Notifications</a></li>
+    <li><a href="home">Notifications</a></li>
     <li><a href="admininternaluseraccounts">Internal User Accounts</a></li>
     <li class="active"><a href="#">External User Accounts</a></li>
     <li><a href="adminpiirequests">PII Requests</a></li>
@@ -53,7 +53,7 @@
 
 </form>
 <!--<input name="AddExtuser" type="submit" value="Add" style="position:absolute;width:200px;left:450px;top:955px;z-index:4;" class = "btn btn-primary" onclick="document.forms[0].action = 'ExternalUserAddedSuccessfully.html';return validateForm();"/>
-<input name="ExtCancel" type="submit" value="Cancel" style="position:absolute;width:200px;left:670px;top:955px;z-index:4;" class = "btn btn-primary" onclick="document.forms[0].action = 'CancelInternal.html';return true;"/>
+<input name="ExtCancel" type="submit" value="Cancel" style="position:absolute;width:200px;left:670px;top:955px;z-index:4;" class = "btn btn-primary" onclick="document.forms[0].action = 'CancelInternal.html';return true;"/> -->
 
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />

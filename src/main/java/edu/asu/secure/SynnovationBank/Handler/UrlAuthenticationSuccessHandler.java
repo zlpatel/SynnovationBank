@@ -63,13 +63,13 @@ public class UrlAuthenticationSuccessHandler implements AuthenticationSuccessHan
         }
  
         if (isAdmin) {
-            return "/secure/main/admin";
+            return "/secure/admin/home";
         } else if (isEmployee) {
-            return "/secure/main/employee";
+            return "/secure/employee/home";
         }else if (isCustomer) {
-            return "/secure/main/customer";
+            return "/secure/customer/home";
         }else if (isMerchant) {
-            return "/secure/main/merchant";
+            return "/secure/merchant/home";
         } else {
             throw new IllegalStateException();
         }

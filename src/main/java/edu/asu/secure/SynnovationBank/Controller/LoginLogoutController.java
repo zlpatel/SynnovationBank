@@ -41,8 +41,11 @@ public class LoginLogoutController {
 			model.put("error", "");
 		}
 		
-		// This will resolve to /WEB-INF/jsp/loginpage.jsp
+
 		return "loginpage";
+		     // don't show login page
+		// This will resolve to /WEB-INF/jsp/loginpage.jsp
+		
 	}
 	
 	/**

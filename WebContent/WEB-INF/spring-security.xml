@@ -12,10 +12,10 @@
 	
 		<security:intercept-url pattern="/secure/auth/login" requires-channel="https" access="permitAll"/>
 		<security:intercept-url pattern="/j_spring_security_check" requires-channel="https"/>
-		<security:intercept-url pattern="/secure/main/admin*" requires-channel="https" access="hasRole('ROLE_ADMIN')"/>
-		<security:intercept-url pattern="/secure/main/employee*" requires-channel="https" access="hasRole('ROLE_BNK_EMPL')"/>
-		<security:intercept-url pattern="/secure/main/customer*" requires-channel="https" access="hasRole('ROLE_CUST')"/>
-		<security:intercept-url pattern="/secure/main/merchant*" requires-channel="https" access="hasRole('ROLE_MERC')"/>
+		<security:intercept-url pattern="/secure/admin/**" requires-channel="https" access="hasRole('ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/secure/employee/**" requires-channel="https" access="hasRole('ROLE_BNK_EMPL')"/>
+		<security:intercept-url pattern="/secure/customer/**" requires-channel="https" access="hasRole('ROLE_CUST')"/>
+		<security:intercept-url pattern="/secure/merchant/**" requires-channel="https" access="hasRole('ROLE_MERC')"/>
 		
 		<security:form-login
 				login-page="/secure/auth/login"
@@ -23,7 +23,7 @@
 				authentication-success-handler-ref="myAuthenticationSuccessHandler"				
 				/>
 			
-		<security:session-management invalid-session-url="/secure/auth/login" session-authentication-error-url="/secure/main/maxsession" session-fixation-protection="migrateSession">
+		<security:session-management invalid-session-url="/secure/auth/login" session-authentication-error-url="/secure/maxsession" session-fixation-protection="migrateSession">
 	    	<security:concurrency-control
 	    	   max-sessions="1"
 		       error-if-maximum-exceeded="true" 
