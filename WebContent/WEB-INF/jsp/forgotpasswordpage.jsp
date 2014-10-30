@@ -16,8 +16,23 @@
 </head>
 <body>
 
-<h1>Change Password Successful</h1>
-<p>	Your password has been successfully changed. please <a href="../auth/login">login</a> with your new password.</p>
+<div id="validation-error"><font color="red">${error}</font></div>
+
+<h1>Forgot Password</h1>
+<form action="../otp/otprequest" commandName="forgotpasswordformbean" method="post" >
+
+<p>	
+	<input id="username" name="username" placeholder="please enter you username" type="text" value="${forgotpasswordformbean.username}"/>
+</p>
+<p>
+	<input id="email" name="email" placeholder="please enter your email" type="text" value="${forgotpasswordformbean.email}"/>
+</p>
+
+<input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
+
+<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />	
+</form>
 
 </body>
 </html>

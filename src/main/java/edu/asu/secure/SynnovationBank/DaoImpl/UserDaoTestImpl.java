@@ -35,9 +35,33 @@ public class UserDaoTestImpl implements UserDaoTest {
 		} else {
 			return null;
 		}
- 
 	}
  
+	@Override
+	public boolean updateOTP(String username, String email, String otp) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	
+	@Override
+	public boolean checkOTP(String otp) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean updatePassword(String newpassword, String username) {
+		// TODO Auto-generated method stub
+		String updt_passwd_hql= "UPDATE User u set u.password=:passwd WHERE u.username=:usernm";
+		int queryResult=getSessionFactory().getCurrentSession().createQuery(updt_passwd_hql).setParameter("usernm", username).setParameter("passwd", newpassword).executeUpdate();
+		if(queryResult>0){
+			return true;
+		}
+		else
+			return false;
+		
+	}
+	
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
@@ -45,5 +69,4 @@ public class UserDaoTestImpl implements UserDaoTest {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
- 
 }
