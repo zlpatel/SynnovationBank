@@ -26,6 +26,26 @@
 </ul>
 
 <p align="center">Notifications Page</p>
+<form name ="employee_notifications" method = "post" commandName="empNotificsFormBean">
+		<table id = "transaction" width="500" border="0" bordercolor="black" class ="table table-striped">
+		<tr>
+		  <td><b>First Name</b></td>
+		  <td><b>Last Name</b></td>
+          <td><b>Notifications</b></td>
+          
+          <td colspan="2" align="center"><b>Action</b></td>
+         </tr>
+      <c:forEach  items="${empNotoficsFormBean}" var="empNotification">
+        <tr> 
+          <td>${empNotoficsFormBean.getFirstname}</td>
+          <td>${empNotoficsFormBean.getLastname}</td>
+          <td>${empNotoficsFormBean.getNotifications}</td>
+          <td align="center"><input style="width:75px;" name="approve" type="submit" value= "Approve" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoApproved.html?authUsername=${person.ID}';;return true;"/></td>  
+          <td align="center"><input  style="width:75px;" name="deny" type="submit" value= "Deny" class = "btn btn-primary"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoDenied.html?authUsername=${person.ID}'; ;return true;"/></td> 
+        </tr>
+      </c:forEach>
+      </table>
+      </form>
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  
