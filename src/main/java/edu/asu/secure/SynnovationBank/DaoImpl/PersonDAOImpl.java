@@ -4,13 +4,17 @@ import java.util.Calendar;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import edu.asu.secure.SynnovationBank.DBUtilities.HibernateUtil;
 import edu.asu.secure.SynnovationBank.DTO.Person;
 import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
 
+@Repository
 public class PersonDAOImpl implements PersonDAO {
 
+	@Autowired
 	SessionFactory factory = HibernateUtil.buildSessionFactory();
 	
 	@Override
