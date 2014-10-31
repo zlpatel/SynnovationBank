@@ -18,6 +18,7 @@
 <body>
 <h2>Admin Page</h2>
 <p>Only admins have access to this page.</p><br>
+<p>${rohit}</p>
 
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
@@ -31,7 +32,8 @@
 
 <br><br>
 
-<form name ="addexternaluser" method="post" >
+
+<form action="adminaddedexternaluseraccounts" commandName="" method="post" >
 
 <input name="fname"  class = "form-control" style="width:200px;" placeholder = "First Name" maxlength="15">
 <br>
@@ -71,7 +73,7 @@
 		}
 	</script>
 <br>
-<a class="btn btn-primary" href="adminexternaluseraccounts">Save</a>
+<a class="btn btn-primary" href="adminaddedexternaluseraccounts" type="submit">Save</a>
 <a class="btn btn-deafult" href="adminexternaluseraccounts">Cancel</a>
 <a class="btn btn-deafult" href="javascript:formSubmit()">Logout</a>
 

@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Handles and retrieves the common or admin page depending on the URI template.
@@ -204,12 +205,8 @@ public class AdminController {
     public String getAdminAddExternalUser() {
     	logger.debug("Received request to show add external user page");
     
-    	// Do your work here. Whatever you like
-    	// i.e call a custom service to do your business
-    	// Prepare a model to be used by the JSP page
-    	
-    	// This will resolve to /WEB-INF/jsp/AdminAddExternalUser.jsp
     	return "AdminAddExternalUser";
+    	
 	}
     
     /**
@@ -227,5 +224,24 @@ public class AdminController {
     	
     	// This will resolve to /WEB-INF/jsp/AdminAddInternalUser.jsp
     	return "AdminAddInternalUser";
+	}
+    
+    @RequestMapping(value = "/adminaddedexternaluseraccounts", method = RequestMethod.POST)
+    public ModelAndView getAdminAddedExternalUser(HttpServletRequest request) {
+    	logger.debug("Received request to show ADDED external user page ......");
+    
+    	String name = (String) request.getAttribute("fname");
+    	logger.debug("got name " + name);
+    	
+    	// Do your work here. Whatever you like
+    	// i.e call a custom service to do your business
+    	// Prepare a model to be used by the JSP page
+    	
+    	ModelAndView model = new ModelAndView("AdminExternalUserAccounts");
+    	model.addObject("rohit", name);
+    	// This will resolve to /WEB-INF/jsp/AdminAddExternalUser.jsp
+//    	return "AdminAddExternalUser";
+    	
+    	return model;
 	}
 }
