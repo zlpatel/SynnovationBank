@@ -9,13 +9,17 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import edu.asu.secure.SynnovationBank.DBUtilities.HibernateUtil;
 import edu.asu.secure.SynnovationBank.DTO.TransactionDetails;
 import edu.asu.secure.SynnovationBank.Dao.TransactionDetailsDAO;
 
+@Repository
 public class TransactionDetailsDAOImpl implements TransactionDetailsDAO {
 
+	@Autowired
 	SessionFactory factory = HibernateUtil.buildSessionFactory();
 
 	@Override

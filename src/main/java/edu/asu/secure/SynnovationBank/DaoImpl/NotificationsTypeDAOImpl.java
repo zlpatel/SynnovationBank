@@ -2,13 +2,17 @@ package edu.asu.secure.SynnovationBank.DaoImpl;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import edu.asu.secure.SynnovationBank.DBUtilities.HibernateUtil;
 import edu.asu.secure.SynnovationBank.DTO.NotificationsType;
 import edu.asu.secure.SynnovationBank.Dao.NotificationsTypeDAO;
 
+@Repository
 public class NotificationsTypeDAOImpl implements NotificationsTypeDAO {
 
+	@Autowired
 	SessionFactory factory = HibernateUtil.buildSessionFactory();
 	
 	@Override
