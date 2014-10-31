@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import edu.asu.secure.SynnovationBank.FormBean.ChangePasswordFormBean;
+import edu.asu.secure.SynnovationBank.FormBean.ExternalUserFormBean;
 
 /**
  * Handles and retrieves the common or admin page depending on the URI template.
@@ -198,11 +198,14 @@ public class AdminController {
     	return "AdminAddInternalUser";
 	}
     
-    @RequestMapping(value = "/adminaddedexternaluseraccounts", method = RequestMethod.POST)
-    public String getAdminAddedExternalUser(@ModelAttribute("addexternaluserformbean")
-    ChangePasswordFormBean changePasswordFormBean, BindingResult result,ModelMap model) {
+    @RequestMapping(value = "/adminaddedexternaluseraccounts")
+    public String getAdminAddedExternalUserAccounts(@ModelAttribute("addexternaluserformbean")
+    ExternalUserFormBean addexternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
     	logger.debug("Received request to show ADDED external user page ......");
     
+    	
+    	System.out.println(addexternaluserformbean.getFname());
+    	
 //    	String name = (String) request.getAttribute("fname");
 //    	logger.debug("got name " + name);
 //    	
@@ -217,6 +220,6 @@ public class AdminController {
 //    	
 //    	return model;
     	
-    	return "";
+    	return "AdminExternalUserAccounts";
 	}
 }
