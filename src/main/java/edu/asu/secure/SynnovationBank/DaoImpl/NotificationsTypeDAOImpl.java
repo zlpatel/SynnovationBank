@@ -12,7 +12,6 @@ import edu.asu.secure.SynnovationBank.Dao.NotificationsTypeDAO;
 @Repository
 public class NotificationsTypeDAOImpl implements NotificationsTypeDAO {
 
-	@Autowired
 	SessionFactory factory = HibernateUtil.buildSessionFactory();
 	
 	@Override

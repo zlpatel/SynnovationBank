@@ -12,7 +12,6 @@ import edu.asu.secure.SynnovationBank.Dao.ReportedIssuesDAO;
 @Repository
 public class ReportedIssuesDAOImpl implements ReportedIssuesDAO {
 
-	@Autowired
 	SessionFactory factory = HibernateUtil.buildSessionFactory();
 
 	@Override

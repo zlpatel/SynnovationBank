@@ -12,7 +12,6 @@ import edu.asu.secure.SynnovationBank.Dao.AccountDAO;
 @Repository
 public class AccountDAOImpl implements AccountDAO {
 
-	@Autowired
 	SessionFactory factory = HibernateUtil.buildSessionFactory();
 	
 	@Override

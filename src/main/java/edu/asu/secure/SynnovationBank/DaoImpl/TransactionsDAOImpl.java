@@ -12,7 +12,6 @@ import edu.asu.secure.SynnovationBank.Dao.TransactionsDAO;
 @Repository
 public class TransactionsDAOImpl implements TransactionsDAO {
 
-	@Autowired
 	SessionFactory factory = HibernateUtil.buildSessionFactory();
 	
 	@Override

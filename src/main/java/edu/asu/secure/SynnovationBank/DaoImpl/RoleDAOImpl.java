@@ -12,7 +12,6 @@ import edu.asu.secure.SynnovationBank.Dao.RoleDAO;
 @Repository
 public class RoleDAOImpl implements RoleDAO {
 
-	@Autowired
 	SessionFactory factory = HibernateUtil.buildSessionFactory();
 
 	@Override

@@ -2,17 +2,16 @@ package edu.asu.secure.SynnovationBank.Service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.transaction.annotation.Transactional;
 
-import edu.asu.secure.SynnovationBank.Dao.UserDaoTest;
+import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
 
 public interface MyUserDetailsService {
 
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException;
 
-	public UserDaoTest getUserDao();
+	PersonDAO getPersonDao();
 
-	public void setUserDao(UserDaoTest userDao);
+	void setPersonDao(PersonDAO personDao);
 
 }
