@@ -22,3 +22,27 @@ INFO  - 2014-10-30 23:13:06.646; org.hibernate.service.jdbc.connections.internal
 INFO  - 2014-10-30 23:13:06.647; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000046: Connection properties: {user=root, password=****}
 INFO  - 2014-10-30 23:13:06.729; org.hibernate.dialect.Dialect; HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
 INFO  - 2014-10-30 23:13:06.758; org.hibernate.engine.transaction.internal.TransactionFactoryInitiator; HHH000399: Using default transaction strategy (direct JDBC transactions)
+INFO  - 2014-10-30 23:35:01.304; org.hibernate.annotations.common.Version; HCANN000001: Hibernate Commons Annotations {4.0.1.Final}
+INFO  - 2014-10-30 23:35:01.340; org.hibernate.Version; HHH000412: Hibernate Core {4.0.1.Final}
+INFO  - 2014-10-30 23:35:01.343; org.hibernate.cfg.Environment; HHH000206: hibernate.properties not found
+INFO  - 2014-10-30 23:35:01.345; org.hibernate.cfg.Environment; HHH000021: Bytecode provider name : javassist
+INFO  - 2014-10-30 23:35:01.387; org.hibernate.cfg.Configuration; HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO  - 2014-10-30 23:35:01.388; org.hibernate.cfg.Configuration; HHH000040: Configuration resource: /hibernate.cfg.xml
+WARN  - 2014-10-30 23:35:01.514; org.hibernate.internal.util.xml.DTDEntityResolver; HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+INFO  - 2014-10-30 23:35:01.566; org.hibernate.cfg.Configuration; HHH000041: Configured SessionFactory: null
+INFO  - 2014-10-30 23:35:01.620; org.hibernate.dialect.Dialect; HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+INFO  - 2014-10-30 23:35:01.984; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000227: Running hbm2ddl schema export
+INFO  - 2014-10-30 23:35:02.034; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000402: Using Hibernate built-in connection pool (not for production use!)
+INFO  - 2014-10-30 23:35:02.051; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000115: Hibernate connection pool size: 20
+INFO  - 2014-10-30 23:35:02.051; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000006: Autocommit mode: false
+INFO  - 2014-10-30 23:35:02.052; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/synnovation_bank]
+INFO  - 2014-10-30 23:35:02.052; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000046: Connection properties: {user=root, password=****}
+INFO  - 2014-10-30 23:35:21.974; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000030: Cleaning up connection pool [jdbc:mysql://localhost:3306/synnovation_bank]
+INFO  - 2014-10-30 23:35:21.977; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000230: Schema export complete
+INFO  - 2014-10-30 23:35:21.985; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000402: Using Hibernate built-in connection pool (not for production use!)
+INFO  - 2014-10-30 23:35:21.985; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000115: Hibernate connection pool size: 20
+INFO  - 2014-10-30 23:35:21.985; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000006: Autocommit mode: false
+INFO  - 2014-10-30 23:35:21.986; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/synnovation_bank]
+INFO  - 2014-10-30 23:35:21.986; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000046: Connection properties: {user=root, password=****}
+INFO  - 2014-10-30 23:35:22.092; org.hibernate.dialect.Dialect; HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+INFO  - 2014-10-30 23:35:22.175; org.hibernate.engine.transaction.internal.TransactionFactoryInitiator; HHH000399: Using default transaction strategy (direct JDBC transactions)
