@@ -33,9 +33,9 @@
 <br><br>
 
 
-<form action="adminaddedexternaluseraccounts" commandName="adduserformbean" method="post" >
+<form action="adminaddedexternaluseraccounts" commandName="addexternaluserformbean" method="post" >
 
-<input name="fname"  class = "form-control" style="width:200px;" placeholder = "First Name" maxlength="15" value="${adduserformbean.fname}"/>
+<input name="fname"  class = "form-control" style="width:200px;" placeholder = "First Name" maxlength="15" value="${addexternaluserformbean.fname}"/>
 <br>
 <input name="lname"  type="text" class = "form-control" style="width:200px;" placeholder = "Last Name" maxlength="14">
 <br>
