@@ -33,9 +33,9 @@
 <br><br>
 
 
-<form action="adminaddedexternaluseraccounts" commandName="" method="post" >
+<form action="adminaddedexternaluseraccounts" commandName="adduserformbean" method="post" >
 
-<input name="fname"  class = "form-control" style="width:200px;" placeholder = "First Name" maxlength="15">
+<input name="fname"  class = "form-control" style="width:200px;" placeholder = "First Name" maxlength="15" value="${adduserformbean.fname}"/>
 <br>
 <input name="lname"  type="text" class = "form-control" style="width:200px;" placeholder = "Last Name" maxlength="14">
 <br>
@@ -73,7 +73,8 @@
 		}
 	</script>
 <br>
-<a class="btn btn-primary" href="adminaddedexternaluseraccounts" type="submit">Save</a>
+<input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
+<!-- <a class="btn btn-primary" href="adminaddedexternaluseraccounts" type="submit">Save</a> -->
 <a class="btn btn-deafult" href="adminexternaluseraccounts">Cancel</a>
 <a class="btn btn-deafult" href="javascript:formSubmit()">Logout</a>
 
