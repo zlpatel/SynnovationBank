@@ -1,6 +1,6 @@
 package edu.asu.secure.SynnovationBank.FormBean;
 
-public class ForgetPasswordFormBean {
+public class ForgotPasswordFormBean {
 	
 	private String username;
 	private String email;
