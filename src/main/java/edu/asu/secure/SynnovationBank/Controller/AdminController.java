@@ -6,19 +6,16 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import edu.asu.secure.SynnovationBank.FormBean.ExternalUserFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.InternalUserFormBean;
 import edu.asu.secure.SynnovationBank.Service.AddExternalUserService;
 import edu.asu.secure.SynnovationBank.Service.AddInternalUserService;
-
 
 /**
  * Handles and retrieves the common or admin page depending on the URI template.
@@ -26,8 +23,6 @@ import edu.asu.secure.SynnovationBank.Service.AddInternalUserService;
  * the adminpage, however.
  */
 @Controller
-@Transactional
-
 @RequestMapping("/admin")
 public class AdminController {
 	
@@ -211,6 +206,7 @@ public class AdminController {
     	return "AdminAddInternalUser";
 	}
     
+
     @RequestMapping(value = "/adminaddedexternaluseraccounts")
     public String getAdminAddedExternalUserAccounts(@ModelAttribute("addexternaluserformbean")
     ExternalUserFormBean addexternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
@@ -256,5 +252,4 @@ public class AdminController {
 		}
     	
 	}
-
 }

@@ -1,7 +1,5 @@
 package edu.asu.secure.SynnovationBank.DaoImpl;
 
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,12 +44,6 @@ public class AccountDAOImpl implements AccountDAO {
 			return false;
 		}
 
-	}
-
-	@Override
-	public List<Account> fetchUserAccounts() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	

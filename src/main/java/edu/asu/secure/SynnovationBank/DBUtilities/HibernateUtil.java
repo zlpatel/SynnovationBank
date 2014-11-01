@@ -11,7 +11,6 @@ import edu.asu.secure.SynnovationBank.DTO.Notifications;
 import edu.asu.secure.SynnovationBank.DTO.NotificationsType;
 import edu.asu.secure.SynnovationBank.DTO.Person;
 import edu.asu.secure.SynnovationBank.DTO.ReportedIssues;
-import edu.asu.secure.SynnovationBank.DTO.Role;
 import edu.asu.secure.SynnovationBank.DTO.TransactionDetails;
 import edu.asu.secure.SynnovationBank.DTO.TransactionType;
 import edu.asu.secure.SynnovationBank.DTO.Transactions;
@@ -24,7 +23,6 @@ public class HibernateUtil {
     
     static{
     	configuration = new Configuration();
-		configuration.addAnnotatedClass(Role.class);
 		configuration.addAnnotatedClass(TransactionType.class);
     	configuration.addAnnotatedClass(Person.class);
 		configuration.addAnnotatedClass(Account.class);

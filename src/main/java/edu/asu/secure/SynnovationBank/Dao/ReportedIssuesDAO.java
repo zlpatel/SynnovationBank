@@ -4,6 +4,7 @@ import edu.asu.secure.SynnovationBank.DTO.ReportedIssues;
 
 public interface ReportedIssuesDAO {
 
-	public long insertIssue(ReportedIssues issue);
-	public boolean updateIssueResolved(ReportedIssues issue);
+	public long insertIssue(String userId, ReportedIssues issue);
+	
+	public boolean updateIssueResolved(Long issueId);
 }

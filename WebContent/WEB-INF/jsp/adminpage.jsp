@@ -19,6 +19,7 @@
 <body>
 <h2>Admin Page</h2>
 <p>Only admins have access to this page.</p><br>
+<p>${sessionScope.USERNAME}</p>
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#">Notifications</a></li>
@@ -28,6 +29,7 @@
     <li><a href="admincriticaltransactions">Critical Transactions</a></li>
     <li><a href="adminsystemlog">System Log</a></li>   
     <li><a href="adminchangepassword">Change Password</a></li>
+    <li><a href="tempPage">temp</a></li>
 </ul>
 
 <br><br><table class="table">
