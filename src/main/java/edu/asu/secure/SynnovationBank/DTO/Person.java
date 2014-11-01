@@ -158,7 +158,6 @@ public class Person {
 	}
 
 	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="assignee_id", referencedColumnName="user_id")
 	public Set<Notifications> getNotifications() {
 		return notifications;
 	}
@@ -168,7 +167,6 @@ public class Person {
 	}
 
 	@OneToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="user_id", referencedColumnName="user_id")
 	public Account getAccount() {
 		return account;
 	}
@@ -178,7 +176,6 @@ public class Person {
 	}
 
 	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="user_id", referencedColumnName="user_id")
 	public Set<ReportedIssues> getIssues() {
 		return issues;
 	}
