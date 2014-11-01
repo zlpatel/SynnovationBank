@@ -31,7 +31,7 @@
 
 <br><br>
 <form action="debitrequest" commandName="debitFormBean" method="get">
-<input id="debitAmount" type="text" name="debitAmount" placeholder="Enter the amount to be debitted(in USD)" style="width:500px;" value="${debitFormBean.debitAmount}"/><br>
+<input id="debitAmount" type="text" name="debitAmount" placeholder="Enter the amount to be debitted(in USD)" style="width:500px;" value="${debitFormBean.debitAmount}"/><br>j
 <input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
 
 </form>

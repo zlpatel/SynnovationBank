@@ -23,7 +23,7 @@ public class DebitServiceImpl implements DebitService{
 		
 		
 		Account a = null;
-		//a= DAO.getAccountInfo(userId);
+		//a= DAO.getAccountInfo(userId);  --> returns person object then get account  Person p=fetchPerson(userID); a=p.getAccount();
 		float balance=a.getBalance();
 		float debit=Float.parseFloat(amount);
 		float new_balance=balance-debit;
