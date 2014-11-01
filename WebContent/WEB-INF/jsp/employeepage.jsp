@@ -26,7 +26,7 @@
 </ul>
 
 <p align="center">Notifications Page</p>
-<form name ="employee_notifications" method = "post" commandName="empNotificsFormBean">
+<form name ="employee_notifications" method = "post" commandName="empNotifFormBean">
 		<table id = "transaction" width="500" border="0" bordercolor="black" class ="table table-striped">
 		<tr>
 		  <td><b>First Name</b></td>
@@ -35,11 +35,11 @@
           
           <td colspan="2" align="center"><b>Action</b></td>
          </tr>
-      <c:forEach  items="${empNotoficsFormBean}" var="empNotification">
+      <c:forEach  items="${empNotifFormBean}">
         <tr> 
-          <td>${empNotoficsFormBean.getFirstname}</td>
-          <td>${empNotoficsFormBean.getLastname}</td>
-          <td>${empNotoficsFormBean.getNotifications}</td>
+          <td>${empNotifFormBean.getFirstName}</td>
+          <td>${empNotifFormBean.getLastName}</td>
+          <td>${empNotifFormBean.getNotifications}</td>
           <td align="center"><input style="width:75px;" name="approve" type="submit" value= "Approve" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoApproved.html?authUsername=${person.ID}';;return true;"/></td>  
           <td align="center"><input  style="width:75px;" name="deny" type="submit" value= "Deny" class = "btn btn-primary"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoDenied.html?authUsername=${person.ID}'; ;return true;"/></td> 
         </tr>

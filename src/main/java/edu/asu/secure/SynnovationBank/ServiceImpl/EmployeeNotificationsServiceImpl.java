@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.asu.secure.SynnovationBank.DTO.Notifications;
+import edu.asu.secure.SynnovationBank.Dao.NotificationsDAO;
 import edu.asu.secure.SynnovationBank.FormBean.EmpNotifFormBean;
 import edu.asu.secure.SynnovationBank.Service.EmployeeNotificationsService;
 
@@ -25,15 +27,15 @@ public class EmployeeNotificationsServiceImpl implements EmployeeNotificationsSe
 	    public List<EmpNotifFormBean> notifications() {
 	    	 
 	    	EmpNotifFormBean empNotifFormBean=null;
-	    	List<Notifications> notification=NotificationsDAO.listOfNotifications();
+	    	List<Notifications> notification=notificationsDAO.fetchNotifications("E");
 	    	List<EmpNotifFormBean> list=new ArrayList<EmpNotifFormBean>();
 	    	
 	    	for(Notifications notif: notification){
 	    		empNotifFormBean = new EmpNotifFormBean();
 	    		
-	    		empNotifFormBean.setFirstname(notif.getFirstname());
-	    		empNotifFormBean.setLastName(notif.getLastname());
-	    		empNotifFormBean.setNotifications(notif.getNotifications);
+	    		empNotifFormBean.setFirstname(notif.getPerson().getFirstName());
+	    		empNotifFormBean.setLastName(notif.getPerson().getLastName());
+	    		empNotifFormBean.setNotifications(notif.getNotificationsType());
 	    		list.add(empNotifFormBean);
 	    	}
 	    	return list;

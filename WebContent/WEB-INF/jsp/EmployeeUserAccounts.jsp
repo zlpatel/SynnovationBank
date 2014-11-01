@@ -17,7 +17,29 @@
 </head>
 <body>
 <h2>Employee Page</h2>
-<p>Only employees have access to this page.</p><br>
+<form name ="employee_userAccounts" method = "post" commandName="empUserAccFormBean">
+		<table id = "transaction" width="500" border="0" bordercolor="black" class ="table table-striped">
+		<tr>
+		  <td><b>First Name</b></td>
+		  <td><b>Last Name</b></td>
+          <td><b>Account Number</b></td>
+          <td><b>Balance</b></td>
+          
+          <td colspan="2" align="center"><b>Action</b></td>
+         </tr>
+      <c:forEach  items="${empUserAccFormBean}">
+        <tr> 
+          <td>${empUserAccFormBean.getFirstName}</td>
+          <td>${empUserAccFormBean.getLastName}</td>
+          <td>${empUserAccFormBean.getAccountNumber}</td>
+          <td>${empUserAccFormBean.getBalance}</td>
+          <td align="center"><input style="width:75px;" name="request to view transaction" type="submit" value= "View Transaction" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoApproved.html?authUsername=${person.ID}';;return true;"/></td>  
+          
+        </tr>
+      </c:forEach>
+      </table>
+      </form>
+
 
 <ul class="nav nav-tabs">
     <li><a href="employee">Notifications</a></li>
