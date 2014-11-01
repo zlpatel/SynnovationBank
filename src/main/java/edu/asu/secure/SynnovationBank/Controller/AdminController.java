@@ -234,7 +234,7 @@ public class AdminController {
     	
 	}
     
-    @RequestMapping(value = "/adminaddedinternaluseraccounts", method = RequestMethod.GET)
+    @RequestMapping(value = "/adminaddedinternaluseraccounts")
     public String getAdminAddedInternalUserAccounts(@ModelAttribute("addinternaluserformbean")
     InternalUserFormBean addinternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
     	logger.debug("Received request to show ADDED internal user page ......");

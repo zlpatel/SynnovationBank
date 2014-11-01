@@ -43,8 +43,8 @@ public class AddInternalUserServiceImpl implements AddInternalUserService{
 
 		//Need to set role once Jeffrey updates
 		//		person.setRole("Customer");
+		return personDao.insertUser(person);
 		
-		return true;
 	}
 
 

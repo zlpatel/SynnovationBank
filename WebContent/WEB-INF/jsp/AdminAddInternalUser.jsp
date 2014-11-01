@@ -54,7 +54,7 @@
 
 <input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
 <!-- <a class="btn btn-primary" href="adminaddedexternaluseraccounts" type="submit">Save</a> -->
-<a class="btn btn-deafult" href="adminexternaluseraccounts">Cancel</a>
+<a class="btn btn-deafult" href="admininternaluseraccounts">Cancel</a>
 <a class="btn btn-deafult" href="javascript:formSubmit()">Logout</a>
 
 <input type="hidden" name="${_csrf.parameterName}"
@@ -79,6 +79,7 @@
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
- --%><br>
+ --%>
+ 
 </body>
 </html>
