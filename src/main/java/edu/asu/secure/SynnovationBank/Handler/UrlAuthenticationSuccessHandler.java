@@ -8,16 +8,23 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 public class UrlAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 	protected static Logger logger = Logger.getLogger("service");
  
+	@Autowired
+    private UsernamePasswordAuthenticationFilter usernamePasswordAuthenticationFilter;
+	
+	public static final String USERNAME_KEY = "USERNAME";
+	
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
  
     @Override
@@ -25,6 +32,14 @@ public class UrlAuthenticationSuccessHandler implements AuthenticationSuccessHan
       HttpServletResponse response, Authentication authentication) throws IOException {
         handle(request, response, authentication);
         clearAuthenticationAttributes(request);
+        String usernameParameter =
+                usernamePasswordAuthenticationFilter.getUsernameParameter();
+            String userName = request.getParameter(usernameParameter);
+
+            HttpSession session = request.getSession(false);
+            if (session != null) {
+                request.getSession().setAttribute(USERNAME_KEY, userName);
+            }
     }
  
     protected void handle(HttpServletRequest request,
