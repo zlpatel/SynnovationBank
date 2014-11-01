@@ -103,5 +103,20 @@ public class PersonDAOImpl implements PersonDAO {
 		}
 	}
 
+	@Override
+	public boolean insertAccount(Person person) {
+		try{
+			Session session = factory.getCurrentSession();
+			session.beginTransaction();
+			session.save(person);
+			session.getTransaction().commit();
+			return true;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 	
 }

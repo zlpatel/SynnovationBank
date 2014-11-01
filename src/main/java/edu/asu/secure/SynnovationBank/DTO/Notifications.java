@@ -55,8 +55,8 @@ public class Notifications {
 		this.resolvedFlag = resolvedFlag;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name="transaction_Id", referencedColumnName="transaction_Id")
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="transaction_id", referencedColumnName="transaction_id")
 	public Transactions getTransaction() {
 		return transaction;
 	}
@@ -65,7 +65,7 @@ public class Notifications {
 		this.transaction = transaction;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="assignee_id", referencedColumnName="user_id")
 	public Person getPerson() {
 		return person;

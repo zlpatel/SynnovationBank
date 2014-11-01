@@ -1,6 +1,5 @@
 package edu.asu.secure.SynnovationBank.DTO;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,7 +33,7 @@ public class TransactionDetails {
 		this.sequenceId = sequenceId;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="transaction_id", referencedColumnName="transaction_id")
 	public Transactions getTransactions() {
 		return transactions;
@@ -44,7 +43,7 @@ public class TransactionDetails {
 		this.transactions = transactions;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="transaction_type_id", referencedColumnName="transaction_type_id")
 	public TransactionType getTransactionType() {
 		return transactionType;
@@ -54,7 +53,7 @@ public class TransactionDetails {
 		this.transactionType = transactionType;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="account_number", referencedColumnName="account_number")
 	public Account getAccount() {
 		return account;

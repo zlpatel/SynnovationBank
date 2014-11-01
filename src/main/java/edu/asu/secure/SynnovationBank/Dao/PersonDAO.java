@@ -9,4 +9,5 @@ public interface PersonDAO {
 	public boolean authenticateUser(String userId, String password);
 	public Person fetchPersonById(String userId);
 	public boolean updateOTP(String userId, String otp);
+	public boolean insertAccount(Person person);
 }

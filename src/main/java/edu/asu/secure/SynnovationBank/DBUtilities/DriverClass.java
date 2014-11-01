@@ -8,13 +8,13 @@ public class DriverClass {
 		// TODO Auto-generated method stub
 		HibernateUtil.createTables();
 		SeedData.insertRoles();
-		SeedData.insertUser();
+		//SeedData.insertUser();
 		//insertUser();
 		
-		PersonDAOImpl personDAO = new PersonDAOImpl();
-		System.out.println("Authentication = "+personDAO.authenticateUser("jeff", "jeff"));
+		//PersonDAOImpl personDAO = new PersonDAOImpl();
+		//System.out.println("Authentication = "+personDAO.authenticateUser("jeff", "jeff"));
 		
-		personDAO.updateOTP("jeff", "987");		
+		//personDAO.updateOTP("jeff", "987");		
 		
 	}
 

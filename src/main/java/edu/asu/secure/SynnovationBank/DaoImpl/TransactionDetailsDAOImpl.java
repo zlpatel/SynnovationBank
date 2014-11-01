@@ -42,7 +42,7 @@ public class TransactionDetailsDAOImpl implements TransactionDetailsDAO {
 	public boolean deleteTransactionDetailsById(Long transactionId) {
 		try{
 			Session session = factory.getCurrentSession();
-			String hql = "delete from Transaction_Details where transaction_id= :id";
+			String hql = "delete from TransactionDetails where transactions.transactionId= :id";
 			session.createQuery(hql).setLong("id", transactionId).executeUpdate();
 			session.getTransaction().commit();
 			return true;
