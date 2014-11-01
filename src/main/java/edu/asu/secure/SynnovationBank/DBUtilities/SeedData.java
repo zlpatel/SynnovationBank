@@ -118,7 +118,7 @@ public class SeedData {
 		person.setDateOfBirth(Calendar.getInstance().getTime());
 		person.setEmail("zlpatel@hotmail.com");
 		
-		role.setRoleId(3);
+		role.setRoleId(4);
 		role.setRoleName("ROLE_MERC");
 		
 		person.setRole(role);
