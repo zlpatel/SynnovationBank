@@ -28,7 +28,8 @@
 
 <h2> Welcome page !!</h2>
 <ul class="nav nav-tabs">
-<li><a href="credit_debit">Credit/Debit</a> </li>
+<li><a href="credit_debit">Credit Amount</a> </li>
+<li><a href="debit">Debit Amount</a> </li>
 <li><a href="transfer">Transfers</a></li>
 <li><a href="viewTransactions">View Transactions</a></li>
 <li><a href="customerNotifications">Notifications</a></li>

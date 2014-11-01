@@ -1,17 +1,26 @@
 package edu.asu.secure.SynnovationBank.Controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import edu.asu.secure.SynnovationBank.FormBean.CreditFormBean;
+import edu.asu.secure.SynnovationBank.Service.CreditService;
 
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
 
+	@Autowired
+	private CreditService creditService;
+	
 	protected static Logger logger = Logger.getLogger("controller");
 	/**
      * Handles and retrieves the employee JSP page that only employees can see
@@ -25,6 +34,32 @@ public class CustomerController {
      */
     
     
+	
+	@RequestMapping(value = "/creditrequest", method = RequestMethod.GET)
+    public String getCreditPage(@ModelAttribute("creditFormBean")CreditFormBean creditFormBean) {
+
+		logger.debug("Received request to show creditrequest page");
+		System.out.println("credited amount :"+creditFormBean.getCreditAmount());
+			if(creditService.creditAmount(creditFormBean.getCreditAmount()))
+				return "welcomeUser";
+			
+			else
+				return "credit_debit";
+    	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
     
     
     @RequestMapping(value = "/credit_debit", method = RequestMethod.GET)
