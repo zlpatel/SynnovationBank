@@ -2,7 +2,6 @@ package edu.asu.secure.SynnovationBank.DTO;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -76,7 +75,7 @@ public class Account {
 		this.person = person;
 	}
 
-	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name="account_number", referencedColumnName="account_number")
 	public Set<TransactionDetails> getTransactionDetails() {
 		return transactionDetails;
