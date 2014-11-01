@@ -21,7 +21,8 @@
 		<property name="basename" value="classpath:messages" />
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
-	<bean id="propertyConfigurer"
+	
+	<!-- <bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
 		p:location="/WEB-INF/jdbc.properties" />
 
@@ -45,12 +46,12 @@
 				<prop key="hibernate.show_sql">true</prop>
 			</props>
 		</property>
-	</bean>
+	</bean> -->
 
-	<tx:annotation-driven />
+	<!-- <tx:annotation-driven />
 	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	</bean> -->
 
 </beans>
