@@ -12,16 +12,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.asu.secure.SynnovationBank.FormBean.CreditFormBean;
+import edu.asu.secure.SynnovationBank.FormBean.DebitFormBean;
+import edu.asu.secure.SynnovationBank.FormBean.TransferFormBean;
 import edu.asu.secure.SynnovationBank.Service.CreditService;
+import edu.asu.secure.SynnovationBank.Service.DebitService;
+import edu.asu.secure.SynnovationBank.Service.TransferService;
 
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
-
+	protected static Logger logger = Logger.getLogger("controller");
 	@Autowired
 	private CreditService creditService;
+	@Autowired
+	private DebitService debitService;
+	@Autowired
+	private TransferService transferService;
 	
-	protected static Logger logger = Logger.getLogger("controller");
 	/**
      * Handles and retrieves the employee JSP page that only employees can see
      * 
@@ -35,8 +42,11 @@ public class CustomerController {
     
     
 	
+	
+	// controller for crediting
+	
 	@RequestMapping(value = "/creditrequest", method = RequestMethod.GET)
-    public String getCreditPage(@ModelAttribute("creditFormBean")CreditFormBean creditFormBean) {
+    public String getDebitPage(@ModelAttribute("creditFormBean") CreditFormBean creditFormBean) {
 
 		logger.debug("Received request to show creditrequest page");
 		System.out.println("credited amount :"+creditFormBean.getCreditAmount());
@@ -48,12 +58,60 @@ public class CustomerController {
     	
 	}
 	
+
+	
+	
+	// controller for debiting
+	
+		@RequestMapping(value = "/debitrequest", method = RequestMethod.GET)
+	    public String getDebitPage(@ModelAttribute("debitFormBean") DebitFormBean debitFormBean) {
+
+			logger.debug("Received request to show debitrequest page");
+			System.out.println("Debited amount :"+debitFormBean.getDebitAmount());
+				if(debitService.debitAmount(debitFormBean.getDebitAmount()))
+					return "welcomeUser";
+				
+				else
+					return "debit";
+	    	
+		}
+
 	
 	
 	
 	
 	
+
 	
+		// controller for 		transferrequest
+		
+		@RequestMapping(value = "/transferrequest", method = RequestMethod.GET)
+	    public String getDebitPage(@ModelAttribute("transferFormBean") TransferFormBean transferFormBean) {
+
+			logger.debug("Received request to show transfer rqst page");
+			System.out.println("Send to :"+transferFormBean.getReceiverID());
+			System.out.println("Transfer amount :"+transferFormBean.getTransferAmount());
+				
+			if(transferService.performTransfer(transferFormBean.getReceiverID(),transferFormBean.getTransferAmount()))
+				return "welcomeUser";
+			else
+					return "transfer";
+	    	
+		}
+	
+	
+	 @RequestMapping(value = "/debit", method = RequestMethod.GET)
+	    public String getDebit() {
+	    	logger.debug("Received request to show credit/debit page");
+	    
+	    	// Do your work here. Whatever you like
+	    	// i.e call a custom service to do your business
+	    	// Prepare a model to be used by the JSP page
+	    	
+	    	// This will resolve to /WEB-INF/jsp/commonpage.jsp
+	    	return "debit";
+		}
+		
 	
 	
 	

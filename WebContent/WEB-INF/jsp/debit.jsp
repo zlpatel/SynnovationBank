@@ -18,7 +18,7 @@
 <body>
 <center><h1> SYNNOVATION </h1> </center>
 
-<h2> Credit Page !!</h2>
+<h2> DEBIT PAGE !!</h2>
 <ul class="nav nav-tabs">
 <li><a href="credit_debit">Credit Amount</a> </li>
 <li><a href="debit">Debit Amount</a> </li>
@@ -29,10 +29,9 @@
 <li><a href="techAccountAccess">Technical Account Access</a></li>
 </ul>
 
-
 <br><br>
-<form action="creditrequest" commandName="creditFormBean" method="get">
-<input id="creditAmount" type="text" name="creditAmount" placeholder="Enter the amount to be credited (in USD)" style="width:500px;" value="${creditFormBean.creditAmount}"/><br>
+<form action="debitrequest" commandName="debitFormBean" method="get">
+<input id="debitAmount" type="text" name="debitAmount" placeholder="Enter the amount to be debitted(in USD)" style="width:500px;" value="${debitFormBean.debitAmount}"/><br>
 <input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
 
 </form>

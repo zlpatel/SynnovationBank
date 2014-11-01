@@ -1,28 +1,20 @@
 package edu.asu.secure.SynnovationBank.ServiceImpl;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.asu.secure.SynnovationBank.DTO.Account;
-import edu.asu.secure.SynnovationBank.DTO.TransactionDetails;
-import edu.asu.secure.SynnovationBank.DTO.TransactionType;
-import edu.asu.secure.SynnovationBank.DTO.Transactions;
-import edu.asu.secure.SynnovationBank.Service.CreditService;
+import edu.asu.secure.SynnovationBank.Service.DebitService;
 
 @Service
 @Transactional
-public class CreditServiceImpl implements CreditService {
 
-	
-
-	
+public class DebitServiceImpl implements DebitService{
 
 	@Override
-	public boolean creditAmount(String amount) {
-		/*
+	public boolean debitAmount(String amount) {
+		// TODO Auto-generated method stub
+		
+/*
 		
 		// TODO Auto-generated method stub
 		
@@ -33,8 +25,11 @@ public class CreditServiceImpl implements CreditService {
 		Account a = null;
 		//a= DAO.getAccountInfo(userId);
 		float balance=a.getBalance();
-		float credit=Float.parseFloat(amount);
-		float new_balance=balance+credit;
+		float debit=Float.parseFloat(amount);
+		float new_balance=balance-debit;
+		if(new_balance<0)
+		   return false;
+		   
 		a.setBalance(new_balance);
 		
 		//DAO.updateAccount(a);
@@ -49,7 +44,7 @@ public class CreditServiceImpl implements CreditService {
 		
 		TransactionType ttype=null;
 
-		//ttype = DAO.returnTtypeObj(String transaction_name);
+		//ttype = DAO.returnTtypeObj(String transaction_name); // transaction_name would be like credit/debit
 		
 		td.setTransactionType(ttype);
 		td.setAccount(a);
@@ -61,7 +56,7 @@ public class CreditServiceImpl implements CreditService {
 		Set<TransactionDetails> set = new HashSet<TransactionDetails>();
 		set.add(td);
 		
-		t.setAmount(credit);
+		t.setAmount(debit);
 		t.setTransactionDetails(set);
 		
 		
@@ -70,7 +65,15 @@ public class CreditServiceImpl implements CreditService {
 		*
 		*
 		*/
+		
+		
+		
+		
+		
+		
+		
 		return true;
 	}
+	
 
 }
