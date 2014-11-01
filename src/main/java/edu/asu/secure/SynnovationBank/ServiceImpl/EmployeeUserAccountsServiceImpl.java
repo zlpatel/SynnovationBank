@@ -31,7 +31,7 @@ public class EmployeeUserAccountsServiceImpl implements EmployeeUserAccountServi
     	 
     	EmpUserAccFormBean empUserAccFormBean=null;
     	//change account to person and pass argument "c"
-    	List<Person> person=personDAO.fetchUserAccounts("C");
+    	List<Person> person=personDAO.fetchUserByRole("C");
     	List<EmpUserAccFormBean> list=new ArrayList<EmpUserAccFormBean>();
     	
     	for(Person per: person){
