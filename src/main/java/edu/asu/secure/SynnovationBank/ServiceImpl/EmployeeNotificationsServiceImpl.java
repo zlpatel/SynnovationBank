@@ -27,14 +27,17 @@ public class EmployeeNotificationsServiceImpl implements EmployeeNotificationsSe
 	    public List<EmpNotifFormBean> notifications() {
 	    	 
 	    	EmpNotifFormBean empNotifFormBean=null;
+	    	//System.out.println("Hi it is here!");
 	    	List<Notifications> notification=notificationsDAO.fetchNotifications("E");
+	    	//System.out.println("Hi it is here 2!");
 	    	List<EmpNotifFormBean> list=new ArrayList<EmpNotifFormBean>();
 	    	
 	    	for(Notifications notif: notification){
 	    		empNotifFormBean = new EmpNotifFormBean();
 	    		
-	    		empNotifFormBean.setFirstname(notif.getPerson().getFirstName());
+	    		empNotifFormBean.setFirstName(notif.getPerson().getFirstName());
 	    		empNotifFormBean.setLastName(notif.getPerson().getLastName());
+	    		empNotifFormBean.setUserName(notif.getPerson().getUserId());
 	    		empNotifFormBean.setNotifications(notif.getNotificationsType());
 	    		list.add(empNotifFormBean);
 	    	}

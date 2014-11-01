@@ -1,4 +1,4 @@
-package edu.asu.secure.SynnovationBank.ServiceImpl;
+	package edu.asu.secure.SynnovationBank.ServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.asu.secure.SynnovationBank.DTO.Account;
-import edu.asu.secure.SynnovationBank.DTO.Notifications;
+
+import edu.asu.secure.SynnovationBank.DTO.Person;
 import edu.asu.secure.SynnovationBank.Dao.AccountDAO;
-import edu.asu.secure.SynnovationBank.Dao.NotificationsDAO;
-import edu.asu.secure.SynnovationBank.FormBean.EmpNotifFormBean;
+
+import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
+
 import edu.asu.secure.SynnovationBank.FormBean.EmpUserAccFormBean;
 import edu.asu.secure.SynnovationBank.Service.EmployeeUserAccountService;
 
@@ -20,7 +22,7 @@ import edu.asu.secure.SynnovationBank.Service.EmployeeUserAccountService;
 public class EmployeeUserAccountsServiceImpl implements EmployeeUserAccountService{
 	  
     @Autowired
-    private AccountDAO accountDAO;
+    private PersonDAO personDAO;
      
     
  
@@ -28,16 +30,17 @@ public class EmployeeUserAccountsServiceImpl implements EmployeeUserAccountServi
     public List<EmpUserAccFormBean> userAccounts() {
     	 
     	EmpUserAccFormBean empUserAccFormBean=null;
-    	List<Account> account=accountDAO.fetchUserAccounts();
+    	//change account to person and pass argument "c"
+    	List<Person> person=personDAO.fetchUserAccounts("C");
     	List<EmpUserAccFormBean> list=new ArrayList<EmpUserAccFormBean>();
     	
-    	for(Account acc: account){
+    	for(Person per: person){
     		empUserAccFormBean = new EmpUserAccFormBean();
     		
-    		empUserAccFormBean.setFirstName(acc.getPerson().getFirstName());
-    		empUserAccFormBean.setLastName(acc.getPerson().getLastName());
-    		empUserAccFormBean.setGetAccountNumber(acc.getAccountNumber());
-    		empUserAccFormBean.setGetBalance(acc.getBalance());
+    		empUserAccFormBean.setFirstName(per.getFirstName());
+    		empUserAccFormBean.setLastName(per.getLastName());
+    		empUserAccFormBean.setGetAccountNumber(per.getAccount().getAccountNumber());
+    		empUserAccFormBean.setGetBalance(per.getAccount().getBalance());
     		list.add(empUserAccFormBean);
     	}
     	return list;

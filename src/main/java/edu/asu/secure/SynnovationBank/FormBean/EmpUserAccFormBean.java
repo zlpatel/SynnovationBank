@@ -1,6 +1,6 @@
 package edu.asu.secure.SynnovationBank.FormBean;
 
-import edu.asu.secure.SynnovationBank.DTO.Person;
+
 
 public class EmpUserAccFormBean {
 	
@@ -24,14 +24,14 @@ public class EmpUserAccFormBean {
 	public long getGetAccountNumber() {
 		return getAccountNumber;
 	}
-	public void setGetAccountNumber(long l) {
-		this.getAccountNumber = l;
+	public void setGetAccountNumber(long accountNumber) {
+		this.getAccountNumber = accountNumber;
 	}
 	public float getGetBalance() {
 		return getBalance;
 	}
-	public void setGetBalance(float f) {
-		this.getBalance = f;
+	public void setGetBalance(float getBalance) {
+		this.getBalance = getBalance;
 	} 
 
 }

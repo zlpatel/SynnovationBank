@@ -33,7 +33,7 @@
           <td>${empUserAccFormBean.getLastName}</td>
           <td>${empUserAccFormBean.getAccountNumber}</td>
           <td>${empUserAccFormBean.getBalance}</td>
-          <td align="center"><input style="width:75px;" name="request to view transaction" type="submit" value= "View Transaction" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoApproved.html?authUsername=${person.ID}';;return true;"/></td>  
+          <!-- <td align="center"><input style="width:75px;" name="request to view transaction" type="submit" value= "View Transaction" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoApproved.html?authUsername=${person.ID}';;return true;"/></td> --> 
           
         </tr>
       </c:forEach>

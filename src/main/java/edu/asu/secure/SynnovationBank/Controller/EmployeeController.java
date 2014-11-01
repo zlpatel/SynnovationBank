@@ -7,6 +7,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.asu.secure.SynnovationBank.DTO.Notifications;
 import edu.asu.secure.SynnovationBank.FormBean.*;
@@ -21,6 +22,9 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeUserAccountService employeeUserAccountService;
+
+	@Autowired
+	private EmployeeUserTransactionService employeeUserTransactionService;
 
 	protected static Logger logger = Logger.getLogger("controller");
 	/**
@@ -41,7 +45,46 @@ public class EmployeeController {
     	return "employeepage";
 	}
 
+    @RequestMapping(value = "/viewTransaction", method = {RequestMethod.POST,RequestMethod.GET})
+  	 public String getUserTransactions(@RequestParam(value="error", required=false) boolean error,@ModelAttribute("usertransactionFormBean") UserTransactionFormBean usertransactionFormBean, ModelMap model) {
+   		 
+    	if(error==true){
+			model.put("error", "You don't have access to this account");	
+		}else{
+			model.put("error","");
+			if(employeeUserTransactionService.checkFlag(usertransactionFormBean.getAccountNumber()))
+			{
+				logger.debug("Received request to show otp page");
+				model.put("userTransaction", employeeUserTransactionService.getTransactions(usertransactionFormBean.getAccountNumber()));
+				
+			}else{
+				model.put("error", true);
+				return "redirect:EmployeeViewTransactions";
+			}
+		}
+		return "ViewUserTransactions";
+	}
     
+   /* @RequestMapping(value = "/notificationAccepted", method = {RequestMethod.POST,RequestMethod.GET})
+ 	 public String getUserTransactions(@RequestParam(value="error", required=false) boolean error,@ModelAttribute("usertransactionFormBean") UserTransactionFormBean usertransactionFormBean, ModelMap model) {
+  		 
+   	if(error==true){
+			model.put("error", "You don't have access to this account");	
+		}else{
+			model.put("error","");
+			if(employeeUserTransactionService.checkFlag(usertransactionFormBean.getAccountNumber()))
+			{
+				logger.debug("Received request to show otp page");
+				model.put("userTransaction", employeeUserTransactionService.getTransactions(usertransactionFormBean.getAccountNumber()));
+				
+			}else{
+				model.put("error", true);
+				return "redirect:EmployeeViewTransactions";
+			}
+		}
+		return "ViewUserTransactions";
+	}*/
+
     
     @RequestMapping(value = "/employeeuseraccounts", method = RequestMethod.GET)
     public String getEmployeeUserAccountsPage(ModelMap model) {
