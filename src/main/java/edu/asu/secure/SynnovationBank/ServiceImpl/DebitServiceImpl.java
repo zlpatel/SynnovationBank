@@ -1,8 +1,21 @@
 package edu.asu.secure.SynnovationBank.ServiceImpl;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.asu.secure.SynnovationBank.DTO.Account;
+import edu.asu.secure.SynnovationBank.DTO.Person;
+import edu.asu.secure.SynnovationBank.DTO.TransactionDetails;
+import edu.asu.secure.SynnovationBank.DTO.TransactionType;
+import edu.asu.secure.SynnovationBank.DTO.Transactions;
+import edu.asu.secure.SynnovationBank.Dao.AccountDAO;
+import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
+import edu.asu.secure.SynnovationBank.Dao.TransactionTypeDAO;
+import edu.asu.secure.SynnovationBank.Dao.TransactionsDAO;
 import edu.asu.secure.SynnovationBank.Service.DebitService;
 
 @Service
@@ -10,41 +23,50 @@ import edu.asu.secure.SynnovationBank.Service.DebitService;
 
 public class DebitServiceImpl implements DebitService{
 
+	
+	
+
+	@Autowired
+	private PersonDAO personDAO;
+	@Autowired
+	private AccountDAO accountDAO;
+	@Autowired
+	private TransactionTypeDAO transactionTypeDAO;
+	@Autowired
+	private TransactionsDAO transactionsDAO;
+	
+			
+
 	@Override
-	public boolean debitAmount(String amount) {
-		// TODO Auto-generated method stub
-		
-/*
-		
-		// TODO Auto-generated method stub
+	public boolean debitAmount(String userName,String amount) {
+	
 		
 		
-		//ACCOUNT BALANCE MODIFICATION
+	//ACCOUNT BALANCE MODIFICATION
 		
-		
-		Account a = null;
-		//a= DAO.getAccountInfo(userId);  --> returns person object then get account  Person p=fetchPerson(userID); a=p.getAccount();
+		Person sender = personDAO.fetchUserById(userName);
+		Account a=(Account) sender.getAccount();
 		float balance=a.getBalance();
 		float debit=Float.parseFloat(amount);
 		float new_balance=balance-debit;
 		if(new_balance<0)
-		   return false;
-		   
+			return false;
 		a.setBalance(new_balance);
-		
-		//DAO.updateAccount(a);
+		accountDAO.updateAccountBalance(a.getAccountNumber(), a.getBalance());
+		System.out.println("Updated customer account table with new debit balance!");
 		
 		
 		
 		//TRANSACTION CREATION
 		
-		Transactions t=null;
+		Transactions t=new Transactions();
 		
-		TransactionDetails td=null;
+		TransactionDetails td=new TransactionDetails();
 		
-		TransactionType ttype=null;
+		TransactionType ttype=transactionTypeDAO.fetchTransactionType("debit");
 
-		//ttype = DAO.returnTtypeObj(String transaction_name); // transaction_name would be like credit/debit
+		
+		
 		
 		td.setTransactionType(ttype);
 		td.setAccount(a);
@@ -59,19 +81,16 @@ public class DebitServiceImpl implements DebitService{
 		t.setAmount(debit);
 		t.setTransactionDetails(set);
 		
+		long transactionID=transactionsDAO.insertTransaction(t);
 		
-		//boolean status=DAO.updateTransaction(t);
+		System.out.println("New debit transaction populated with ID: "+transactionID);
 		
-		*
-		*
-		*/
-		
+
 		
 		
 		
 		
-		
-		
+				
 		return true;
 	}
 	

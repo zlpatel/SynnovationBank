@@ -2,6 +2,8 @@ package edu.asu.secure.SynnovationBank.Service;
 
 public interface DebitService {
 	
-	boolean debitAmount(String amount);
+	
+
+	boolean debitAmount(String userName, String amount);
 
 }

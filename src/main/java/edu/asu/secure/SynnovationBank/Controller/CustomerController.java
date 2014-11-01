@@ -1,6 +1,9 @@
 package edu.asu.secure.SynnovationBank.Controller;
 
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,11 +49,16 @@ public class CustomerController {
 	// controller for crediting
 	
 	@RequestMapping(value = "/creditrequest", method = RequestMethod.GET)
-    public String getDebitPage(@ModelAttribute("creditFormBean") CreditFormBean creditFormBean) {
+    public String getDebitPage(@ModelAttribute("creditFormBean") CreditFormBean creditFormBean, HttpServletRequest request, HttpSession session) {
 
+		String userName="";
+		session = request.getSession(false);
+        if (session != null) {
+            userName=(String)request.getSession().getAttribute("USERNAME");
+        }
 		logger.debug("Received request to show creditrequest page");
-		System.out.println("credited amount :"+creditFormBean.getCreditAmount());
-			if(creditService.creditAmount(creditFormBean.getCreditAmount()))
+		System.out.println("credited amount :"+creditFormBean.getCreditAmount()+"to Account:" +userName );
+			if(creditService.creditAmount(userName,creditFormBean.getCreditAmount()))
 				return "welcomeUser";
 			
 			else
@@ -64,11 +72,17 @@ public class CustomerController {
 	// controller for debiting
 	
 		@RequestMapping(value = "/debitrequest", method = RequestMethod.GET)
-	    public String getDebitPage(@ModelAttribute("debitFormBean") DebitFormBean debitFormBean) {
+	    public String getDebitPage(@ModelAttribute("debitFormBean") DebitFormBean debitFormBean, HttpServletRequest request, HttpSession session) {
 
+			String userName="";
+			session = request.getSession(false);
+	        if (session != null) {
+	            userName=(String)request.getSession().getAttribute("USERNAME");
+	        }
+			
 			logger.debug("Received request to show debitrequest page");
-			System.out.println("Debited amount :"+debitFormBean.getDebitAmount());
-				if(debitService.debitAmount(debitFormBean.getDebitAmount()))
+			System.out.println("Debited amount :"+debitFormBean.getDebitAmount()+"to Account:" +userName );
+				if(debitService.debitAmount(userName, debitFormBean.getDebitAmount()))
 					return "welcomeUser";
 				
 				else
@@ -86,13 +100,20 @@ public class CustomerController {
 		// controller for 		transferrequest
 		
 		@RequestMapping(value = "/transferrequest", method = RequestMethod.GET)
-	    public String getDebitPage(@ModelAttribute("transferFormBean") TransferFormBean transferFormBean) {
+	    public String getDebitPage(@ModelAttribute("transferFormBean") TransferFormBean transferFormBean, HttpServletRequest request, HttpSession session) {
+			
+			String userName="";
+			session = request.getSession(false);
+	        if (session != null) {
+	            userName=(String)request.getSession().getAttribute("USERNAME");
+	        }
 
 			logger.debug("Received request to show transfer rqst page");
+			System.out.println("Send from:" +userName); 
 			System.out.println("Send to :"+transferFormBean.getReceiverID());
 			System.out.println("Transfer amount :"+transferFormBean.getTransferAmount());
 				
-			if(transferService.performTransfer(transferFormBean.getReceiverID(),transferFormBean.getTransferAmount()))
+			if(transferService.performTransfer(userName, transferFormBean.getReceiverID(),transferFormBean.getTransferAmount()))
 				return "welcomeUser";
 			else
 					return "transfer";
