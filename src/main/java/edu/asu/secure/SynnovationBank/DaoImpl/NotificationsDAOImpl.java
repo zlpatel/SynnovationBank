@@ -1,5 +1,6 @@
 package edu.asu.secure.SynnovationBank.DaoImpl;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import edu.asu.secure.SynnovationBank.DBUtilities.HibernateUtil;
 import edu.asu.secure.SynnovationBank.DTO.Notifications;
+import edu.asu.secure.SynnovationBank.DTO.Person;
 import edu.asu.secure.SynnovationBank.Dao.NotificationsDAO;
 
 @Repository
@@ -36,10 +38,15 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 	}
 
 	@Override
-	public boolean updateResolveNotification(Notifications notifications) {
+	public boolean updateResolveNotification(Long notificationId, Person person) {
 		try{
 			Session session = factory.getCurrentSession();
 			session.beginTransaction();
+			Notifications notifications = (Notifications)session.get(Notifications.class, notificationId);
+			if(notifications != null){
+				notifications.setPerson(person);
+				notifications.setResolvedFlag("Y");
+			}
 			session.update(notifications);
 			session.getTransaction().commit();
 			return true;
@@ -52,14 +59,16 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 
 	@Override
 	public List<Notifications> fetchNotifications(String empOrAdmin) {
-		List<Notifications> list = null;
-		List absList = null;
+		List<Notifications> list = new ArrayList<Notifications>();
+		@SuppressWarnings("rawtypes")
+		List rawList = null;
 		try{
-			Session session = factory.getCurrentSession();
+			Session session = factory.openSession();
 			Criteria criteria = session.createCriteria(Notifications.class);
 			criteria.add(Restrictions.eq("empAdminFlag",empOrAdmin));
-			absList = (List)criteria.list();
-			Iterator itr = absList.iterator();
+			rawList = criteria.list();
+			@SuppressWarnings("rawtypes")
+			Iterator itr = rawList.iterator();
 			while(itr.hasNext())
 				list.add((Notifications)itr.next());
 			return list;

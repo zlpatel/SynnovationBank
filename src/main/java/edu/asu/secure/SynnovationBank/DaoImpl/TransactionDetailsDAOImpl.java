@@ -1,5 +1,6 @@
 package edu.asu.secure.SynnovationBank.DaoImpl;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -22,50 +23,53 @@ public class TransactionDetailsDAOImpl implements TransactionDetailsDAO {
 	SessionFactory factory = HibernateUtil.buildSessionFactory();
 
 	@Override
-	public long insertTransactionDetails(TransactionDetails transactionDetails) {
-		long seqId = -1;
+	public List<TransactionDetails> fetchAccountTransactions(Long accountNo) {
+		List<TransactionDetails> list = new ArrayList<TransactionDetails>();
+		@SuppressWarnings("rawtypes")
+		List rawList = null;
 		try{
-			Session session = factory.getCurrentSession();
-			session.beginTransaction();
-			seqId = (Long)session.save(transactionDetails);
-			session.getTransaction().commit();
-			return seqId;
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			return seqId;
-		}
-	}
-
-	@Override
-	public boolean deleteTransactionDetailsById(Long transactionId) {
-		try{
-			Session session = factory.getCurrentSession();
-			String hql = "delete from Transaction_Details where transaction_id= :id";
-			session.createQuery(hql).setLong("id", transactionId).executeUpdate();
-			session.getTransaction().commit();
-			return true;
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			return false;
-		}
-	}
-
-	@Override
-	public List<TransactionDetails> fetchLastTenTransactions(Long accountNo) {
-		List<TransactionDetails> list = null;
-		List absList = null;
-		try{
-			Session session = factory.getCurrentSession();
+			Session session = factory.openSession();
 			Criteria criteria = session.createCriteria(TransactionDetails.class);
-			criteria.add(Restrictions.eq("accountNumber",accountNo));
+			criteria.createCriteria("account");
+			criteria.setFetchMode("account",FetchMode.JOIN);
+			criteria.add(Restrictions.eq("account.accountNumber",accountNo));
 			criteria.createCriteria("transactions");
+			criteria.setFetchMode("transactions",FetchMode.JOIN);
 			criteria.createCriteria("transactionType");
 			criteria.setFetchMode("transactionType",FetchMode.JOIN);
-			criteria.addOrder(Order.desc("transactions.date"));
-			absList = (List)criteria.list();
-			Iterator itr = absList.iterator();
+			rawList = criteria.list();
+			@SuppressWarnings("rawtypes")
+			Iterator itr = rawList.iterator();
+			while(itr.hasNext())
+				list.add((TransactionDetails)itr.next());
+			return list;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return list;
+		}
+	}
+
+	@Override
+	public List<TransactionDetails> fetchAccountTransactions(Long accountNo, int rowCount) {
+		List<TransactionDetails> list = new ArrayList<TransactionDetails>();
+		@SuppressWarnings("rawtypes")
+		List rawList = null;
+		try{
+			Session session = factory.openSession();
+			Criteria criteria = session.createCriteria(TransactionDetails.class);
+			criteria.addOrder(Order.desc("sequenceId"));
+			criteria.createCriteria("account");
+			criteria.setFetchMode("account",FetchMode.JOIN);
+			criteria.add(Restrictions.eq("account.accountNumber",accountNo));
+			criteria.createCriteria("transactions");
+			criteria.setFetchMode("transactions",FetchMode.JOIN);
+			criteria.createCriteria("transactionType");
+			criteria.setFetchMode("transactionType",FetchMode.JOIN);
+			criteria.setMaxResults(rowCount);
+			rawList = criteria.list();
+			@SuppressWarnings("rawtypes")
+			Iterator itr = rawList.iterator();
 			while(itr.hasNext())
 				list.add((TransactionDetails)itr.next());
 			return list;

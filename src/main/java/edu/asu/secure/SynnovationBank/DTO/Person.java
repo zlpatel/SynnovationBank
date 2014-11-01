@@ -9,9 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,10 +30,11 @@ public class Person {
 	private String sitekey;
 	private String oneTimePassword;
 	private Date otpExpiry;
+	private String allowAccessFlag;	
+	private String role;
 	
-	private Role role;
 	private Set<Notifications> notifications;
-	private Set<Account> account;
+	private Account account;
 	private Set<ReportedIssues> issues;
 
 	@Id
@@ -139,18 +139,25 @@ public class Person {
 		this.otpExpiry = otpExpiry;
 	}
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="role_id", referencedColumnName="role_id")
-	public Role getRole() {
+	@Column(name="allow_access_flag")	
+	public String getAllowAccessFlag() {
+		return allowAccessFlag;
+	}
+
+	public void setAllowAccessFlag(String allowAccessFlag) {
+		this.allowAccessFlag = allowAccessFlag;
+	}
+
+	@JoinColumn(name="role", referencedColumnName="role")
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(Role role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 
 	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="assignee_id", referencedColumnName="user_id")
 	public Set<Notifications> getNotifications() {
 		return notifications;
 	}
@@ -159,20 +166,16 @@ public class Person {
 		this.notifications = notifications;
 	}
 
-	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name="Account_Holder",
-			joinColumns={@JoinColumn(name="user_id", referencedColumnName="user_id")},
-			inverseJoinColumns={@JoinColumn(name="account_number", referencedColumnName="account_number")})
-	public Set<Account> getAccount() {
+	@OneToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	public Account getAccount() {
 		return account;
 	}
 
-	public void setAccount(Set<Account> account) {
+	public void setAccount(Account account) {
 		this.account = account;
 	}
 
 	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="user_id", referencedColumnName="user_id")
 	public Set<ReportedIssues> getIssues() {
 		return issues;
 	}
