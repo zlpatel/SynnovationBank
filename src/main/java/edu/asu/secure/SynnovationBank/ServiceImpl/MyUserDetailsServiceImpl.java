@@ -37,7 +37,7 @@ public class MyUserDetailsServiceImpl implements UserDetailsService, MyUserDetai
                throws UsernameNotFoundException {
  
 		logger.debug("username is :"+username);
-		edu.asu.secure.SynnovationBank.DTO.Person person = personDao.fetchPersonById(username);
+		edu.asu.secure.SynnovationBank.DTO.Person person = personDao.fetchUserById(username);
 		List<GrantedAuthority> authorities = buildUserAuthority(person.getRole());
  
 		return buildUserForAuthentication(person, authorities);
@@ -54,12 +54,12 @@ public class MyUserDetailsServiceImpl implements UserDetailsService, MyUserDetai
                         true, true, true, authorities);
 	}
  
-	private List<GrantedAuthority> buildUserAuthority(Role userRole) {
+	private List<GrantedAuthority> buildUserAuthority(String userRole) {
  
 		Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
  
 		// Build user's authorities
-			setAuths.add(new SimpleGrantedAuthority(userRole.getRoleName()));
+			setAuths.add(new SimpleGrantedAuthority(userRole));
  
 		List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
  
