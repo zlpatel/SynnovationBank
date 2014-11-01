@@ -5,8 +5,11 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import edu.asu.secure.SynnovationBank.FormBean.TempFormBean;
 
 /**
  * Handles and retrieves the common or admin page depending on the URI template.
@@ -194,5 +197,30 @@ public class AdminController {
     	
     	// This will resolve to /WEB-INF/jsp/AdminAddInternalUser.jsp
     	return "AdminAddInternalUser";
+	}
+    
+    @RequestMapping(value = "/tempPage", method = RequestMethod.GET)
+    public String getTempPage() {
+    	logger.debug("Received request to show temp page");
+    
+    	// Do your work here. Whatever you like
+    	// i.e call a custom service to do your business
+    	// Prepare a model to be used by the JSP page
+    	
+    	// This will resolve to /WEB-INF/jsp/AdminAddExternalUser.jsp
+    	return "temp";
+	}
+    
+    @RequestMapping(value = "/tempresult", method = RequestMethod.POST)
+    public String getTempPageResult(@ModelAttribute("tempFormBean")TempFormBean tempFormBean) {
+    	logger.debug("Received request to show temp page result");
+    
+    	System.out.println("Temp Input : "+tempFormBean.getTempinput());
+    	// Do your work here. Whatever you like
+    	// i.e call a custom service to do your business
+    	// Prepare a model to be used by the JSP page
+    	
+    	// This will resolve to /WEB-INF/jsp/AdminAddExternalUser.jsp
+    	return "loginpage";
 	}
 }
