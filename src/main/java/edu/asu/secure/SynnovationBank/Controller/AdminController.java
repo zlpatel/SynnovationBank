@@ -4,7 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.asu.secure.SynnovationBank.FormBean.ExternalUserFormBean;
+import edu.asu.secure.SynnovationBank.FormBean.InternalUserFormBean;
+import edu.asu.secure.SynnovationBank.Service.AddExternalUserService;
+import edu.asu.secure.SynnovationBank.Service.AddInternalUserService;
+
 
 /**
  * Handles and retrieves the common or admin page depending on the URI template.
@@ -20,8 +26,15 @@ import edu.asu.secure.SynnovationBank.FormBean.ExternalUserFormBean;
  * the adminpage, however.
  */
 @Controller
+@Transactional
+
 @RequestMapping("/admin")
 public class AdminController {
+	
+	@Autowired
+	private AddExternalUserService addExternalUserService;
+	@Autowired
+	private AddInternalUserService addInternalUserService;
 
 	protected static Logger logger = Logger.getLogger("controller");
 	
@@ -202,24 +215,46 @@ public class AdminController {
     public String getAdminAddedExternalUserAccounts(@ModelAttribute("addexternaluserformbean")
     ExternalUserFormBean addexternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
     	logger.debug("Received request to show ADDED external user page ......");
-    
-    	
+       	
     	System.out.println(addexternaluserformbean.getFname());
     	
-//    	String name = (String) request.getAttribute("fname");
-//    	logger.debug("got name " + name);
-//    	
-//    	// Do your work here. Whatever you like
-//    	// i.e call a custom service to do your business
-//    	// Prepare a model to be used by the JSP page
-//    	
-//    	ModelAndView model = new ModelAndView("AdminExternalUserAccounts");
-//    	model.addObject("rohit", name);
-//    	// This will resolve to /WEB-INF/jsp/AdminAddExternalUser.jsp
-////    	return "AdminAddExternalUser";
-//    	
-//    	return model;
+    	if(addExternalUserService.addExternalUser(addexternaluserformbean))
+    	{
+    		model.put("message", "User Added Successfuly");
+			logger.debug("User Added Successfuly");
+	    	return "AdminExternalUserAccounts";
+		}
     	
-    	return "AdminExternalUserAccounts";
+    	else
+    	{
+			model.put("error","true");
+			logger.debug("Some error adding new user!");
+			return "redirect:adminaddedexternaluseraccounts";
+		}
+    	
 	}
+    
+    @RequestMapping(value = "/adminaddedinternaluseraccounts", method = RequestMethod.GET)
+    public String getAdminAddedInternalUserAccounts(@ModelAttribute("addinternaluserformbean")
+    InternalUserFormBean addinternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
+    	logger.debug("Received request to show ADDED internal user page ......");
+       	
+    	System.out.println(addinternaluserformbean.getFname());
+    	
+    	if(addInternalUserService.addInternalUser(addinternaluserformbean))
+    	{
+    		model.put("message", "User Added Successfuly");
+			logger.debug("User Added Successfuly");
+	    	return "AdminInternalUserAccounts";
+		}
+    	
+    	else
+    	{
+			model.put("error","true");
+			logger.debug("Some error adding new user!");
+			return "redirect:adminaddedinternaluseraccounts";
+		}
+    	
+	}
+
 }

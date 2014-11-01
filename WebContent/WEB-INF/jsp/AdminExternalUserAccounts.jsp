@@ -21,7 +21,7 @@
 <h2>Admin Page</h2>
 <p>Only admins have access to this page.</p><br>
 
-<p>${rohit} </p>
+<p>${message} </p>
 
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>

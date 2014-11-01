@@ -8,7 +8,7 @@ import edu.asu.secure.SynnovationBank.DTO.Notifications;
 import edu.asu.secure.SynnovationBank.DTO.ReportedIssues;
 import edu.asu.secure.SynnovationBank.DTO.Role;
 
-public class ExternalUserFormBean {
+public class InternalUserFormBean {
 
 	private String fname;
 	private String lname;
