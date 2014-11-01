@@ -13,4 +13,6 @@ public interface NotificationsDAO {
 	
 	public List<Notifications> fetchNotifications(String empOrAdmin);
 	public Notifications fetchByNotificationId(Long notificationId);
+
+	
 }
