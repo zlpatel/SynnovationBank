@@ -10,8 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
@@ -23,8 +21,7 @@ public class TransactionType {
 	private long transactionTypeId;
 	private String transactionName;
 	private String description;
-	
-	private Set<Role> role;
+
 	private Set<TransactionDetails> transactionDetails;
 
 	@Id
@@ -57,19 +54,7 @@ public class TransactionType {
 		this.description = description;
 	}
 
-	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name="Permission",
-		joinColumns={@JoinColumn(name="transaction_type_id", referencedColumnName="transaction_type_id")},
-		inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="role_id")})
-	public Set<Role> getRole() {
-		return role;
-	}
-
-	public void setRole(Set<Role> role) {
-		this.role = role;
-	}
-
-	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name="transaction_type_id", referencedColumnName="transaction_type_id")
 	public Set<TransactionDetails> getTransactionDetails() {
 		return transactionDetails;

@@ -10,9 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -67,10 +66,8 @@ public class Account {
 		this.routingNumber = routingNumber;
 	}
 
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name="Account_Holder",
-		joinColumns={@JoinColumn(name="account_number", referencedColumnName="account_number")},
-		inverseJoinColumns={@JoinColumn(name="user_id", referencedColumnName="user_id")})
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="user_id", referencedColumnName="user_id")
 	public Person getPerson() {
 		return person;
 	}

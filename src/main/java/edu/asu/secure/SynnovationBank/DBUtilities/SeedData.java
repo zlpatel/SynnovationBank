@@ -14,7 +14,7 @@ public class SeedData {
 
 	static long roleId = -1;
 	
-	public static long insertRoles(String roleName){
+	public static void insertRoles(){
 		RoleDAOImpl roleDAOImpl = new RoleDAOImpl();
 		
 		TransactionType typeCredit = new TransactionType();
@@ -35,7 +35,7 @@ public class SeedData {
 		tranTypeSet.add(typeATM);
 		
 		Role roleCust = new Role();
-		roleCust.setRoleName(roleName);
+		roleCust.setRoleName("customer");
 		roleCust.setTransactionType(tranTypeSet);
 		roleId = roleDAOImpl.insertRole(roleCust);
 		
@@ -51,22 +51,22 @@ public class SeedData {
 		Role roleAdmin = new Role();
 		roleAdmin.setRoleName("admin");
 		roleDAOImpl.insertRole(roleAdmin);*/
-		return roleId;
 	}
 	
 	public static void insertUser(){
 		PersonDAOImpl impl = new PersonDAOImpl();
 		
 		Person person = new Person();
-		person.setUserId("admin");
-		person.setPassword("admin");
-		person.setFirstName("admin");
-		person.setLastName("admin");
+		person.setUserId("jeff");
+		person.setPassword("jeff");
+		person.setFirstName("Jeffrey");
+		person.setLastName("Isaac");
 		person.setDateOfBirth(Calendar.getInstance().getTime());
-		person.setEmail("zlpatel@hotmail.com");
+		person.setEmail("jeffrey.isaac@gmail.com");
+		
 		Role role = new Role();
-		role.setRoleId(1);
-		role.setRoleName("ROLE_ADMIN");
+		role.setRoleId(roleId);
+		role.setRoleName("customer");
 		
 		/*Account account = new Account();
 		account.setAccountType("Checking");
@@ -76,51 +76,6 @@ public class SeedData {
 		Set<Account> accountSet = new HashSet<Account>();
 		accountSet.add(account);
 		person.setAccount(accountSet);*/
-		person.setRole(role);
-		
-		impl.insertUser(person);
-		
-		
-		person.setUserId("employee");
-		person.setPassword("employee");
-		person.setFirstName("employee");
-		person.setLastName("employee");
-		person.setDateOfBirth(Calendar.getInstance().getTime());
-		person.setEmail("zlpatel@hotmail.com");
-		
-		role.setRoleId(2);
-		role.setRoleName("ROLE_BNK_EMPL");
-		
-		person.setRole(role);
-		
-		impl.insertUser(person);
-		
-		
-		person.setUserId("customer");
-		person.setPassword("customer");
-		person.setFirstName("customer");
-		person.setLastName("customer");
-		person.setDateOfBirth(Calendar.getInstance().getTime());
-		person.setEmail("zlpatel@hotmail.com");
-		
-		role.setRoleId(3);
-		role.setRoleName("ROLE_CUST");
-		
-		person.setRole(role);
-		
-		impl.insertUser(person);
-		
-		
-		person.setUserId("merchant");
-		person.setPassword("merchant");
-		person.setFirstName("merchant");
-		person.setLastName("merchant");
-		person.setDateOfBirth(Calendar.getInstance().getTime());
-		person.setEmail("zlpatel@hotmail.com");
-		
-		role.setRoleId(4);
-		role.setRoleName("ROLE_MERC");
-		
 		person.setRole(role);
 		
 		impl.insertUser(person);
