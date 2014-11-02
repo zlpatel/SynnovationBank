@@ -49,10 +49,10 @@
           <td>${internalUser.username}</td>
           <td>${internalUser.fname}</td>
           <td>${internalUser.lname}</td>
-          <td><button type="button" class="btn btn-primary">Modify</button>
-                <button type="button" class="btn btn-danger">Delete</button></td>
-          <!-- <td align="center"><input style="width:75px;" name="approve" type="submit" value= "Approve" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = '/notificationAccepted';;return true;"/></td>  
-          <td align="center"><input  style="width:75px;" name="deny" type="submit" value= "Deny" class = "btn btn-primary"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoDenied.html?authUsername=${person.ID}'; ;return true;"/></td>--> 
+          <!-- <td><button type="button" class="btn btn-primary">Modify</button>
+                <button type="button" class="btn btn-danger">Delete</button></td> -->
+          <td align="center"><input style="width:75px;" name="Modify" type="submit" value= "Modify" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'adminmodifyinternaluser?userId=${internalUser.username}'; ;return true;"/></td>  
+          <td align="center"><input  style="width:75px;" name="Delete" type="submit" value= "Delete" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoDenied.html?userId=${internalUser.username}'; ;return true;"/></td> 
         </tr>
       </c:forEach>
       </tbody>
