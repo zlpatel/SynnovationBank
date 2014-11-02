@@ -1,5 +1,7 @@
 package edu.asu.secure.SynnovationBank.Controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +18,7 @@ import edu.asu.secure.SynnovationBank.FormBean.ExternalUserFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.InternalUserFormBean;
 import edu.asu.secure.SynnovationBank.Service.AddExternalUserService;
 import edu.asu.secure.SynnovationBank.Service.AddInternalUserService;
+import edu.asu.secure.SynnovationBank.Service.AdminUserAccountsService;
 
 /**
  * Handles and retrieves the common or admin page depending on the URI template.
@@ -30,6 +33,8 @@ public class AdminController {
 	private AddExternalUserService addExternalUserService;
 	@Autowired
 	private AddInternalUserService addInternalUserService;
+	@Autowired
+	private AdminUserAccountsService adminUserAccountsService;
 
 	protected static Logger logger = Logger.getLogger("controller");
 	
@@ -65,6 +70,8 @@ public class AdminController {
     	// i.e call a custom service to do your business
     	// Prepare a model to be used by the JSP page
     	
+		 
+		 
     	// This will resolve to /WEB-INF/jsp/adminpage.jsp
     	return "adminpage";
 	}
@@ -79,13 +86,10 @@ public class AdminController {
      * @return the name of the JSP page
      */
     @RequestMapping(value = "/admininternaluseraccounts", method = RequestMethod.GET)
-    public String getAdminInternalUserAccountsPage() {
+    public String getAdminInternalUserAccountsPage(ModelMap model) {
     	logger.debug("Received request to show admin internal user accounts page");
-    
-    	// Do your work here. Whatever you like
-    	// i.e call a custom service to do your business
-    	// Prepare a model to be used by the JSP page
     	
+    	model.put("internaluserslist",adminUserAccountsService.getInternalUserAccounts());
     	// This will resolve to /WEB-INF/jsp/AdminInternalUserAccounts.jsp
     	return "AdminInternalUserAccounts";
 	}
@@ -96,13 +100,11 @@ public class AdminController {
      * @return the name of the JSP page
      */
     @RequestMapping(value = "/adminexternaluseraccounts", method = RequestMethod.GET)
-    public String getAdminExternalUserAccountsPage() {
+    public String getAdminExternalUserAccountsPage(ModelMap model) {
     	logger.debug("Received request to show admin external user accounts page");
     
-    	// Do your work here. Whatever you like
-    	// i.e call a custom service to do your business
-    	// Prepare a model to be used by the JSP page
-    	
+    	model.put("externaluserslist",adminUserAccountsService.getExternalUserAccounts());
+
     	// This will resolve to /WEB-INF/jsp/AdminExternalUserAccounts.jsp
     	return "AdminExternalUserAccounts";
 	}
@@ -207,7 +209,7 @@ public class AdminController {
 	}
     
 
-    @RequestMapping(value = "/adminaddedexternaluseraccounts")
+    @RequestMapping(value = "/adminaddedexternaluseraccounts", method = {RequestMethod.POST, RequestMethod.GET})
     public String getAdminAddedExternalUserAccounts(@ModelAttribute("addexternaluserformbean")
     ExternalUserFormBean addexternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
     	logger.debug("Received request to show ADDED external user page ......");
@@ -218,7 +220,7 @@ public class AdminController {
     	{
     		model.put("message", "User Added Successfuly");
 			logger.debug("User Added Successfuly");
-	    	return "AdminExternalUserAccounts";
+	    	return "redirect: adminexternaluseraccounts";
 		}
     	
     	else
@@ -230,7 +232,7 @@ public class AdminController {
     	
 	}
     
-    @RequestMapping(value = "/adminaddedinternaluseraccounts")
+    @RequestMapping(value = "/adminaddedinternaluseraccounts", method = {RequestMethod.POST, RequestMethod.GET})
     public String getAdminAddedInternalUserAccounts(@ModelAttribute("addinternaluserformbean")
     InternalUserFormBean addinternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
     	logger.debug("Received request to show ADDED internal user page ......");
@@ -241,7 +243,7 @@ public class AdminController {
     	{
     		model.put("message", "User Added Successfuly");
 			logger.debug("User Added Successfuly");
-	    	return "AdminInternalUserAccounts";
+	    	return "redirect:admininternaluseraccounts";
 		}
     	
     	else
