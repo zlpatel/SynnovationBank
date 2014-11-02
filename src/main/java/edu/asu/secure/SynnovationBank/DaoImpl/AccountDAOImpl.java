@@ -4,7 +4,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import edu.asu.secure.SynnovationBank.DBUtilities.HibernateUtil;
@@ -15,13 +14,13 @@ import edu.asu.secure.SynnovationBank.Dao.AccountDAO;
 @Repository
 public class AccountDAOImpl implements AccountDAO {
 
-	@Autowired
 	SessionFactory factory = HibernateUtil.buildSessionFactory();
 
 	@Override
 	public boolean updateAccountBalance(Long accNo, float balance) {
+		Session session = null;
 		try{
-			Session session = factory.getCurrentSession();
+			session = factory.getCurrentSession();
 			session.beginTransaction();
 			Account account = (Account)session.get(Account.class, accNo);
 			if(account != null)
@@ -31,26 +30,36 @@ public class AccountDAOImpl implements AccountDAO {
 			return true;
 		}
 		catch(Exception e){
+			session.getTransaction().rollback();
 			e.printStackTrace();
 			return false;
+		}
+		finally{
+			//HibernateUtil.shutdown();
 		}
 	}
 
 	@Override
 	public boolean fetchAllowAccessFlag(Long accNo) {
+		Session session = null;
 		try{
-			Session session = factory.openSession();
+			session = factory.openSession();
 			Criteria criteria = session.createCriteria(Person.class);
 			criteria.add(Restrictions.eq("account.accountNumber",accNo));
 			Person person = (Person)criteria.uniqueResult();
+			session.getTransaction().commit();
 			if(person != null && person.getAllowAccessFlag().equals("Y"))
 				return true;
 			else
 				return false;
 		}
 		catch(Exception e){
+			session.getTransaction().rollback();
 			e.printStackTrace();
 			return false;
+		}
+		finally{
+			//HibernateUtil.shutdown();
 		}
 	}
 

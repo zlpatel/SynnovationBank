@@ -10,7 +10,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import edu.asu.secure.SynnovationBank.DBUtilities.HibernateUtil;
 import edu.asu.secure.SynnovationBank.DTO.Role;
 import edu.asu.secure.SynnovationBank.DTO.TransactionType;
 import edu.asu.secure.SynnovationBank.Dao.RoleDAO;
@@ -19,7 +18,7 @@ import edu.asu.secure.SynnovationBank.Dao.RoleDAO;
 public class RoleDAOImpl implements RoleDAO {
 
 	@Autowired
-	SessionFactory factory = HibernateUtil.buildSessionFactory();
+	SessionFactory factory;
 
 	@Override
 	public long insertRole(Role role) {

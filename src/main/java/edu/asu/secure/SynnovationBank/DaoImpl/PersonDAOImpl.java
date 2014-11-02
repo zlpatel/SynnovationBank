@@ -9,7 +9,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import edu.asu.secure.SynnovationBank.DBUtilities.HibernateUtil;
@@ -20,28 +19,33 @@ import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
 @Repository
 public class PersonDAOImpl implements PersonDAO {
 
-	@Autowired
 	SessionFactory factory = HibernateUtil.buildSessionFactory();
 	
 	@Override
 	public boolean insertUser(Person person) {
+		Session session = null;
 		try{
-			Session session = factory.getCurrentSession();
+			session = factory.getCurrentSession();
 			session.beginTransaction();
 			session.save(person);
 			session.getTransaction().commit();
 			return true;
 		}
 		catch(Exception e){
+			session.getTransaction().rollback();
 			e.printStackTrace();
 			return false;
+		}
+		finally{
+			//HibernateUtil.shutdown();
 		}
 	}
 
 	@Override
 	public boolean insertAccount(String userId, Account account) {
+		Session session = null;
 		try{
-			Session session = factory.getCurrentSession();
+			session = factory.getCurrentSession();
 			session.beginTransaction();
 			Person person = (Person)session.get(Person.class, userId);
 			if(person != null)
@@ -51,17 +55,22 @@ public class PersonDAOImpl implements PersonDAO {
 			return true;
 		}
 		catch(Exception e){
+			session.getTransaction().rollback();
 			e.printStackTrace();
 			return false;
+		}
+		finally{
+			//HibernateUtil.shutdown();
 		}
 	}
 
 	@Override
 	public boolean updateOTP(String userId, String otp) {
+		Session session = null;
 		try {
 			Calendar cal = Calendar.getInstance();
 			cal.add(Calendar.MINUTE, 10);
-			Session session = factory.getCurrentSession();
+			session = factory.getCurrentSession();
 			session.beginTransaction();
 			Person person = (Person)session.get(Person.class, userId);
 			if(person != null){
@@ -73,15 +82,20 @@ public class PersonDAOImpl implements PersonDAO {
 			return true;
 		}
 		catch(Exception e){
+			session.getTransaction().rollback();
 			e.printStackTrace();
 			return false;
+		}
+		finally{
+			//HibernateUtil.shutdown();
 		}
 	}
 
 	@Override
 	public boolean updateUserDetails(String userId, String fname, String mname, String lname, String email, String address) {
+		Session session = null;
 		try{
-			Session session = factory.getCurrentSession();
+			session = factory.getCurrentSession();
 			session.beginTransaction();
 			Person person = (Person)session.get(Person.class, userId);
 			if(person != null){
@@ -96,15 +110,20 @@ public class PersonDAOImpl implements PersonDAO {
 			return true;
 		}
 		catch(Exception e){
+			session.getTransaction().rollback();
 			e.printStackTrace();
 			return false;
+		}
+		finally{
+			//HibernateUtil.shutdown();
 		}
 	}
 
 	@Override
 	public boolean updatePassword(String userId, String password) {
+		Session session = null;
 		try{
-			Session session = factory.getCurrentSession();
+			session = factory.getCurrentSession();
 			session.beginTransaction();
 			Person person = (Person)session.get(Person.class, userId);
 			if(person != null)
@@ -114,15 +133,20 @@ public class PersonDAOImpl implements PersonDAO {
 			return true;
 		}
 		catch(Exception e){
+			session.getTransaction().rollback();
 			e.printStackTrace();
 			return false;
+		}
+		finally{
+			//HibernateUtil.shutdown();
 		}
 	}
 
 	@Override
 	public boolean updateAccessFlag(String userId, String accessFlag) {
+		Session session = null;
 		try{
-			Session session = factory.getCurrentSession();
+			session = factory.getCurrentSession();
 			session.beginTransaction();
 			Person person = (Person)session.get(Person.class, userId);
 			if(person != null)
@@ -132,16 +156,21 @@ public class PersonDAOImpl implements PersonDAO {
 			return true;
 		}
 		catch(Exception e){
+			session.getTransaction().rollback();
 			e.printStackTrace();
 			return false;
+		}
+		finally{
+			//HibernateUtil.shutdown();
 		}
 	}
 
 	@Override
 	public boolean authenticateOTP(String userId, String email, String otp) {
+		Session session = null;
 		try{
 			Calendar cal = Calendar.getInstance();
-			Session session = factory.getCurrentSession();
+			session = factory.getCurrentSession();
 			session.beginTransaction();
 			Person person = (Person)session.get(Person.class, userId);
 			session.getTransaction().commit();
@@ -153,16 +182,21 @@ public class PersonDAOImpl implements PersonDAO {
 			return false;
 		}
 		catch(Exception e){
+			session.getTransaction().rollback();
 			e.printStackTrace();
 			return false;
+		}
+		finally{
+			//HibernateUtil.shutdown();
 		}
 	}
 
 	
 	@Override
 	public boolean authenticateUser(String userId, String password) {
+		Session session = null;
 		try{
-			Session session = factory.getCurrentSession();
+			session = factory.getCurrentSession();
 			session.beginTransaction();
 			Person person = (Person)session.get(Person.class, userId);
 			session.getTransaction().commit();
@@ -172,31 +206,42 @@ public class PersonDAOImpl implements PersonDAO {
 				return false;
 		}
 		catch(Exception e){
+			session.getTransaction().rollback();
 			e.printStackTrace();
 			return false;
+		}
+		finally{
+			//HibernateUtil.shutdown();
 		}
 	}
 
 	@Override
 	public Person fetchUserById(String userId) {
+		Session session = null;
 		Person person = null;
 		try {
-			Session session = factory.getCurrentSession();
+			session = factory.getCurrentSession();
 			session.beginTransaction();
 			person = (Person)session.get(Person.class, userId);
+			session.getTransaction().commit();
 			return person;
 		}
 		catch(Exception e){
+			session.getTransaction().rollback();
 			e.printStackTrace();
 			return person;
+		}
+		finally{
+			//HibernateUtil.shutdown();
 		}
 	}
 
 	@Override
 	public List<Person> fetchUserByRole(String rolename) {
+		Session session = null;
 		List<Person> listPerson = new ArrayList<Person>();
 		try{
-			Session session = factory.openSession();
+			session = factory.openSession();
 			Criteria criteria = session.createCriteria(Person.class);
 			criteria.add(Restrictions.eq("role",rolename));
 			@SuppressWarnings("rawtypes")
@@ -205,11 +250,16 @@ public class PersonDAOImpl implements PersonDAO {
 			Iterator itr = rawList.iterator();
 			while(itr.hasNext())
 				listPerson.add((Person)itr.next());
+			session.getTransaction().commit();
 			return listPerson;
 		}
 		catch(Exception e){
+			session.getTransaction().rollback();
 			e.printStackTrace();
 			return listPerson;
+		}
+		finally{
+			//HibernateUtil.shutdown();
 		}
 	}
 

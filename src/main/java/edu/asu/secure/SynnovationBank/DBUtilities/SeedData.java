@@ -1,9 +1,12 @@
 package edu.asu.secure.SynnovationBank.DBUtilities;
 
 import java.util.Calendar;
+
 import edu.asu.secure.SynnovationBank.DTO.Account;
+import edu.asu.secure.SynnovationBank.DTO.NotificationsType;
 import edu.asu.secure.SynnovationBank.DTO.Person;
 import edu.asu.secure.SynnovationBank.DTO.TransactionType;
+import edu.asu.secure.SynnovationBank.DaoImpl.NotificationsTypeDAOImpl;
 import edu.asu.secure.SynnovationBank.DaoImpl.PersonDAOImpl;
 import edu.asu.secure.SynnovationBank.DaoImpl.TransactionTypeDAOImpl;
 
@@ -35,6 +38,17 @@ public class SeedData {
 	}
 	
 	public static void insertNotificationTypes(){
+		NotificationsTypeDAOImpl impl = new NotificationsTypeDAOImpl();
+		
+		NotificationsType criticalTran = new NotificationsType();
+		criticalTran.setNotificationType("CT");
+		criticalTran.setDescription("Critical Transaction");
+		impl.insertNotificationType(criticalTran);
+		
+		NotificationsType techAccess = new NotificationsType();
+		techAccess.setNotificationType("TAA");
+		techAccess.setDescription("Technical Account Access");
+		impl.insertNotificationType(techAccess);
 		
 	}
 	
