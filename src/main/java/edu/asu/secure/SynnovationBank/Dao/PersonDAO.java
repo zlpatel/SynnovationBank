@@ -20,4 +20,6 @@ public interface PersonDAO {
 	
 	public Person fetchUserById(String userId);
 	public List<Person> fetchUserByRole(String rolename);
+	
+	public boolean deleteUser(String userId);
 }

@@ -45,11 +45,9 @@ public class NotificationsTypeDAOImpl implements NotificationsTypeDAO {
 			Criteria criteria = session.createCriteria(NotificationsType.class);
 			criteria.add(Restrictions.eq("notificationType", notificationType));
 			notificationsType = (NotificationsType)criteria.uniqueResult();
-			session.getTransaction().commit();
 			return notificationsType;
 		}
 		catch(Exception e){
-			session.getTransaction().rollback();
 			e.printStackTrace();
 			return notificationsType;
 		}
