@@ -39,6 +39,33 @@ public class CreditServiceImpl implements CreditService {
 	@Override
 	public boolean creditAmount(String userName,String amount) {
 		
+		
+		if(Float.parseFloat(amount)<0)
+		{
+		System.out.println("***************************************************");
+		System.out.println("CANNOT CREDIT NEGATIVE AMOUNT !");
+		System.out.println("***************************************************");
+		return false;
+		}
+		
+		
+		if(Float.parseFloat(amount)>500)
+		{
+		System.out.println("***************************************************");
+		System.out.println("CREDIT AMOUNT GREATER THAN $500--- CRITIAL TRANSACTION -- NEEDS APPROVAL !");
+		System.out.println("***************************************************");
+		return false;
+		}
+		
+		
+		
+		
+		System.out.println("***************************************************");
+		System.out.println("UPDATING BALANCE!");
+		System.out.println("***************************************************");
+		
+		
+		
 		//ACCOUNT BALANCE MODIFICATION
 		System.out.println("USER "+userName);
 		
@@ -52,11 +79,16 @@ public class CreditServiceImpl implements CreditService {
 		float new_balance=balance+credit;
 		//a.setBalance(new_balance);
 		accountDAO.updateAccountBalance(a.getAccountNumber(), new_balance);
-		System.out.println("Updated customer account table with new credit balance!");
+		System.out.println("Updated customer account table with new credit balance:" + new_balance);
 		
 		
-		/*
+		
+		
 		//TRANSACTION CREATION
+		
+		System.out.println("***************************************************");
+		System.out.println("CREATING A TRANSACTION!");
+		System.out.println("***************************************************");
 		
 		Transactions t=new Transactions();
 		
@@ -86,7 +118,7 @@ public class CreditServiceImpl implements CreditService {
 		System.out.println("New transaction populated with ID: "+transactionID);
 		
 		
-		*/
+		
 		return true;
 	}
 

@@ -1,5 +1,6 @@
 package edu.asu.secure.SynnovationBank.ServiceImpl;
 
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -40,7 +41,14 @@ public class DebitServiceImpl implements DebitService{
 	@Override
 	public boolean debitAmount(String userName,String amount) {
 	
-		
+
+		if(Float.parseFloat(amount)<0)
+		{
+		System.out.println("***************************************************");
+		System.out.println("CANNOT DEBIT NEGATIVE AMOUNT !");
+		System.out.println("***************************************************");
+		return false;
+		}
 		
 	//ACCOUNT BALANCE MODIFICATION
 		
@@ -50,14 +58,25 @@ public class DebitServiceImpl implements DebitService{
 		float debit=Float.parseFloat(amount);
 		float new_balance=balance-debit;
 		if(new_balance<0)
+		{
+			System.out.println("***************************************************");
+			System.out.println("CANNOT DEBIT SINCE BALANCE FALLS BELOW 0!");
+			System.out.println("***************************************************");
 			return false;
+		}
 		a.setBalance(new_balance);
 		accountDAO.updateAccountBalance(a.getAccountNumber(), a.getBalance());
-		System.out.println("Updated customer account table with new debit balance!");
+		System.out.println("Updated customer account table with new debit balance:" +a.getBalance());
 		
 		
 		
 		//TRANSACTION CREATION
+		
+		
+		System.out.println("***************************************************");
+		System.out.println("CREATING A TRANSACTION!");
+		System.out.println("***************************************************");
+		
 		
 		Transactions t=new Transactions();
 		
@@ -80,6 +99,7 @@ public class DebitServiceImpl implements DebitService{
 		
 		t.setAmount(debit);
 		t.setTransactionDetails(set);
+		t.setDate(Calendar.getInstance().getTime());
 		
 		long transactionID=transactionsDAO.insertTransaction(t);
 		

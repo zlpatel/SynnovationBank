@@ -52,14 +52,5 @@
 
 
 
-
-<form name="input" action="welcomeUser" method="get">
-First name: <input type="text" name="firstname"><br>
-Last name: <input type="text" name="lastname"> <br>
-E mail ID: <input type="text" name="email"> <br>
-<a href="changePassword">Click here to change your password (using OTP)</a><br>
-
-<input type="submit" value="Submit">
-</form>
 </body>
 </html>

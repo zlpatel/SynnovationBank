@@ -67,7 +67,11 @@ public class CustomerController {
 		
 		System.out.println("New information to be changed: "+ customerInfoChangeFormBean.getFirstName() + " "+customerInfoChangeFormBean.getLastName()+" "+customerInfoChangeFormBean.getEmail());
 		
-		if(customerInfoChangeService.changeCustomerInformation(customerInfoChangeFormBean.getFirstName(),customerInfoChangeFormBean.getLastName(),customerInfoChangeFormBean.getEmail()))
+		String firstName=customerInfoChangeFormBean.getFirstName();
+		String lastName=customerInfoChangeFormBean.getLastName();
+		String email=customerInfoChangeFormBean.getEmail();
+		
+		if(customerInfoChangeService.changeCustomerInformation(userName, firstName, lastName, email))
 				return "welcomeUser";
 			
 			else

@@ -2,6 +2,9 @@ package edu.asu.secure.SynnovationBank.Service;
 
 public interface CustomerInfoChangeService {
 	
-	boolean changeCustomerInformation(String firstName, String lastName, String email);
+	
+
+	boolean changeCustomerInformation(String userName, String firstName,
+			String lastName, String email);
 
 }

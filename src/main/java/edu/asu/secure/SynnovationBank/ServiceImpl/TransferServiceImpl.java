@@ -1,5 +1,6 @@
 package edu.asu.secure.SynnovationBank.ServiceImpl;
 
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,6 +36,13 @@ public class TransferServiceImpl implements TransferService {
 	@Override
 	public boolean performTransfer(String senderID, String receiverID, String amount) {
 		
+		if(Float.parseFloat(amount)<0)
+		{
+		System.out.println("***************************************************");
+		System.out.println("CANNOT TRANSFER A NEGATIVE AMOUNT !");
+		System.out.println("***************************************************");
+		return false;
+		}
 		
 		
 		Person sender = personDAO.fetchUserById(senderID);
@@ -43,7 +51,13 @@ public class TransferServiceImpl implements TransferService {
 		float debit=Float.parseFloat(amount);
 		float new_balance=balance-debit;
 		if(new_balance<0)
+		{
+			System.out.println("***************************************************");
+			System.out.println("CANNOT TRANSFER FUNDS SINCE YOUR BALANCE FALLS BELOW 0!");
+			System.out.println("***************************************************");
+		
 			return false;
+		}
 		a.setBalance(new_balance);
 		
 		Person receiver = personDAO.fetchUserById(receiverID);
@@ -54,6 +68,9 @@ public class TransferServiceImpl implements TransferService {
 		b.setBalance(new_balanceB);
 		
 		
+		System.out.println("***************************************************");
+		System.out.println("PERFORMING DEBIT FROM YOUR ACCOUNT AND CREDITING TO THE OTHER ACCOUNT!");
+		System.out.println("***************************************************");
 		
 		
 		accountDAO.updateAccountBalance(a.getAccountNumber(), a.getBalance());
@@ -66,6 +83,14 @@ public class TransferServiceImpl implements TransferService {
 		
 		
 		//2 WAY TRANSACTION CREATION
+		
+		
+		System.out.println("***************************************************");
+		System.out.println("CREATING 2 WAY TRANSACTION!");
+		System.out.println("***************************************************");
+		
+		
+		
 		
 		Transactions t=new Transactions();
 		
@@ -91,6 +116,7 @@ public class TransferServiceImpl implements TransferService {
 		
 		t.setAmount(debit);
 		t.setTransactionDetails(set);
+		t.setDate(Calendar.getInstance().getTime());
 		
 		long transactionID=transactionsDAO.insertTransaction(t);
 		
