@@ -37,7 +37,7 @@ public class Notifications {
 		this.notificationId = notificationId;
 	}
 
-	@Column(name="emp_admin_flag", nullable = false)
+	@Column(name="emp_admin_flag")
 	public String getEmpAdminFlag() {
 		return empAdminFlag;
 	}
@@ -46,7 +46,7 @@ public class Notifications {
 		this.empAdminFlag = empAdminFlag;
 	}
 
-	@Column(name="resolved_flag", nullable = false)
+	@Column(name="resolved_flag")
 	public String getResolvedFlag() {
 		return resolvedFlag;
 	}
@@ -66,7 +66,7 @@ public class Notifications {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="assignee_id", referencedColumnName="user_id")
+	@JoinColumn(name="user_id", referencedColumnName="user_id")
 	public Person getPerson() {
 		return person;
 	}
