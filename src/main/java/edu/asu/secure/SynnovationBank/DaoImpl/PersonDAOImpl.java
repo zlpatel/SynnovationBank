@@ -255,5 +255,26 @@ public class PersonDAOImpl implements PersonDAO {
 		}
 	}
 
+	@Override
+	public boolean deleteUser(String userId) {
+		Session session = null;
+		try {
+			session = factory.getCurrentSession();
+			session.beginTransaction();
+			Person person = (Person)session.get(Person.class, userId);
+			session.delete(person);
+			session.getTransaction().commit();
+			return true;
+		}
+		catch(Exception e){
+			session.getTransaction().rollback();
+			e.printStackTrace();
+			return false;
+		}
+		finally{
+			//HibernateUtil.shutdown();
+		}
+	}
+
 	
 }

@@ -1,6 +1,5 @@
 package edu.asu.secure.SynnovationBank.DTO;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -75,7 +74,7 @@ public class Notifications {
 		this.person = person;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="notification_type_id", referencedColumnName="notification_type_id")
 	public NotificationsType getNotificationsType() {
 		return notificationsType;

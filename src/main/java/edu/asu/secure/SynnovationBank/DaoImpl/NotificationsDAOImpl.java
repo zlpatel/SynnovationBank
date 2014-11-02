@@ -24,8 +24,9 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 	SessionFactory factory = HibernateUtil.buildSessionFactory();
 
 	@Override
-	public boolean insertNotification(String userId, Notifications notifications) {
+	public long insertNotification(String userId, Notifications notifications) {
 		Session session = null;
+		long issueId = -1;
 		try{
 			session = factory.getCurrentSession();
 			session.beginTransaction();
@@ -46,12 +47,12 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 			}
 			session.update(person);
 			session.getTransaction().commit();
-			return true;
+			return issueId;
 		}
 		catch(Exception e){
 			session.getTransaction().rollback();
 			e.printStackTrace();
-			return false;
+			return issueId;
 		}
 		finally{
 			//HibernateUtil.shutdown();
