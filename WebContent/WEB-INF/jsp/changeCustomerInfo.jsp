@@ -38,10 +38,12 @@
 </ul>
 
 <br><br>
-
+<h3>IF YOU DO NOT WISH TO CHANGE YOUR INFORMATION...LEAVE THE CORRESPONDING FIELD AS EMPTY! </h3>
 <form action="changecustomerinforequest" commandName="customerInfoChangeFormBean" method="get">
 <input id="firstName" type="text" name="firstName" placeholder="Enter the first name to change" style="width:500px;" value="${customerInfoChangeFormBean.firstName}"/><br>
+<input id="middleName" type="text" name="middleName" placeholder="Enter the middle name to change" style="width:500px;" value="${customerInfoChangeFormBean.middleName}"/><br>
 <input id="lastName" type="text" name="lastName" placeholder="Enter the last name to change" style="width:500px;" value="${customerInfoChangeFormBean.lastName}"/><br>
+<input id="address" type="text" name="address" placeholder="Enter the address to change" style="width:900px;" value="${customerInfoChangeFormBean.address}"/><br>
 <input id="email" type="text" name="email" placeholder="Enter the E-mail ID to change" style="width:500px;" value="${customerInfoChangeFormBean.email}"/><br>
 <input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
 

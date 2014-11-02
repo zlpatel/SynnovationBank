@@ -17,11 +17,12 @@ public class CustomerInfoChangeServiceImpl implements CustomerInfoChangeService 
 	private PersonDAO personDAO;
 	
 	@Override
-	public boolean changeCustomerInformation(String userID,String firstName, String lastName,String email) {
+	public boolean changeCustomerInformation(String userID,String firstName, String middleName, String lastName,String address, String email) {
 		// TODO Auto-generated method stub
 		
 		System.out.println("Hello!");
-		boolean status=personDAO.updateUserDetails(userID, firstName, " ", lastName, email, " ");
+		
+		boolean status=personDAO.updateUserDetails(userID, firstName, middleName, lastName, email, address);
 		System.out.println("Status is: "+status);
 		return true;
 	}

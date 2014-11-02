@@ -5,6 +5,6 @@ public interface CustomerInfoChangeService {
 	
 
 	boolean changeCustomerInformation(String userName, String firstName,
-			String lastName, String email);
+			String middleName, String lastName, String address, String email);
 
 }
