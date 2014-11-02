@@ -36,5 +36,30 @@
 <input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
 
 </form>
+
+
+
+<c:url value="/j_spring_security_logout" var="logoutUrl" />
+ 
+	<!-- csrf for log out-->
+	<form action="${logoutUrl}" method="post" id="logoutForm">
+	  <input type="hidden" 
+		name="${_csrf.parameterName}"
+		value="${_csrf.token}" />
+	</form>
+	
+	<script>
+		/* This code detects the tab/window close of the browser and we are performing logout function on it */
+		/* window.onbeforeunload = function(){ formSubmit(); } */
+	
+		function formSubmit() {
+			document.getElementById("logoutForm").submit();
+		}
+	</script>
+<br><a href="javascript:formSubmit()"> Logout</a>
+
+
+
+
 </body>
 </html>

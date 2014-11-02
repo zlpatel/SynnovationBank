@@ -26,7 +26,7 @@
 <body>
 <center><h1> SYNNOVATION </h1> </center>
 
-<h2> View Transactions Page !!</h2>
+<h2> View your transactions here !!</h2>
 <ul class="nav nav-tabs">
 <li><a href="credit_debit">Credit Amount</a> </li>
 <li><a href="debit">Debit Amount</a> </li>
@@ -47,7 +47,7 @@
           <td><b> Transaction Date</b></td>
           <td><b> Transaction Name</b></td>
           
-          <td colspan="2" align="center"><b>Action</b></td>
+          
          </tr>
       <c:forEach  items="${custAcc}" var="trans">
         <tr> 
@@ -73,6 +73,29 @@
 
 
 <br><br>
+
+
+
+<c:url value="/j_spring_security_logout" var="logoutUrl" />
+ 
+	<!-- csrf for log out-->
+	<form action="${logoutUrl}" method="post" id="logoutForm">
+	  <input type="hidden" 
+		name="${_csrf.parameterName}"
+		value="${_csrf.token}" />
+	</form>
+	
+	<script>
+		/* This code detects the tab/window close of the browser and we are performing logout function on it */
+		/* window.onbeforeunload = function(){ formSubmit(); } */
+	
+		function formSubmit() {
+			document.getElementById("logoutForm").submit();
+		}
+	</script>
+<br><a href="javascript:formSubmit()"> Logout</a>
+
+
 
 </body>
 </html>
