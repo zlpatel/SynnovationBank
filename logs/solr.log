@@ -833,4 +833,3 @@ INFO  - 2014-11-01 05:32:26.739; org.hibernate.service.jdbc.connections.internal
 INFO  - 2014-11-01 05:32:26.739; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000046: Connection properties: {user=root, password=****}
 INFO  - 2014-11-01 05:32:27.100; org.hibernate.dialect.Dialect; HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
 INFO  - 2014-11-01 05:32:27.131; org.hibernate.engine.transaction.internal.TransactionFactoryInitiator; HHH000399: Using default transaction strategy (direct JDBC transactions)
->>>>>>> refs/remotes/origin/JeffDAO_1

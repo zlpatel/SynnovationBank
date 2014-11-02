@@ -33,23 +33,6 @@ public class AdminController {
 
 	protected static Logger logger = Logger.getLogger("controller");
 	
-	/**
-	 * Handles and retrieves the common JSP page that everyone can see
-	 * 
-	 * @return the name of the JSP page
-	 */
-    @RequestMapping(value = "/common", method = RequestMethod.GET)
-    public String getCommonPage() {
-    	logger.debug("Received request to show common page");
-    
-    	// Do your work here. Whatever you like
-    	// i.e call a custom service to do your business
-    	// Prepare a model to be used by the JSP page
-    	
-    	// This will resolve to /WEB-INF/jsp/commonpage.jsp
-    	return "commonpage";
-	}
-    
     /**
      * Handles and retrieves the admin JSP page that only admins can see
      * 
