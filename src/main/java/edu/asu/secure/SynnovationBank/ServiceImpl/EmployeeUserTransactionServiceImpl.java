@@ -38,6 +38,7 @@ public class EmployeeUserTransactionServiceImpl implements EmployeeUserTransacti
 		public  List<UserTransactionFormBean> getTransactions(long accountNumber)
 		{
 			
+
 //				UserTransactionFormBean userTransactionFormBean=null;
 //		    	//System.out.println("Hi it is here!");
 //		    	List<Transactions> transactions=transactionsDao.fetchTransactions(accountNumber);
@@ -72,7 +73,8 @@ public class EmployeeUserTransactionServiceImpl implements EmployeeUserTransacti
 		@Override
 		public boolean checkFlag(long accountNumber) {
 //			return accountDao.checkFlag(accountNumber);
-			return false;
+
+			return true;
 		}
 
 }
