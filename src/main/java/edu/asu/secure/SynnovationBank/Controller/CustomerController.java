@@ -16,11 +16,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.asu.secure.SynnovationBank.FormBean.CreditFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.CustomerInfoChangeFormBean;
+import edu.asu.secure.SynnovationBank.FormBean.CustomertransactionFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.DebitFormBean;
+import edu.asu.secure.SynnovationBank.FormBean.TechAccessFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.TransferFormBean;
 import edu.asu.secure.SynnovationBank.Service.CreditService;
 import edu.asu.secure.SynnovationBank.Service.CustomerInfoChangeService;
+import edu.asu.secure.SynnovationBank.Service.CustomerTransactionService;
 import edu.asu.secure.SynnovationBank.Service.DebitService;
+import edu.asu.secure.SynnovationBank.Service.TechAccountAccessService;
 import edu.asu.secure.SynnovationBank.Service.TransferService;
 
 @Controller
@@ -35,7 +39,10 @@ public class CustomerController {
 	private TransferService transferService;
 	@Autowired
 	private CustomerInfoChangeService customerInfoChangeService;
-	
+	@Autowired
+	private TechAccountAccessService techAccountAccessService;
+	@Autowired
+	private CustomerTransactionService customerTransactionService;
 	/**
      * Handles and retrieves the employee JSP page that only employees can see
      * 
@@ -56,7 +63,7 @@ public class CustomerController {
 	
 	
 	@RequestMapping(value = "/changecustomerinforequest", method = RequestMethod.GET)
-    public String getDebitPage(@ModelAttribute("customerInfoChangeFormBean") CustomerInfoChangeFormBean customerInfoChangeFormBean, HttpServletRequest request, HttpSession session) {
+    public String getNewCustomerInfo(@ModelAttribute("customerInfoChangeFormBean") CustomerInfoChangeFormBean customerInfoChangeFormBean, HttpServletRequest request, HttpSession session) {
 
 		String userName="";
 		session = request.getSession(false);
@@ -104,6 +111,41 @@ public class CustomerController {
 	
 	
 	
+	//controller for techaccountaccess
+	
+
+	@RequestMapping(value = "/techaccountaccess", method = RequestMethod.GET)
+	public String env(HttpServletRequest request, HttpSession session){
+
+		String userName="";
+		session = request.getSession(false);
+        if (session != null) {
+            userName=(String)request.getSession().getAttribute("USERNAME");
+        }
+		logger.debug("Received request to show change tech account access rqst page");
+		
+		
+		String selection=null;		 
+             if(request.getParameter("radios").equals("radio1")) {
+            	 selection="Y";
+            	 System.out.println("**********************************");
+                 System.out.println("ALLOW TECHNICAL ACCOUNT ACCESS");
+                 System.out.println("**********************************");
+             }
+             else
+             {selection="N";
+        	 System.out.println("*****************************************");
+             System.out.println("DO NOT ALLOW TECHNICAL ACCOUNT ACCESS");
+             System.out.println("*****************************************");
+             }
+             
+             if(techAccountAccessService.setAccessFlag(userName, selection))
+            	 	return "welcomeUser";
+             else
+            	    return "techAccountAccess";
+
+    }
+	
 	
 	
 	
@@ -115,7 +157,7 @@ public class CustomerController {
 	// controller for crediting
 	
 	@RequestMapping(value = "/creditrequest", method = RequestMethod.GET)
-    public String getDebitPage(@ModelAttribute("creditFormBean") CreditFormBean creditFormBean, HttpServletRequest request, HttpSession session) {
+    public String getCreditRqstPage(@ModelAttribute("creditFormBean") CreditFormBean creditFormBean, HttpServletRequest request, HttpSession session) {
 
 		String userName="";
 		session = request.getSession(false);
@@ -138,7 +180,7 @@ public class CustomerController {
 	// controller for debiting
 	
 		@RequestMapping(value = "/debitrequest", method = RequestMethod.GET)
-	    public String getDebitPage(@ModelAttribute("debitFormBean") DebitFormBean debitFormBean, HttpServletRequest request, HttpSession session) {
+	    public String getDebitRqstPage(@ModelAttribute("debitFormBean") DebitFormBean debitFormBean, HttpServletRequest request, HttpSession session) {
 
 			String userName="";
 			session = request.getSession(false);
@@ -166,7 +208,7 @@ public class CustomerController {
 		// controller for 		transferrequest
 		
 		@RequestMapping(value = "/transferrequest", method = RequestMethod.GET)
-	    public String getDebitPage(@ModelAttribute("transferFormBean") TransferFormBean transferFormBean, HttpServletRequest request, HttpSession session) {
+	    public String getTransferRqstPage(@ModelAttribute("transferFormBean") TransferFormBean transferFormBean, HttpServletRequest request, HttpSession session) {
 			
 			String userName="";
 			session = request.getSession(false);
@@ -279,14 +321,21 @@ public class CustomerController {
 	
 	
 	@RequestMapping(value = "/viewTransactions", method = RequestMethod.GET)
-    public String getviewTransactions() {
-    	logger.debug("Received request to show viewTransactions page");
+    public String getviewTransactions(ModelMap model, HttpServletRequest request,HttpSession session ) {
+		
+		String userName="";
+		session = request.getSession(false);
+        if (session != null) {
+            userName=(String)request.getSession().getAttribute("USERNAME");
+        }
+		
+		/*List<CustomertransactionFormBean> list=customertransactionFormBean.userAccounts(userName);
+    	logger.debug("display "+list.size());
+    	*/
+    	model.put("custAcc", customerTransactionService.getTransactions(userName));
+    	logger.debug("Received request to show employee user accounts page");
     
-    	// Do your work here. Whatever you like
-    	// i.e call a custom service to do your business
-    	// Prepare a model to be used by the JSP page
     	
-    	// This will resolve to /WEB-INF/jsp/commonpage.jsp
     	return "viewTransactions";
 	}
 	

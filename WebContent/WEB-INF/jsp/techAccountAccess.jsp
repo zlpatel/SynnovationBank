@@ -39,13 +39,16 @@
 
 
 <br><br>
-<form name="input" action="welcomeUser" method="get">
-<input type="radio" name="allow" value="1">Allow technical account access<br>
-<input type="radio" name="allow" value="0">DO NOT Allow technical account access<br>
-<input type="submit" value="Submit">
+
+<form action="techaccountaccess" method="get">
+<INPUT TYPE="radio" NAME="radios" VALUE="radio1">
+             Allow
+            <BR>
+            <INPUT TYPE="radio" NAME="radios" VALUE="radio2">
+             Disallow
+            <BR>
+<input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
 </form>
-
-
 
 </body>
 </html>

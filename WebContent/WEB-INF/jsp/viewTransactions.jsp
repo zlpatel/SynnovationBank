@@ -37,6 +37,41 @@
 <li><a href="techAccountAccess">Technical Account Access</a></li>
 </ul>
 
+
+<div id="disptran"><font color="red">${error}</font></div>
+<form name ="cust_transactions" method = "post">
+		<table id = "transaction" width="500" border="0" bordercolor="black" class ="table table-striped">
+		<tr>
+		  <td><b>Transaction Id</b></td>
+		  <td><b>Balance</b></td>
+          <td><b> Transaction Date</b></td>
+          <td><b> Transaction Name</b></td>
+          
+          <td colspan="2" align="center"><b>Action</b></td>
+         </tr>
+      <c:forEach  items="${custAcc}" var="trans">
+        <tr> 
+          <td>${trans.transactionId}</td>
+          <td>${trans.balance}</td>
+          <td>${trans.transactionDate}</td>
+          <td>${trans.transactionsName}</td>
+         </tr>
+      </c:forEach>
+      </table>
+      </form>
+
+
+
+
+
+
+<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />	
+			
+			
+</form>
+
+
 <br><br>
 
 </body>
