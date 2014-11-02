@@ -13,7 +13,7 @@ import edu.asu.secure.SynnovationBank.Dao.AccountDAO;
 
 @Repository
 public class AccountDAOImpl implements AccountDAO {
-
+	
 	SessionFactory factory = HibernateUtil.buildSessionFactory();
 
 	@Override
