@@ -39,12 +39,24 @@
 
 <br><br>
 
+<form action="changecustomerinforequest" commandName="customerInfoChangeFormBean" method="get">
+<input id="firstName" type="text" name="firstName" placeholder="Enter the first name to change" style="width:500px;" value="${customerInfoChangeFormBean.firstName}"/><br>
+<input id="lastName" type="text" name="lastName" placeholder="Enter the last name to change" style="width:500px;" value="${customerInfoChangeFormBean.lastName}"/><br>
+<input id="email" type="text" name="email" placeholder="Enter the E-mail ID to change" style="width:500px;" value="${customerInfoChangeFormBean.email}"/><br>
+<input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
+
+</form>
+
+
+
+
+
+
 
 <form name="input" action="welcomeUser" method="get">
 First name: <input type="text" name="firstname"><br>
 Last name: <input type="text" name="lastname"> <br>
 E mail ID: <input type="text" name="email"> <br>
-Phone number:<input type="number" name="phone"> <br>
 <a href="changePassword">Click here to change your password (using OTP)</a><br>
 
 <input type="submit" value="Submit">

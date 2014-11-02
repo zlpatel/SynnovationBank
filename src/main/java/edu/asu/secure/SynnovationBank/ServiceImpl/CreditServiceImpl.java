@@ -1,5 +1,6 @@
 package edu.asu.secure.SynnovationBank.ServiceImpl;
 
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,25 +40,29 @@ public class CreditServiceImpl implements CreditService {
 	public boolean creditAmount(String userName,String amount) {
 		
 		//ACCOUNT BALANCE MODIFICATION
+		System.out.println("USER "+userName);
+		
 		
 		Person sender = personDAO.fetchUserById(userName);
-		Account a=(Account) sender.getAccount();
+		System.out.println("FETCHED USER "+sender.getFirstName()+" "+sender.getLastName());
+		Account a=sender.getAccount();
+		System.out.println("Current Available Balance: "+a.getBalance());
 		float balance=a.getBalance();
 		float credit=Float.parseFloat(amount);
 		float new_balance=balance+credit;
-		a.setBalance(new_balance);
-		accountDAO.updateAccountBalance(a.getAccountNumber(), a.getBalance());
+		//a.setBalance(new_balance);
+		accountDAO.updateAccountBalance(a.getAccountNumber(), new_balance);
 		System.out.println("Updated customer account table with new credit balance!");
 		
 		
-		
+		/*
 		//TRANSACTION CREATION
 		
 		Transactions t=new Transactions();
 		
 		TransactionDetails td=new TransactionDetails();
 		
-		TransactionType ttype=transactionTypeDAO.fetchTransactionType("credit");
+		TransactionType ttype=transactionTypeDAO.fetchTransactionType("CREDIT");
 
 		
 		
@@ -74,13 +79,14 @@ public class CreditServiceImpl implements CreditService {
 		
 		t.setAmount(credit);
 		t.setTransactionDetails(set);
+		t.setDate(Calendar.getInstance().getTime());
 		
 		long transactionID=transactionsDAO.insertTransaction(t);
 		
 		System.out.println("New transaction populated with ID: "+transactionID);
 		
 		
-		
+		*/
 		return true;
 	}
 

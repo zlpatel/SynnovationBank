@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.asu.secure.SynnovationBank.FormBean.CreditFormBean;
+import edu.asu.secure.SynnovationBank.FormBean.CustomerInfoChangeFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.DebitFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.TransferFormBean;
 import edu.asu.secure.SynnovationBank.Service.CreditService;
+import edu.asu.secure.SynnovationBank.Service.CustomerInfoChangeService;
 import edu.asu.secure.SynnovationBank.Service.DebitService;
 import edu.asu.secure.SynnovationBank.Service.TransferService;
 
@@ -31,6 +33,8 @@ public class CustomerController {
 	private DebitService debitService;
 	@Autowired
 	private TransferService transferService;
+	@Autowired
+	private CustomerInfoChangeService customerInfoChangeService;
 	
 	/**
      * Handles and retrieves the employee JSP page that only employees can see
@@ -44,6 +48,47 @@ public class CustomerController {
      */
     
     
+	
+	
+	// customer information change request
+	
+	
+	
+	
+	@RequestMapping(value = "/changecustomerinforequest", method = RequestMethod.GET)
+    public String getDebitPage(@ModelAttribute("customerInfoChangeFormBean") CustomerInfoChangeFormBean customerInfoChangeFormBean, HttpServletRequest request, HttpSession session) {
+
+		String userName="";
+		session = request.getSession(false);
+        if (session != null) {
+            userName=(String)request.getSession().getAttribute("USERNAME");
+        }
+		logger.debug("Received request to show customer info change rqst page");
+		
+		System.out.println("New information to be changed: "+ customerInfoChangeFormBean.getFirstName() + " "+customerInfoChangeFormBean.getLastName()+" "+customerInfoChangeFormBean.getEmail());
+		
+		if(customerInfoChangeService.changeCustomerInformation(customerInfoChangeFormBean.getFirstName(),customerInfoChangeFormBean.getLastName(),customerInfoChangeFormBean.getEmail()))
+				return "welcomeUser";
+			
+			else
+				return "changeCustomerInfo";
+    	
+	}
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	// controller for crediting

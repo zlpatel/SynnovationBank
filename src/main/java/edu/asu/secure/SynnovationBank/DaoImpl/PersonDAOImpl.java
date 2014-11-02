@@ -183,6 +183,7 @@ public class PersonDAOImpl implements PersonDAO {
 			Session session = factory.getCurrentSession();
 			session.beginTransaction();
 			person = (Person)session.get(Person.class, userId);
+			session.getTransaction().commit();
 			return person;
 		}
 		catch(Exception e){
