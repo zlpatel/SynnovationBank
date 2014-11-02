@@ -24,11 +24,14 @@
 
 
 <body>
-<center><h1> SYNNOVATION </h1> </center>
+<center><h1> Hi ${username} ! </h1> </center>
+<h2> &#10047 Welcome to SYNNOVATION bank &#10047
+                                   
 
-<h2> Welcome page !!</h2>
+  </h2>
 <ul class="nav nav-tabs">
-<li><a href="credit_debit">Credit/Debit</a> </li>
+<li><a href="credit_debit">Credit Amount</a> </li>
+<li><a href="debit">Debit Amount</a> </li>
 <li><a href="transfer">Transfers</a></li>
 <li><a href="viewTransactions">View Transactions</a></li>
 <li><a href="customerNotifications">Notifications</a></li>
@@ -52,6 +55,27 @@
 		}
 	</script>
 <br>
+
+
+
+<c:url value="/j_spring_security_logout" var="logoutUrl" />
+ 
+	<!-- csrf for log out-->
+	<form action="${logoutUrl}" method="post" id="logoutForm">
+	  <input type="hidden" 
+		name="${_csrf.parameterName}"
+		value="${_csrf.token}" />
+	</form>
+	
+	<script>
+		/* This code detects the tab/window close of the browser and we are performing logout function on it */
+		/* window.onbeforeunload = function(){ formSubmit(); } */
+	
+		function formSubmit() {
+			document.getElementById("logoutForm").submit();
+		}
+	</script>
+<br><a href="javascript:formSubmit()"> Logout</a>
 
 
 

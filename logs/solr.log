@@ -833,3 +833,168 @@ INFO  - 2014-11-01 05:32:26.739; org.hibernate.service.jdbc.connections.internal
 INFO  - 2014-11-01 05:32:26.739; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000046: Connection properties: {user=root, password=****}
 INFO  - 2014-11-01 05:32:27.100; org.hibernate.dialect.Dialect; HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
 INFO  - 2014-11-01 05:32:27.131; org.hibernate.engine.transaction.internal.TransactionFactoryInitiator; HHH000399: Using default transaction strategy (direct JDBC transactions)
+INFO  - 2014-11-01 17:06:05.717; org.hibernate.annotations.common.Version; HCANN000001: Hibernate Commons Annotations {4.0.1.Final}
+INFO  - 2014-11-01 17:06:05.826; org.hibernate.Version; HHH000412: Hibernate Core {4.0.1.Final}
+INFO  - 2014-11-01 17:06:05.846; org.hibernate.cfg.Environment; HHH000206: hibernate.properties not found
+INFO  - 2014-11-01 17:06:05.860; org.hibernate.cfg.Environment; HHH000021: Bytecode provider name : javassist
+INFO  - 2014-11-01 17:06:06.111; org.hibernate.cfg.Configuration; HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO  - 2014-11-01 17:06:06.112; org.hibernate.cfg.Configuration; HHH000040: Configuration resource: /hibernate.cfg.xml
+ERROR - 2014-11-01 17:06:06.764; org.hibernate.internal.util.xml.XMLHelper$ErrorLogger; HHH000197: Error parsing XML: /hibernate.cfg.xml(19) The processing instruction target matching "[xX][mM][lL]" is not allowed.
+INFO  - 2014-11-01 17:11:51.926; org.hibernate.annotations.common.Version; HCANN000001: Hibernate Commons Annotations {4.0.1.Final}
+INFO  - 2014-11-01 17:11:51.981; org.hibernate.Version; HHH000412: Hibernate Core {4.0.1.Final}
+INFO  - 2014-11-01 17:11:51.996; org.hibernate.cfg.Environment; HHH000206: hibernate.properties not found
+INFO  - 2014-11-01 17:11:52.003; org.hibernate.cfg.Environment; HHH000021: Bytecode provider name : javassist
+INFO  - 2014-11-01 17:11:52.259; org.hibernate.cfg.Configuration; HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO  - 2014-11-01 17:11:52.260; org.hibernate.cfg.Configuration; HHH000040: Configuration resource: /hibernate.cfg.xml
+ERROR - 2014-11-01 17:11:52.533; org.hibernate.internal.util.xml.XMLHelper$ErrorLogger; HHH000197: Error parsing XML: /hibernate.cfg.xml(2) Document is invalid: no grammar found.
+ERROR - 2014-11-01 17:11:52.537; org.hibernate.internal.util.xml.XMLHelper$ErrorLogger; HHH000197: Error parsing XML: /hibernate.cfg.xml(2) Document root element "beans", must match DOCTYPE root "null".
+INFO  - 2014-11-01 22:50:48.448; org.hibernate.annotations.common.Version; HCANN000001: Hibernate Commons Annotations {4.0.1.Final}
+INFO  - 2014-11-01 22:50:48.478; org.hibernate.Version; HHH000412: Hibernate Core {4.0.1.Final}
+INFO  - 2014-11-01 22:50:48.481; org.hibernate.cfg.Environment; HHH000206: hibernate.properties not found
+INFO  - 2014-11-01 22:50:48.483; org.hibernate.cfg.Environment; HHH000021: Bytecode provider name : javassist
+INFO  - 2014-11-01 22:50:48.527; org.hibernate.cfg.Configuration; HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO  - 2014-11-01 22:50:48.527; org.hibernate.cfg.Configuration; HHH000040: Configuration resource: /hibernate.cfg.xml
+WARN  - 2014-11-01 22:50:48.673; org.hibernate.internal.util.xml.DTDEntityResolver; HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+INFO  - 2014-11-01 22:50:48.719; org.hibernate.cfg.Configuration; HHH000041: Configured SessionFactory: null
+INFO  - 2014-11-01 22:50:48.796; org.hibernate.dialect.Dialect; HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+INFO  - 2014-11-01 22:50:49.123; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000227: Running hbm2ddl schema export
+INFO  - 2014-11-01 22:50:49.182; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000402: Using Hibernate built-in connection pool (not for production use!)
+INFO  - 2014-11-01 22:50:49.205; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000115: Hibernate connection pool size: 20
+INFO  - 2014-11-01 22:50:49.206; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000006: Autocommit mode: false
+INFO  - 2014-11-01 22:50:49.206; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/synnovation_bank]
+INFO  - 2014-11-01 22:50:49.206; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000046: Connection properties: {user=root, password=****}
+ERROR - 2014-11-01 22:50:50.242; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Account drop foreign key FK1D0C220D91768671
+ERROR - 2014-11-01 22:50:50.244; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.account' doesn't exist
+ERROR - 2014-11-01 22:50:50.245; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Notifications drop foreign key FK7B75C4C8AF122201
+ERROR - 2014-11-01 22:50:50.246; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.notifications' doesn't exist
+ERROR - 2014-11-01 22:50:50.247; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Notifications drop foreign key FK7B75C4C891768671
+ERROR - 2014-11-01 22:50:50.247; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.notifications' doesn't exist
+ERROR - 2014-11-01 22:50:50.249; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Notifications drop foreign key FK7B75C4C8210D12BE
+ERROR - 2014-11-01 22:50:50.249; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.notifications' doesn't exist
+ERROR - 2014-11-01 22:50:50.261; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Person drop foreign key FK8E488775614DC4AD
+ERROR - 2014-11-01 22:50:50.262; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.person' doesn't exist
+ERROR - 2014-11-01 22:50:50.271; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Person_Notifications drop foreign key FK35B6D7E7A2D16D3
+ERROR - 2014-11-01 22:50:50.271; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.person_notifications' doesn't exist
+ERROR - 2014-11-01 22:50:50.272; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Person_Notifications drop foreign key FK35B6D7EF9D7A387
+ERROR - 2014-11-01 22:50:50.273; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.person_notifications' doesn't exist
+ERROR - 2014-11-01 22:50:50.274; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Person_Reported_Issues drop foreign key FKEFE0FEDCF9D7A387
+ERROR - 2014-11-01 22:50:50.274; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.person_reported_issues' doesn't exist
+ERROR - 2014-11-01 22:50:50.275; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Person_Reported_Issues drop foreign key FKEFE0FEDC186457A0
+ERROR - 2014-11-01 22:50:50.275; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.person_reported_issues' doesn't exist
+ERROR - 2014-11-01 22:50:50.276; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Reported_Issues drop foreign key FKCAC2ABA691768671
+ERROR - 2014-11-01 22:50:50.277; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.reported_issues' doesn't exist
+ERROR - 2014-11-01 22:50:50.292; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Transaction_Details drop foreign key FK2D5C0DA1BAD6205B
+ERROR - 2014-11-01 22:50:50.292; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.transaction_details' doesn't exist
+ERROR - 2014-11-01 22:50:50.293; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Transaction_Details drop foreign key FK2D5C0DA1210D12BE
+ERROR - 2014-11-01 22:50:50.293; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.transaction_details' doesn't exist
+ERROR - 2014-11-01 22:50:50.295; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Transaction_Details drop foreign key FK2D5C0DA1741534AA
+ERROR - 2014-11-01 22:50:50.295; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.transaction_details' doesn't exist
+INFO  - 2014-11-01 22:51:07.200; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000030: Cleaning up connection pool [jdbc:mysql://localhost:3306/synnovation_bank]
+INFO  - 2014-11-01 22:51:07.201; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000230: Schema export complete
+INFO  - 2014-11-01 22:51:07.233; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000402: Using Hibernate built-in connection pool (not for production use!)
+INFO  - 2014-11-01 22:51:07.234; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000115: Hibernate connection pool size: 20
+INFO  - 2014-11-01 22:51:07.234; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000006: Autocommit mode: false
+INFO  - 2014-11-01 22:51:07.234; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/synnovation_bank]
+INFO  - 2014-11-01 22:51:07.235; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000046: Connection properties: {user=root, password=****}
+INFO  - 2014-11-01 22:51:07.477; org.hibernate.dialect.Dialect; HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+INFO  - 2014-11-01 22:51:07.507; org.hibernate.engine.transaction.internal.TransactionFactoryInitiator; HHH000399: Using default transaction strategy (direct JDBC transactions)
+INFO  - 2014-11-01 23:04:36.034; org.hibernate.annotations.common.Version; HCANN000001: Hibernate Commons Annotations {4.0.1.Final}
+INFO  - 2014-11-01 23:04:36.046; org.hibernate.Version; HHH000412: Hibernate Core {4.0.1.Final}
+INFO  - 2014-11-01 23:04:36.051; org.hibernate.cfg.Environment; HHH000206: hibernate.properties not found
+INFO  - 2014-11-01 23:04:36.054; org.hibernate.cfg.Environment; HHH000021: Bytecode provider name : javassist
+INFO  - 2014-11-01 23:04:36.103; org.hibernate.cfg.Configuration; HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO  - 2014-11-01 23:04:36.104; org.hibernate.cfg.Configuration; HHH000040: Configuration resource: /hibernate.cfg.xml
+WARN  - 2014-11-01 23:04:36.195; org.hibernate.internal.util.xml.DTDEntityResolver; HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+INFO  - 2014-11-01 23:04:36.225; org.hibernate.cfg.Configuration; HHH000041: Configured SessionFactory: null
+INFO  - 2014-11-01 23:04:36.252; org.hibernate.dialect.Dialect; HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+INFO  - 2014-11-01 23:04:36.627; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000227: Running hbm2ddl schema export
+INFO  - 2014-11-01 23:04:36.682; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000402: Using Hibernate built-in connection pool (not for production use!)
+INFO  - 2014-11-01 23:04:36.694; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000115: Hibernate connection pool size: 20
+INFO  - 2014-11-01 23:04:36.695; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000006: Autocommit mode: false
+INFO  - 2014-11-01 23:04:36.696; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/synnovation_bank]
+INFO  - 2014-11-01 23:04:36.696; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000046: Connection properties: {user=root, password=****}
+ERROR - 2014-11-01 23:04:37.216; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Account drop foreign key FK1D0C220D91768671
+ERROR - 2014-11-01 23:04:37.218; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.account' doesn't exist
+ERROR - 2014-11-01 23:04:37.219; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Notifications drop foreign key FK7B75C4C8AF122201
+ERROR - 2014-11-01 23:04:37.219; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.notifications' doesn't exist
+ERROR - 2014-11-01 23:04:37.220; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Notifications drop foreign key FK7B75C4C891768671
+ERROR - 2014-11-01 23:04:37.220; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.notifications' doesn't exist
+ERROR - 2014-11-01 23:04:37.221; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Notifications drop foreign key FK7B75C4C8210D12BE
+ERROR - 2014-11-01 23:04:37.221; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.notifications' doesn't exist
+ERROR - 2014-11-01 23:04:37.222; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Person drop foreign key FK8E488775614DC4AD
+ERROR - 2014-11-01 23:04:37.222; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.person' doesn't exist
+ERROR - 2014-11-01 23:04:37.223; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Person_Notifications drop foreign key FK35B6D7E7A2D16D3
+ERROR - 2014-11-01 23:04:37.223; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.person_notifications' doesn't exist
+ERROR - 2014-11-01 23:04:37.225; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Person_Notifications drop foreign key FK35B6D7EF9D7A387
+ERROR - 2014-11-01 23:04:37.225; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.person_notifications' doesn't exist
+ERROR - 2014-11-01 23:04:37.226; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Person_Reported_Issues drop foreign key FKEFE0FEDCF9D7A387
+ERROR - 2014-11-01 23:04:37.226; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.person_reported_issues' doesn't exist
+ERROR - 2014-11-01 23:04:37.227; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Person_Reported_Issues drop foreign key FKEFE0FEDC186457A0
+ERROR - 2014-11-01 23:04:37.228; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.person_reported_issues' doesn't exist
+ERROR - 2014-11-01 23:04:37.229; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Reported_Issues drop foreign key FKCAC2ABA691768671
+ERROR - 2014-11-01 23:04:37.229; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.reported_issues' doesn't exist
+ERROR - 2014-11-01 23:04:37.230; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Transaction_Details drop foreign key FK2D5C0DA1BAD6205B
+ERROR - 2014-11-01 23:04:37.230; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.transaction_details' doesn't exist
+ERROR - 2014-11-01 23:04:37.231; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Transaction_Details drop foreign key FK2D5C0DA1210D12BE
+ERROR - 2014-11-01 23:04:37.231; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.transaction_details' doesn't exist
+ERROR - 2014-11-01 23:04:37.232; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Transaction_Details drop foreign key FK2D5C0DA1741534AA
+ERROR - 2014-11-01 23:04:37.232; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.transaction_details' doesn't exist
+INFO  - 2014-11-01 23:04:52.195; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000030: Cleaning up connection pool [jdbc:mysql://localhost:3306/synnovation_bank]
+INFO  - 2014-11-01 23:04:52.196; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000230: Schema export complete
+INFO  - 2014-11-01 23:04:52.205; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000402: Using Hibernate built-in connection pool (not for production use!)
+INFO  - 2014-11-01 23:04:52.205; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000115: Hibernate connection pool size: 20
+INFO  - 2014-11-01 23:04:52.205; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000006: Autocommit mode: false
+INFO  - 2014-11-01 23:04:52.206; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/synnovation_bank]
+INFO  - 2014-11-01 23:04:52.206; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000046: Connection properties: {user=root, password=****}
+INFO  - 2014-11-01 23:04:52.257; org.hibernate.dialect.Dialect; HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+INFO  - 2014-11-01 23:04:52.277; org.hibernate.engine.transaction.internal.TransactionFactoryInitiator; HHH000399: Using default transaction strategy (direct JDBC transactions)
+INFO  - 2014-11-01 23:08:16.393; org.hibernate.annotations.common.Version; HCANN000001: Hibernate Commons Annotations {4.0.1.Final}
+INFO  - 2014-11-01 23:08:16.413; org.hibernate.Version; HHH000412: Hibernate Core {4.0.1.Final}
+INFO  - 2014-11-01 23:08:16.419; org.hibernate.cfg.Environment; HHH000206: hibernate.properties not found
+INFO  - 2014-11-01 23:08:16.423; org.hibernate.cfg.Environment; HHH000021: Bytecode provider name : javassist
+INFO  - 2014-11-01 23:08:16.493; org.hibernate.cfg.Configuration; HHH000043: Configuring from resource: /hibernate.cfg.xml
+INFO  - 2014-11-01 23:08:16.494; org.hibernate.cfg.Configuration; HHH000040: Configuration resource: /hibernate.cfg.xml
+WARN  - 2014-11-01 23:08:16.564; org.hibernate.internal.util.xml.DTDEntityResolver; HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+INFO  - 2014-11-01 23:08:16.592; org.hibernate.cfg.Configuration; HHH000041: Configured SessionFactory: null
+INFO  - 2014-11-01 23:08:16.615; org.hibernate.dialect.Dialect; HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+INFO  - 2014-11-01 23:08:17.008; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000227: Running hbm2ddl schema export
+INFO  - 2014-11-01 23:08:17.078; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000402: Using Hibernate built-in connection pool (not for production use!)
+INFO  - 2014-11-01 23:08:17.087; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000115: Hibernate connection pool size: 20
+INFO  - 2014-11-01 23:08:17.088; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000006: Autocommit mode: false
+INFO  - 2014-11-01 23:08:17.088; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/synnovation_bank]
+INFO  - 2014-11-01 23:08:17.089; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000046: Connection properties: {user=root, password=****}
+ERROR - 2014-11-01 23:08:17.517; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Account drop foreign key FK1D0C220D91768671
+ERROR - 2014-11-01 23:08:17.518; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.account' doesn't exist
+ERROR - 2014-11-01 23:08:17.519; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Notifications drop foreign key FK7B75C4C8AF122201
+ERROR - 2014-11-01 23:08:17.519; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.notifications' doesn't exist
+ERROR - 2014-11-01 23:08:17.521; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Notifications drop foreign key FK7B75C4C891768671
+ERROR - 2014-11-01 23:08:17.521; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.notifications' doesn't exist
+ERROR - 2014-11-01 23:08:17.522; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Notifications drop foreign key FK7B75C4C8210D12BE
+ERROR - 2014-11-01 23:08:17.522; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.notifications' doesn't exist
+ERROR - 2014-11-01 23:08:17.523; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Person drop foreign key FK8E488775614DC4AD
+ERROR - 2014-11-01 23:08:17.523; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.person' doesn't exist
+ERROR - 2014-11-01 23:08:17.524; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Person_Notifications drop foreign key FK35B6D7E7A2D16D3
+ERROR - 2014-11-01 23:08:17.524; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.person_notifications' doesn't exist
+ERROR - 2014-11-01 23:08:17.525; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Person_Notifications drop foreign key FK35B6D7EF9D7A387
+ERROR - 2014-11-01 23:08:17.526; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.person_notifications' doesn't exist
+ERROR - 2014-11-01 23:08:17.526; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Person_Reported_Issues drop foreign key FKEFE0FEDCF9D7A387
+ERROR - 2014-11-01 23:08:17.527; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.person_reported_issues' doesn't exist
+ERROR - 2014-11-01 23:08:17.528; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Person_Reported_Issues drop foreign key FKEFE0FEDC186457A0
+ERROR - 2014-11-01 23:08:17.528; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.person_reported_issues' doesn't exist
+ERROR - 2014-11-01 23:08:17.529; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Reported_Issues drop foreign key FKCAC2ABA691768671
+ERROR - 2014-11-01 23:08:17.529; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.reported_issues' doesn't exist
+ERROR - 2014-11-01 23:08:17.530; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Transaction_Details drop foreign key FK2D5C0DA1BAD6205B
+ERROR - 2014-11-01 23:08:17.530; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.transaction_details' doesn't exist
+ERROR - 2014-11-01 23:08:17.531; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Transaction_Details drop foreign key FK2D5C0DA1210D12BE
+ERROR - 2014-11-01 23:08:17.531; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.transaction_details' doesn't exist
+ERROR - 2014-11-01 23:08:17.532; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000389: Unsuccessful: alter table Transaction_Details drop foreign key FK2D5C0DA1741534AA
+ERROR - 2014-11-01 23:08:17.532; org.hibernate.tool.hbm2ddl.SchemaExport; Table 'synnovation_bank.transaction_details' doesn't exist
+INFO  - 2014-11-01 23:08:31.379; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000030: Cleaning up connection pool [jdbc:mysql://localhost:3306/synnovation_bank]
+INFO  - 2014-11-01 23:08:31.381; org.hibernate.tool.hbm2ddl.SchemaExport; HHH000230: Schema export complete
+INFO  - 2014-11-01 23:08:31.390; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000402: Using Hibernate built-in connection pool (not for production use!)
+INFO  - 2014-11-01 23:08:31.391; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000115: Hibernate connection pool size: 20
+INFO  - 2014-11-01 23:08:31.391; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000006: Autocommit mode: false
+INFO  - 2014-11-01 23:08:31.391; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/synnovation_bank]
+INFO  - 2014-11-01 23:08:31.392; org.hibernate.service.jdbc.connections.internal.DriverManagerConnectionProviderImpl; HHH000046: Connection properties: {user=root, password=****}
+INFO  - 2014-11-01 23:08:31.455; org.hibernate.dialect.Dialect; HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+INFO  - 2014-11-01 23:08:31.474; org.hibernate.engine.transaction.internal.TransactionFactoryInitiator; HHH000399: Using default transaction strategy (direct JDBC transactions)

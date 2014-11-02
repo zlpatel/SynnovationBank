@@ -49,6 +49,7 @@ public class EmployeeUserTransactionServiceImpl implements EmployeeUserTransacti
 	    @Override
 		public  List<UserTransactionFormBean> getTransactions(String userName)
 		{
+<<<<<<< HEAD
 			System.out.println("This is retrieving the transactions");
 			System.out.println("This is checking the flag");
 			Person person= personDao.fetchUserById(userName);
@@ -77,9 +78,39 @@ public class EmployeeUserTransactionServiceImpl implements EmployeeUserTransacti
 			Person person= personDao.fetchUserById(userName);
 			long accNum=person.getAccount().getAccountNumber();
 			return accountDao.fetchAllowAccessFlag(accNum);
+=======
+			
+
+//				UserTransactionFormBean userTransactionFormBean=null;
+//		    	//System.out.println("Hi it is here!");
+//		    	List<Transactions> transactions=transactionsDao.fetchTransactions(accountNumber);
+//		    	//System.out.println("Hi it is here 2!");
+//		    	List<UserTransactionFormBean> list=new ArrayList<UserTransactionFormBean>();
+//		    	
+//		    	for(Transactions trans: transactions){
+//		    		userTransactionFormBean = new UserTransactionFormBean();
+//		    		//Need to ask rohit
+//		    		userTransactionFormBean.setAmount(trans.getAmount());
+//		    		userTransactionFormBean.setTransactionId(trans.getTransactionId());
+//		    		userTransactionFormBean.setTransactionName(trans.getTransactionDetails();
+//		    		list.add(empNotifFormBean);
+//		    	}
+//		    	return list;
+//			}
+//			
+//			//return false;
+//			
+//			
+//			//return account.Person.flag
+//			
+//			//
+
+			return null;
+>>>>>>> refs/heads/master
 		}
 
 		@Override
+<<<<<<< HEAD
 		public void sendNotification() {
 /*//set and push Technical Account //Access notification
 			
@@ -93,6 +124,12 @@ public class EmployeeUserTransactionServiceImpl implements EmployeeUserTransacti
 			
 			notificationsDAO.insertNotification("Employee",n);*/
 			
+=======
+		public boolean checkFlag(long accountNumber) {
+//			return accountDao.checkFlag(accountNumber);
+
+			return true;
+>>>>>>> refs/heads/master
 		}
 
 

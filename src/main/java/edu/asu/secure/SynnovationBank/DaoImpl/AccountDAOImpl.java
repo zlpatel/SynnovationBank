@@ -13,7 +13,7 @@ import edu.asu.secure.SynnovationBank.Dao.AccountDAO;
 
 @Repository
 public class AccountDAOImpl implements AccountDAO {
-
+	
 	SessionFactory factory = HibernateUtil.buildSessionFactory();
 
 	@Override
@@ -47,14 +47,12 @@ public class AccountDAOImpl implements AccountDAO {
 			Criteria criteria = session.createCriteria(Person.class);
 			criteria.add(Restrictions.eq("account.accountNumber",accNo));
 			Person person = (Person)criteria.uniqueResult();
-			session.getTransaction().commit();
 			if(person != null && person.getAllowAccessFlag().equals("Y"))
 				return true;
 			else
 				return false;
 		}
 		catch(Exception e){
-			session.getTransaction().rollback();
 			e.printStackTrace();
 			return false;
 		}

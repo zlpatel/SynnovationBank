@@ -7,7 +7,7 @@ import edu.asu.secure.SynnovationBank.DTO.Person;
 
 public interface NotificationsDAO {
 
-	public boolean insertNotification(String userId, Notifications notifications);
+	public long insertNotification(String userId, Notifications notifications);
 	
 	public boolean updateResolveNotification(Long notificationId, Person person);
 	

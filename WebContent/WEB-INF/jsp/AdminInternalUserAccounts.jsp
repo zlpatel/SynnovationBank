@@ -20,6 +20,8 @@
 <h2>Admin Page</h2>
 <p>Only admins have access to this page.</p><br>
 
+<p>${message} </p>
+
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
     <li class="active"><a href="#">Internal User Accounts</a></li>
@@ -30,41 +32,37 @@
     <li><a href="adminchangepassword">Change Password</a></li>
 </ul>
 
-<br><br><table class="table">
+<br><br>
+<form action="admininternaluseraccounts" commandName="getinternaluseraccounts" method="post" >
+<table class="table" class ="table table-striped">
         <thead>
             <tr>
+                <th>Username</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Tim</td>
-                <td>Johnson</td>
-                <td>
-                <button type="button" class="btn btn-primary">Modify</button>
-                <button type="button" class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Mark</td>
-                <td>Brenton</td>
-                <td>
-                <button type="button" class="btn btn-primary">Modify</button>
-                <button type="button" class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Jack</td>
-                <td>Spensor</td>
-                <td>
-                <button type="button" class="btn btn-primary">Modify</button>
-                <button type="button" class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+         <c:forEach  items="${internaluserslist}" var="internalUser">
+        <tr> 
+          <td>${internalUser.username}</td>
+          <td>${internalUser.fname}</td>
+          <td>${internalUser.lname}</td>
+          <!-- <td><button type="button" class="btn btn-primary">Modify</button>
+                <button type="button" class="btn btn-danger">Delete</button></td> -->
+          <td align="center"><input style="width:75px;" name="Modify" type="submit" value= "Modify" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'adminmodifyinternaluser?userId=${internalUser.username}'; ;return true;"/></td>  
+          <td align="center"><input  style="width:75px;" name="Delete" type="submit" value= "Delete" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'admindeleteinternaluser?userId=${internalUser.username}'; ;return true;"/></td> 
+        </tr>
+      </c:forEach>
+      </tbody>
+      </table>
+      
+      <input type="hidden" 
+		name="${_csrf.parameterName}"
+		value="${_csrf.token}" />
+      
+      </form>
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  

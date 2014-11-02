@@ -9,8 +9,10 @@ public class DriverClass {
 		SeedData.insertNotificationTypes();
 		SeedData.insertUser();
 		//TestMethods.updateOTP();
-		//TestMethods.authenticateOTP();		
-		//TestMethods.updateIssueResolved();
+		//TestMethods.authenticateOTP();	
+		//TestMethods.insertIssue();
+		//TestMethods.insertTransaction();
+//		TestMethods.insertNotifications();
 	}
 
 }

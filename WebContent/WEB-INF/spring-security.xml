@@ -17,6 +17,14 @@
 		<security:intercept-url pattern="/secure/customer/**" requires-channel="https" access="hasRole('ROLE_CUST')"/>
 		<security:intercept-url pattern="/secure/merchant/**" requires-channel="https" access="hasRole('ROLE_MERC')"/>
 		
+		
+		<!-- <security:intercept-url pattern="/secure/admin/**" requires-channel="https" access="permitAll"/>
+		<security:intercept-url pattern="/secure/employee/**" requires-channel="https" access="permitAll"/>
+		<security:intercept-url pattern="/secure/customer/**" requires-channel="https" access="permitAll"/>
+		<security:intercept-url pattern="/secure/merchant/**" requires-channel="https" access="permitAll"/>-->
+		
+		
+		
 		<security:form-login
 				login-page="/secure/auth/login"
 				authentication-failure-url="/secure/auth/login?error=true" 

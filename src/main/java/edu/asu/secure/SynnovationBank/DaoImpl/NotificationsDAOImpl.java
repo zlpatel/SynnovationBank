@@ -24,8 +24,9 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 	SessionFactory factory = HibernateUtil.buildSessionFactory();
 
 	@Override
-	public boolean insertNotification(String userId, Notifications notifications) {
+	public long insertNotification(String userId, Notifications notifications) {
 		Session session = null;
+		long issueId = -1;
 		try{
 			session = factory.getCurrentSession();
 			session.beginTransaction();
@@ -46,12 +47,12 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 			}
 			session.update(person);
 			session.getTransaction().commit();
-			return true;
+			return issueId;
 		}
 		catch(Exception e){
 			session.getTransaction().rollback();
 			e.printStackTrace();
-			return false;
+			return issueId;
 		}
 		finally{
 			//HibernateUtil.shutdown();
@@ -96,7 +97,6 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 			criteria.createCriteria("person");
 			criteria.setFetchMode("person",FetchMode.JOIN);
 			rawList = criteria.list();
-			session.getTransaction().commit();
 			@SuppressWarnings("rawtypes")
 			Iterator itr = rawList.iterator();
 			while(itr.hasNext())
@@ -104,7 +104,6 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 			return list;
 		}
 		catch(Exception e){
-			session.getTransaction().rollback();
 			e.printStackTrace();
 			return list;
 		}
@@ -121,11 +120,9 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 			session = factory.getCurrentSession();
 			session.beginTransaction();
 			msg = (Notifications)session.get(Notifications.class, notificationId);
-			session.getTransaction().commit();
 			return msg;
 		}
 		catch(Exception e){
-			session.getTransaction().rollback();
 			e.printStackTrace();
 			return msg;
 		}

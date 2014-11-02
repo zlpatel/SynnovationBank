@@ -7,12 +7,16 @@ import java.util.List;
 import java.util.Set;
 
 import edu.asu.secure.SynnovationBank.DTO.Account;
+import edu.asu.secure.SynnovationBank.DTO.Notifications;
+import edu.asu.secure.SynnovationBank.DTO.NotificationsType;
 import edu.asu.secure.SynnovationBank.DTO.Person;
 import edu.asu.secure.SynnovationBank.DTO.ReportedIssues;
 import edu.asu.secure.SynnovationBank.DTO.TransactionDetails;
 import edu.asu.secure.SynnovationBank.DTO.TransactionType;
 import edu.asu.secure.SynnovationBank.DTO.Transactions;
 import edu.asu.secure.SynnovationBank.DaoImpl.AccountDAOImpl;
+import edu.asu.secure.SynnovationBank.DaoImpl.NotificationsDAOImpl;
+import edu.asu.secure.SynnovationBank.DaoImpl.NotificationsTypeDAOImpl;
 import edu.asu.secure.SynnovationBank.DaoImpl.PersonDAOImpl;
 import edu.asu.secure.SynnovationBank.DaoImpl.ReportedIssuesDAOImpl;
 import edu.asu.secure.SynnovationBank.DaoImpl.TransactionDetailsDAOImpl;
@@ -58,6 +62,7 @@ public class TestMethods {
 		Transactions transactions = new Transactions();
 		transactions.setAmount(100);
 		transactions.setDate(Calendar.getInstance().getTime());
+		transactions.setCompleteFlag("Y");
 		
 		TransactionType credit = ttimpl.fetchTransactionType("CREDIT");
 		TransactionType debit = ttimpl.fetchTransactionType("DEBIT");
@@ -114,4 +119,21 @@ public class TestMethods {
 		ReportedIssuesDAOImpl impl = new ReportedIssuesDAOImpl();
 		impl.updateIssueResolved(1L);
 	}
+	
+	public static void insertNotifications(){
+		NotificationsDAOImpl impl = new NotificationsDAOImpl();
+		NotificationsTypeDAOImpl impl1 = new NotificationsTypeDAOImpl();
+		
+		NotificationsType type = impl1.fetchNotificationsType("TAA");
+		Transactions transactions = new Transactions();
+		transactions.setTransactionId(1L);
+		
+		Notifications notification = new Notifications();
+		notification.setEmpAdminFlag("E");
+		notification.setResolvedFlag("N");
+		notification.setNotificationsType(type);
+		notification.setTransaction(transactions);
+		impl.insertNotification("cust1", notification);
+	}
+	
 }

@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=US-ASCII"
     pageEncoding="US-ASCII"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -16,12 +17,12 @@
 </head>
 <body>
 
-<form action="uploadFile" enctype="multipart/form-data" commandName="fileuploadformbean" method="post">
-        File to upload: <input type="file" name="file" value="${fileuploadformbean.name}"><br />
-        Name: <input type="text" name="name" value="${fileuploadformbean.name}"><br /> <br />
-        <input type="submit" value="Upload"> Press here to upload the file!
-        <input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" />	
+<form method="GET" action="../pki/uploadFile" enctype="multipart/form-data">
+		File to upload: <input type="file" name="file"><br /> 
+		Name: <input type="text" name="name"><br /> <br /> 
+		<input type="submit" value="Upload"> Press here to upload the file!
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />		
     </form>
 
 </body>
