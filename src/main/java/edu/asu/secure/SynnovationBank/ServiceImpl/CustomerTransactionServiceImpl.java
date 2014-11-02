@@ -57,6 +57,14 @@ public class CustomerTransactionServiceImpl implements CustomerTransactionServic
 		String bal=String.valueOf(balance);
 		return bal;
 	}
+
+	@Override
+	public String getUserName(String userName) {
+		Person sender = personDAO.fetchUserById(userName);
+		System.out.println("FETCHED USER "+sender.getFirstName()+" "+sender.getLastName());
+		String fullname=sender.getFirstName();
+		return fullname;
+	}
 	}
 
 

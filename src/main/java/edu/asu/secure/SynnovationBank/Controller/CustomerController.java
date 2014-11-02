@@ -216,7 +216,7 @@ public class CustomerController {
 		// controller for 		transferrequest
 		
 		@RequestMapping(value = "/transferrequest", method = RequestMethod.GET)
-	    public String getTransferRqstPage(@ModelAttribute("transferFormBean") TransferFormBean transferFormBean, HttpServletRequest request, HttpSession session) {
+	    public String getTransferRqstPage(@RequestParam(value="error", required=false) boolean error, ModelMap model,@ModelAttribute("transferFormBean") TransferFormBean transferFormBean, HttpServletRequest request, HttpSession session) {
 			
 			String userName="";
 			session = request.getSession(false);
@@ -230,9 +230,15 @@ public class CustomerController {
 			System.out.println("Transfer amount :"+transferFormBean.getTransferAmount());
 				
 			if(transferService.performTransfer(userName, transferFormBean.getReceiverID(),transferFormBean.getTransferAmount()))
+			{
+				
 				return "welcomeUser";
+			}
 			else
+			{
+				model.put("error","TRANSFER UNSUCCESSFULL");
 					return "transfer";
+			}
 	    	
 		}
 	
@@ -327,8 +333,14 @@ public class CustomerController {
 	
 	
 	@RequestMapping(value = "/transfer", method = RequestMethod.GET)
-    public String gettransfer() {
-    	logger.debug("Received request to show transfer page");
+    public String gettransfer(@RequestParam(value="error", required=false) boolean error, ModelMap model) {
+		if(error==true){
+			model.put("error", "TRANSFER NOT SUCCESSFULL !!");	
+		}else{
+			model.put("error","");
+		}
+		
+		logger.debug("Received request to show transfer page");
     
     	// Do your work here. Whatever you like
     	// i.e call a custom service to do your business
@@ -362,16 +374,39 @@ public class CustomerController {
 	
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String getwelcomeUser() {
+    public String getwelcomeUser(ModelMap model, HttpServletRequest request,HttpSession session) {
     	logger.debug("Received request to show welcomeUser page");
-    
-    	// Do your work here. Whatever you like
-    	// i.e call a custom service to do your business
-    	// Prepare a model to be used by the JSP page
     	
-    	// This will resolve to /WEB-INF/jsp/commonpage.jsp
+    	String userName="";
+		session = request.getSession(false);
+        if (session != null) {
+            userName=(String)request.getSession().getAttribute("USERNAME");
+        }
+		
+    
+    	model.put("username", customerTransactionService.getUserName(userName));
     	return "welcomeUser";
 	}
+	
+	
+	
+	
+	@RequestMapping(value = "/welcomeUser", method = RequestMethod.GET)
+    public String getwelcomeUser1(ModelMap model, HttpServletRequest request,HttpSession session) {
+    	logger.debug("Received request to show welcomeUser page");
+    	
+    	String userName="";
+		session = request.getSession(false);
+        if (session != null) {
+            userName=(String)request.getSession().getAttribute("USERNAME");
+        }
+		
+    
+    	model.put("username", customerTransactionService.getUserName(userName));
+    	return "welcomeUser";
+	}
+	
+	
 	
 	
     

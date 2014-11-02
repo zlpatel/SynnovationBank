@@ -22,7 +22,10 @@
 <body>
 <center><h1> SYNNOVATION </h1> </center>
 
-<h2> Transfer amount !!</h2>
+<h2> TRANSFER AMOUNT PAGE</h2>
+
+<div id="otp-error"><font color="red">${error}</font></div>
+
 <ul class="nav nav-tabs">
 <li><a href="credit_debit">Credit Amount</a> </li>
 <li><a href="debit">Debit Amount</a> </li>

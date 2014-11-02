@@ -24,9 +24,11 @@
 
 
 <body>
-<center><h1> SYNNOVATION </h1> </center>
+<center><h1> Hi ${username} ! </h1> </center>
+<h2> &#10047 Welcome to SYNNOVATION bank &#10047
+                                   
 
-<h2> Welcome page !!</h2>
+  </h2>
 <ul class="nav nav-tabs">
 <li><a href="credit_debit">Credit Amount</a> </li>
 <li><a href="debit">Debit Amount</a> </li>
