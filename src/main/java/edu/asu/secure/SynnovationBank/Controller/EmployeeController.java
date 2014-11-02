@@ -1,9 +1,12 @@
 package edu.asu.secure.SynnovationBank.Controller;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,51 +48,52 @@ public class EmployeeController {
     	return "employeepage";
 	}
 
-    @RequestMapping(value = "/viewTransaction", method = {RequestMethod.POST,RequestMethod.GET})
-  	 public String getUserTransactions(@RequestParam(value="error", required=false) boolean error,@ModelAttribute("usertransactionFormBean") UserTransactionFormBean usertransactionFormBean, ModelMap model) {
-   		 
+   
+  
+    @RequestMapping(value = "/employeeviewtransactions", method = {RequestMethod.GET, RequestMethod.POST})
+    public String getUserTransactionsPage(@RequestParam(value="error", required=false) boolean error,ModelMap model) {
+    	
     	if(error==true){
-			model.put("error", "You don't have access to this account");	
-		}else{
-			model.put("error","");
-			if(employeeUserTransactionService.checkFlag(usertransactionFormBean.getAccountNumber()))
-			{
-				logger.debug("Received request to show otp page");
-				model.put("userTransaction", employeeUserTransactionService.getTransactions(usertransactionFormBean.getAccountNumber()));
-				
-			}else{
-				model.put("error", true);
-				return "redirect:EmployeeViewTransactions";
-			}
-		}
-		return "ViewUserTransactions";
+    		model.put("error","you don't have an access/ Account number doesn't exist!");
+    	}
+    	else{
+    		model.put("error","");
+    	}
+    	logger.debug("Received request to show employee view transactions page");
+    	
+    		return "EmployeeViewTransactions";
 	}
     
-   /* @RequestMapping(value = "/notificationAccepted", method = {RequestMethod.POST,RequestMethod.GET})
- 	 public String getUserTransactions(@RequestParam(value="error", required=false) boolean error,@ModelAttribute("usertransactionFormBean") UserTransactionFormBean usertransactionFormBean, ModelMap model) {
-  		 
-   	if(error==true){
-			model.put("error", "You don't have access to this account");	
+    @RequestMapping(value = "/viewtransactions", method = RequestMethod.POST)
+    public String getUserTransactions(@ModelAttribute("usertransactionformbean") UserTransactionFormBean usertransactionFormBean,BindingResult result, ModelMap model) {
+    	boolean f;
+    	System.out.println("The user name : "+usertransactionFormBean.getUserName());
+    	f=employeeUserTransactionService.checkFlag(usertransactionFormBean.getUserName());
+    	System.out.println("The flag is " + f);
+    	if(f)
+		{
+			logger.debug("Received access to show transactions page");
+			List<UserTransactionFormBean> l=employeeUserTransactionService.getTransactions(usertransactionFormBean.getUserName());
+			System.out.println("size of the list is"+ l.size());
+			model.put("userTransaction", employeeUserTransactionService.getTransactions(usertransactionFormBean.getUserName()));
+			
 		}else{
-			model.put("error","");
-			if(employeeUserTransactionService.checkFlag(usertransactionFormBean.getAccountNumber()))
-			{
-				logger.debug("Received request to show otp page");
-				model.put("userTransaction", employeeUserTransactionService.getTransactions(usertransactionFormBean.getAccountNumber()));
-				
-			}else{
-				model.put("error", true);
-				return "redirect:EmployeeViewTransactions";
-			}
+			
+			model.put("error", "Sorry! You don't have access to this account. A request has been sent to the user");
+			employeeUserTransactionService.sendNotification();
+			return "redirect:employeeviewtransactions";
 		}
-		return "ViewUserTransactions";
-	}*/
-
+    
+    	
+    	return "ViewUserTransactions";
+	}
     
     @RequestMapping(value = "/employeeuseraccounts", method = RequestMethod.GET)
     public String getEmployeeUserAccountsPage(ModelMap model) {
+    	List<EmpUserAccFormBean> list=employeeUserAccountService.userAccounts();
+    	logger.debug("display "+list.size());
     	
-    	model.put("empUserAccFormBean", employeeUserAccountService.userAccounts());
+    	model.put("empUserAcc", list);
     	logger.debug("Received request to show employee user accounts page");
     
     	

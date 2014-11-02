@@ -20,7 +20,7 @@
 <p>Only employees have access to this page.</p><br>
 
 <ul class="nav nav-tabs">
-    <li><a href="employee">Notifications</a></li>
+    <li><a href="home">Notifications</a></li>
     <li><a href="employeeuseraccounts">User Accounts</a></li>
     <li class="active"><a href="#">Change Password</a></li>
 </ul>

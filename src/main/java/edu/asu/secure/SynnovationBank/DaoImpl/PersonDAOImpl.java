@@ -20,7 +20,7 @@ import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
 @Repository
 public class PersonDAOImpl implements PersonDAO {
 
-	@Autowired
+	
 	SessionFactory factory = HibernateUtil.buildSessionFactory();
 	
 	@Override

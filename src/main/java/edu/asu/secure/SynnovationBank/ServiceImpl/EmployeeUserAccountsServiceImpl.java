@@ -26,12 +26,12 @@ public class EmployeeUserAccountsServiceImpl implements EmployeeUserAccountServi
      
     
  
-    @Transactional
+    @Override
     public List<EmpUserAccFormBean> userAccounts() {
     	 
     	EmpUserAccFormBean empUserAccFormBean=null;
     	//change account to person and pass argument "c"
-    	List<Person> person=personDAO.fetchUserByRole("C");
+    	List<Person> person=personDAO.fetchUserByRole("ROLE_CUST");
     	List<EmpUserAccFormBean> list=new ArrayList<EmpUserAccFormBean>();
     	
     	for(Person per: person){

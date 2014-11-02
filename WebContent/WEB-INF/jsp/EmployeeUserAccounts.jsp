@@ -16,8 +16,17 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 <h2>Employee Page</h2>
-<form name ="employee_userAccounts" method = "post" commandName="empUserAccFormBean">
+<p align="center">User Accounts Page</p>
+
+<ul class="nav nav-tabs">
+    <li><a href="home">Notifications</a></li>
+    <li class="active"><a href="#">User Accounts</a></li>
+    <li><a href="employeechangepassword">Change Password</a></li>
+     <li><a href="employeeviewtransactions">View Customer Transactions</a></li>
+</ul>
+<form action ="employeeuseraccounts" method = "post" commandName="empUserAccFormBean">
 		<table id = "transaction" width="500" border="0" bordercolor="black" class ="table table-striped">
 		<tr>
 		  <td><b>First Name</b></td>
@@ -27,12 +36,12 @@
           
           <td colspan="2" align="center"><b>Action</b></td>
          </tr>
-      <c:forEach  items="${empUserAccFormBean}">
+      <c:forEach  items="${empUserAcc}" var="empUser">
         <tr> 
-          <td>${empUserAccFormBean.getFirstName}</td>
-          <td>${empUserAccFormBean.getLastName}</td>
-          <td>${empUserAccFormBean.getAccountNumber}</td>
-          <td>${empUserAccFormBean.getBalance}</td>
+          <td>${empUser.firstName}</td>
+          <td>${empUser.lastName}</td>
+          <td>${empUser.getAccountNumber}</td>
+          <td>${empUser.getBalance}</td>
           <!-- <td align="center"><input style="width:75px;" name="request to view transaction" type="submit" value= "View Transaction" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoApproved.html?authUsername=${person.ID}';;return true;"/></td> --> 
           
         </tr>
@@ -41,13 +50,7 @@
       </form>
 
 
-<ul class="nav nav-tabs">
-    <li><a href="employee">Notifications</a></li>
-    <li class="active"><a href="#">User Accounts</a></li>
-    <li><a href="employeechangepassword">Change Password</a></li>
-</ul>
 
-<p align="center">User Accounts Page</p>
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  

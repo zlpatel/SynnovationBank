@@ -17,7 +17,7 @@
 </head>
 <body>
 <h2>Employee Page</h2>
-<p>Only employees have access to this page.</p><br>
+
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#">Notifications</a></li>
@@ -37,14 +37,13 @@
           
           <td colspan="2" align="center"><b>Action</b></td>
          </tr>
-      <c:forEach  items="${empNotifFormBean}">
+      <c:forEach  items="${empNotifFormBean}" var="empNotif">
         <tr> 
-          <td>${empNotifFormBean.getFirstName}</td>
-          <td>${empNotifFormBean.getLastName}</td>
-          <td>${empNotifFormBean.getUserName}</td>
-          <td>${empNotifFormBean.getNotifications}</td>
-          <!-- <td align="center"><input style="width:75px;" name="approve" type="submit" value= "Approve" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = '/notificationAccepted';;return true;"/></td>  
-          <td align="center"><input  style="width:75px;" name="deny" type="submit" value= "Deny" class = "btn btn-primary"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoDenied.html?authUsername=${person.ID}'; ;return true;"/></td>--> 
+          <td>${empNotif.firstName}</td>
+          <td>${empNotif.lastName}</td>
+          <td>${empNotif.userName}</td>
+          <td>${empNotif.notifications}</td>
+          
         </tr>
       </c:forEach>
       </table>
