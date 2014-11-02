@@ -24,6 +24,7 @@ public class Transactions {
 	private long transactionId;
 	private float amount;
 	private Date date;
+	private String completeFlag;
 	
 	private Set<TransactionDetails> transactionDetails;
 
@@ -56,6 +57,15 @@ public class Transactions {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	
+	@Column(name="complete_flag")
+	public String getCompleteFlag() {
+		return completeFlag;
+	}
+
+	public void setCompleteFlag(String completeFlag) {
+		this.completeFlag = completeFlag;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

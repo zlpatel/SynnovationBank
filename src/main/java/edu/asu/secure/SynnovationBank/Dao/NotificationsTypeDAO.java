@@ -5,4 +5,6 @@ import edu.asu.secure.SynnovationBank.DTO.NotificationsType;
 public interface NotificationsTypeDAO {
 
 	public long insertNotificationType(NotificationsType notificationType);
+	
+	public NotificationsType fetchNotificationsType(String notificationType);
 }

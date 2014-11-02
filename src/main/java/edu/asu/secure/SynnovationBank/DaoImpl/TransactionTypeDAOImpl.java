@@ -4,7 +4,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import edu.asu.secure.SynnovationBank.DBUtilities.HibernateUtil;
@@ -18,33 +17,44 @@ public class TransactionTypeDAOImpl implements TransactionTypeDAO {
 
 	@Override
 	public long insertTransactionType(TransactionType transactionType) {
+		Session session = null;
 		long transactionTypeId = -1;
 		try{
-			Session session = factory.getCurrentSession();
+			session = factory.getCurrentSession();
 			session.beginTransaction();
 			transactionTypeId = (Long)session.save(transactionType);
 			session.getTransaction().commit();
 			return transactionTypeId;
 		}
 		catch(Exception e){
+			session.getTransaction().rollback();
 			e.printStackTrace();
 			return transactionTypeId;
+		}
+		finally{
+			//HibernateUtil.shutdown();
 		}
 	}
 
 	@Override
 	public TransactionType fetchTransactionType(String transactionName) {
+		Session session = null;
 		TransactionType transactionType = null;
 		try{
-			Session session = factory.openSession();
+			session = factory.openSession();
 			Criteria criteria = session.createCriteria(TransactionType.class);
 			criteria.add(Restrictions.eq("transactionName", transactionName));
 			transactionType = (TransactionType)criteria.uniqueResult();
+			session.getTransaction().commit();
 			return transactionType;
 		}
 		catch(Exception e){
+			session.getTransaction().rollback();
 			e.printStackTrace();
 			return transactionType;
+		}
+		finally{
+			//HibernateUtil.shutdown();
 		}
 	}	
 	
