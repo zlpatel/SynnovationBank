@@ -250,7 +250,7 @@ public class PersonDAOImpl implements PersonDAO {
 			Iterator itr = rawList.iterator();
 			while(itr.hasNext())
 				listPerson.add((Person)itr.next());
-			session.getTransaction().commit();
+//			session.getTransaction().commit();
 			return listPerson;
 		}
 		catch(Exception e){

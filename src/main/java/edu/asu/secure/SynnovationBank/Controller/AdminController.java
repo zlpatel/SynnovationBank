@@ -265,11 +265,11 @@ public class AdminController {
     @RequestMapping(value = "/adminmodifiedexternaluseraccounts", method = {RequestMethod.POST, RequestMethod.GET})
     public String modifyExternalUserAccounts(@ModelAttribute("modifyexternaluserformbean")
     ExternalUserFormBean modifyexternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
-    	logger.debug("Received request to show ADDED external user page ......");
+    	logger.debug("Received request to show modified external user page ......");
        	
     	System.out.println(modifyexternaluserformbean.getFname());
     	
-    	if(adminUserAccountsService.updateUserDetails(modifyexternaluserformbean))
+    	if(adminUserAccountsService.updateExternalUserDetails(modifyexternaluserformbean))
     	{
     		model.put("message", "User Modified Successfuly");
 			logger.debug("User Modified Successfuly");
@@ -285,5 +285,27 @@ public class AdminController {
     	
 	}
     
+    @RequestMapping(value = "/adminmodifiedinternaluseraccounts", method = {RequestMethod.POST, RequestMethod.GET})
+    public String modifyInternalUserAccounts(@ModelAttribute("modifyinternaluserformbean")
+    InternalUserFormBean modifyinternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
+    	logger.debug("Received request to show modified internal user page ......");
+       	
+    	System.out.println(modifyinternaluserformbean.getFname());
+    	
+    	if(adminUserAccountsService.updateInternalUserDetails(modifyinternaluserformbean))
+    	{
+    		model.put("message", "User Modified Successfuly");
+			logger.debug("User Modified Successfuly");
+	    	return "redirect: admininternaluseraccounts";
+		}
+    	
+    	else
+    	{
+			model.put("error","true");
+			logger.debug("Some error modifying user!");
+			return "AdminInternalUserAccounts";
+		}
+    	
+	}
     
 }
