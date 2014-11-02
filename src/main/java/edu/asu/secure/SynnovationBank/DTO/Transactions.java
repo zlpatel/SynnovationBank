@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
@@ -27,6 +28,7 @@ public class Transactions {
 	private String completeFlag;
 	
 	private Set<TransactionDetails> transactionDetails;
+	private Notifications notifications;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="TRAN_SEQ_GEN")
@@ -76,6 +78,16 @@ public class Transactions {
 
 	public void setTransactionDetails(Set<TransactionDetails> transactionDetails) {
 		this.transactionDetails = transactionDetails;
+	}
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="transaction_id", referencedColumnName="transaction_id")
+	public Notifications getNotifications() {
+		return notifications;
+	}
+
+	public void setNotifications(Notifications notifications) {
+		this.notifications = notifications;
 	}
 	
 	

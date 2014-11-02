@@ -35,6 +35,25 @@ public class TransactionsDAOImpl implements TransactionsDAO {
 	}
 
 	@Override
+	public Transactions fetchTransactionById(Long transactionId) {
+		Session session = null;
+		Transactions transactions = null;
+		try {
+			session = factory.getCurrentSession();
+			session.beginTransaction();
+			transactions = (Transactions)session.get(Transactions.class, transactionId);
+			return transactions;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return transactions;
+		}
+		finally{
+			//HibernateUtil.shutdown();
+		}
+	}
+
+	@Override
 	public boolean deleteTransactionById(Long transactionId) {
 		Session session = null;
 		try {

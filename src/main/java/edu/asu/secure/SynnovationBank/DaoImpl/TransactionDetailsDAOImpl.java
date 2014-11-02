@@ -38,7 +38,6 @@ public class TransactionDetailsDAOImpl implements TransactionDetailsDAO {
 			criteria.createCriteria("transactionType");
 			criteria.setFetchMode("transactionType",FetchMode.JOIN);
 			rawList = criteria.list();
-			session.getTransaction().commit();
 			@SuppressWarnings("rawtypes")
 			Iterator itr = rawList.iterator();
 			while(itr.hasNext())
@@ -46,7 +45,6 @@ public class TransactionDetailsDAOImpl implements TransactionDetailsDAO {
 			return list;
 		}
 		catch(Exception e){
-			session.getTransaction().rollback();
 			e.printStackTrace();
 			return list;
 		}
@@ -74,7 +72,6 @@ public class TransactionDetailsDAOImpl implements TransactionDetailsDAO {
 			criteria.setFetchMode("transactionType",FetchMode.JOIN);
 			criteria.setMaxResults(rowCount);
 			rawList = criteria.list();
-			session.getTransaction().commit();
 			@SuppressWarnings("rawtypes")
 			Iterator itr = rawList.iterator();
 			while(itr.hasNext())
@@ -82,7 +79,6 @@ public class TransactionDetailsDAOImpl implements TransactionDetailsDAO {
 			return list;
 		}
 		catch(Exception e){
-			session.getTransaction().rollback();
 			e.printStackTrace();
 			return list;
 		}
