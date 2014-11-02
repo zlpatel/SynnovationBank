@@ -173,7 +173,6 @@ public class PersonDAOImpl implements PersonDAO {
 			session = factory.getCurrentSession();
 			session.beginTransaction();
 			Person person = (Person)session.get(Person.class, userId);
-			session.getTransaction().commit();
 			if(person == null)
 				return false;
 			else if(person.getEmail().equals(email) && person.getOneTimePassword().equals(otp) && (person.getOtpExpiry().compareTo(cal.getTime())>=0) )
@@ -182,7 +181,6 @@ public class PersonDAOImpl implements PersonDAO {
 			return false;
 		}
 		catch(Exception e){
-			session.getTransaction().rollback();
 			e.printStackTrace();
 			return false;
 		}
@@ -199,14 +197,12 @@ public class PersonDAOImpl implements PersonDAO {
 			session = factory.getCurrentSession();
 			session.beginTransaction();
 			Person person = (Person)session.get(Person.class, userId);
-			session.getTransaction().commit();
 			if(person != null && person.getPassword().equals(password))
 				return false;
 			else
 				return false;
 		}
 		catch(Exception e){
-			session.getTransaction().rollback();
 			e.printStackTrace();
 			return false;
 		}
@@ -223,11 +219,9 @@ public class PersonDAOImpl implements PersonDAO {
 			session = factory.getCurrentSession();
 			session.beginTransaction();
 			person = (Person)session.get(Person.class, userId);
-			session.getTransaction().commit();
 			return person;
 		}
 		catch(Exception e){
-			session.getTransaction().rollback();
 			e.printStackTrace();
 			return person;
 		}
@@ -250,11 +244,9 @@ public class PersonDAOImpl implements PersonDAO {
 			Iterator itr = rawList.iterator();
 			while(itr.hasNext())
 				listPerson.add((Person)itr.next());
-			session.getTransaction().commit();
 			return listPerson;
 		}
 		catch(Exception e){
-			session.getTransaction().rollback();
 			e.printStackTrace();
 			return listPerson;
 		}
