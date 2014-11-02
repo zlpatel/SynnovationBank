@@ -37,13 +37,14 @@
 <li><a href="techAccountAccess">Technical Account Access</a></li>
 </ul>
 
+<h4>Available balance in account is: ${balance}</h4>
 
 <div id="disptran"><font color="red">${error}</font></div>
 <form name ="cust_transactions" method = "post">
 		<table id = "transaction" width="500" border="0" bordercolor="black" class ="table table-striped">
 		<tr>
 		  <td><b>Transaction Id</b></td>
-		  <td><b>Balance</b></td>
+		  <td><b>Transaction Amount</b></td>
           <td><b> Transaction Date</b></td>
           <td><b> Transaction Name</b></td>
           

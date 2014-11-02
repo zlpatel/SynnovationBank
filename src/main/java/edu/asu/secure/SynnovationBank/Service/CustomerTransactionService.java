@@ -7,5 +7,6 @@ import edu.asu.secure.SynnovationBank.FormBean.CustomertransactionFormBean;
 public interface CustomerTransactionService {
 
 	public List<CustomertransactionFormBean> getTransactions(String userName);
+	public String availableBalance(String userName);
 
 }

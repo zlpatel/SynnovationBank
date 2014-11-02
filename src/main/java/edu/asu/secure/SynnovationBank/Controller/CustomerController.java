@@ -157,7 +157,7 @@ public class CustomerController {
 	// controller for crediting
 	
 	@RequestMapping(value = "/creditrequest", method = RequestMethod.GET)
-    public String getCreditRqstPage(@ModelAttribute("creditFormBean") CreditFormBean creditFormBean, HttpServletRequest request, HttpSession session) {
+    public String getCreditRqstPage(@RequestParam(value="error", required=false) boolean error,ModelMap model, @ModelAttribute("creditFormBean") CreditFormBean creditFormBean, HttpServletRequest request, HttpSession session) {
 
 		String userName="";
 		session = request.getSession(false);
@@ -170,7 +170,11 @@ public class CustomerController {
 				return "welcomeUser";
 			
 			else
+			{
+				model.put("error","CREDIT UNSUCCESSFULL");
 				return "credit_debit";
+				
+			}
     	
 	}
 	
@@ -180,7 +184,7 @@ public class CustomerController {
 	// controller for debiting
 	
 		@RequestMapping(value = "/debitrequest", method = RequestMethod.GET)
-	    public String getDebitRqstPage(@ModelAttribute("debitFormBean") DebitFormBean debitFormBean, HttpServletRequest request, HttpSession session) {
+	    public String getDebitRqstPage(@RequestParam(value="error", required=false) boolean error,ModelMap model,@ModelAttribute("debitFormBean") DebitFormBean debitFormBean, HttpServletRequest request, HttpSession session) {
 
 			String userName="";
 			session = request.getSession(false);
@@ -194,7 +198,11 @@ public class CustomerController {
 					return "welcomeUser";
 				
 				else
+				{
+					model.put("error","DEBIT UNSUCCESSFULL");
 					return "debit";
+					
+				}
 	    	
 		}
 
@@ -230,8 +238,15 @@ public class CustomerController {
 	
 	
 	 @RequestMapping(value = "/debit", method = RequestMethod.GET)
-	    public String getDebit() {
-	    	logger.debug("Received request to show credit/debit page");
+	    public String getDebit(@RequestParam(value="error", required=false) boolean error,ModelMap model) {
+		 if(error==true){
+				model.put("error", "DEBIT NOT SUCCESSFULL !!");	
+			}else{
+				model.put("error","");
+			}
+	    
+		 
+		 logger.debug("Received request to show credit/debit page");
 	    
 	    	// Do your work here. Whatever you like
 	    	// i.e call a custom service to do your business
@@ -250,7 +265,12 @@ public class CustomerController {
     
     
     @RequestMapping(value = "/credit_debit", method = RequestMethod.GET)
-    public String getCreditDebit() {
+    public String getCreditDebit(@RequestParam(value="error", required=false) boolean error, ModelMap model) {
+    	if(error==true){
+			model.put("error", "CREDIT NOT SUCCESSFULL !!");	
+		}else{
+			model.put("error","");
+		}
     	logger.debug("Received request to show credit/debit page");
     
     	// Do your work here. Whatever you like
@@ -333,6 +353,7 @@ public class CustomerController {
     	logger.debug("display "+list.size());
     	*/
     	model.put("custAcc", customerTransactionService.getTransactions(userName));
+    	model.put("balance", customerTransactionService.availableBalance(userName));
     	logger.debug("Received request to show employee user accounts page");
     
     	

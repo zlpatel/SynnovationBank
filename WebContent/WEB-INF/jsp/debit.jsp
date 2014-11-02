@@ -18,7 +18,11 @@
 <body>
 <center><h1> SYNNOVATION </h1> </center>
 
-<h2> DEBIT PAGE !!</h2>
+<h2> DEBIT PAGE</h2>
+
+<div id="otp-error"><font color="red">${error}</font></div>
+
+
 <ul class="nav nav-tabs">
 <li><a href="credit_debit">Credit Amount</a> </li>
 <li><a href="debit">Debit Amount</a> </li>
@@ -31,7 +35,7 @@
 
 <br><br>
 <form action="debitrequest" commandName="debitFormBean" method="get">
-<input id="debitAmount" type="text" name="debitAmount" placeholder="Enter the amount to be debitted(in USD)" style="width:500px;" value="${debitFormBean.debitAmount}"/><br>j
+<input id="debitAmount" type="text" name="debitAmount" placeholder="Enter the amount to be debitted(in USD)" style="width:500px;" value="${debitFormBean.debitAmount}"/><br>
 <input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
 
 </form>

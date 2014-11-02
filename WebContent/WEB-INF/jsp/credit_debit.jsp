@@ -18,7 +18,12 @@
 <body>
 <center><h1> SYNNOVATION </h1> </center>
 
-<h2> Credit Page !!</h2>
+<h2> CREDIT PAGE</h2>
+
+
+<div id="otp-error"><font color="red">${error}</font></div>
+
+
 <ul class="nav nav-tabs">
 <li><a href="credit_debit">Credit Amount</a> </li>
 <li><a href="debit">Debit Amount</a> </li>

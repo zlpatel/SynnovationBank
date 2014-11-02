@@ -47,6 +47,16 @@ public class CustomerTransactionServiceImpl implements CustomerTransactionServic
     	}
     	return list;
 	}
+
+	@Override
+	public String availableBalance(String userName) {
+		// TODO Auto-generated method stub
+		Person sender = personDAO.fetchUserById(userName);
+		System.out.println("FETCHED USER "+sender.getFirstName()+" "+sender.getLastName());
+		float balance=sender.getAccount().getBalance();
+		String bal=String.valueOf(balance);
+		return bal;
+	}
 	}
 
 
