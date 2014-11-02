@@ -108,4 +108,10 @@ public class AdminUserAccountsServiceImpl implements AdminUserAccountsService {
 		return personDAO.updateUserDetails(userId, fname, mname, lname, email, address);
 	}
 
+	@Override
+	public boolean deleteUserDetails(String userId) 
+	{
+		return personDAO.deleteUser(userId);
+	}
+
 }
