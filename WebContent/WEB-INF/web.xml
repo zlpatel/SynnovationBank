@@ -62,7 +62,7 @@
  		</cookie-config>
     </session-config>
     
-    <!-- <error-page>
+    <error-page>
     	<error-code>503</error-code>
         <location>/WEB-INF/jsp/error.jsp</location>
   </error-page>
@@ -89,7 +89,7 @@
 <error-page>  
    		<exception-type>java.lang.Throwable</exception-type>  
    		<location>/WEB-INF/jsp/error.jsp</location>  
-</error-page>  -->
+</error-page> 
     
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
