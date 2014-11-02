@@ -28,40 +28,33 @@ public class AddExternalUserServiceImpl implements AddExternalUserService{
 	private AccountDAO accountDao;
 	
 	@Override
+
 	public boolean addExternalUser(ExternalUserFormBean addexternaluserformbean) 
+
 	{
-		Person person = new Person();
 
-		person.setFirstName(addexternaluserformbean.getFname());
-		person.setLastName(addexternaluserformbean.getLname());
-		person.setAddress(addexternaluserformbean.getAddress());
-		person.setEmail(addexternaluserformbean.getEmail());
-		person.setUserId(addexternaluserformbean.getUsername());
-		person.setPassword(HashCode.getHashPassword(addexternaluserformbean.getPassword()));
-		
-		person.setDateOfBirth(new Date(1220227200));
+	Person person = new Person();
 
-		//Need to set role once Jeffrey updates
-		//		person.setRole("Customer");
-		
-		Account account = new Account();
-		
-		account.setPerson(person);
-		account.setBalance(0.0f);
-		account.setRoutingNumber(12345);
-		account.setAccountType("Checking");
-		
-		long accountNumber = accountDao.insertAccount(account);
-		account.setAccountNumber(accountNumber);
-		
-		//add this account to person after jeffrey makes the change at his end.
-		
-		if(accountNumber > 0)
-		{
-			return true;
-		}
-		
-		return false;
+	person.setFirstName(addexternaluserformbean.getFname());
+	person.setLastName(addexternaluserformbean.getLname());
+	person.setAddress(addexternaluserformbean.getAddress());
+	person.setEmail(addexternaluserformbean.getEmail());
+	person.setUserId(addexternaluserformbean.getUsername());
+	person.setPassword(HashCode.getHashPassword(addexternaluserformbean.getPassword()));
+	person.setDateOfBirth(new Date(1220227200));
+	person.setRole("ROLE_CUST");
+	person.setAllowAccessFlag("N");
+
+	Account account = new Account();
+	account.setPerson(person);
+	account.setBalance(1000.0f);
+	account.setRoutingNumber(12345);
+	account.setAccountType("Checking");
+
+	person.setAccount(account);
+
+	return personDao.insertUser(person);
+
 	}
 
 }

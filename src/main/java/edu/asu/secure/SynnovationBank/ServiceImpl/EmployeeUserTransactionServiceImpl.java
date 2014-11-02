@@ -40,18 +40,18 @@ public class EmployeeUserTransactionServiceImpl implements EmployeeUserTransacti
 			
 				UserTransactionFormBean userTransactionFormBean=null;
 		    	//System.out.println("Hi it is here!");
-		    	List<Transactions> transactions=transactionsDao.fetchTransactions(accountNumber);
+//		    	List<Transactions> transactions=transactionsDao.fetchTransactions(accountNumber);
 		    	//System.out.println("Hi it is here 2!");
 		    	List<UserTransactionFormBean> list=new ArrayList<UserTransactionFormBean>();
 		    	
-		    	for(Transactions trans: transactions){
-		    		userTransactionFormBean = new UserTransactionFormBean();
-		    		//Need to ask rohit
-		    		userTransactionFormBean.setAmount(trans.getAmount());
-		    		userTransactionFormBean.setTransactionId(trans.getTransactionId());
-		    		userTransactionFormBean.setTransactionName(trans.getTransactionDetails();
-		    		list.add(empNotifFormBean);
-		    	}
+//		    	for(Transactions trans: transactions){
+//		    		userTransactionFormBean = new UserTransactionFormBean();
+//		    		//Need to ask rohit
+//		    		userTransactionFormBean.setAmount(trans.getAmount());
+//		    		userTransactionFormBean.setTransactionId(trans.getTransactionId());
+//		    		userTransactionFormBean.setTransactionName(trans.getTransactionDetails();
+//		    		list.add(empNotifFormBean);
+//		    	}
 		    	return list;
 			}
 			
@@ -62,7 +62,7 @@ public class EmployeeUserTransactionServiceImpl implements EmployeeUserTransacti
 			
 			//
 			
-		}
+//}
 
 
 
@@ -70,7 +70,8 @@ public class EmployeeUserTransactionServiceImpl implements EmployeeUserTransacti
 
 		@Override
 		public boolean checkFlag(long accountNumber) {
-			return accountDao.checkFlag(accountNumber);
+//			return accountDao.checkFlag(accountNumber);
+			return true;
 		}
 
 }
