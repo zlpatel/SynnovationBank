@@ -50,6 +50,8 @@
 
 <a href="../otp/forgotpassword">ForgetPassword</a>
 
+<a href="../pki/fileUploader">pki</a>
+
 <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	
 </form>
