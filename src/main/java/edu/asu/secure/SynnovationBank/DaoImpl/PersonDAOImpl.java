@@ -60,14 +60,14 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 
 	@Override
-	public boolean updateOTP(String userId, String otp) {
+	public boolean updateOTP(String userId, String email, String otp) {
 		Session session = null;
 		try {
 			Calendar cal = Calendar.getInstance();
 			cal.add(Calendar.MINUTE, 10);
 			session = factory.getCurrentSession();
 			Person person = (Person)session.get(Person.class, userId);
-			if(person != null){
+			if(person != null && person.getEmail().equals(email)){
 				person.setOneTimePassword(otp);
 				person.setOtpExpiry(cal.getTime());
 			}
@@ -149,16 +149,13 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 
 	@Override
-	public boolean authenticateOTP(String userId, String email, String otp) {
+	public boolean authenticateOTP(String userId, String otp) {
 		Session session = null;
 		try{
 			Calendar cal = Calendar.getInstance();
 			session = factory.getCurrentSession();
-			session.beginTransaction();
 			Person person = (Person)session.get(Person.class, userId);
-			if(person == null)
-				return false;
-			else if(person.getEmail().equals(email) && person.getOneTimePassword().equals(otp) && (person.getOtpExpiry().compareTo(cal.getTime())>=0) )
+			if(person != null && person.getOneTimePassword().equals(otp) && (person.getOtpExpiry().compareTo(cal.getTime())>=0) )
 				return true;
 			
 			return false;
