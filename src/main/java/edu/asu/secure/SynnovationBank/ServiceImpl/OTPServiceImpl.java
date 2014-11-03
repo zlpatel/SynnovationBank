@@ -41,9 +41,9 @@ protected static Logger logger = Logger.getLogger("service");
 	@Override
 	public boolean updatePassword(String newpassword, String username) {
 		String encodedPass=HashCode.getHashPassword(newpassword);
-//		if(personDao.updatePassword(encodedPass, username)){
-//			return true;
-//		}
+		if(personDao.updatePassword(username,encodedPass)){
+			return true;
+		}
 		return false;
 	}
 	

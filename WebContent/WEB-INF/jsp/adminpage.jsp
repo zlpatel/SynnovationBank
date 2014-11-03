@@ -29,6 +29,7 @@
     <li><a href="admincriticaltransactions">Critical Transactions</a></li>
     <li><a href="adminsystemlog">System Log</a></li>   
     <li><a href="adminchangepassword">Change Password</a></li>
+    <li><a href="../pki/fileUploader">pki</a></li>
 </ul>
 
 <br><br>

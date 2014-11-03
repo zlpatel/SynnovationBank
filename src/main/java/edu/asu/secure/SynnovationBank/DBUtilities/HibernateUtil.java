@@ -21,7 +21,7 @@ public class HibernateUtil {
     
     private static Configuration configuration = null;
     
-    static{
+    public static void setConfiguration() {
     	configuration = new Configuration();
 		configuration.addAnnotatedClass(TransactionType.class);
     	configuration.addAnnotatedClass(Person.class);
