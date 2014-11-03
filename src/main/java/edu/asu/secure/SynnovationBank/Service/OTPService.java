@@ -6,6 +6,6 @@ public interface OTPService {
 
 	public boolean compareOTP(String otp);
 
-	boolean updatePassword(String newpassword, String username); 
+	public boolean updatePassword(String newpassword, String username); 
 
 }
