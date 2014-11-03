@@ -13,5 +13,6 @@ public interface AdminUserAccountsService {
 	ExternalUserFormBean fetchPersonById(String userId);
 	boolean updateExternalUserDetails(ExternalUserFormBean externalUserFormBean);
 	boolean updateInternalUserDetails(InternalUserFormBean internalUserFormBean);	
+	boolean deleteUserDetails(String userId);
 
 }

@@ -308,5 +308,39 @@ public class AdminController {
     	
 	}
     
-    
+    @RequestMapping(value = "/admindeleteinternaluser", method = RequestMethod.POST)
+    public String adminDeleteInternalUser(@RequestParam(value="userId", required=true) String userId, HttpServletRequest request,  
+            HttpServletResponse response, ModelMap model) {
+    	logger.debug("Received request to delete user with Id: " + userId);
+    	
+    	if(adminUserAccountsService.deleteUserDetails(userId))
+    	{
+        	return "redirect:admininternaluseraccounts";
+    	}
+    	
+    	else
+    	{
+			model.put("error","true");
+			logger.debug("Some error deleting user!");
+			return "AdminInternalUserAccounts";
+    	}   	
+	}    
+        
+    @RequestMapping(value = "/admindeleteexternaluser", method = RequestMethod.POST)
+    public String adminDeleteExternalUser(@RequestParam(value="userId", required=true) String userId, HttpServletRequest request,  
+            HttpServletResponse response, ModelMap model) {
+    	logger.debug("Received request to delete user with Id: " + userId);
+    	
+    	if(adminUserAccountsService.deleteUserDetails(userId))
+    	{
+        	return "redirect:adminexternaluseraccounts";
+    	}
+    	
+    	else
+    	{
+			model.put("error","true");
+			logger.debug("Some error deleting user!");
+			return "AdminExternalUserAccounts";
+    	}   	
+	}   
 }
