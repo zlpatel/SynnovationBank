@@ -2,59 +2,67 @@ package edu.asu.secure.SynnovationBank.DBUtilities;
 
 import java.util.Calendar;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import edu.asu.secure.SynnovationBank.DTO.Account;
 import edu.asu.secure.SynnovationBank.DTO.NotificationsType;
 import edu.asu.secure.SynnovationBank.DTO.Person;
 import edu.asu.secure.SynnovationBank.DTO.TransactionType;
-import edu.asu.secure.SynnovationBank.DaoImpl.NotificationsTypeDAOImpl;
-import edu.asu.secure.SynnovationBank.DaoImpl.PersonDAOImpl;
-import edu.asu.secure.SynnovationBank.DaoImpl.TransactionTypeDAOImpl;
+import edu.asu.secure.SynnovationBank.Dao.NotificationsTypeDAO;
+import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
+import edu.asu.secure.SynnovationBank.Dao.TransactionTypeDAO;
 import edu.asu.secure.SynnovationBank.hash.HashCode;
 
 public class SeedData {
 	
+	@Autowired
+	private static TransactionTypeDAO transactionTypedao;
+	
+	@Autowired
+	private static PersonDAO personDAO;
+	
+	@Autowired
+	private static NotificationsTypeDAO notifDAO;
+	
 	public static void insertTransactionTypes(){
-		TransactionTypeDAOImpl trantypeDAOImpl = new TransactionTypeDAOImpl();
 		
 		TransactionType typeCredit = new TransactionType();
 		typeCredit.setTransactionName("CREDIT");
 		typeCredit.setDescription("Credited the account");
-		trantypeDAOImpl.insertTransactionType(typeCredit);
+		transactionTypedao.insertTransactionType(typeCredit);
 		
 		TransactionType typeDebit = new TransactionType();
 		typeDebit.setTransactionName("DEBIT");
 		typeDebit.setDescription("Debited the account");
-		trantypeDAOImpl.insertTransactionType(typeDebit);
+		transactionTypedao.insertTransactionType(typeDebit);
 		
 		TransactionType typeATM = new TransactionType();
 		typeATM.setTransactionName("ATM");
 		typeATM.setDescription("ATM Withdrawl");
-		trantypeDAOImpl.insertTransactionType(typeATM);
+		transactionTypedao.insertTransactionType(typeATM);
 		
 		TransactionType typeDeposit = new TransactionType();
 		typeDeposit.setTransactionName("DEPOSIT");
 		typeDeposit.setDescription("Deposited by self");
-		trantypeDAOImpl.insertTransactionType(typeDeposit);
+		transactionTypedao.insertTransactionType(typeDeposit);
 		
 	}
 	
 	public static void insertNotificationTypes(){
-		NotificationsTypeDAOImpl impl = new NotificationsTypeDAOImpl();
 		
 		NotificationsType criticalTran = new NotificationsType();
 		criticalTran.setNotificationType("CT");
 		criticalTran.setDescription("Critical Transaction");
-		impl.insertNotificationType(criticalTran);
+		notifDAO.insertNotificationType(criticalTran);
 		
 		NotificationsType techAccess = new NotificationsType();
 		techAccess.setNotificationType("TAA");
 		techAccess.setDescription("Technical Account Access");
-		impl.insertNotificationType(techAccess);
+		notifDAO.insertNotificationType(techAccess);
 		
 	}
 	
 	public static void insertUser(){
-		PersonDAOImpl impl = new PersonDAOImpl();
 		
 		Person customer1 = new Person();
 		customer1.setUserId("cust1");
@@ -74,7 +82,7 @@ public class SeedData {
 		cust1account.setRoutingNumber(123);
 		cust1account.setPerson(customer1);
 		customer1.setAccount(cust1account);		
-		impl.insertUser(customer1);
+		personDAO.insertUser(customer1);
 		
 		Person customer2 = new Person();
 		customer2.setUserId("cust2");
@@ -93,7 +101,7 @@ public class SeedData {
 		cust2account.setRoutingNumber(123);
 		cust2account.setPerson(customer2);
 		customer2.setAccount(cust2account);		
-		impl.insertUser(customer2);
+		personDAO.insertUser(customer2);
 		
 		Person merchant1 = new Person();
 		merchant1.setUserId("merc1");
@@ -112,7 +120,7 @@ public class SeedData {
 		merc1account.setRoutingNumber(123);
 		merc1account.setPerson(merchant1);
 		merchant1.setAccount(merc1account);		
-		impl.insertUser(merchant1);
+		personDAO.insertUser(merchant1);
 		
 		Person merchant2 = new Person();
 		merchant2.setUserId("merc2");
@@ -131,7 +139,7 @@ public class SeedData {
 		merc2account.setRoutingNumber(123);
 		merc2account.setPerson(merchant2);
 		merchant2.setAccount(merc2account);		
-		impl.insertUser(merchant2);
+		personDAO.insertUser(merchant2);
 		
 		Person employee = new Person();
 		employee.setUserId("emp");
@@ -143,7 +151,7 @@ public class SeedData {
 		employee.setAddress("1265 E University");
 		employee.setAllowAccessFlag("Y");
 		employee.setRole("ROLE_BNK_EMPL");		
-		impl.insertUser(employee);
+		personDAO.insertUser(employee);
 		
 		Person admin = new Person();
 		admin.setUserId("admin");
@@ -155,7 +163,7 @@ public class SeedData {
 		admin.setAddress("1265 E University");
 		admin.setAllowAccessFlag("Y");
 		admin.setRole("ROLE_ADMIN");	
-		impl.insertUser(admin);
+		personDAO.insertUser(admin);
 	}
 	
 }

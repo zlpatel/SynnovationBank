@@ -9,9 +9,9 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import edu.asu.secure.SynnovationBank.DBUtilities.HibernateUtil;
 import edu.asu.secure.SynnovationBank.DTO.Account;
 import edu.asu.secure.SynnovationBank.DTO.Person;
 import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
@@ -19,20 +19,18 @@ import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
 @Repository
 public class PersonDAOImpl implements PersonDAO {
 
-	SessionFactory factory = HibernateUtil.buildSessionFactory();
+	@Autowired
+	private SessionFactory factory;
 	
 	@Override
 	public boolean insertUser(Person person) {
 		Session session = null;
 		try{
 			session = factory.getCurrentSession();
-			session.beginTransaction();
 			session.save(person);
-			session.getTransaction().commit();
 			return true;
 		}
 		catch(Exception e){
-			session.getTransaction().rollback();
 			e.printStackTrace();
 			return false;
 		}
@@ -46,16 +44,13 @@ public class PersonDAOImpl implements PersonDAO {
 		Session session = null;
 		try{
 			session = factory.getCurrentSession();
-			session.beginTransaction();
 			Person person = (Person)session.get(Person.class, userId);
 			if(person != null)
 				person.setAccount(account);
 			session.update(person);
-			session.getTransaction().commit();
 			return true;
 		}
 		catch(Exception e){
-			session.getTransaction().rollback();
 			e.printStackTrace();
 			return false;
 		}
@@ -71,18 +66,15 @@ public class PersonDAOImpl implements PersonDAO {
 			Calendar cal = Calendar.getInstance();
 			cal.add(Calendar.MINUTE, 10);
 			session = factory.getCurrentSession();
-			session.beginTransaction();
 			Person person = (Person)session.get(Person.class, userId);
 			if(person != null){
 				person.setOneTimePassword(otp);
 				person.setOtpExpiry(cal.getTime());
 			}
 			session.update(person);
-			session.getTransaction().commit();
 			return true;
 		}
 		catch(Exception e){
-			session.getTransaction().rollback();
 			e.printStackTrace();
 			return false;
 		}
@@ -96,7 +88,6 @@ public class PersonDAOImpl implements PersonDAO {
 		Session session = null;
 		try{
 			session = factory.getCurrentSession();
-			session.beginTransaction();
 			Person person = (Person)session.get(Person.class, userId);
 			if(person != null){
 				if(fname!=null) person.setFirstName(fname);
@@ -106,11 +97,9 @@ public class PersonDAOImpl implements PersonDAO {
 				if(address!=null) person.setAddress(address);
 			}
 			session.update(person);
-			session.getTransaction().commit();
 			return true;
 		}
 		catch(Exception e){
-			session.getTransaction().rollback();
 			e.printStackTrace();
 			return false;
 		}
@@ -124,16 +113,13 @@ public class PersonDAOImpl implements PersonDAO {
 		Session session = null;
 		try{
 			session = factory.getCurrentSession();
-			session.beginTransaction();
 			Person person = (Person)session.get(Person.class, userId);
 			if(person != null)
 				person.setPassword(password);
 			session.update(person);
-			session.getTransaction().commit();
 			return true;
 		}
 		catch(Exception e){
-			session.getTransaction().rollback();
 			e.printStackTrace();
 			return false;
 		}
@@ -147,16 +133,13 @@ public class PersonDAOImpl implements PersonDAO {
 		Session session = null;
 		try{
 			session = factory.getCurrentSession();
-			session.beginTransaction();
 			Person person = (Person)session.get(Person.class, userId);
 			if(person != null)
 				person.setAllowAccessFlag(accessFlag);
 			session.update(person);
-			session.getTransaction().commit();
 			return true;
 		}
 		catch(Exception e){
-			session.getTransaction().rollback();
 			e.printStackTrace();
 			return false;
 		}
@@ -195,7 +178,6 @@ public class PersonDAOImpl implements PersonDAO {
 		Session session = null;
 		try{
 			session = factory.getCurrentSession();
-			session.beginTransaction();
 			Person person = (Person)session.get(Person.class, userId);
 			if(person != null && person.getPassword().equals(password))
 				return false;
@@ -217,7 +199,6 @@ public class PersonDAOImpl implements PersonDAO {
 		Person person = null;
 		try {
 			session = factory.getCurrentSession();
-			session.beginTransaction();
 			person = (Person)session.get(Person.class, userId);
 			return person;
 		}
@@ -235,7 +216,7 @@ public class PersonDAOImpl implements PersonDAO {
 		Session session = null;
 		List<Person> listPerson = new ArrayList<Person>();
 		try{
-			session = factory.openSession();
+			session = factory.getCurrentSession();
 			Criteria criteria = session.createCriteria(Person.class);
 			criteria.add(Restrictions.eq("role",rolename));
 			@SuppressWarnings("rawtypes")
@@ -260,10 +241,8 @@ public class PersonDAOImpl implements PersonDAO {
 		Session session = null;
 		try {
 			session = factory.getCurrentSession();
-			session.beginTransaction();
 			Person person = (Person)session.get(Person.class, userId);
 			session.delete(person);
-			session.getTransaction().commit();
 			return true;
 		}
 		catch(Exception e){
