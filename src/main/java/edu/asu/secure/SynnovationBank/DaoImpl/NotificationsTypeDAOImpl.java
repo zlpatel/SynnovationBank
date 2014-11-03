@@ -4,16 +4,17 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import edu.asu.secure.SynnovationBank.DBUtilities.HibernateUtil;
 import edu.asu.secure.SynnovationBank.DTO.NotificationsType;
 import edu.asu.secure.SynnovationBank.Dao.NotificationsTypeDAO;
 
 @Repository
 public class NotificationsTypeDAOImpl implements NotificationsTypeDAO {
 
-	SessionFactory factory = HibernateUtil.buildSessionFactory();
+	@Autowired
+	private SessionFactory factory;
 	
 	@Override
 	public long insertNotificationType(NotificationsType notificationType) {
@@ -21,13 +22,10 @@ public class NotificationsTypeDAOImpl implements NotificationsTypeDAO {
 		long notificationTypeId = -1;
 		try{
 			session = factory.getCurrentSession();
-			session.beginTransaction();
 			notificationTypeId = (Long)session.save(notificationType);
-			session.getTransaction().commit();
 			return notificationTypeId;
 		}
 		catch(Exception e){
-			session.getTransaction().rollback();
 			e.printStackTrace();
 			return notificationTypeId;
 		}
@@ -41,7 +39,7 @@ public class NotificationsTypeDAOImpl implements NotificationsTypeDAO {
 		Session session = null;
 		NotificationsType notificationsType = null;
 		try{
-			session = factory.openSession();
+			session = factory.getCurrentSession();
 			Criteria criteria = session.createCriteria(NotificationsType.class);
 			criteria.add(Restrictions.eq("notificationType", notificationType));
 			notificationsType = (NotificationsType)criteria.uniqueResult();
