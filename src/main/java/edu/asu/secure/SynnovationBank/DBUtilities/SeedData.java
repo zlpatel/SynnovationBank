@@ -9,6 +9,7 @@ import edu.asu.secure.SynnovationBank.DTO.TransactionType;
 import edu.asu.secure.SynnovationBank.DaoImpl.NotificationsTypeDAOImpl;
 import edu.asu.secure.SynnovationBank.DaoImpl.PersonDAOImpl;
 import edu.asu.secure.SynnovationBank.DaoImpl.TransactionTypeDAOImpl;
+import edu.asu.secure.SynnovationBank.hash.HashCode;
 
 public class SeedData {
 	
@@ -57,7 +58,7 @@ public class SeedData {
 		
 		Person customer1 = new Person();
 		customer1.setUserId("cust1");
-		customer1.setPassword("cust1");
+		customer1.setPassword(HashCode.getHashPassword("cust1"));
 		customer1.setFirstName("Jeffrey");
 		customer1.setMiddleName("Joseph");
 		customer1.setLastName("Isaac");
@@ -77,7 +78,7 @@ public class SeedData {
 		
 		Person customer2 = new Person();
 		customer2.setUserId("cust2");
-		customer2.setPassword("cust2");
+		customer2.setPassword(HashCode.getHashPassword("cust2"));
 		customer2.setFirstName("Zeel");
 		customer2.setLastName("Patel");
 		customer2.setDateOfBirth(Calendar.getInstance().getTime());
@@ -96,7 +97,7 @@ public class SeedData {
 		
 		Person merchant1 = new Person();
 		merchant1.setUserId("merc1");
-		merchant1.setPassword("merc1");
+		merchant1.setPassword(HashCode.getHashPassword("merc1"));
 		merchant1.setFirstName("Rohit");
 		merchant1.setLastName("Kharat");
 		merchant1.setDateOfBirth(Calendar.getInstance().getTime());
@@ -115,7 +116,7 @@ public class SeedData {
 		
 		Person merchant2 = new Person();
 		merchant2.setUserId("merc2");
-		merchant2.setPassword("merc2");
+		merchant2.setPassword(HashCode.getHashPassword("merc2"));
 		merchant2.setFirstName("Pratik");
 		merchant2.setLastName("Kasat");
 		merchant2.setDateOfBirth(Calendar.getInstance().getTime());
@@ -134,7 +135,7 @@ public class SeedData {
 		
 		Person employee = new Person();
 		employee.setUserId("emp");
-		employee.setPassword("emp");
+		employee.setPassword(HashCode.getHashPassword("emp"));
 		employee.setFirstName("Vignesh");
 		employee.setLastName("Narayanan");
 		employee.setDateOfBirth(Calendar.getInstance().getTime());
@@ -146,7 +147,7 @@ public class SeedData {
 		
 		Person admin = new Person();
 		admin.setUserId("admin");
-		admin.setPassword("admin");
+		admin.setPassword(HashCode.getHashPassword("admin"));
 		admin.setFirstName("Meghna");
 		admin.setLastName("P");
 		admin.setDateOfBirth(Calendar.getInstance().getTime());

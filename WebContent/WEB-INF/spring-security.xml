@@ -10,12 +10,20 @@
 	<!-- This is where we configure Spring-Security  -->
 	<security:http auto-config="true" use-expressions="true" disable-url-rewriting="true" access-denied-page="/secure/auth/denied" >
 	
-		<security:intercept-url pattern="/secure/auth/login" requires-channel="https" access="isAnonymous()"/>
+		<security:intercept-url pattern="/secure/auth/login" requires-channel="https" access="permitAll"/>
 		<security:intercept-url pattern="/j_spring_security_check" requires-channel="https"/>
 		<security:intercept-url pattern="/secure/admin/**" requires-channel="https" access="hasRole('ROLE_ADMIN')"/>
 		<security:intercept-url pattern="/secure/employee/**" requires-channel="https" access="hasRole('ROLE_BNK_EMPL')"/>
 		<security:intercept-url pattern="/secure/customer/**" requires-channel="https" access="hasRole('ROLE_CUST')"/>
 		<security:intercept-url pattern="/secure/merchant/**" requires-channel="https" access="hasRole('ROLE_MERC')"/>
+		
+		
+		<!-- <security:intercept-url pattern="/secure/admin/**" requires-channel="https" access="permitAll"/>
+		<security:intercept-url pattern="/secure/employee/**" requires-channel="https" access="permitAll"/>
+		<security:intercept-url pattern="/secure/customer/**" requires-channel="https" access="permitAll"/>
+		<security:intercept-url pattern="/secure/merchant/**" requires-channel="https" access="permitAll"/>-->
+		
+		
 		
 		<security:form-login
 				login-page="/secure/auth/login"

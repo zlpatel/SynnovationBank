@@ -16,8 +16,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.asu.secure.SynnovationBank.DTO.UserRole;
-import edu.asu.secure.SynnovationBank.Dao.UserDaoTest;
+import edu.asu.secure.SynnovationBank.DTO.Role;
+import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
 import edu.asu.secure.SynnovationBank.Service.MyUserDetailsService;
 
 @Service
@@ -26,7 +26,7 @@ public class MyUserDetailsServiceImpl implements UserDetailsService, MyUserDetai
 	protected static Logger logger = Logger.getLogger("service");
 	
 	@Autowired
-	private UserDaoTest userDao;
+	private PersonDAO personDao;
  
 	/* (non-Javadoc)
 	 * @see edu.asu.secure.SynnovationBank.ServiceImpl.MyUserDetailsService#loadUserByUsername(java.lang.String)
@@ -37,31 +37,29 @@ public class MyUserDetailsServiceImpl implements UserDetailsService, MyUserDetai
                throws UsernameNotFoundException {
  
 		logger.debug("username is :"+username);
-		edu.asu.secure.SynnovationBank.DTO.User user = userDao.findByUserName(username);
-		List<GrantedAuthority> authorities = buildUserAuthority(user.getUserRole());
+		edu.asu.secure.SynnovationBank.DTO.Person person = personDao.fetchUserById(username);
+		List<GrantedAuthority> authorities = buildUserAuthority(person.getRole());
  
-		return buildUserForAuthentication(user, authorities);
+		return buildUserForAuthentication(person, authorities);
  
  
 	}
  
 	// Converts com.mkyong.users.model.User user to
-	// org.springframework.security.core.userdetails.User
-	private User buildUserForAuthentication(edu.asu.secure.SynnovationBank.DTO.User user, 
+	// org.springframework.security.core.userdetails.Person
+	private User buildUserForAuthentication(edu.asu.secure.SynnovationBank.DTO.Person person, 
 		List<GrantedAuthority> authorities) {
-		return new User(user.getUsername(), 
-			user.getPassword(), user.isEnabled(), 
+		return new User(person.getUserId(), 
+			person.getPassword(), true, 
                         true, true, true, authorities);
 	}
  
-	private List<GrantedAuthority> buildUserAuthority(Set<UserRole> userRoles) {
+	private List<GrantedAuthority> buildUserAuthority(String userRole) {
  
 		Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
  
 		// Build user's authorities
-		for (UserRole userRole : userRoles) {
-			setAuths.add(new SimpleGrantedAuthority(userRole.getRole()));
-		}
+			setAuths.add(new SimpleGrantedAuthority(userRole));
  
 		List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
  
@@ -69,19 +67,19 @@ public class MyUserDetailsServiceImpl implements UserDetailsService, MyUserDetai
 	}
  
 	/* (non-Javadoc)
-	 * @see edu.asu.secure.SynnovationBank.ServiceImpl.MyUserDetailsService#getUserDao()
+	 * @see edu.asu.secure.SynnovationBank.ServiceImpl.MyUserDetailsService#getPersonDao()
 	 */
 	@Override
-	public UserDaoTest getUserDao() {
-		return userDao;
+	public PersonDAO getPersonDao() {
+		return personDao;
 	}
  
 	/* (non-Javadoc)
-	 * @see edu.asu.secure.SynnovationBank.ServiceImpl.MyUserDetailsService#setUserDao(edu.asu.secure.SynnovationBank.Dao.UserDaoTest)
+	 * @see edu.asu.secure.SynnovationBank.ServiceImpl.MyUserDetailsService#setPersonDao(edu.asu.secure.SynnovationBank.Dao.PersonDAO)
 	 */
 	@Override
-	public void setUserDao(UserDaoTest userDao) {
-		this.userDao = userDao;
+	public void setPersonDao(PersonDAO personDao) {
+		this.personDao = personDao;
 	}
  
 }

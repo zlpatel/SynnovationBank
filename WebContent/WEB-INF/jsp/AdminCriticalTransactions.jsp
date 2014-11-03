@@ -29,10 +29,11 @@
     <li><a href="adminchangepassword">Change Password</a></li>
 </ul>
 
-<br><br><table class="table">
-        <thead>
+<br><br>
+<form action="admincriticaltransactions" commandName="getadmincriticaltransactions" method="post" >
+<table class="table" class ="table table-striped">
+<thead>
             <tr>
-                <th>Sr. No.</th>            
                 <th>From Account</th>
                 <th>To Account</th>
                 <th>Amount</th>
@@ -41,39 +42,16 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-            	<td>1</td>
-            	<td>928401843</td>
-            	<td>928401843</td>
-                <td>59,000</td>
-                <td>10/24/2014</td>
-                <td>
-                <button type="button" class="btn btn-primary">Accept</button>
-                <button type="button" class="btn btn-danger">Reject</button>
-                </td>
-            </tr>
-            <tr>
-            	<td>2</td>
-            	<td>928401843</td>
-            	<td>928401843</td>
-                <td>59,000</td>
-                <td>10/24/2014</td>
-                <td>
-                <button type="button" class="btn btn-primary">Accept</button>
-                <button type="button" class="btn btn-danger">Reject</button>
-                </td>
-            </tr>
-            <tr>
-            	<td>3</td>
-            	<td>928401843</td>
-            	<td>928401843</td>
-                <td>59,000</td>
-                <td>10/24/2014</td>
-                <td>
-                <button type="button" class="btn btn-primary">Accept</button>
-                <button type="button" class="btn btn-danger">Reject</button>
-                </td>
-            </tr>
+            <c:forEach  items="${adminNotifFormBean}">
+        <tr> 
+          <td>${adminNotifFormBean.getFirstName}</td>
+          <td>${adminNotifFormBean.getLastName}</td>
+          <td>${adminNotifFormBean.getUserName}</td>
+          <td>${adminNotifFormBean.getNotifications}</td>
+          <!-- <td align="center"><input style="width:75px;" name="approve" type="submit" value= "Approve" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = '/notificationAccepted';;return true;"/></td>  
+          <td align="center"><input  style="width:75px;" name="deny" type="submit" value= "Deny" class = "btn btn-primary"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoDenied.html?authUsername=${person.ID}'; ;return true;"/></td>--> 
+        </tr>
+      </c:forEach>
         </tbody>
     </table>
 
