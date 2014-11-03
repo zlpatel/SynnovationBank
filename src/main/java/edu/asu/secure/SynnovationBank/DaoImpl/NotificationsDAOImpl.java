@@ -27,9 +27,14 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 	public boolean insertNotification(String userId, Notifications notifications) {
 		Session session = null;
 		try{
-			session = factory.getCurrentSession();
+			session = factory.openSession();
 			session.beginTransaction();
-			Person person = (Person)session.get(Person.class, userId);
+			Criteria criteria = session.createCriteria(Person.class);
+			criteria.add(Restrictions.eq("userId", userId));
+			criteria.createCriteria("notifications");
+			criteria.setFetchMode("notifications", FetchMode.JOIN);
+			Person person = (Person)criteria.uniqueResult();
+			//Person person = (Person)session.get(Person.class, userId);
 			if(person != null){
 				if(person.getNotifications() != null){
 					Set<Notifications> set = person.getNotifications();
