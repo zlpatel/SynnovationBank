@@ -11,9 +11,9 @@ import org.hibernate.FetchMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import edu.asu.secure.SynnovationBank.DBUtilities.HibernateUtil;
 import edu.asu.secure.SynnovationBank.DTO.Notifications;
 import edu.asu.secure.SynnovationBank.DTO.Person;
 import edu.asu.secure.SynnovationBank.Dao.NotificationsDAO;
@@ -21,7 +21,8 @@ import edu.asu.secure.SynnovationBank.Dao.NotificationsDAO;
 @Repository
 public class NotificationsDAOImpl implements NotificationsDAO {
 
-	SessionFactory factory = HibernateUtil.buildSessionFactory();
+	@Autowired
+	private SessionFactory factory;
 
 	@Override
 	public long insertNotification(String userId, Notifications notifications) {
@@ -29,7 +30,6 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 		long issueId = -1;
 		try{
 			session = factory.getCurrentSession();
-			session.beginTransaction();
 			Person person = (Person)session.get(Person.class, userId);
 			if(person != null){
 				if(person.getNotifications() != null){
@@ -46,11 +46,9 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 				notifications.setPerson(person);
 			}
 			session.update(person);
-			session.getTransaction().commit();
 			return issueId;
 		}
 		catch(Exception e){
-			session.getTransaction().rollback();
 			e.printStackTrace();
 			return issueId;
 		}
@@ -64,18 +62,15 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 		Session session = null;
 		try{
 			session = factory.getCurrentSession();
-			session.beginTransaction();
 			Notifications notifications = (Notifications)session.get(Notifications.class, notificationId);
 			if(notifications != null){
 				notifications.setPerson(person);
 				notifications.setResolvedFlag("Y");
 			}
 			session.update(notifications);
-			session.getTransaction().commit();
 			return true;
 		}
 		catch(Exception e){
-			session.getTransaction().rollback();
 			e.printStackTrace();
 			return false;
 		}
@@ -91,7 +86,7 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 		@SuppressWarnings("rawtypes")
 		List rawList = null;
 		try{
-			session = factory.openSession();
+			session = factory.getCurrentSession();
 			Criteria criteria = session.createCriteria(Notifications.class);
 			criteria.add(Restrictions.eq("empAdminFlag",empOrAdmin));
 			criteria.createCriteria("person");
@@ -118,7 +113,6 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 		Notifications msg = null;
 		try {
 			session = factory.getCurrentSession();
-			session.beginTransaction();
 			msg = (Notifications)session.get(Notifications.class, notificationId);
 			return msg;
 		}
