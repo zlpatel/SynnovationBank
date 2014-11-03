@@ -45,11 +45,11 @@ public class TransactionTypeDAOImpl implements TransactionTypeDAO {
 			Criteria criteria = session.createCriteria(TransactionType.class);
 			criteria.add(Restrictions.eq("transactionName", transactionName));
 			transactionType = (TransactionType)criteria.uniqueResult();
-			//session.getTransaction().commit();
+			session.getTransaction().commit();
 			return transactionType;
 		}
 		catch(Exception e){
-			//session.getTransaction().rollback();
+			session.getTransaction().rollback();
 			e.printStackTrace();
 			return transactionType;
 		}

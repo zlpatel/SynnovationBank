@@ -29,9 +29,37 @@
     <li><a href="admincriticaltransactions">Critical Transactions</a></li>
     <li><a href="adminsystemlog">System Log</a></li>   
     <li><a href="adminchangepassword">Change Password</a></li>
+    <li><a href="../pki/fileUploader">pki</a></li>
 </ul>
 
-<br><br><table class="table">
+<br><br>
+
+<form action="admin" commandName="getadminnotifications" method="post" >
+<table class="table" class ="table table-striped">
+        <thead>
+            <tr>
+                <th>Sr. No.</th>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+         <c:forEach  items="${adminNotifFormBean}">
+        <tr> 
+          <td>${adminNotifFormBean.getFirstName}</td>
+          <td>${adminNotifFormBean.getLastName}</td>
+          <td>${adminNotifFormBean.getUserName}</td>
+          <td>${adminNotifFormBean.getNotifications}</td>
+          <!-- <td align="center"><input style="width:75px;" name="approve" type="submit" value= "Approve" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = '/notificationAccepted';;return true;"/></td>  
+          <td align="center"><input  style="width:75px;" name="deny" type="submit" value= "Deny" class = "btn btn-primary"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoDenied.html?authUsername=${person.ID}'; ;return true;"/></td>--> 
+        </tr>
+      </c:forEach>
+      </tbody>
+      </table>
+      </form>
+
+<!-- <table class="table">
         <thead>
             <tr>
                 <th>Sr. No.</th>
@@ -69,7 +97,7 @@
                 </td>
             </tr>
         </tbody>
-    </table>
+    </table> -->
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  

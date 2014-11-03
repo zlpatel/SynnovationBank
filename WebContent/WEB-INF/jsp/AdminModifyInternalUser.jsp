@@ -77,30 +77,30 @@
     <li><a href="adminchangepassword">Change Password</a></li>
 </ul>
 
-<br><br>
-
-<form action ="adminaddedinternaluseraccounts" commandName="addinternaluserformbean" method="post" >
-
-<input name="fname" id="fname"  class = "form-control" style="width:200px;" placeholder = "First Name" maxlength="15" value="${addinternaluserformbean.fname}"/>
 <br>
-<input name="lname" id="lname"  type="text" class = "form-control" style="width:200px;" placeholder = "Last Name" maxlength="14" value="${addinternaluserformbean.lname}"/>
-<br>
-<input name="address" id="address"  type="text" class = "form-control" style="width:200px;" placeholder = "Address" maxlength="50" value="${addinternaluserformbean.address}"/>
-<br>
-<%-- <input name="city"  type="text" class = "form-control" style="width:200px;" placeholder = "City" maxlength="15" value="${addinternaluserformbean.city}"/>
-<br><input name="state"  type="text" class = "form-control" style="width:200px;" placeholder = "State" maxlength="15" value="${addinternaluserformbean.state}"/>
-<br>
-<input name="zipcode"  type="text" class = "form-control" style="width:200px;" placeholder = "Zip Code" maxlength="5" value="${addinternaluserformbean.zipcode}"/>
-<br>
- <input name="phone"  type="text" class = "form-control" style="width:200px;" placeholder = "Phone" maxlength="10" value="${addinternaluserformbean.phone}"/>
-<br><input name="cell"  type="text" class = "form-control" style="width:200px;" placeholder = "Cell" maxlength="10" value="${addinternaluserformbean.cell}"/>
-<br>
---%><input name="email" id="email"  type="text" class = "form-control" style="width:200px;" placeholder = "Email" maxlength="30" value="${addinternaluserformbean.email}"/>
-<br><input name="username" id="username"  class = "form-control" style="width:200px;" placeholder = "Username" maxlength="15" value="${addinternaluserformbean.username}"/>
-<br><input name="password" id="password" type="password" class="form-control" style="width:200px;" placeholder="Password" value="${addinternaluserformbean.password}"/>
+<h3>Modify User Account Details</h3>
 <br>
 
-<input class="btn btn-lg btn-primary" type="submit" value="Add User" onclick="document.forms[0].action = 'adminaddedinternaluseraccounts' ;return validateForm();"/>
+<form action="adminmodifiedinternaluseraccounts" commandName="modifyinternaluserformbean" method="post" >
+
+<input name="fname" id="fname"  class = "form-control" style="width:200px;" placeholder = "First Name" maxlength="15" value="${modifyinternaluserformbean.fname}"/>
+<br>
+<input name="lname" id="lname"  type="text" class = "form-control" style="width:200px;" placeholder = "Last Name" maxlength="14" value="${modifyinternaluserformbean.lname}"/>
+<br>
+<input name="address" id="address"  type="text" class = "form-control" style="width:200px;" placeholder = "Address" maxlength="50" value="${modifyinternaluserformbean.address}"/>
+<br>
+<%-- <input name="city"  type="text" class = "form-control" style="width:200px;" placeholder = "City" maxlength="15" value="${addexternaluserformbean.city}"/>
+<br><input name="state"  type="text" class = "form-control" style="width:200px;" placeholder = "State" maxlength="15" value="${addexternaluserformbean.state}"/>
+<br>
+<input name="zipcode"  type="text" class = "form-control" style="width:200px;" placeholder = "Zip Code" maxlength="5" value="${addexternaluserformbean.zipcode}"/>
+<br>
+ <input name="phone"  type="text" class = "form-control" style="width:200px;" placeholder = "Phone" maxlength="10" value="${addexternaluserformbean.phone}"/>
+<br><input name="cell"  type="text" class = "form-control" style="width:200px;" placeholder = "Cell" maxlength="10" value="${addexternaluserformbean.cell}"/>
+<br>
+--%><input name="email" id="email"  type="text" class = "form-control" style="width:200px;" placeholder = "Email" maxlength="30" value="${modifyinternaluserformbean.email}"/>
+<br><input name="username" id="username"  class = "form-control" style="width:200px;" placeholder = "Username" maxlength="15" value="${modifyinternaluserformbean.username}" readonly/>
+<br>
+<input class="btn btn-lg btn-primary" type="submit" value="Submit"  onclick="document.forms[0].action = 'adminmodifiedinternaluseraccounts' ;return validateForm();"/>
 <!-- <a class="btn btn-primary" href="adminaddedexternaluseraccounts" type="submit">Save</a> -->
 <a class="btn btn-deafult" href="admininternaluseraccounts">Cancel</a>
 <a class="btn btn-deafult" href="javascript:formSubmit()">Logout</a>
@@ -113,7 +113,7 @@
 <input name="ExtCancel" type="submit" value="Cancel" style="position:absolute;width:200px;left:670px;top:955px;z-index:4;" class = "btn btn-primary" onclick="document.forms[0].action = 'CancelInternal.html';return true;"/> -->
 
 
- <c:url value="/j_spring_security_logout" var="logoutUrl" />
+<c:url value="/j_spring_security_logout" var="logoutUrl" />
  
 	<!-- csrf for log out-->
 	<form action="${logoutUrl}" method="post" id="logoutForm">
@@ -127,6 +127,7 @@
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
+<br>
  
 </body>
 </html>

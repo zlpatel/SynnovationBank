@@ -4,13 +4,15 @@ public class DriverClass {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		HibernateUtil.createTables();
+		/*HibernateUtil.createTables();
 		SeedData.insertTransactionTypes();
 		SeedData.insertNotificationTypes();
-		SeedData.insertUser();
+		SeedData.insertUser();*/
 		//TestMethods.updateOTP();
-		//TestMethods.authenticateOTP();		
-		//TestMethods.updateIssueResolved();
+		//TestMethods.authenticateOTP();	
+		//TestMethods.insertIssue();
+		//TestMethods.insertTransaction();
+		TestMethods.insertNotifications();
 	}
 
 }

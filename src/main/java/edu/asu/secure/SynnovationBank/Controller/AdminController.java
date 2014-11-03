@@ -1,6 +1,9 @@
 package edu.asu.secure.SynnovationBank.Controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -11,11 +14,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.asu.secure.SynnovationBank.FormBean.ExternalUserFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.InternalUserFormBean;
 import edu.asu.secure.SynnovationBank.Service.AddExternalUserService;
 import edu.asu.secure.SynnovationBank.Service.AddInternalUserService;
+import edu.asu.secure.SynnovationBank.Service.AdminUserAccountsService;
 
 /**
  * Handles and retrieves the common or admin page depending on the URI template.
@@ -30,6 +35,9 @@ public class AdminController {
 	private AddExternalUserService addExternalUserService;
 	@Autowired
 	private AddInternalUserService addInternalUserService;
+	@Autowired
+	private AdminUserAccountsService adminUserAccountsService;
+	
 
 	protected static Logger logger = Logger.getLogger("controller");
 	
@@ -48,6 +56,8 @@ public class AdminController {
     	// i.e call a custom service to do your business
     	// Prepare a model to be used by the JSP page
     	
+		 
+		 
     	// This will resolve to /WEB-INF/jsp/adminpage.jsp
     	return "adminpage";
 	}
@@ -61,14 +71,11 @@ public class AdminController {
      * 
      * @return the name of the JSP page
      */
-    @RequestMapping(value = "/admininternaluseraccounts", method = RequestMethod.GET)
-    public String getAdminInternalUserAccountsPage() {
+    @RequestMapping(value = "/admininternaluseraccounts", method = {RequestMethod.GET, RequestMethod.POST})
+    public String getAdminInternalUserAccountsPage(ModelMap model) {
     	logger.debug("Received request to show admin internal user accounts page");
-    
-    	// Do your work here. Whatever you like
-    	// i.e call a custom service to do your business
-    	// Prepare a model to be used by the JSP page
     	
+    	model.put("internaluserslist",adminUserAccountsService.getInternalUserAccounts());
     	// This will resolve to /WEB-INF/jsp/AdminInternalUserAccounts.jsp
     	return "AdminInternalUserAccounts";
 	}
@@ -78,14 +85,12 @@ public class AdminController {
      * 
      * @return the name of the JSP page
      */
-    @RequestMapping(value = "/adminexternaluseraccounts", method = RequestMethod.GET)
-    public String getAdminExternalUserAccountsPage() {
+    @RequestMapping(value = "/adminexternaluseraccounts", method = {RequestMethod.GET, RequestMethod.POST})
+    public String getAdminExternalUserAccountsPage(ModelMap model) {
     	logger.debug("Received request to show admin external user accounts page");
     
-    	// Do your work here. Whatever you like
-    	// i.e call a custom service to do your business
-    	// Prepare a model to be used by the JSP page
-    	
+    	model.put("externaluserslist",adminUserAccountsService.getExternalUserAccounts());
+
     	// This will resolve to /WEB-INF/jsp/AdminExternalUserAccounts.jsp
     	return "AdminExternalUserAccounts";
 	}
@@ -190,7 +195,7 @@ public class AdminController {
 	}
     
 
-    @RequestMapping(value = "/adminaddedexternaluseraccounts")
+    @RequestMapping(value = "/adminaddedexternaluseraccounts", method = {RequestMethod.POST, RequestMethod.GET})
     public String getAdminAddedExternalUserAccounts(@ModelAttribute("addexternaluserformbean")
     ExternalUserFormBean addexternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
     	logger.debug("Received request to show ADDED external user page ......");
@@ -201,7 +206,7 @@ public class AdminController {
     	{
     		model.put("message", "User Added Successfuly");
 			logger.debug("User Added Successfuly");
-	    	return "AdminExternalUserAccounts";
+	    	return "redirect: adminexternaluseraccounts";
 		}
     	
     	else
@@ -213,7 +218,7 @@ public class AdminController {
     	
 	}
     
-    @RequestMapping(value = "/adminaddedinternaluseraccounts")
+    @RequestMapping(value = "/adminaddedinternaluseraccounts", method = {RequestMethod.POST, RequestMethod.GET})
     public String getAdminAddedInternalUserAccounts(@ModelAttribute("addinternaluserformbean")
     InternalUserFormBean addinternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
     	logger.debug("Received request to show ADDED internal user page ......");
@@ -224,7 +229,7 @@ public class AdminController {
     	{
     		model.put("message", "User Added Successfuly");
 			logger.debug("User Added Successfuly");
-	    	return "AdminInternalUserAccounts";
+	    	return "redirect:admininternaluseraccounts";
 		}
     	
     	else
@@ -235,4 +240,107 @@ public class AdminController {
 		}
     	
 	}
+    
+    @RequestMapping(value = "/adminmodifyexternaluser", method = RequestMethod.POST)
+    public String getAdminModifyExternalUser(@RequestParam(value="userId", required=true) String userId, HttpServletRequest request,  
+            HttpServletResponse response, ModelMap model) {
+    	logger.debug("Received request to modify user with Id: " + userId);
+    	
+    	model.put("modifyexternaluserformbean", adminUserAccountsService.fetchPersonById(userId));
+    	return "AdminModifyExternalUser";
+    	
+	}
+    
+    @RequestMapping(value = "/adminmodifyinternaluser", method = RequestMethod.POST)
+    public String getAdminModifyInternalUser(@RequestParam(value="userId", required=true) String userId, HttpServletRequest request,  
+            HttpServletResponse response, ModelMap model) {
+    	logger.debug("Received request to modify user with Id: " + userId);
+    	
+    	model.put("modifyinternaluserformbean", adminUserAccountsService.fetchPersonById(userId));
+    	return "AdminModifyInternalUser";
+    	
+	}
+    
+    
+    @RequestMapping(value = "/adminmodifiedexternaluseraccounts", method = {RequestMethod.POST, RequestMethod.GET})
+    public String modifyExternalUserAccounts(@ModelAttribute("modifyexternaluserformbean")
+    ExternalUserFormBean modifyexternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
+    	logger.debug("Received request to show modified external user page ......");
+       	
+    	System.out.println(modifyexternaluserformbean.getFname());
+    	
+    	if(adminUserAccountsService.updateExternalUserDetails(modifyexternaluserformbean))
+    	{
+    		model.put("message", "User Modified Successfuly");
+			logger.debug("User Modified Successfuly");
+	    	return "redirect: adminexternaluseraccounts";
+		}
+    	
+    	else
+    	{
+			model.put("error","true");
+			logger.debug("Some error modifying user!");
+			return "AdminExternalUserAccounts";
+		}
+    	
+	}
+    
+    @RequestMapping(value = "/adminmodifiedinternaluseraccounts", method = {RequestMethod.POST, RequestMethod.GET})
+    public String modifyInternalUserAccounts(@ModelAttribute("modifyinternaluserformbean")
+    InternalUserFormBean modifyinternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
+    	logger.debug("Received request to show modified internal user page ......");
+       	
+    	System.out.println(modifyinternaluserformbean.getFname());
+    	
+    	if(adminUserAccountsService.updateInternalUserDetails(modifyinternaluserformbean))
+    	{
+    		model.put("message", "User Modified Successfuly");
+			logger.debug("User Modified Successfuly");
+	    	return "redirect: admininternaluseraccounts";
+		}
+    	
+    	else
+    	{
+			model.put("error","true");
+			logger.debug("Some error modifying user!");
+			return "AdminInternalUserAccounts";
+		}
+    	
+	}
+    
+    @RequestMapping(value = "/admindeleteinternaluser", method = RequestMethod.POST)
+    public String adminDeleteInternalUser(@RequestParam(value="userId", required=true) String userId, HttpServletRequest request,  
+            HttpServletResponse response, ModelMap model) {
+    	logger.debug("Received request to delete user with Id: " + userId);
+    	
+    	if(adminUserAccountsService.deleteUserDetails(userId))
+    	{
+        	return "redirect:admininternaluseraccounts";
+    	}
+    	
+    	else
+    	{
+			model.put("error","true");
+			logger.debug("Some error deleting user!");
+			return "AdminInternalUserAccounts";
+    	}   	
+	}    
+        
+    @RequestMapping(value = "/admindeleteexternaluser", method = RequestMethod.POST)
+    public String adminDeleteExternalUser(@RequestParam(value="userId", required=true) String userId, HttpServletRequest request,  
+            HttpServletResponse response, ModelMap model) {
+    	logger.debug("Received request to delete user with Id: " + userId);
+    	
+    	if(adminUserAccountsService.deleteUserDetails(userId))
+    	{
+        	return "redirect:adminexternaluseraccounts";
+    	}
+    	
+    	else
+    	{
+			model.put("error","true");
+			logger.debug("Some error deleting user!");
+			return "AdminExternalUserAccounts";
+    	}   	
+	}   
 }

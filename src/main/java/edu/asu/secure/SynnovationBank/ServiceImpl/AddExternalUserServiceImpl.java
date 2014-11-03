@@ -51,15 +51,15 @@ public class AddExternalUserServiceImpl implements AddExternalUserService{
 		account.setRoutingNumber(12345);
 		account.setAccountType("Checking");
 		
-//		long accountNumber = accountDao.insertAccount(account);
-//		account.setAccountNumber(accountNumber);
-//		
-//		//add this account to person after jeffrey makes the change at his end.
-//		
-//		if(accountNumber > 0)
-//		{
-//			return true;
-//		}
+		long accountNumber = accountDao.insertAccount(account);
+		account.setAccountNumber(accountNumber);
+		
+		//add this account to person after jeffrey makes the change at his end.
+		
+		if(accountNumber > 0)
+		{
+			return true;
+		}
 		
 		return false;
 	}
