@@ -22,34 +22,16 @@
 <body>
 <center><h1> SYNNOVATION </h1> </center>
 
-<h2> TRANSFER AMOUNT PAGE</h2>
-
-<div id="otp-error"><font color="red">${error}</font></div>
-
+<h2> Customer Notifications Page !!</h2>
 <ul class="nav nav-tabs">
-<li><a href="credit_debit">Credit Amount</a> </li>
-<li><a href="debit">Debit Amount</a> </li>
-<li><a href="transfer">Transfers</a></li>
-<li><a href="viewTransactions">View Transactions</a></li>
-<li><a href="customerNotifications">Notifications</a></li>
-<li><a href="changeCustomerInfo">Change information</a></li>
-<li><a href="techAccountAccess">Technical Account Access</a></li>
+<li><a href="MerchantCredit">Credit Amount</a> </li>
+<li><a href="MerchantDebit">Debit Amount</a> </li>
+<li><a href="MerchantTransfer">Transfers</a></li>
+<li><a href="ViewMerchantTransactions">View Transactions</a></li>
+<li><a href="MerchantNotifications">Notifications</a></li>
+<li><a href="ChangeMerchantInfo">Change information</a></li>
+<li><a href="TechMerchantAccountAccess">Technical Account Access</a></li>
 </ul>
-
-
-<br><br>
-
-<br><br>
-
-
-
-<form action="transferrequest" commandName="transferFormBean" method="get">
-<input id="receiverID" type="text" name="receiverID" placeholder="Enter the account number to which you want to tranfer the amount" style="width:800px;" value="${transferFormBean.receiverID}"/><br>
-<input id="transferAmount" type="text" name="transferAmount" placeholder="Enter the amount which you want to tranfer" style="width:800px;" value="${transferFormBean.transferAmount}"/><br>
-
-<input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
-</form>
-
 
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
@@ -70,7 +52,6 @@
 		}
 	</script>
 <br><a href="javascript:formSubmit()"> Logout</a>
-
 
 
 
