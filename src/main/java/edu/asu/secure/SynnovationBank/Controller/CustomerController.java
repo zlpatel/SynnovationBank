@@ -81,7 +81,11 @@ public class CustomerController {
 		String email=customerInfoChangeFormBean.getEmail();
 		
 		if(firstName=="")
+		{
 			firstName=null;
+			System.out.println("hai hai: "+firstName+"\n");
+			
+		}
 		if(middleName=="")
 			middleName=null;
 		if(lastName=="")

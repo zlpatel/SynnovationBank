@@ -49,7 +49,7 @@ public class TechAccountAccessServiceImpl implements TechAccountAccessService {
 			
 			
 			
-			/*
+			
 			//set and push Technical Account Access notification
 			
 			Notifications n=new Notifications();
@@ -59,8 +59,8 @@ public class TechAccountAccessServiceImpl implements TechAccountAccessService {
 			
 			n.setNotificationsType(nt);
 			
-			
-			notificationsDAO.insertNotification(userID,n);*/
+			n.setResolvedFlag("N");
+			notificationsDAO.insertNotification(userID,n);
 			
 			return true;
 		}
