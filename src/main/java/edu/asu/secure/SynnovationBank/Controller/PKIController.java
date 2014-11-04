@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.asu.secure.SynnovationBank.FormBean.FileUploadFormBean;
 import edu.asu.secure.SynnovationBank.Service.PKIService;
@@ -37,7 +38,7 @@ public class PKIController {
 		logger.debug("Received request to show fileUpload page");
     	return "fileUpload";
 	}
-	@RequestMapping(value = "/uploadfile")
+	@RequestMapping(value = "/uploadfile", method=RequestMethod.POST)
 	public String uploadFileHandler(@ModelAttribute("fileuploadformbean") FileUploadFormBean fileUploadFormBean,HttpSession session,BindingResult result,ModelMap model) {
 
 		

@@ -47,6 +47,9 @@
 		<security:csrf/>
 	</security:http>
 	
+	<bean id="authenticationTrustResolver"
+        class="org.springframework.security.authentication.AuthenticationTrustResolverImpl" />
+	
 	<!-- The custom authentication success handler to redirect user's to user specific page instead of common page-->
 	<bean id="myAuthenticationSuccessHandler"
         	class="edu.asu.secure.SynnovationBank.Handler.UrlAuthenticationSuccessHandler" />
