@@ -41,7 +41,7 @@ public class AdminNotificationsServiceImpl implements AdminNotificationsService 
 	    
 	 
 	    @Override
-	    public List<AdminCriticalTransactionsFormBean> notifications() {
+	    public List<AdminCriticalTransactionsFormBean> getCriticalTransactionNotifications() {
 	    	 
 	    	AdminCriticalTransactionsFormBean adminNotifFormBean=null;
 	    	//System.out.println("Hi it is here!");
