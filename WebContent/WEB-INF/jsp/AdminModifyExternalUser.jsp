@@ -25,9 +25,8 @@
 	 var address = document.getElementById("address").value;
 	 var email = document.getElementById("email").value;
 	 var username = document.getElementById("username").value;
-	 var password = document.getElementById("password").value;
-
-	  if (fname === "" || lname === "" || address === "" || email === "" || username === "" || password === "") 
+	 
+	  if (fname === "" || lname === "" || address === "" || email === "" || username === "") 
 	  {
 	  	alert("Please fill all fields.");
 	  	return false;
@@ -84,7 +83,7 @@
 
 <input name="fname" id="fname"  class = "form-control" style="width:200px;" placeholder = "First Name" maxlength="15" value="${modifyexternaluserformbean.fname}"/>
 <br>
-<input name="lname" id="fname"  type="text" class = "form-control" style="width:200px;" placeholder = "Last Name" maxlength="14" value="${modifyexternaluserformbean.lname}"/>
+<input name="lname" id="lname"  type="text" class = "form-control" style="width:200px;" placeholder = "Last Name" maxlength="14" value="${modifyexternaluserformbean.lname}"/>
 <br>
 <input name="address" id="address"  type="text" class = "form-control" style="width:200px;" placeholder = "Address" maxlength="50" value="${modifyexternaluserformbean.address}"/>
 <br>
