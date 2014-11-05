@@ -80,7 +80,7 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 	}
 
 	@Override
-	public List<Notifications> fetchNotifications(String empOrAdmin) {
+	public List<Notifications> fetchNotifications(String empOrAdmin, String resolvedFlag) {
 		Session session = null;
 		List<Notifications> list = new ArrayList<Notifications>();
 		@SuppressWarnings("rawtypes")
@@ -89,6 +89,7 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 			session = factory.getCurrentSession();
 			Criteria criteria = session.createCriteria(Notifications.class);
 			criteria.add(Restrictions.eq("empAdminFlag",empOrAdmin));
+			criteria.add(Restrictions.eq("resolvedFlag",resolvedFlag));
 			criteria.createCriteria("person");
 			criteria.setFetchMode("person",FetchMode.JOIN);
 			rawList = criteria.list();
@@ -108,7 +109,7 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 	}
 
 	@Override
-	public List<Notifications> fetchNotifications(String empOrAdmin, long notificationTypeId) {
+	public List<Notifications> fetchNotifications(String empOrAdmin, long notificationTypeId, String resolvedFlag) {
 		Session session = null;
 		List<Notifications> list = new ArrayList<Notifications>();
 		@SuppressWarnings("rawtypes")
@@ -117,6 +118,7 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 			session = factory.getCurrentSession();
 			Criteria criteria = session.createCriteria(Notifications.class);
 			criteria.add(Restrictions.eq("empAdminFlag",empOrAdmin));
+			criteria.add(Restrictions.eq("resolvedFlag",resolvedFlag));
 			criteria.createCriteria("person");
 			criteria.setFetchMode("person",FetchMode.JOIN);
 			criteria.createCriteria("notificationsType");
