@@ -60,6 +60,21 @@ public class SeedData {
 		techAccess.setDescription("Technical Account Access");
 		notifDAO.insertNotificationType(techAccess);
 		
+		NotificationsType tranAccepted = new NotificationsType();
+		tranAccepted.setNotificationType("TA");
+		tranAccepted.setDescription("Transaction Accepted");
+		notifDAO.insertNotificationType(tranAccepted);
+		
+		NotificationsType tranDeclined = new NotificationsType();
+		tranDeclined.setNotificationType("TD");
+		tranDeclined.setDescription("Transaction Declined");
+		notifDAO.insertNotificationType(tranDeclined);
+		
+		NotificationsType pii = new NotificationsType();
+		pii.setNotificationType("PII");
+		pii.setDescription("Personally Identifiable Information");
+		notifDAO.insertNotificationType(pii);
+		
 	}
 	
 	public static void insertUser(){
