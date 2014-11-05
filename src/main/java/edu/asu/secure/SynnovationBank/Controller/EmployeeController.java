@@ -1,21 +1,15 @@
 package edu.asu.secure.SynnovationBank.Controller;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.asu.secure.SynnovationBank.DTO.Notifications;
 import edu.asu.secure.SynnovationBank.FormBean.*;
 import edu.asu.secure.SynnovationBank.Service.*;
 
@@ -25,8 +19,6 @@ public class EmployeeController {
 	
 	@Autowired
 	private EmployeeNotificationsService employeeNotificationService;
-	@Autowired
-	private AdminNotificationsService adminNotificationService;
 
 	@Autowired
 	private EmployeeUserAccountService employeeUserAccountService;
@@ -35,7 +27,11 @@ public class EmployeeController {
 	private EmployeeUserTransactionService employeeUserTransactionService;
 
 	protected static Logger logger = Logger.getLogger("controller");
-	
+	/**
+     * Handles and retrieves the employee JSP page that only employees can see
+     * 
+     * @return the name of the JSP page
+     */
     @RequestMapping(value = "/home", method = RequestMethod.GET)
    	 public String getEmployeePage( ModelMap model) {
     		 
@@ -49,95 +45,71 @@ public class EmployeeController {
     	return "employeepage";
 	}
 
-   
-  
-    @RequestMapping(value = "/employeeviewtransactions", method = {RequestMethod.GET, RequestMethod.POST})
-    public String getUserTransactionsPage(@RequestParam(value="error", required=false) boolean error,ModelMap model) {
-    	
+    @RequestMapping(value = "/viewTransaction", method = {RequestMethod.POST,RequestMethod.GET})
+  	 public String getUserTransactions(@RequestParam(value="error", required=false) boolean error,@ModelAttribute("usertransactionFormBean") UserTransactionFormBean usertransactionFormBean, ModelMap model) {
+   		 
     	if(error==true){
-    		model.put("error","Sorry! You don't have an access. A request has been sent to the user");
-    	}
-    	else{
-    		model.put("error","");
-    	}
-    	logger.debug("Received request to show employee view transactions page");
-    		 
-    		return "EmployeeViewTransactions";
-	}
-    
-    @RequestMapping(value = "/viewtransactions", method = RequestMethod.POST)
-    public String getUserTransactions(@ModelAttribute("usertransactionformbean") UserTransactionFormBean usertransactionFormBean,BindingResult result, ModelMap model) {
-    	boolean f;
-    	System.out.println("The user name : "+usertransactionFormBean.getUserName());
-    	f=employeeUserTransactionService.checkFlag(usertransactionFormBean.getUserName());
-    	System.out.println("The flag is " + f);
-    	if(f)
-		{
-			logger.debug("Received access to show transactions page");
-			List<UserTransactionFormBean> l=employeeUserTransactionService.getTransactions(usertransactionFormBean.getUserName());
-			System.out.println("size of the list is"+ l.size());
-			model.put("userTransaction", employeeUserTransactionService.getTransactions(usertransactionFormBean.getUserName()));
-			
+			model.put("error", "You don't have access to this account");	
 		}else{
-			System.out.println("You are now sending a notification to the user");
-			System.out.println("The usernaem"+usertransactionFormBean.getUserName());
-			employeeUserTransactionService.sendNotification(usertransactionFormBean.getUserName());
-			model.put("error", true);
-			return "redirect:employeeviewtransactions";
+			model.put("error","");
+			if(employeeUserTransactionService.checkFlag(usertransactionFormBean.getAccountNumber()))
+			{
+				logger.debug("Received request to show otp page");
+				model.put("userTransaction", employeeUserTransactionService.getTransactions(usertransactionFormBean.getAccountNumber()));
+				
+			}else{
+				model.put("error", true);
+				return "redirect:EmployeeViewTransactions";
+			}
 		}
-    
-    	
-    	return "ViewUserTransactions";
+		return "ViewUserTransactions";
 	}
+    
+   /* @RequestMapping(value = "/notificationAccepted", method = {RequestMethod.POST,RequestMethod.GET})
+ 	 public String getUserTransactions(@RequestParam(value="error", required=false) boolean error,@ModelAttribute("usertransactionFormBean") UserTransactionFormBean usertransactionFormBean, ModelMap model) {
+  		 
+   	if(error==true){
+			model.put("error", "You don't have access to this account");	
+		}else{
+			model.put("error","");
+			if(employeeUserTransactionService.checkFlag(usertransactionFormBean.getAccountNumber()))
+			{
+				logger.debug("Received request to show otp page");
+				model.put("userTransaction", employeeUserTransactionService.getTransactions(usertransactionFormBean.getAccountNumber()));
+				
+			}else{
+				model.put("error", true);
+				return "redirect:EmployeeViewTransactions";
+			}
+		}
+		return "ViewUserTransactions";
+	}*/
+
     
     @RequestMapping(value = "/employeeuseraccounts", method = RequestMethod.GET)
     public String getEmployeeUserAccountsPage(ModelMap model) {
-    	List<EmpUserAccFormBean> list=employeeUserAccountService.userAccounts();
-    	logger.debug("display "+list.size());
     	
-    	model.put("empUserAcc", list);
+    	model.put("empUserAccFormBean", employeeUserAccountService.userAccounts());
     	logger.debug("Received request to show employee user accounts page");
     
     	
     	return "EmployeeUserAccounts";
 	}
-       
-   
-    @RequestMapping(value = "/employeeviewmerchanttransactions", method = RequestMethod.GET)
-    public String getEmployeeChangePasswordPage( ModelMap model) {
-		 
+    
+    /**
+     * Handles and retrieves the admin JSP page that only admins can see
+     * 
+     * @return the name of the JSP page
+     */
+    @RequestMapping(value = "/employeechangepassword", method = RequestMethod.GET)
+    public String getEmployeeChangePasswordPage() {
+    	logger.debug("Received request to show employee change password page");
+    
+    	// Do your work here. Whatever you like
+    	// i.e call a custom service to do your business
+    	// Prepare a model to be used by the JSP page
     	
-        	logger.debug("Received request to show admin critical transactions page");
-        
-            model.put("adminCriticalNotifFormBean", employeeNotificationService.merchantRequestsCriticalTrans());
+    	// This will resolve to /WEB-INF/jsp/AdminChangePassword.jsp
     	return "EmployeeChangePassword";
 	}
-    
-
-    @RequestMapping(value = "/employeetransactiondeclined", method = RequestMethod.POST)
-    public String adminTransactionDeclined(@RequestParam(value="userId", required=true) String userId, HttpServletRequest request,  
-            HttpServletResponse response, ModelMap model) {
-    	logger.debug("Received request to delete user with Id: " + userId);
-    	
-    	employeeNotificationService.sendTransactionDeclinedNotification(userId);
-        	return "redirect:admincriticaltransactions";
-    	
-//    	else
-//    	{
-//			model.put("error","true");
-//			logger.debug("Some error deleting user!");
-//			return "AdminExternalUserAccounts";
-//    	}   	
-	}
-    
-    @RequestMapping(value = "/employeetransactionaccepted", method = RequestMethod.POST)
-    public String adminTransactionAccepted(@ModelAttribute("adminCriticalNotifFormBean")
-    AdminCriticalTransactionsFormBean adminCriticalNotifFormBean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
-    	
-    	logger.debug("Received request to accept critical transaction");
-    	
-    	employeeNotificationService.sendTransactionAcceptedNotification(adminCriticalNotifFormBean);
-        	return "redirect:admincriticaltransactions";
-    }
-    
 }

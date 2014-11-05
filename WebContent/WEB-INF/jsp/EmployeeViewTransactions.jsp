@@ -1,4 +1,3 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -14,57 +13,25 @@
 	
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-	
-	function validateForm()
-	{
-
-	 var username = document.getElementById("username").value;
-	 
-
-	  if (username === "" ) 
-	  {
-	  	alert("Please fill all fields.");
-	  	return false;
-	  }
-	 
-		
-		var regex3 = new RegExp("^[a-zA-Z0-9]+$");
-		 if(!regex3.test(username))
-		{
-			alert('Please remove special characters and spaces from Username');
-			return false; 
-		}
-	  	    
-	   
-	  
-	 }</script>
-	
 </head>
 <body>
 <h2>Employee Page</h2>
-
+<p>Only employees have access to this page.</p><br>
 
 <ul class="nav nav-tabs">
-    <li><a href="home">Notifications</a></li>
+    <li><a href="employee">Notifications</a></li>
     <li><a href="employeeuseraccounts">User Accounts</a></li>
-    <li><a href="employeechangepassword"> Change Password</a></li>
-    <li class="active"><a href="#">View Customer Transactions</a></li>
+    <li class="active"><a href="#">Change Password</a></li>
+    <li><a href="employeeviewtransactions">View Customer Transactions</a></li>
 </ul>
-<p align="center">View Customer Transactions</p>
-<div id="error"><font color="red">${error}</font></div>
-<form action ="viewtransactions" method="post" commandName="usertransactionformbean">
+
+<form name ="addexternaluser" method="post" commandName="usertransactionFormBean">
 
 
-<input name="userName"  id="username" class = "form-control"  placeholder = "User Name" type="text" maxlength="15" value="${usertransactionformbean.userName}">
-<input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="document.forms[0].action = 'viewtransactions' ;return validateForm();"/>
-<!-- <input class="btn btn-lg btn-primary" type="submit" value="Submit"/>-->
-
-<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" />	
-			
-			
+<input name="accNum"  class = "form-control" style="width:200px;" placeholder = "Account Number" maxlength="15">
 </form>
+<input name="AddExtuser" type="submit" value="Add" style="position:absolute;width:200px;left:450px;top:955px;z-index:4;" class = "btn btn-primary" onclick="document.forms[0].action = '/viewTransaction';"/>
+
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  
 	<!-- csrf for log out-->
@@ -80,5 +47,6 @@
 		}
 	</script>
 	<br><p><a href="javascript:formSubmit()"> Logout</a></p>
+
 </body>
 </html>

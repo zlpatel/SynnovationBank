@@ -1,7 +1,12 @@
 package edu.asu.secure.SynnovationBank.FormBean;
 
 import java.util.Date;
+import java.util.Set;
 
+import edu.asu.secure.SynnovationBank.DTO.Account;
+import edu.asu.secure.SynnovationBank.DTO.Notifications;
+import edu.asu.secure.SynnovationBank.DTO.ReportedIssues;
+import edu.asu.secure.SynnovationBank.DTO.Role;
 
 public class ExternalUserFormBean {
 
