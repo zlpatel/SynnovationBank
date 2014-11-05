@@ -40,6 +40,42 @@
 <br><br>
 
 
+
+
+
+
+<p align="center">Customer Notifications</p>
+<form name ="customer_notifications" method = "post" commandName="custNotifFormBean">
+		<table id = "transaction" width="500" border="0" bordercolor="black" class ="table table-striped">
+		<tr>
+		  <!--  td><b>First Name</b></td>
+		  <td><b>Last Name</b></td>
+		  <td><b>User Name</b-->
+          <td><b>Notification from employee</b></td>
+          
+         
+         </tr>
+      <c:forEach  items="${custNotifFormBean}" var="custNotif">
+        <tr> 
+          <!--  td>${empNotif.firstName}</td>
+          <td>${empNotif.lastName}</td>
+          <td>${empNotif.userName}</td-->
+          <td>${custNotif.notifications}</td>
+          
+        </tr>
+      </c:forEach>
+      </table>
+      </form>
+
+
+
+
+
+
+
+
+
+
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  
 	<!-- csrf for log out-->
