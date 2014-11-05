@@ -57,7 +57,7 @@ public class EmployeeController {
     		model.put("error","");
     	}
     	logger.debug("Received request to show employee view transactions page");
-    	
+    		 
     		return "EmployeeViewTransactions";
 	}
     
