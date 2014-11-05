@@ -45,6 +45,9 @@ public class TransferServiceImpl implements TransferService {
 	@Override
 	public boolean performTransfer(String senderID, String receiverID, String amount) {
 		
+		if(senderID.equals(receiverID))
+			return false;
+		
 		if(Float.parseFloat(amount)<0)
 		{
 		System.out.println("***************************************************");
