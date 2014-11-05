@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.asu.secure.SynnovationBank.FormBean.FileUploadFormBean;
 import edu.asu.secure.SynnovationBank.Service.PKIService;
@@ -26,6 +25,7 @@ public class PKIController {
 
 	@Autowired
 	private PKIService pkiService;
+	
 	
 	@RequestMapping(value = "/fileUploader" ,method = RequestMethod.GET)
 	public String getUploadFilePage(@RequestParam(value="error", required=false) boolean error,ModelMap model ) {
@@ -41,9 +41,8 @@ public class PKIController {
 	@RequestMapping(value = "/uploadfile", method=RequestMethod.POST)
 	public String uploadFileHandler(@ModelAttribute("fileuploadformbean") FileUploadFormBean fileUploadFormBean,HttpSession session,BindingResult result,ModelMap model) {
 
-		
 		if(pkiService.verifyCertificate(fileUploadFormBean.getFile(),(String)session.getAttribute("USERNAME"))){
-			return "changepasswordsuccessfulpage";
+			return "CertificateVerified";
 		}
 		else{
 			model.put("error",true);

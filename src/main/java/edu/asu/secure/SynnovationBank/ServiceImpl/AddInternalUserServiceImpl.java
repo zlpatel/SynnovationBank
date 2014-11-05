@@ -41,7 +41,7 @@ public class AddInternalUserServiceImpl implements AddInternalUserService{
 		
 		person.setDateOfBirth(new Date(1220227200));
 		person.setRole("ROLE_BNK_EMPL");
-		person.setAllowAccessFlag("N");
+		person.setAllowAccessFlag(false);
 
 		//Need to set role once Jeffrey updates
 		//		person.setRole("Customer");

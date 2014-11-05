@@ -152,16 +152,20 @@ public class PersonDAOImpl implements PersonDAO {
 	@Override
 	public boolean updateFailedLoginAttempt(String userId) {
 		Session session = null;
+		Integer i = 1;
 		try{
 			Calendar cal = Calendar.getInstance();
 			Date currentDate = cal.getTime();
 			session = factory.getCurrentSession();
+			System.out.println("Session status is : "+session.isOpen());
 			Person person = (Person)session.get(Person.class, userId);
 			if(person == null)
 				return false;
-			
-			if(person.getLastLoginFailure()==null)
-				person.setLoginAttempts(1);
+			if(person.getLastLoginFailure()==null){
+				person.setLoginAttempts(i);
+//				session.update(person);
+				
+			}
 			else{
 				Calendar c = Calendar.getInstance();
 				c.setTime(person.getLastLoginFailure());
@@ -175,8 +179,9 @@ public class PersonDAOImpl implements PersonDAO {
 						person.setAccountLockedFlag(true);
 					}
 				}
+			System.out.println("person object : "+person);
 				session.update(person);
-			
+				System.out.println("Session status 2 is : "+session.isOpen());
 			return true;
 		}
 		catch(Exception e){

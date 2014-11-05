@@ -38,6 +38,7 @@ public class MyUserDetailsServiceImpl implements UserDetailsService, MyUserDetai
  
 		logger.debug("username is :"+username);
 		edu.asu.secure.SynnovationBank.DTO.Person person = personDao.fetchUserById(username);
+		logger.debug("my role is :"+ person.getRole());
 		List<GrantedAuthority> authorities = buildUserAuthority(person.getRole());
  
 		return buildUserForAuthentication(person, authorities);
@@ -51,7 +52,7 @@ public class MyUserDetailsServiceImpl implements UserDetailsService, MyUserDetai
 		List<GrantedAuthority> authorities) {
 		return new User(person.getUserId(), 
 			person.getPassword(), true, 
-                        true, true, true, authorities);
+                        true, true, !person.getAccountLockedFlag() , authorities);
 	}
  
 	private List<GrantedAuthority> buildUserAuthority(String userRole) {
@@ -60,7 +61,6 @@ public class MyUserDetailsServiceImpl implements UserDetailsService, MyUserDetai
  
 		// Build user's authorities
 			setAuths.add(new SimpleGrantedAuthority(userRole));
- 
 		List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
  
 		return Result;

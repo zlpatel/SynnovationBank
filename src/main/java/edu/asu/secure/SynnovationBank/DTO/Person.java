@@ -235,5 +235,4 @@ public class Person {
 		this.issues = issues;
 	}
 
-	
 }

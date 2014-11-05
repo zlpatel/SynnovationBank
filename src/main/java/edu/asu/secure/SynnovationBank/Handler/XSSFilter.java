@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import edu.asu.secure.SynnovationBank.Handler.XSSRequestWrapper;;
 
-@WebFilter("/*")
+//@WebFilter("/*")
 public class XSSFilter implements Filter {
 
     @Override
