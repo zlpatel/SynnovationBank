@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 import edu.asu.secure.SynnovationBank.FormBean.*;
 import edu.asu.secure.SynnovationBank.Service.*;
 
@@ -22,6 +21,8 @@ public class EmployeeController {
 	
 	@Autowired
 	private EmployeeNotificationsService employeeNotificationService;
+	@Autowired
+	private AdminNotificationsService adminNotificationService;
 
 	@Autowired
 	private EmployeeUserAccountService employeeUserAccountService;
@@ -101,10 +102,10 @@ public class EmployeeController {
     @RequestMapping(value = "/employeeviewmerchanttransactions", method = RequestMethod.GET)
     public String getEmployeeChangePasswordPage( ModelMap model) {
 		 
-        //model.put("empNotification", new Notifications());
-        model.put("empNotifFormBean", employeeNotificationService.notifications());
-        logger.debug("Received request to show employee page");
-       
+    	
+        	logger.debug("Received request to show admin critical transactions page");
+        
+            model.put("adminCriticalNotifFormBean", adminNotificationService.merchantRequests());
     	return "EmployeeChangePassword";
 	}
 }
