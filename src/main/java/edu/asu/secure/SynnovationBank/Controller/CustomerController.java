@@ -22,6 +22,7 @@ import edu.asu.secure.SynnovationBank.FormBean.TechAccessFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.TransferFormBean;
 import edu.asu.secure.SynnovationBank.Service.CreditService;
 import edu.asu.secure.SynnovationBank.Service.CustomerInfoChangeService;
+import edu.asu.secure.SynnovationBank.Service.CustomerNotificationService;
 import edu.asu.secure.SynnovationBank.Service.CustomerTransactionService;
 import edu.asu.secure.SynnovationBank.Service.DebitService;
 import edu.asu.secure.SynnovationBank.Service.TechAccountAccessService;
@@ -43,6 +44,8 @@ public class CustomerController {
 	private TechAccountAccessService techAccountAccessService;
 	@Autowired
 	private CustomerTransactionService customerTransactionService;
+	@Autowired
+	private CustomerNotificationService customerNotificationService; 
 	/**
      * Handles and retrieves the employee JSP page that only employees can see
      * 
@@ -83,19 +86,31 @@ public class CustomerController {
 		if(firstName=="")
 		{
 			firstName=null;
-			System.out.println("hai hai: "+firstName+"\n");
+			System.out.println("firstName: "+firstName+"\n");
 			
 		}
 		if(middleName=="")
+		{
 			middleName=null;
+
+			System.out.println("middleName: "+middleName+"\n");
+		}
 		if(lastName=="")
+		{
 			lastName=null;
+			System.out.println("lastName: "+lastName+"\n");
+		}
+		
 		if(address=="")
+		{
 			address=null;
+			System.out.println("address: "+address+"\n");
+		}
 		if(email=="")
+		{
 			email=null;
-		
-		
+			System.out.println("email: "+email+"\n");
+		}
 		
 		
 		
@@ -308,7 +323,19 @@ public class CustomerController {
 	
 	
 	@RequestMapping(value = "/customerNotifications", method = RequestMethod.GET)
-    public String getCustomerNotifications() {
+    public String getCustomerNotifications(ModelMap model, HttpServletRequest request, HttpSession session) {
+		
+		String userName="";
+		session = request.getSession(false);
+        if (session != null) {
+            userName=(String)request.getSession().getAttribute("USERNAME");
+        }
+		
+		model.put("custNotifFormBean", customerNotificationService.notifications(userName));
+        
+		
+		
+		
     	logger.debug("Received request to show customer notifications page");
     
     	// Do your work here. Whatever you like
