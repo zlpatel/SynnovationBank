@@ -35,7 +35,7 @@ public class TechAccountAccessServiceImpl implements TechAccountAccessService {
 			System.out.println("User diallowed TAA...so no notifications...direct DB update");
 			System.out.println("**********************************************************");
 			
-				if(personDAO.updateAccessFlag(userID, flag))
+				if(personDAO.updateAccessFlag(userID, false))
 					return true;
 				else
 					return false;

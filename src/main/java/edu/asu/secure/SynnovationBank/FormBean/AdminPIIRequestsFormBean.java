@@ -1,6 +1,6 @@
 package edu.asu.secure.SynnovationBank.FormBean;
 
-public class AdminCriticalTransactionsFormBean 
+public class AdminPIIRequestsFormBean 
 {
 	
 	private String firstName;
