@@ -190,7 +190,7 @@ public class CustomerController {
 			
 			else
 			{
-				model.put("error","CREDIT UNSUCCESSFULL");
+				model.put("error","DEPOSIT UNSUCCESSFULL");
 				return "credit_debit";
 				
 			}
@@ -218,7 +218,7 @@ public class CustomerController {
 				
 				else
 				{
-					model.put("error","DEBIT UNSUCCESSFULL");
+					model.put("error","WITHDRAWAL UNSUCCESSFULL");
 					return "debit";
 					
 				}
@@ -255,7 +255,7 @@ public class CustomerController {
 			}
 			else
 			{
-				model.put("error","TRANSFER UNSUCCESSFULL");
+				model.put("error","TRANSFER UNSUCCESSFULL (or) PENDING FOR APPROVAL FROM ADMINISTRATOR --- CHECK ''VIEW TRANSACTIONS'' TAB TO SEE IF A TRANSACTION IS CREATED FOR YOUR REQUEST (Your account balance won't be updated until approval from bank admin)");
 					return "transfer";
 			}
 	    	
