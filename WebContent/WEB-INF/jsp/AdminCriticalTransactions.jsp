@@ -34,20 +34,22 @@
 <table class="table" class ="table table-striped">
 <thead>
             <tr>
-                <th>From Account</th>
-                <th>To Account</th>
-                <th>Amount</th>
-                <th>Date</th>                                                
+                <th>Username</th>
+                <th>Account Number</th>
+                <th>Notification</th>
+                <th>Amount</th>                                                
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <c:forEach  items="${adminNotifFormBean}">
+            <c:forEach  items="${adminCriticalNotifFormBean}" var="notification">
         <tr> 
-          <td>${adminNotifFormBean.getFirstName}</td>
-          <td>${adminNotifFormBean.getLastName}</td>
-          <td>${adminNotifFormBean.getUserName}</td>
-          <td>${adminNotifFormBean.getNotifications}</td>
+          <td>${notification.userName}</td>
+          <td>${notification.accountNumber}</td>
+          <td>${notification.notification}</td>
+          <td>${notification.transactionAmount}</td>
+           <td align="center"><input style="width:75px;" name="Modify" type="submit" value= "Modify" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'adminmodifyexternaluser?userId=${notification.username}'; ;return true;"/></td>  
+          <td align="center"><input  style="width:75px;" name="Delete" type="submit" value= "Delete" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'admindeleteexternaluser?userId=${notification.username}'; ;return true;"/></td> 
           <!-- <td align="center"><input style="width:75px;" name="approve" type="submit" value= "Approve" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = '/notificationAccepted';;return true;"/></td>  
           <td align="center"><input  style="width:75px;" name="deny" type="submit" value= "Deny" class = "btn btn-primary"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoDenied.html?authUsername=${person.ID}'; ;return true;"/></td>--> 
         </tr>
