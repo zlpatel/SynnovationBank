@@ -20,6 +20,7 @@ import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
 import edu.asu.secure.SynnovationBank.Dao.TransactionDetailsDAO;
 import edu.asu.secure.SynnovationBank.Dao.TransactionsDAO;
 import edu.asu.secure.SynnovationBank.FormBean.AdminCriticalTransactionsFormBean;
+import edu.asu.secure.SynnovationBank.FormBean.AdminPIIRequestsFormBean;
 import edu.asu.secure.SynnovationBank.Service.AdminNotificationsService;
 
 @Service
@@ -45,7 +46,7 @@ public class AdminNotificationsServiceImpl implements AdminNotificationsService 
 	    	 
 	    	AdminCriticalTransactionsFormBean adminNotifFormBean=null;
 	    	//System.out.println("Hi it is here!");
-	    	List<Notifications> notification=notificationsDAO.fetchNotifications("A");
+	    	List<Notifications> notification=notificationsDAO.fetchNotifications("A", 1 ,"N");
 	    	//System.out.println("Hi it is here 2!");
 	    	List<AdminCriticalTransactionsFormBean> list=new ArrayList<AdminCriticalTransactionsFormBean>();
 	    	
@@ -123,25 +124,23 @@ public class AdminNotificationsServiceImpl implements AdminNotificationsService 
 			float new_balance=balance-debit;
 			a.setBalance(new_balance);
 			
-	    	//call method to get receiver's account number --> jeffrey
+	    	//get receiver's account number
+			long receiverAccountNo =  transactionDAO.fetchCreditorAccountNo(criticalTransactionFormBean.getTransactionId());
 			
-			//get Account from account number --> jeffrey
+			//get Account from account number
 			
-			Account b=(Account) receiver.getAccount();
+			Account b=(Account) accountDAO.fetchAccountByNumber(receiverAccountNo);
 			float balanceB=b.getBalance();
 			float credit=criticalTransactionFormBean.getTransactionAmount();
 			float new_balanceB=balanceB+credit;
 			b.setBalance(new_balanceB);
 			
-			
 			System.out.println("***************************************************");
 			System.out.println("PERFORMING DEBIT FROM YOUR ACCOUNT AND CREDITING TO THE OTHER ACCOUNT!");
 			System.out.println("***************************************************");
 			
-			
 			accountDAO.updateAccountBalance(a.getAccountNumber(), a.getBalance());
 			System.out.println("Debitted sender account table");
-			
 			
 			accountDAO.updateAccountBalance(b.getAccountNumber(), b.getBalance());
 			System.out.println("Creddited receiver account table");
@@ -156,5 +155,11 @@ public class AdminNotificationsServiceImpl implements AdminNotificationsService 
 			
 			
 	    }
+
+		@Override
+		public List<AdminPIIRequestsFormBean> getPIIRequestNotifications() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 	    
 	    }

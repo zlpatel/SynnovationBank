@@ -147,15 +147,6 @@ public class AdminController {
     	return "AdminCriticalTransactions";
 	}
     
-    @RequestMapping(value = "/adminpiirequests", method = RequestMethod.GET)
-    public String getAdminPIIRequestsPage(ModelMap model) {
-    	logger.debug("Received request to show admin critical transactions page");
-    
-        model.put("adminCriticalNotifFormBean", adminNotificationService.getCriticalTransactionNotifications());
-    	// This will resolve to /WEB-INF/jsp/AdminCriticalTransactions.jsp
-    	return "AdminCriticalTransactions";
-	}
-    
     
     /**
      * Handles and retrieves the admin JSP page that only admins can see
