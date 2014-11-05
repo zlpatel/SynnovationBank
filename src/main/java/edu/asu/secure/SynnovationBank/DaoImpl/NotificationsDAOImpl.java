@@ -27,7 +27,6 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 	@Override
 	public long insertNotification(String userId, Notifications notifications) {
 		Session session = null;
-		System.out.println("YOu are in DAO Impl");
 		long issueId = -1;
 		try{
 			session = factory.getCurrentSession();
@@ -43,7 +42,7 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 					set.add(notifications);
 					person.setNotifications(set);
 				}
-				person.setAllowAccessFlag("Y");
+				person.setAllowAccessFlag(true);
 				notifications.setPerson(person);
 			}
 			session.update(person);
@@ -81,7 +80,7 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 	}
 
 	@Override
-	public List<Notifications> fetchNotifications(String empOrAdmin) {
+	public List<Notifications> fetchNotifications(String empOrAdmin, String resolvedFlag) {
 		Session session = null;
 		List<Notifications> list = new ArrayList<Notifications>();
 		@SuppressWarnings("rawtypes")
@@ -90,8 +89,41 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 			session = factory.getCurrentSession();
 			Criteria criteria = session.createCriteria(Notifications.class);
 			criteria.add(Restrictions.eq("empAdminFlag",empOrAdmin));
+			criteria.add(Restrictions.eq("resolvedFlag",resolvedFlag));
 			criteria.createCriteria("person");
 			criteria.setFetchMode("person",FetchMode.JOIN);
+			rawList = criteria.list();
+			@SuppressWarnings("rawtypes")
+			Iterator itr = rawList.iterator();
+			while(itr.hasNext())
+				list.add((Notifications)itr.next());
+			return list;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return list;
+		}
+		finally{
+			//HibernateUtil.shutdown();
+		}
+	}
+
+	@Override
+	public List<Notifications> fetchNotifications(String empOrAdmin, long notificationTypeId, String resolvedFlag) {
+		Session session = null;
+		List<Notifications> list = new ArrayList<Notifications>();
+		@SuppressWarnings("rawtypes")
+		List rawList = null;
+		try{
+			session = factory.getCurrentSession();
+			Criteria criteria = session.createCriteria(Notifications.class);
+			criteria.add(Restrictions.eq("empAdminFlag",empOrAdmin));
+			criteria.add(Restrictions.eq("resolvedFlag",resolvedFlag));
+			criteria.createCriteria("person");
+			criteria.setFetchMode("person",FetchMode.JOIN);
+			criteria.createCriteria("notificationsType");
+			criteria.setFetchMode("notificationsType",FetchMode.JOIN);
+			criteria.add(Restrictions.eq("notificationsType.notificationTypeId", notificationTypeId));
 			rawList = criteria.list();
 			@SuppressWarnings("rawtypes")
 			Iterator itr = rawList.iterator();
@@ -124,6 +156,12 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 		finally{
 			//HibernateUtil.shutdown();
 		}
+	}
+
+	@Override
+	public List<Notifications> fetchNotifications(String empOrAdmin) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

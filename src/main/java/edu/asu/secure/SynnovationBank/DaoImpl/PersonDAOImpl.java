@@ -171,11 +171,12 @@ public class PersonDAOImpl implements PersonDAO {
 				else if(person.getLoginAttempts()<2)
 					person.setLoginAttempts(person.getLoginAttempts()+1);
 				else if(person.getLoginAttempts()>=2){
-						person.setLoginAttempts(person.getLoginAttempts()+1);
-						person.setAccountLockedFlag(true);
-					}
+					person.setLoginAttempts(person.getLoginAttempts()+1);
+					person.setAccountLockedFlag(true);
 				}
-				session.update(person);
+			}
+			person.setLastLoginFailure(currentDate);
+			session.update(person);
 			
 			return true;
 		}
