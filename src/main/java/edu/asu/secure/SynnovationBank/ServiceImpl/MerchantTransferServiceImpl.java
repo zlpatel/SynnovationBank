@@ -17,11 +17,11 @@ import edu.asu.secure.SynnovationBank.Dao.AccountDAO;
 import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
 import edu.asu.secure.SynnovationBank.Dao.TransactionTypeDAO;
 import edu.asu.secure.SynnovationBank.Dao.TransactionsDAO;
-import edu.asu.secure.SynnovationBank.Service.TransferService;
+import edu.asu.secure.SynnovationBank.Service.MerchantTransferService;
 
 @Service
 @Transactional
-public class MerchantTransferServiceImpl implements TransferService {
+public class MerchantTransferServiceImpl implements MerchantTransferService {
 
 	@Autowired
 	private PersonDAO personDAO;

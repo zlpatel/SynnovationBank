@@ -7,17 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.asu.secure.SynnovationBank.DTO.Account;
 import edu.asu.secure.SynnovationBank.DTO.Person;
 import edu.asu.secure.SynnovationBank.DTO.TransactionDetails;
 import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
 import edu.asu.secure.SynnovationBank.Dao.TransactionDetailsDAO;
-import edu.asu.secure.SynnovationBank.FormBean.CustomertransactionFormBean;
-import edu.asu.secure.SynnovationBank.Service.CustomerTransactionService;
+import edu.asu.secure.SynnovationBank.FormBean.MerchantTransactionFormBean;
+import edu.asu.secure.SynnovationBank.Service.MerchantTransactionService;
 
 @Service
 @Transactional
-public class MerchantTransactionServiceImpl implements CustomerTransactionService{
+public class MerchantTransactionServiceImpl implements MerchantTransactionService{
 
 	@Autowired
 	PersonDAO personDAO;
@@ -25,19 +24,19 @@ public class MerchantTransactionServiceImpl implements CustomerTransactionServic
 	TransactionDetailsDAO transactionDetailsDao;
 	
 	@Override
-	public List<CustomertransactionFormBean> getTransactions(String userName) {
+	public List<MerchantTransactionFormBean> getTransactions(String userName) {
 		Person sender = personDAO.fetchUserById(userName);
 		System.out.println("FETCHED USER "+sender.getFirstName()+" "+sender.getLastName());
 		long accNum=sender.getAccount().getAccountNumber(); 
 		
-		CustomertransactionFormBean customertransactionFormBean=null;
+		MerchantTransactionFormBean customertransactionFormBean=null;
     	
     	List<TransactionDetails> transactions=transactionDetailsDao.fetchAccountTransactions(accNum, 10);
     	
-    	List<CustomertransactionFormBean> list=new ArrayList<CustomertransactionFormBean>();
+    	List<MerchantTransactionFormBean> list=new ArrayList<MerchantTransactionFormBean>();
     	
     	for(TransactionDetails trans: transactions){
-    		customertransactionFormBean = new CustomertransactionFormBean();
+    		customertransactionFormBean = new MerchantTransactionFormBean();
     		
     		customertransactionFormBean.setBalance(trans.getTransactions().getAmount());
     		customertransactionFormBean.setTransactionsName(trans.getTransactionType().getTransactionName());

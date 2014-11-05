@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.asu.secure.SynnovationBank.FormBean.CreditFormBean;
-import edu.asu.secure.SynnovationBank.FormBean.CustomerInfoChangeFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.DebitFormBean;
+import edu.asu.secure.SynnovationBank.FormBean.MerchantInfoChangeFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.TransferFormBean;
 import edu.asu.secure.SynnovationBank.Service.MerchantCreditService;
 import edu.asu.secure.SynnovationBank.Service.MerchantDebitService;
@@ -35,13 +35,13 @@ public class MerchantController {
 	@Autowired
 	private MerchantTransferService transferService;
 	@Autowired
-	private MerchantInfoChangeService customerInfoChangeService;
+	private MerchantInfoChangeService merchantInfoChangeService;
 	@Autowired
 	private MerchantTechAccountAccessService techAccountAccessService;
 	@Autowired
-	private MerchantTransactionService customerTransactionService;
+	private MerchantTransactionService merchantTransactionService;
 	/**
-     * Handles and retrieves the customer JSP page that only customers can see
+     * Handles and retrieves the merchant JSP page that only merchants can see
      * 
      * @return the name of the JSP page
      */
@@ -50,23 +50,23 @@ public class MerchantController {
      * 
      * @return the name of the JSP page
      */
-	@RequestMapping(value = "/changecustomerinforequest", method = RequestMethod.GET)
-    public String getNewCustomerInfo(@ModelAttribute("customerInfoChangeFormBean") CustomerInfoChangeFormBean customerInfoChangeFormBean, HttpServletRequest request, HttpSession session) {
+	@RequestMapping(value = "/changemerchantinforequest", method = RequestMethod.GET)
+    public String getNewCustomerInfo(@ModelAttribute("merchantInfoChangeFormBean") MerchantInfoChangeFormBean merchantInfoChangeFormBean, HttpServletRequest request, HttpSession session) {
 
 		String userName="";
 		session = request.getSession(false);
         if (session != null) {
             userName=(String)request.getSession().getAttribute("USERNAME");
         }
-		logger.debug("Received request to show customer info change rqst page");
+		logger.debug("Received request to show merchant info change rqst page");
 		
-		System.out.println("New information to be changed: "+ customerInfoChangeFormBean.getFirstName() + " "+customerInfoChangeFormBean.getLastName()+" "+customerInfoChangeFormBean.getEmail());
+		System.out.println("New information to be changed: "+ merchantInfoChangeFormBean.getFirstName() + " "+merchantInfoChangeFormBean.getLastName()+" "+merchantInfoChangeFormBean.getEmail());
 		
-		String firstName=customerInfoChangeFormBean.getFirstName();
-		String middleName=customerInfoChangeFormBean.getMiddleName();
-		String lastName=customerInfoChangeFormBean.getLastName();
-		String address=customerInfoChangeFormBean.getAddress();
-		String email=customerInfoChangeFormBean.getEmail();
+		String firstName=merchantInfoChangeFormBean.getFirstName();
+		String middleName=merchantInfoChangeFormBean.getMiddleName();
+		String lastName=merchantInfoChangeFormBean.getLastName();
+		String address=merchantInfoChangeFormBean.getAddress();
+		String email=merchantInfoChangeFormBean.getEmail();
 		
 		if(firstName=="")
 			firstName=null;
@@ -83,7 +83,7 @@ public class MerchantController {
 		
 		
 		
-		if(customerInfoChangeService.changeCustomerInformation(userName, firstName, middleName,lastName,address,email))
+		if(merchantInfoChangeService.changeCustomerInformation(userName, firstName, middleName,lastName,address,email))
 				return "WelcomeMerchant";
 			
 			else
@@ -273,7 +273,7 @@ public class MerchantController {
 	
 	@RequestMapping(value = "/ChangeMerchantInfo", method = RequestMethod.GET)
     public String getChaneCustomerInfo() {
-    	logger.debug("Received request to show Change customer information page");
+    	logger.debug("Received request to show Change merchant information page");
     
     	// Do your work here. Whatever you like
     	// i.e call a custom service to do your business
@@ -287,7 +287,7 @@ public class MerchantController {
 	
 	@RequestMapping(value = "/MerchantNotifications", method = RequestMethod.GET)
     public String getCustomerNotifications() {
-    	logger.debug("Received request to show customer notifications page");
+    	logger.debug("Received request to show merchant notifications page");
     
     	// Do your work here. Whatever you like
     	// i.e call a custom service to do your business
@@ -301,7 +301,7 @@ public class MerchantController {
 	
 	
 	
-	@RequestMapping(value = "/techAccountAccess", method = RequestMethod.GET)
+	@RequestMapping(value = "/MerchantTechAccountAccess", method = RequestMethod.GET)
     public String gettechAccountAccess() {
     	logger.debug("Received request to show techAccountAccess page");
     
@@ -310,7 +310,7 @@ public class MerchantController {
     	// Prepare a model to be used by the JSP page
     	
     	// This will resolve to /WEB-INF/jsp/commonpage.jsp
-    	return "techAccountAccess";
+    	return "MerchantTechAccountAccess";
 	}
 	
 	
@@ -343,11 +343,11 @@ public class MerchantController {
             userName=(String)request.getSession().getAttribute("USERNAME");
         }
 		
-		/*List<CustomertransactionFormBean> list=customertransactionFormBean.userAccounts(userName);
+		/*List<CustomertransactionFormBean> list=merchanttransactionFormBean.userAccounts(userName);
     	logger.debug("display "+list.size());
     	*/
-    	model.put("custAcc", customerTransactionService.getTransactions(userName));
-    	model.put("balance", customerTransactionService.availableBalance(userName));
+    	model.put("mercAcc", merchantTransactionService.getTransactions(userName));
+    	model.put("balance", merchantTransactionService.availableBalance(userName));
     	logger.debug("Received request to show employee user accounts page");
     
     	
@@ -366,7 +366,7 @@ public class MerchantController {
         }
 		
     
-    	model.put("username", customerTransactionService.getUserName(userName));
+    	model.put("username", merchantTransactionService.getUserName(userName));
     	return "WelcomeMerchant";
 	}
 	
@@ -384,7 +384,7 @@ public class MerchantController {
         }
 		
     
-    	model.put("username", customerTransactionService.getUserName(userName));
+    	model.put("username", merchantTransactionService.getUserName(userName));
     	return "WelcomeMerchant";
 	}
 	

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Customer Page</title>
+<title>View Merchant Transactions Page</title>
 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
 	
@@ -34,7 +34,7 @@
 <li><a href="ViewMerchantTransactions">View Transactions</a></li>
 <li><a href="MerchantNotifications">Notifications</a></li>
 <li><a href="ChangeMerchantInfo">Change information</a></li>
-<li><a href="TechMerchantAccountAccess">Technical Account Access</a></li>
+<li><a href="MerchantTechAccountAccess">Technical Account Access</a></li>
 </ul>
 
 <br><br>
@@ -52,7 +52,7 @@
           
           
          </tr>
-      <c:forEach  items="${custAcc}" var="trans">
+      <c:forEach  items="${mercAcc}" var="trans">
         <tr> 
           <td>${trans.transactionId}</td>
           <td>${trans.balance}</td>

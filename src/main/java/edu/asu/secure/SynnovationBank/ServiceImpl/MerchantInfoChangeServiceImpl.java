@@ -4,13 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.asu.secure.SynnovationBank.DTO.Person;
 import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
-import edu.asu.secure.SynnovationBank.Service.CustomerInfoChangeService;
+import edu.asu.secure.SynnovationBank.Service.MerchantInfoChangeService;
 
 @Service
 @Transactional
-public class MerchantInfoChangeServiceImpl implements CustomerInfoChangeService {
+public class MerchantInfoChangeServiceImpl implements MerchantInfoChangeService {
 
 
 	@Autowired

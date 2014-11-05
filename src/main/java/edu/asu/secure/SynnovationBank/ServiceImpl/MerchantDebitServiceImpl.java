@@ -18,11 +18,12 @@ import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
 import edu.asu.secure.SynnovationBank.Dao.TransactionTypeDAO;
 import edu.asu.secure.SynnovationBank.Dao.TransactionsDAO;
 import edu.asu.secure.SynnovationBank.Service.DebitService;
+import edu.asu.secure.SynnovationBank.Service.MerchantDebitService;
 
 @Service
 @Transactional
 
-public class MerchantDebitServiceImpl implements DebitService{
+public class MerchantDebitServiceImpl implements MerchantDebitService{
 
 	
 	

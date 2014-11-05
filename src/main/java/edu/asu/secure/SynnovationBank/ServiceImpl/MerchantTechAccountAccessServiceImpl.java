@@ -4,17 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.asu.secure.SynnovationBank.DTO.Notifications;
-import edu.asu.secure.SynnovationBank.DTO.NotificationsType;
 import edu.asu.secure.SynnovationBank.Dao.NotificationsDAO;
 import edu.asu.secure.SynnovationBank.Dao.NotificationsTypeDAO;
 import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
-import edu.asu.secure.SynnovationBank.Service.TechAccountAccessService;
+import edu.asu.secure.SynnovationBank.Service.MerchantTechAccountAccessService;
 
 @Service
 @Transactional
 
-public class MerchantTechAccountAccessServiceImpl implements TechAccountAccessService {
+public class MerchantTechAccountAccessServiceImpl implements MerchantTechAccountAccessService {
 
 	@Autowired
 	private PersonDAO personDAO;

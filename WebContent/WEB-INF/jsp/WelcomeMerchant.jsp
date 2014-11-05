@@ -28,7 +28,7 @@
 <li><a href="ViewMerchantTransactions">View Transactions</a></li>
 <li><a href="MerchantNotifications">Notifications</a></li>
 <li><a href="ChangeMerchantInfo">Change information</a></li>
-<li><a href="TechMerchantAccountAccess">Technical Account Access</a></li>
+<li><a href="MerchantTechAccountAccess">Technical Account Access</a></li>
 </ul>
 
 
