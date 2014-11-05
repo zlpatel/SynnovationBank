@@ -11,14 +11,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.asu.secure.SynnovationBank.DTO.Account;
+import edu.asu.secure.SynnovationBank.DTO.Notifications;
+import edu.asu.secure.SynnovationBank.DTO.NotificationsType;
 import edu.asu.secure.SynnovationBank.DTO.Person;
 import edu.asu.secure.SynnovationBank.DTO.TransactionDetails;
 import edu.asu.secure.SynnovationBank.DTO.TransactionType;
 import edu.asu.secure.SynnovationBank.DTO.Transactions;
 import edu.asu.secure.SynnovationBank.Dao.AccountDAO;
+import edu.asu.secure.SynnovationBank.Dao.NotificationsDAO;
+import edu.asu.secure.SynnovationBank.Dao.NotificationsTypeDAO;
 import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
 import edu.asu.secure.SynnovationBank.Dao.TransactionTypeDAO;
 import edu.asu.secure.SynnovationBank.Dao.TransactionsDAO;
+import edu.asu.secure.SynnovationBank.DaoImpl.NotificationsDAOImpl;
+import edu.asu.secure.SynnovationBank.DaoImpl.NotificationsTypeDAOImpl;
 import edu.asu.secure.SynnovationBank.Service.CreditService;
 
 @Service
@@ -35,6 +41,11 @@ public class CreditServiceImpl implements CreditService {
 	private TransactionTypeDAO transactionTypeDAO;
 	@Autowired
 	private TransactionsDAO transactionsDAO;
+	@Autowired
+	private NotificationsDAO notificationsDAO;
+	@Autowired
+	private NotificationsTypeDAO notificationsTypeDAO;
+	
 	
 	@Override
 	public boolean creditAmount(String userName,String amount) {
@@ -49,16 +60,7 @@ public class CreditServiceImpl implements CreditService {
 		}
 		
 		
-		if(Float.parseFloat(amount)>500)
-		{
-		System.out.println("***************************************************");
-		System.out.println("CREDIT AMOUNT GREATER THAN $500--- CRITIAL TRANSACTION -- NEEDS APPROVAL !");
-		System.out.println("***************************************************");
-		return false;
-		}
-		
-		
-		
+				
 		
 		System.out.println("***************************************************");
 		System.out.println("UPDATING BALANCE!");
@@ -94,7 +96,7 @@ public class CreditServiceImpl implements CreditService {
 		
 		TransactionDetails td=new TransactionDetails();
 		
-		TransactionType ttype=transactionTypeDAO.fetchTransactionType("CREDIT");
+		TransactionType ttype=transactionTypeDAO.fetchTransactionType("DEPOSIT");
 
 		
 		

@@ -20,6 +20,7 @@ import edu.asu.secure.SynnovationBank.FormBean.ExternalUserFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.InternalUserFormBean;
 import edu.asu.secure.SynnovationBank.Service.AddExternalUserService;
 import edu.asu.secure.SynnovationBank.Service.AddInternalUserService;
+import edu.asu.secure.SynnovationBank.Service.AdminNotificationsService;
 import edu.asu.secure.SynnovationBank.Service.AdminUserAccountsService;
 
 /**
@@ -37,6 +38,8 @@ public class AdminController {
 	private AddInternalUserService addInternalUserService;
 	@Autowired
 	private AdminUserAccountsService adminUserAccountsService;
+	@Autowired
+	private AdminNotificationsService adminNotificationService;
 	
 
 	protected static Logger logger = Logger.getLogger("controller");
@@ -135,13 +138,10 @@ public class AdminController {
      * @return the name of the JSP page
      */
     @RequestMapping(value = "/admincriticaltransactions", method = RequestMethod.GET)
-    public String getAdminAdminCriticalTransactionsPage() {
+    public String getAdminAdminCriticalTransactionsPage(ModelMap model) {
     	logger.debug("Received request to show admin critical transactions page");
     
-    	// Do your work here. Whatever you like
-    	// i.e call a custom service to do your business
-    	// Prepare a model to be used by the JSP page
-    	
+        model.put("adminCriticalNotifFormBean", adminNotificationService.notifications());
     	// This will resolve to /WEB-INF/jsp/AdminCriticalTransactions.jsp
     	return "AdminCriticalTransactions";
 	}

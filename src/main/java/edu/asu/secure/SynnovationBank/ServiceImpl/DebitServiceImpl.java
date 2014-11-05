@@ -82,7 +82,7 @@ public class DebitServiceImpl implements DebitService{
 		
 		TransactionDetails td=new TransactionDetails();
 		
-		TransactionType ttype=transactionTypeDAO.fetchTransactionType("debit");
+		TransactionType ttype=transactionTypeDAO.fetchTransactionType("ATM");
 
 		
 		
