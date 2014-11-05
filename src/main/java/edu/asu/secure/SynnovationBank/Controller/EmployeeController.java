@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import edu.asu.secure.SynnovationBank.DTO.Notifications;
+
 import edu.asu.secure.SynnovationBank.FormBean.*;
 import edu.asu.secure.SynnovationBank.Service.*;
 
@@ -54,7 +54,7 @@ public class EmployeeController {
     public String getUserTransactionsPage(@RequestParam(value="error", required=false) boolean error,ModelMap model) {
     	
     	if(error==true){
-    		model.put("error","you don't have an access/ Account number doesn't exist!");
+    		model.put("error","Sorry! You don't have an access. A request has been sent to the user");
     	}
     	else{
     		model.put("error","");
@@ -78,9 +78,10 @@ public class EmployeeController {
 			model.put("userTransaction", employeeUserTransactionService.getTransactions(usertransactionFormBean.getUserName()));
 			
 		}else{
-			
-			model.put("error", "Sorry! You don't have access to this account. A request has been sent to the user");
-			employeeUserTransactionService.sendNotification();
+			System.out.println("You are now sending a notification to the user");
+			System.out.println("The usernaem"+usertransactionFormBean.getUserName());
+			employeeUserTransactionService.sendNotification(usertransactionFormBean.getUserName());
+			model.put("error", true);
 			return "redirect:employeeviewtransactions";
 		}
     

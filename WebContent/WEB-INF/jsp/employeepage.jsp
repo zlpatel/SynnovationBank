@@ -33,9 +33,9 @@
 		  <td><b>First Name</b></td>
 		  <td><b>Last Name</b></td>
 		  <td><b>User Name</b>
-          <td><b>Notifications</b></td>
+          <td><b>Notification</b></td>
           
-          <td colspan="2" align="center"><b>Action</b></td>
+         
          </tr>
       <c:forEach  items="${empNotifFormBean}" var="empNotif">
         <tr> 

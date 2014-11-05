@@ -27,6 +27,7 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 	@Override
 	public long insertNotification(String userId, Notifications notifications) {
 		Session session = null;
+		System.out.println("YOu are in DAO Impl");
 		long issueId = -1;
 		try{
 			session = factory.getCurrentSession();

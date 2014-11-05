@@ -39,6 +39,7 @@ public class EmployeeUserAccountsServiceImpl implements EmployeeUserAccountServi
     		
     		empUserAccFormBean.setFirstName(per.getFirstName());
     		empUserAccFormBean.setLastName(per.getLastName());
+    		empUserAccFormBean.setUserId(per.getUserId());
     		empUserAccFormBean.setGetAccountNumber(per.getAccount().getAccountNumber());
     		empUserAccFormBean.setGetBalance(per.getAccount().getBalance());
     		list.add(empUserAccFormBean);

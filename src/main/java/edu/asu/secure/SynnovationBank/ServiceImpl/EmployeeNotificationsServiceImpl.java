@@ -38,7 +38,7 @@ public class EmployeeNotificationsServiceImpl implements EmployeeNotificationsSe
 	    		empNotifFormBean.setFirstName(notif.getPerson().getFirstName());
 	    		empNotifFormBean.setLastName(notif.getPerson().getLastName());
 	    		empNotifFormBean.setUserName(notif.getPerson().getUserId());
-	    		empNotifFormBean.setNotifications(notif.getNotificationsType());
+	    		empNotifFormBean.setNotifications(notif.getNotificationsType().getDescription());
 	    		list.add(empNotifFormBean);
 	    	}
 	    	return list;

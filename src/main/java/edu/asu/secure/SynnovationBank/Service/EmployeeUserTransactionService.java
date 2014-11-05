@@ -10,11 +10,11 @@ public interface EmployeeUserTransactionService {
 
 	
 	
-	public List<UserTransactionFormBean> getTransactions(String accountNumber);
+	public List<UserTransactionFormBean> getTransactions(String userName);
 
 	public boolean checkFlag(String userName);
 
-	public void sendNotification();
+	public void sendNotification(String UserName);
 
 	
 

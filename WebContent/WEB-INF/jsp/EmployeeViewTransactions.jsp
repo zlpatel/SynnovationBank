@@ -14,6 +14,32 @@
 	
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+	
+	function validateForm()
+	{
+
+	 var username = document.getElementById("username").value;
+	 
+
+	  if (username === "" ) 
+	  {
+	  	alert("Please fill all fields.");
+	  	return false;
+	  }
+	 
+		
+		var regex3 = new RegExp("^[a-zA-Z0-9]+$");
+		 if(!regex3.test(username))
+		{
+			alert('Please remove special characters and spaces from Username');
+			return false; 
+		}
+	  	    
+	   
+	  
+	 }</script>
+	
 </head>
 <body>
 <h2>Employee Page</h2>
@@ -30,9 +56,9 @@
 <form action ="viewtransactions" method="post" commandName="usertransactionformbean">
 
 
-<input name="userName"  class = "form-control"  placeholder = "User Name" type="text" maxlength="15" value="${usertransactionformbean.userName}">
-
-<input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
+<input name="userName"  id="username" class = "form-control"  placeholder = "User Name" type="text" maxlength="15" value="${usertransactionformbean.userName}">
+<input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="document.forms[0].action = 'viewtransactions' ;return validateForm();"/>
+<!-- <input class="btn btn-lg btn-primary" type="submit" value="Submit"/>-->
 
 <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	
