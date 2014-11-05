@@ -27,12 +27,12 @@ public class TestMethods {
 	
 	public static void updateOTP(){
 		PersonDAOImpl impl = new PersonDAOImpl();		
-		impl.updateOTP("cust1", "onetime");
+		impl.updateOTP("cust1", "jeffrey.isaac@gmail.com", "onetime");
 	}
 	
 	public static void authenticateOTP(){
 		PersonDAOImpl impl = new PersonDAOImpl();		
-		boolean ret = impl.authenticateOTP("cust1", "jeffrey.isaac@gmail.com", "onetime");
+		boolean ret = impl.authenticateOTP("cust1", "onetime");
 		System.out.println("OTP Valid = "+ret);
 	}
 	
