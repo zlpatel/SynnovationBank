@@ -23,7 +23,7 @@ public class EmployeeNotificationsServiceImpl implements EmployeeNotificationsSe
 	     
 	    
 	 
-	    @Transactional
+	    @Override
 	    public List<EmpNotifFormBean> notifications() {
 	    	 
 	    	EmpNotifFormBean empNotifFormBean=null;

@@ -1,7 +1,5 @@
 package edu.asu.secure.SynnovationBank.FormBean;
 
-import edu.asu.secure.SynnovationBank.DTO.NotificationsType;
-import edu.asu.secure.SynnovationBank.DTO.Person;
 
 public class EmpNotifFormBean {
 
