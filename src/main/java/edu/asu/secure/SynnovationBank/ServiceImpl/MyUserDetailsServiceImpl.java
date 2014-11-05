@@ -21,6 +21,7 @@ import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
 import edu.asu.secure.SynnovationBank.Service.MyUserDetailsService;
 
 @Service
+@Transactional
 public class MyUserDetailsServiceImpl implements UserDetailsService, MyUserDetailsService {
 	
 	protected static Logger logger = Logger.getLogger("service");

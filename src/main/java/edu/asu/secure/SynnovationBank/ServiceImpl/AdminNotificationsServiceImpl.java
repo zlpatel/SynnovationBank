@@ -23,7 +23,7 @@ public class AdminNotificationsServiceImpl implements AdminNotificationsService 
 	     
 	    
 	 
-	    @Transactional
+	    @Override
 	    public List<AdminCriticalTransactionsFormBean> notifications() {
 	    	 
 	    	AdminCriticalTransactionsFormBean adminNotifFormBean=null;
@@ -51,4 +51,34 @@ public class AdminNotificationsServiceImpl implements AdminNotificationsService 
 	    	return list;
 	         
 	    }
+	    
+
+	  /*  @Override
+	    public List<AdminCriticalTransactionsFormBean> merchantRequests() {
+	    	 
+	    	AdminCriticalTransactionsFormBean adminNotifFormBean=null;
+	    	//System.out.println("Hi it is here!");
+	    	List<Notifications> notification=notificationsDAO.fetchNotifications("E");
+	    	//System.out.println("Hi it is here 2!");
+	    	List<AdminCriticalTransactionsFormBean> list=new ArrayList<AdminCriticalTransactionsFormBean>();
+	    	
+	    	for(Notifications notif: notification){
+	    		adminNotifFormBean = new AdminCriticalTransactionsFormBean();
+	    		
+	    		//from notifications table
+	    		//get username
+	    		//account number from person table
+	    		//transaction id
+	    		
+	    		adminNotifFormBean.setFirstName(notif.getPerson().getFirstName());
+	    		adminNotifFormBean.setLastName(notif.getPerson().getLastName());
+	    		adminNotifFormBean.setUserName(notif.getPerson().getUserId());
+	    		adminNotifFormBean.setNotifications(notif.getNotificationsType().getDescription());
+	    		adminNotifFormBean.setAccountNumber(notif.getPerson().getAccount().getAccountNumber());
+	    		adminNotifFormBean.setTransactionAmount(notif.getTransaction().getAmount());
+	    		list.add(adminNotifFormBean);
+	    	}
+	    	return list;
+	         
+	    }*/
 }

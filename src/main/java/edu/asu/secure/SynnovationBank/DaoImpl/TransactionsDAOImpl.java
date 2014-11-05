@@ -1,17 +1,10 @@
 package edu.asu.secure.SynnovationBank.DaoImpl;
 
-import java.util.Iterator;
-import java.util.Set;
-
-import org.hibernate.Criteria;
-import org.hibernate.FetchMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import edu.asu.secure.SynnovationBank.DTO.TransactionDetails;
 import edu.asu.secure.SynnovationBank.DTO.Transactions;
 import edu.asu.secure.SynnovationBank.Dao.TransactionsDAO;
 
@@ -40,26 +33,6 @@ public class TransactionsDAOImpl implements TransactionsDAO {
 	}
 
 	@Override
-	public boolean updateTransactionCompleteFlag(Long transactionId, String completeFlag) {
-		Session session = null;
-		try{
-			session = factory.getCurrentSession();
-			Transactions transaction = (Transactions)session.get(Transactions.class, transactionId);
-			if(transaction != null)
-				transaction.setCompleteFlag(completeFlag);
-			session.update(transaction);
-			return true;
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			return false;
-		}
-		finally{
-			//HibernateUtil.shutdown();
-		}
-	}
-
-	@Override
 	public Transactions fetchTransactionById(Long transactionId) {
 		Session session = null;
 		Transactions transactions = null;
@@ -71,35 +44,6 @@ public class TransactionsDAOImpl implements TransactionsDAO {
 		catch(Exception e){
 			e.printStackTrace();
 			return transactions;
-		}
-		finally{
-			//HibernateUtil.shutdown();
-		}
-	}
-
-	@Override
-	public long fetchCreditorAccountNo(Long transactionId) {
-		Session session = null;
-		Long creditorAccount = -1L;
-		try{
-			session = factory.getCurrentSession();
-			Criteria criteria = session.createCriteria(Transactions.class);
-			criteria.createCriteria("transactionDetails");
-			criteria.setFetchMode("transactionDetails",FetchMode.JOIN);
-			criteria.createCriteria("account");
-			criteria.setFetchMode("account",FetchMode.JOIN);
-			criteria.createCriteria("transactionType");
-			criteria.setFetchMode("transactionType",FetchMode.JOIN);
-			criteria.add(Restrictions.eq("transactionType.transactionName", "CREDIT"));
-			Transactions transaction = (Transactions)criteria.uniqueResult();
-			Set<TransactionDetails> transactionDetails = transaction.getTransactionDetails();
-			Iterator<TransactionDetails> itr = transactionDetails.iterator();
-			creditorAccount = itr.next().getAccount().getAccountNumber();
-			return creditorAccount;
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			return creditorAccount;
 		}
 		finally{
 			//HibernateUtil.shutdown();
