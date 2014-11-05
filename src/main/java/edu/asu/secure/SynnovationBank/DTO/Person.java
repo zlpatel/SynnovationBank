@@ -32,7 +32,12 @@ public class Person {
 	private Date otpExpiry;
 	private String allowAccessFlag;	
 	private String role;
-	
+	private String accountLockedFlag;
+	private String piiRequestFlag;
+	private String ssn;
+	private int loginAttempts;
+	private Date lastLoginFailure;
+
 	private Set<Notifications> notifications;
 	private Account account;
 	private Set<ReportedIssues> issues;
@@ -155,6 +160,52 @@ public class Person {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	@Column(name="account_locked_flag")
+	public String getAccountLockedFlag() {
+		return accountLockedFlag;
+	}
+
+	public void setAccountLockedFlag(String accountLockedFlag) {
+		this.accountLockedFlag = accountLockedFlag;
+	}
+	
+	@Column(name="piirequest_flag")
+	public String getPiiRequestFlag() {
+		return piiRequestFlag;
+	}
+
+	public void setPiiRequestFlag(String piiRequestFlag) {
+		this.piiRequestFlag = piiRequestFlag;
+	}
+
+	@Column(name="ssn", length = 9)
+	public String getSsn() {
+		return ssn;
+	}
+
+	public void setSsn(String ssn) {
+		this.ssn = ssn;
+	}
+
+	@Column(name="login_attempts")
+	public int getLoginAttempts() {
+		return loginAttempts;
+	}
+
+	public void setLoginAttempts(int loginAttempts) {
+		this.loginAttempts = loginAttempts;
+	}
+
+	@Column(name="lastlogin_failure")
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getLastLoginFailure() {
+		return lastLoginFailure;
+	}
+
+	public void setLastLoginFailure(Date lastLoginFailure) {
+		this.lastLoginFailure = lastLoginFailure;
 	}
 
 	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)

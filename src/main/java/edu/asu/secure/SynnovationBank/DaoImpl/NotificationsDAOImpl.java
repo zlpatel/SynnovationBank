@@ -108,6 +108,37 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 	}
 
 	@Override
+	public List<Notifications> fetchNotifications(String empOrAdmin, long notificationTypeId) {
+		Session session = null;
+		List<Notifications> list = new ArrayList<Notifications>();
+		@SuppressWarnings("rawtypes")
+		List rawList = null;
+		try{
+			session = factory.getCurrentSession();
+			Criteria criteria = session.createCriteria(Notifications.class);
+			criteria.add(Restrictions.eq("empAdminFlag",empOrAdmin));
+			criteria.createCriteria("person");
+			criteria.setFetchMode("person",FetchMode.JOIN);
+			criteria.createCriteria("notificationsType");
+			criteria.setFetchMode("notificationsType",FetchMode.JOIN);
+			criteria.add(Restrictions.eq("notificationsType.notificationTypeId", notificationTypeId));
+			rawList = criteria.list();
+			@SuppressWarnings("rawtypes")
+			Iterator itr = rawList.iterator();
+			while(itr.hasNext())
+				list.add((Notifications)itr.next());
+			return list;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return list;
+		}
+		finally{
+			//HibernateUtil.shutdown();
+		}
+	}
+
+	@Override
 	public Notifications fetchByNotificationId(Long notificationId) {
 		Session session = null;
 		Notifications msg = null;
