@@ -45,7 +45,7 @@ public class AccountDAOImpl implements AccountDAO {
 			Criteria criteria = session.createCriteria(Person.class);
 			criteria.add(Restrictions.eq("account.accountNumber",accNo));
 			Person person = (Person)criteria.uniqueResult();
-			if(person != null && person.getAllowAccessFlag())
+			if(person != null && person.getAllowAccessFlag().equals("Y"))
 				return true;
 			else
 				return false;
