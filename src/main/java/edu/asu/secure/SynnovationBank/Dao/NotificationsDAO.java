@@ -11,6 +11,7 @@ public interface NotificationsDAO {
 	
 	public boolean updateResolveNotification(Long notificationId, Person person);
 	
+	public List<Notifications> fetchNotifications(String empOrAdmin);
 	public List<Notifications> fetchNotifications(String empOrAdmin, String resolvedFlag);
 	public List<Notifications> fetchNotifications(String empOrAdmin, long notificationTypeId, String resolvedFlag);
 	public Notifications fetchByNotificationId(Long notificationId);

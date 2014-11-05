@@ -38,6 +38,24 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 
 	@Override
+	public Account fetchAccountByNumber(Long accNo) {
+		Session session = null;
+		Account account = null;
+		try {
+			session = factory.getCurrentSession();
+			account = (Account)session.get(Account.class, accNo);
+			return account;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return account;
+		}
+		finally{
+			//HibernateUtil.shutdown();
+		}
+	}
+
+	@Override
 	public boolean fetchAllowAccessFlag(Long accNo) {
 		Session session = null;
 		try{
