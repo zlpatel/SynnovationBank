@@ -22,21 +22,24 @@
 <ul class="nav nav-tabs">
     <li class="active"><a href="#">Notifications</a></li>
     <li><a href="employeeuseraccounts">User Accounts</a></li>
-    <li><a href="employeechangepassword">Change Password</a></li>
+    <li><a href="employeeviewmerchanttransactions">Merchant Transactions</a></li>
     <li><a href="employeeviewtransactions">View Customer Transactions</a></li>
 </ul>
 
 <p align="center">Notifications</p>
 <form name ="employee_notifications" method = "post" commandName="empNotifFormBean">
 		<table id = "transaction" width="500" border="0" bordercolor="black" class ="table table-striped">
+		<thead>
 		<tr>
-		  <td><b>First Name</b></td>
-		  <td><b>Last Name</b></td>
-		  <td><b>User Name</b>
-          <td><b>Notification</b></td>
-          
-         
+			
+			
+		  	<th>First Name</th>
+		  	<th>Last Name</th>
+		  	<th>User Name</th>
+          	<th>Notification</th>
          </tr>
+        </thead>
+        <tbody> 
       <c:forEach  items="${empNotifFormBean}" var="empNotif">
         <tr> 
           <td>${empNotif.firstName}</td>
@@ -45,7 +48,9 @@
           <td>${empNotif.notifications}</td>
           
         </tr>
+        
       </c:forEach>
+      </tbody>
       </table>
       </form>
 

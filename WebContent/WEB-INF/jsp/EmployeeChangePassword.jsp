@@ -22,8 +22,12 @@
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
     <li><a href="employeeuseraccounts">User Accounts</a></li>
-    <li class="active"><a href="#">Change Password</a></li>
+    
+   
+    <li class="active"><a href="#">Merchant Transactions</a></li>
+    <li><a href="employeeviewtransactions">View Customer Transactions</a></li>
 </ul>
+
 
 <p align="center">Change Password Page</p>
 

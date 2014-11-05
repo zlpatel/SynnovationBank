@@ -30,11 +30,7 @@ public class EmployeeController {
 	private EmployeeUserTransactionService employeeUserTransactionService;
 
 	protected static Logger logger = Logger.getLogger("controller");
-	/**
-     * Handles and retrieves the employee JSP page that only employees can see
-     * 
-     * @return the name of the JSP page
-     */
+	
     @RequestMapping(value = "/home", method = RequestMethod.GET)
    	 public String getEmployeePage( ModelMap model) {
     		 
@@ -101,20 +97,14 @@ public class EmployeeController {
     	return "EmployeeUserAccounts";
 	}
     
-    /**
-     * Handles and retrieves the admin JSP page that only admins can see
-     * 
-     * @return the name of the JSP page
-     */
-    @RequestMapping(value = "/employeechangepassword", method = RequestMethod.GET)
-    public String getEmployeeChangePasswordPage() {
-    	logger.debug("Received request to show employee change password page");
-    
-    	// Do your work here. Whatever you like
-    	// i.e call a custom service to do your business
-    	// Prepare a model to be used by the JSP page
-    	
-    	// This will resolve to /WEB-INF/jsp/AdminChangePassword.jsp
+   
+    @RequestMapping(value = "/employeeviewmerchanttransactions", method = RequestMethod.GET)
+    public String getEmployeeChangePasswordPage( ModelMap model) {
+		 
+        //model.put("empNotification", new Notifications());
+        model.put("empNotifFormBean", employeeNotificationService.notifications());
+        logger.debug("Received request to show employee page");
+       
     	return "EmployeeChangePassword";
 	}
 }
