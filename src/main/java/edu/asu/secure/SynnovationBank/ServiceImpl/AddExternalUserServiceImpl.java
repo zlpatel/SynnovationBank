@@ -43,11 +43,11 @@ public class AddExternalUserServiceImpl implements AddExternalUserService{
 	person.setPassword(HashCode.getHashPassword(addexternaluserformbean.getPassword()));
 	person.setDateOfBirth(new Date(1220227200));
 	person.setRole("ROLE_CUST");
-	person.setAllowAccessFlag(false);
+	person.setAllowAccessFlag("N");
 
 	Account account = new Account();
 	account.setPerson(person);
-//	account.setBalance(1000.0f);
+	account.setBalance(1000.0f);
 	account.setRoutingNumber(12345);
 	account.setAccountType("Checking");
 

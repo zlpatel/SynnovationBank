@@ -30,7 +30,7 @@
 </ul>
 
 <br><br>
-<form action="admincriticaltransactions" commandName="adminCriticalNotifFormBean" method="post" >
+<form action="admincriticaltransactions" commandName="getadmincriticaltransactions" method="post" >
 <table class="table" class ="table table-striped">
 <thead>
             <tr>
@@ -48,8 +48,8 @@
           <td>${notification.accountNumber}</td>
           <td>${notification.notification}</td>
           <td>${notification.transactionAmount}</td>
-           <td align="center"><input style="width:75px;" name="Accept" type="Accept" value= "Modify" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'adminmodifyexternaluser?userId=${notification}'; ;return true;"/></td>  
-          <td align="center"><input  style="width:75px;" name="Decline" type="Decline" value= "Delete" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'admintransactiondeclined?userId=${notification.userName}'; ;return true;"/></td> 
+           <td align="center"><input style="width:75px;" name="Modify" type="submit" value= "Modify" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'adminmodifyexternaluser?userId=${notification.username}'; ;return true;"/></td>  
+          <td align="center"><input  style="width:75px;" name="Delete" type="submit" value= "Delete" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'admindeleteexternaluser?userId=${notification.username}'; ;return true;"/></td> 
           <!-- <td align="center"><input style="width:75px;" name="approve" type="submit" value= "Approve" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = '/notificationAccepted';;return true;"/></td>  
           <td align="center"><input  style="width:75px;" name="deny" type="submit" value= "Deny" class = "btn btn-primary"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoDenied.html?authUsername=${person.ID}'; ;return true;"/></td>--> 
         </tr>

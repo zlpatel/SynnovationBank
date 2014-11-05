@@ -5,10 +5,13 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 
 @Entity
@@ -22,6 +25,8 @@ public class NotificationsType {
 	private Set<Notifications> notifications;
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.TABLE, generator="NOTF_TYPE_SEQ_GEN")
+	@TableGenerator(name="NOTF_TYPE_SEQ_GEN", table="notiftype_pk_table", pkColumnName="seq_key", pkColumnValue="seq_key", allocationSize=1)
 	@Column(name="notification_type_id")
 	public long getNotificationTypeId() {
 		return notificationTypeId;

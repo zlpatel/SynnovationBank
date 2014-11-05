@@ -2,6 +2,10 @@ package edu.asu.secure.SynnovationBank.Controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -97,7 +101,7 @@ public class EmployeeController {
     	
     	return "EmployeeUserAccounts";
 	}
-    
+       
    
     @RequestMapping(value = "/employeeviewmerchanttransactions", method = RequestMethod.GET)
     public String getEmployeeChangePasswordPage( ModelMap model) {
@@ -105,7 +109,35 @@ public class EmployeeController {
     	
         	logger.debug("Received request to show admin critical transactions page");
         
-            model.put("adminCriticalNotifFormBean", adminNotificationService.merchantRequests());
+            model.put("adminCriticalNotifFormBean", employeeNotificationService.merchantRequestsCriticalTrans());
     	return "EmployeeChangePassword";
 	}
+    
+
+    @RequestMapping(value = "/employeetransactiondeclined", method = RequestMethod.POST)
+    public String adminTransactionDeclined(@RequestParam(value="userId", required=true) String userId, HttpServletRequest request,  
+            HttpServletResponse response, ModelMap model) {
+    	logger.debug("Received request to delete user with Id: " + userId);
+    	
+    	employeeNotificationService.sendTransactionDeclinedNotification(userId);
+        	return "redirect:admincriticaltransactions";
+    	
+//    	else
+//    	{
+//			model.put("error","true");
+//			logger.debug("Some error deleting user!");
+//			return "AdminExternalUserAccounts";
+//    	}   	
+	}
+    
+    @RequestMapping(value = "/employeetransactionaccepted", method = RequestMethod.POST)
+    public String adminTransactionAccepted(@ModelAttribute("adminCriticalNotifFormBean")
+    AdminCriticalTransactionsFormBean adminCriticalNotifFormBean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
+    	
+    	logger.debug("Received request to accept critical transaction");
+    	
+    	employeeNotificationService.sendTransactionAcceptedNotification(adminCriticalNotifFormBean);
+        	return "redirect:admincriticaltransactions";
+    }
+    
 }

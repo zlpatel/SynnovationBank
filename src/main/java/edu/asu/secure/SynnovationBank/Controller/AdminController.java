@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import edu.asu.secure.SynnovationBank.FormBean.AdminCriticalTransactionsFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.ExternalUserFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.InternalUserFormBean;
 import edu.asu.secure.SynnovationBank.Service.AddExternalUserService;
@@ -142,11 +141,10 @@ public class AdminController {
     public String getAdminAdminCriticalTransactionsPage(ModelMap model) {
     	logger.debug("Received request to show admin critical transactions page");
     
-        model.put("adminCriticalNotifFormBean", adminNotificationService.getCriticalTransactionNotifications());
+        model.put("adminCriticalNotifFormBean", adminNotificationService.notifications());
     	// This will resolve to /WEB-INF/jsp/AdminCriticalTransactions.jsp
     	return "AdminCriticalTransactions";
 	}
-    
     
     /**
      * Handles and retrieves the admin JSP page that only admins can see
@@ -345,33 +343,4 @@ public class AdminController {
 			return "AdminExternalUserAccounts";
     	}   	
 	}   
-    
-    //getadmincriticaltransactions
-    
-    @RequestMapping(value = "/admintransactiondeclined", method = RequestMethod.POST)
-    public String adminTransactionDeclined(@RequestParam(value="userId", required=true) String userId, HttpServletRequest request,  
-            HttpServletResponse response, ModelMap model) {
-    	logger.debug("Received request to delete user with Id: " + userId);
-    	
-    	adminNotificationService.sendTransactionDeclinedNotification(userId);
-        	return "redirect:admincriticaltransactions";
-    	
-//    	else
-//    	{
-//			model.put("error","true");
-//			logger.debug("Some error deleting user!");
-//			return "AdminExternalUserAccounts";
-//    	}   	
-	}   
-    
-    @RequestMapping(value = "/admintransactionaccepted", method = RequestMethod.POST)
-    public String adminTransactionAccepted(@ModelAttribute("adminCriticalNotifFormBean")
-    AdminCriticalTransactionsFormBean adminCriticalNotifFormBean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
-    	
-    	logger.debug("Received request to accept critical transaction");
-    	
-    	adminNotificationService.sendTransactionAcceptedNotification(adminCriticalNotifFormBean);
-        	return "redirect:admincriticaltransactions";
-    }
-    
 }

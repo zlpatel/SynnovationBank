@@ -38,24 +38,6 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 
 	@Override
-	public Account fetchAccountByNumber(Long accNo) {
-		Session session = null;
-		Account account = null;
-		try {
-			session = factory.getCurrentSession();
-			account = (Account)session.get(Account.class, accNo);
-			return account;
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			return account;
-		}
-		finally{
-			//HibernateUtil.shutdown();
-		}
-	}
-
-	@Override
 	public boolean fetchAllowAccessFlag(Long accNo) {
 		Session session = null;
 		try{
@@ -63,7 +45,7 @@ public class AccountDAOImpl implements AccountDAO {
 			Criteria criteria = session.createCriteria(Person.class);
 			criteria.add(Restrictions.eq("account.accountNumber",accNo));
 			Person person = (Person)criteria.uniqueResult();
-			if(person != null && person.getAllowAccessFlag())
+			if(person != null && person.getAllowAccessFlag().equals("Y"))
 				return true;
 			else
 				return false;

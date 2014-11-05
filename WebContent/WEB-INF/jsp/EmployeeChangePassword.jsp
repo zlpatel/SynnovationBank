@@ -22,14 +22,12 @@
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
     <li><a href="employeeuseraccounts">User Accounts</a></li>
-    
-   
     <li class="active"><a href="#">Merchant Transactions</a></li>
     <li><a href="employeeviewtransactions">View Customer Transactions</a></li>
 </ul>
 <br><br>
 <p align="center">Merchant Requests</p>
-<form action="admincriticaltransactions" commandName="getadmincriticaltransactions" method="post" >
+<form action="employeecriticaltransactions" commandName="getadmincriticaltransactions" method="get" >
 <table class="table" class ="table table-striped">
 <thead>
             <tr>
@@ -47,8 +45,8 @@
           <td>${notification.accountNumber}</td>
           <td>${notification.notification}</td>
           <td>${notification.transactionAmount}</td>
-           <td align="center"><input style="width:75px;" name="Modify" type="submit" value= "Accept" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'adminmodifyexternaluser?userId=${notification}'; ;return true;"/></td>  
-          <td align="center"><input  style="width:75px;" name="Delete" type="submit" value= "Decline" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'admindeleteexternaluser?userId=${notification}'; ;return true;"/></td> 
+           <td align="center"><input style="width:75px;" name="Modify" type="submit" value= "Accept" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'employeetransactionaccepted?userId=${notification}'; ;return true;"/></td>  
+          <td align="center"><input  style="width:75px;" name="Delete" type="submit" value= "Decline" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'employeetransactiondeclined?userId=${notification.userName}'; ;return true;"/></td> 
           
         </tr>
       </c:forEach>
