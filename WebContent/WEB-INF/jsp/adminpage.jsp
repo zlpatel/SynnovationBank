@@ -38,10 +38,10 @@
 <table class="table" class ="table table-striped">
         <thead>
             <tr>
-                <th>Sr. No.</th>
-                <th>Title</th>
-                <th>Date</th>
-                <th>Action</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>Notification</th>
             </tr>
         </thead>
         <tbody>
