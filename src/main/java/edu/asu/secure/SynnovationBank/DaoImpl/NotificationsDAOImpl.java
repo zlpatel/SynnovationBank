@@ -42,7 +42,7 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 					set.add(notifications);
 					person.setNotifications(set);
 				}
-				person.setAllowAccessFlag("Y");
+				person.setAllowAccessFlag(true);
 				notifications.setPerson(person);
 			}
 			session.update(person);
