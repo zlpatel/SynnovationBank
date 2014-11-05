@@ -2,6 +2,7 @@ package edu.asu.secure.SynnovationBank.DaoImpl;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -67,7 +68,7 @@ public class PersonDAOImpl implements PersonDAO {
 			cal.add(Calendar.MINUTE, 10);
 			session = factory.getCurrentSession();
 			Person person = (Person)session.get(Person.class, userId);
-			if(person != null && person.getEmail().equals(email)){
+			if(person != null && person.getEmail().equals(email) && !person.getAccountLockedFlag()){
 				person.setOneTimePassword(otp);
 				person.setOtpExpiry(cal.getTime());
 			}
@@ -129,7 +130,7 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 
 	@Override
-	public boolean updateAccessFlag(String userId, String accessFlag) {
+	public boolean updateAccessFlag(String userId, boolean accessFlag) {
 		Session session = null;
 		try{
 			session = factory.getCurrentSession();
@@ -145,6 +146,86 @@ public class PersonDAOImpl implements PersonDAO {
 		}
 		finally{
 			//HibernateUtil.shutdown();
+		}
+	}
+
+	@Override
+	public boolean updateFailedLoginAttempt(String userId) {
+		Session session = null;
+		try{
+			Calendar cal = Calendar.getInstance();
+			Date currentDate = cal.getTime();
+			session = factory.getCurrentSession();
+			Person person = (Person)session.get(Person.class, userId);
+			if(person == null)
+				return false;
+			
+			if(person.getLastLoginFailure()==null)
+				person.setLoginAttempts(1);
+			else{
+				Calendar c = Calendar.getInstance();
+				c.setTime(person.getLastLoginFailure());
+				c.add(Calendar.DATE, 1);
+				if(currentDate.compareTo(c.getTime())>=0)
+					person.setLoginAttempts(1);
+				else if(person.getLoginAttempts()<2)
+					person.setLoginAttempts(person.getLoginAttempts()+1);
+				else if(person.getLoginAttempts()>=2){
+					person.setLoginAttempts(person.getLoginAttempts()+1);
+					person.setAccountLockedFlag(true);
+				}
+			}
+			person.setLastLoginFailure(currentDate);
+			session.update(person);
+			
+			return true;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+		finally{
+			//HibernateUtil.shutdown();
+		}
+	}
+
+	@Override
+	public boolean updatePIIRequestFlag(String userId, boolean piiRequestFlag) {
+		Session session = null;
+		try{
+			session = factory.getCurrentSession();
+			Person person = (Person)session.get(Person.class, userId);
+			if(person != null)
+				person.setPiiRequestFlag(piiRequestFlag);
+			session.update(person);
+			return true;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+		finally{
+			//HibernateUtil.shutdown();
+		}
+	}
+
+	@Override
+	public boolean resetFailedLoginAttempt(String userId) {
+		Session session = null;
+		try{
+			session = factory.getCurrentSession();
+			Person person = (Person)session.get(Person.class, userId);
+			if(person == null)
+				return false;
+			
+			person.setLoginAttempts(0);
+			person.setLastLoginFailure(null);
+			session.save(person);
+			return true;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return false;
 		}
 	}
 
