@@ -19,14 +19,13 @@
 
 
 
-
-
-
-
 <body>
 <center><h1> SYNNOVATION </h1> </center>
 
-<h2> Technical account access page !!</h2>
+<h2> PAY MERCHANT </h2>
+
+<div id="otp-error"><font color="red">${error}</font></div>
+
 <ul class="nav nav-tabs">
 <li><a href="credit_debit">Credit Amount</a> </li>
 <li><a href="debit">Debit Amount</a> </li>
@@ -41,13 +40,20 @@
 
 <br><br>
 
-<form action="techaccountaccess" method="get">
-<INPUT TYPE="radio" NAME="radios" VALUE="radio1">
-             Allow
-            <BR>
-            <INPUT TYPE="radio" NAME="radios" VALUE="radio2">
-             Disallow
-            <BR>
+<br><br>
+
+
+
+
+
+
+
+
+
+<form action="merchanttransferrequest" commandName="merchanttransferFormBean" method="get">
+<input id="receiverID" type="text" name="receiverID" placeholder="Enter the Merchant ID to whom you want to pay" style="width:800px;" value="${transferFormBean.receiverID}"/><br>
+<input id="transferAmount" type="text" name="transferAmount" placeholder="Enter the amount which you want to pay" style="width:800px;" value="${transferFormBean.transferAmount}"/><br>
+
 <input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
 </form>
 

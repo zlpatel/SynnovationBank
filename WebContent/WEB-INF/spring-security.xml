@@ -44,7 +44,7 @@
 				/>
 
 		<!-- enable csrf protection -->
-		<security:csrf/>
+		<!-- <security:csrf/> -->
 	</security:http>
 	
 	<bean id="authenticationTrustResolver"
