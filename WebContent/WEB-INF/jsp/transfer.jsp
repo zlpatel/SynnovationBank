@@ -50,7 +50,7 @@
 
 
 <form action="transferrequest" commandName="transferFormBean" method="get">
-<input id="receiverID" type="text" name="receiverID" placeholder="Enter the account number to which you want to tranfer the amount" style="width:800px;" value="${transferFormBean.receiverID}"/><br>
+<input id="receiverID" type="text" name="receiverID" placeholder="Enter the User ID to which you want to tranfer the amount" style="width:800px;" value="${transferFormBean.receiverID}"/><br>
 <input id="transferAmount" type="text" name="transferAmount" placeholder="Enter the amount which you want to tranfer" style="width:800px;" value="${transferFormBean.transferAmount}"/><br>
 
 <input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
