@@ -30,10 +30,10 @@ public class Person {
 	private String sitekey;
 	private String oneTimePassword;
 	private Date otpExpiry;
-	private String allowAccessFlag;	
+	private boolean allowAccessFlag;	
 	private String role;
-	private String accountLockedFlag;
-	private String piiRequestFlag;
+	private boolean accountLockedFlag;
+	private boolean piiRequestFlag;
 	private String ssn;
 	private int loginAttempts;
 	private Date lastLoginFailure;
@@ -145,11 +145,11 @@ public class Person {
 	}
 	
 	@Column(name="allow_access_flag")	
-	public String getAllowAccessFlag() {
+	public boolean getAllowAccessFlag() {
 		return allowAccessFlag;
 	}
 
-	public void setAllowAccessFlag(String allowAccessFlag) {
+	public void setAllowAccessFlag(boolean allowAccessFlag) {
 		this.allowAccessFlag = allowAccessFlag;
 	}
 
@@ -163,20 +163,20 @@ public class Person {
 	}
 
 	@Column(name="account_locked_flag")
-	public String getAccountLockedFlag() {
+	public boolean getAccountLockedFlag() {
 		return accountLockedFlag;
 	}
 
-	public void setAccountLockedFlag(String accountLockedFlag) {
+	public void setAccountLockedFlag(boolean accountLockedFlag) {
 		this.accountLockedFlag = accountLockedFlag;
 	}
 	
 	@Column(name="piirequest_flag")
-	public String getPiiRequestFlag() {
+	public boolean getPiiRequestFlag() {
 		return piiRequestFlag;
 	}
 
-	public void setPiiRequestFlag(String piiRequestFlag) {
+	public void setPiiRequestFlag(boolean piiRequestFlag) {
 		this.piiRequestFlag = piiRequestFlag;
 	}
 

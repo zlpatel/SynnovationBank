@@ -68,7 +68,7 @@ public class PersonDAOImpl implements PersonDAO {
 			cal.add(Calendar.MINUTE, 10);
 			session = factory.getCurrentSession();
 			Person person = (Person)session.get(Person.class, userId);
-			if(person != null && person.getEmail().equals(email) && person.getAccountLockedFlag().equals("N")){
+			if(person != null && person.getEmail().equals(email) && !person.getAccountLockedFlag()){
 				person.setOneTimePassword(otp);
 				person.setOtpExpiry(cal.getTime());
 			}
@@ -130,7 +130,7 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 
 	@Override
-	public boolean updateAccessFlag(String userId, String accessFlag) {
+	public boolean updateAccessFlag(String userId, boolean accessFlag) {
 		Session session = null;
 		try{
 			session = factory.getCurrentSession();
@@ -172,11 +172,31 @@ public class PersonDAOImpl implements PersonDAO {
 					person.setLoginAttempts(person.getLoginAttempts()+1);
 				else if(person.getLoginAttempts()>=2){
 						person.setLoginAttempts(person.getLoginAttempts()+1);
-						person.setAccountLockedFlag("Y");
+						person.setAccountLockedFlag(true);
 					}
 				}
 				session.update(person);
 			
+			return true;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+		finally{
+			//HibernateUtil.shutdown();
+		}
+	}
+
+	@Override
+	public boolean updatePIIRequestFlag(String userId, boolean piiRequestFlag) {
+		Session session = null;
+		try{
+			session = factory.getCurrentSession();
+			Person person = (Person)session.get(Person.class, userId);
+			if(person != null)
+				person.setPiiRequestFlag(piiRequestFlag);
+			session.update(person);
 			return true;
 		}
 		catch(Exception e){

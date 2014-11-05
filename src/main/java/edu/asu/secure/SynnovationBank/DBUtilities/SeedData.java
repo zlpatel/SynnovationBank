@@ -73,7 +73,7 @@ public class SeedData {
 		customer1.setDateOfBirth(Calendar.getInstance().getTime());
 		customer1.setEmail("jeffrey.isaac@gmail.com");
 		customer1.setAddress("1265 E University");
-		customer1.setAllowAccessFlag("N");
+		customer1.setAllowAccessFlag(false);
 		customer1.setRole("ROLE_CUST");
 		
 		Account cust1account = new Account();
@@ -92,7 +92,7 @@ public class SeedData {
 		customer2.setDateOfBirth(Calendar.getInstance().getTime());
 		customer2.setEmail("zeel.patel@gmail.com");
 		customer2.setAddress("1265 E University");
-		customer2.setAllowAccessFlag("Y");
+		customer2.setAllowAccessFlag(true);
 		customer2.setRole("ROLE_CUST");
 		
 		Account cust2account = new Account();
@@ -111,7 +111,7 @@ public class SeedData {
 		merchant1.setDateOfBirth(Calendar.getInstance().getTime());
 		merchant1.setEmail("rohit.kharat@gmail.com");
 		merchant1.setAddress("1265 E University");
-		merchant1.setAllowAccessFlag("Y");
+		merchant1.setAllowAccessFlag(true);
 		merchant1.setRole("ROLE_MERC");
 		
 		Account merc1account = new Account();
@@ -130,7 +130,7 @@ public class SeedData {
 		merchant2.setDateOfBirth(Calendar.getInstance().getTime());
 		merchant2.setEmail("pratit.kasat@gmail.com");
 		merchant2.setAddress("1265 E University");
-		merchant2.setAllowAccessFlag("N");
+		merchant2.setAllowAccessFlag(false);
 		merchant2.setRole("ROLE_MERC");
 		
 		Account merc2account = new Account();
@@ -149,7 +149,7 @@ public class SeedData {
 		employee.setDateOfBirth(Calendar.getInstance().getTime());
 		employee.setEmail("vignesh.narayanan@gmail.com");
 		employee.setAddress("1265 E University");
-		employee.setAllowAccessFlag("Y");
+		employee.setAllowAccessFlag(true);
 		employee.setRole("ROLE_BNK_EMPL");		
 		personDAO.insertUser(employee);
 		
@@ -161,7 +161,7 @@ public class SeedData {
 		admin.setDateOfBirth(Calendar.getInstance().getTime());
 		admin.setEmail("meghna.p@gmail.com");
 		admin.setAddress("1265 E University");
-		admin.setAllowAccessFlag("Y");
+		admin.setAllowAccessFlag(true);
 		admin.setRole("ROLE_ADMIN");	
 		personDAO.insertUser(admin);
 	}
