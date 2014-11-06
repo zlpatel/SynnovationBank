@@ -25,7 +25,7 @@
 
 
 <ul class="nav nav-tabs">
-<li><a href="MerchantCredit">Credit Amount</a> </li>
+<li class="active"><a href="#">Credit Amount</a> </li>
 <li><a href="MerchantDebit">Debit Amount</a> </li>
 <li><a href="MerchantTransfer">Transfers</a></li>
 <li><a href="ViewMerchantTransactions">View Transactions</a></li>

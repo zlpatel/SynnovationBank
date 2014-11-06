@@ -22,7 +22,7 @@
 <body>
 <center><h1> SYNNOVATION </h1> </center>
 
-<h2> Customer Notifications Page !!</h2>
+<h2> Merchant Notifications Page !!</h2>
 <ul class="nav nav-tabs">
 <li><a href="MerchantCredit">Credit Amount</a> </li>
 <li><a href="MerchantDebit">Debit Amount</a> </li>
@@ -32,6 +32,27 @@
 <li><a href="ChangeMerchantInfo">Change information</a></li>
 <li><a href="MerchantTechAccountAccess">Technical Account Access</a></li>
 </ul>
+
+<p align="center">Merchant Notifications</p>
+<form name ="merchant_notifications" method = "post" commandName="custNotifFormBean">
+		<table id = "transaction" width="500" border="0" bordercolor="black" class ="table table-striped">
+		<tr>
+		  <!--  td><b>First Name</b></td>
+		  <td><b>Last Name</b></td>
+		  <td><b>User Name</b-->
+          <td><b>Notification from employee</b></td>
+         </tr>
+      <c:forEach  items="${merchantNotifFormBean}" var="merchantNotif">
+        <tr> 
+          <!--  td>${empNotif.firstName}</td>
+          <td>${empNotif.lastName}</td>
+          <td>${empNotif.userName}</td-->
+          <td>${merchantNotif.notifications}</td>
+          
+        </tr>
+      </c:forEach>
+      </table>
+      </form>
 
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
