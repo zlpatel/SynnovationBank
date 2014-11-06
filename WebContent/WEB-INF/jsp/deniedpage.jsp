@@ -16,6 +16,6 @@
 </head>
 <body>
 <h1>Access Denied!</h1>
-<p>Only admins can see this page!</p>
+<p>You don't have an access to this page!</p>
 </body>
 </html>
