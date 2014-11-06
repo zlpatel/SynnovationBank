@@ -59,18 +59,17 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 	}
 
 	@Override
-	public boolean updateResolveFlag(Long notificationId, String resolvedFlag) {
+	public boolean updateResolveNotification(Long notificationId, Person person) {
 		Session session = null;
 		try{
 			session = factory.getCurrentSession();
 			Notifications notifications = (Notifications)session.get(Notifications.class, notificationId);
 			if(notifications != null){
-				notifications.setResolvedFlag(resolvedFlag);
-				session.update(notifications);
-				return true;
+				notifications.setPerson(person);
+				notifications.setResolvedFlag("Y");
 			}
-			else
-				return false;
+			session.update(notifications);
+			return true;
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -82,16 +81,14 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 	}
 
 	@Override
-	public boolean updateResolveNotification(Long notificationId, Person person) {
+	public boolean updateNotificationEmpAdminFlag(Long notificationId, String empOrAdmin) {
 		Session session = null;
 		try{
 			session = factory.getCurrentSession();
-			Notifications notifications = (Notifications)session.get(Notifications.class, notificationId);
-			if(notifications != null){
-				notifications.setPerson(person);
-				notifications.setResolvedFlag("Y");
-			}
-			session.update(notifications);
+			Notifications notification = (Notifications)session.get(Notifications.class, empOrAdmin);
+			if(notification != null)
+				notification.setEmpAdminFlag(empOrAdmin);
+			session.update(notification);
 			return true;
 		}
 		catch(Exception e){
@@ -139,12 +136,12 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 		List rawList = null;
 		try{
 			session = factory.getCurrentSession();
-			Criteria criteria = session.createCriteria(Notifications.class);
-			criteria.add(Restrictions.eq("empAdminFlag",empOrAdmin));
-			criteria.add(Restrictions.eq("resolvedFlag",resolvedFlag));
-			criteria.createCriteria("person");
-			criteria.setFetchMode("person",FetchMode.JOIN);
-			rawList = criteria.list();
+			Query query = session.createQuery("select N from Notifications as N JOIN N.person as NP JOIN N.notificationsType as NT "
+											+ "WHERE N.person = NP AND N.notificationsType = NT AND "
+											+ "N.empAdminFlag = :empOrAdmin AND N.resolvedFlag = :resolvedFlag");
+			query.setString("empOrAdmin", empOrAdmin);
+			query.setString("resolvedFlag", resolvedFlag);
+			rawList = query.list();
 			@SuppressWarnings("rawtypes")
 			Iterator itr = rawList.iterator();
 			while(itr.hasNext())
@@ -169,7 +166,8 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 		try{
 			session = factory.getCurrentSession();
 			Query query = session.createQuery("select N from Notifications as N JOIN N.person as NP JOIN N.notificationsType as NT "
-			+ "WHERE N.person = NP AND N.notificationsType = NT AND N.empAdminFlag = :empOrAdmin AND N.resolvedFlag = :resolvedFlag AND NT.notificationTypeId = :notificationTypeId");
+											+ "WHERE N.person = NP AND N.notificationsType = NT AND "
+											+ "N.empAdminFlag = :empOrAdmin AND N.resolvedFlag = :resolvedFlag AND NT.notificationTypeId = :notificationTypeId");
 			query.setString("empOrAdmin", empOrAdmin);
 			query.setString("resolvedFlag", resolvedFlag);
 			query.setLong("notificationTypeId", notificationTypeId);
@@ -177,7 +175,7 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 			@SuppressWarnings("rawtypes")
 			Iterator itr = rawList.iterator();
 			while(itr.hasNext())
-			list.add((Notifications)itr.next());
+				list.add((Notifications)itr.next());
 			return list;
 		}
 		catch(Exception e){

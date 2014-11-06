@@ -9,7 +9,6 @@ public interface NotificationsDAO {
 
 	public long insertNotification(String userId, Notifications notifications);
 	
-	public boolean updateResolveFlag(Long notificationId, String resolvedFlag);
 	public boolean updateResolveNotification(Long notificationId, Person person);
 	public boolean updateNotificationEmpAdminFlag(Long notificationId, String empOrAdmin);
 	
@@ -17,5 +16,6 @@ public interface NotificationsDAO {
 	public List<Notifications> fetchNotifications(String empOrAdmin, String resolvedFlag);
 	public List<Notifications> fetchNotifications(String empOrAdmin, long notificationTypeId, String resolvedFlag);
 	public Notifications fetchByNotificationId(Long notificationId);
+
 	
 }
