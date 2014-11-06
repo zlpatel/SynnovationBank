@@ -41,7 +41,7 @@ public class AddExternalUserServiceImpl implements AddExternalUserService{
 	person.setEmail(addexternaluserformbean.getEmail());
 	person.setUserId(addexternaluserformbean.getUsername());
 	person.setPassword(HashCode.getHashPassword(addexternaluserformbean.getPassword()));
-	person.setDateOfBirth(new Date(1220227200));
+	person.setDateOfBirth(addexternaluserformbean.getDateOfBirth());
 	person.setRole("ROLE_CUST");
 	person.setAllowAccessFlag(false);
 

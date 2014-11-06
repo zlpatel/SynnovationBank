@@ -15,6 +15,11 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 	
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<SCRIPT src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js"></SCRIPT>
+	
 	<script type="text/javascript">
 	
 	function validateForm()
@@ -26,6 +31,15 @@
 	 var email = document.getElementById("email").value;
 	 var username = document.getElementById("username").value;
 	 var password = document.getElementById("password").value;
+	 var selectedDate = $('#datepicker1').datepicker('getDate');
+	 
+	 var now = new Date();
+	 
+	 if (selectedDate > now) {
+	 alert("date is invalid");
+	 return false;
+	 // selected date is in the past
+	 }
 
 	  if (fname === "" || lname === "" || address === "" || email === "" || username === "" || password === "") 
 	  {
@@ -61,6 +75,15 @@
 	    }
 	  
 	 }</script>
+	 
+	 <script>
+$(function() {
+$( "#datepicker1" ).datepicker({
+changeMonth: true,
+changeYear: true
+});
+});
+</script>
 	
 </head>
 <body>
@@ -84,6 +107,8 @@
 <input name="fname" id="fname"  class = "form-control" style="width:200px;" placeholder = "First Name" maxlength="15" value="${addinternaluserformbean.fname}"/>
 <br>
 <input name="lname" id="lname"  type="text" class = "form-control" style="width:200px;" placeholder = "Last Name" maxlength="14" value="${addinternaluserformbean.lname}"/>
+<br>
+<input name="dateOfBirth" type="text" id="datepicker1" placeholder="date of birth" readonly="true" class = "form-control" style="width:200px;" maxlength="14" value="${addinternaluserformbean.dateOfBirth}"/>
 <br>
 <input name="address" id="address"  type="text" class = "form-control" style="width:200px;" placeholder = "Address" maxlength="50" value="${addinternaluserformbean.address}"/>
 <br>
