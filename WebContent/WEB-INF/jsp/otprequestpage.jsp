@@ -43,14 +43,14 @@
 <div id="otp-error"><font color="red">${error}</font></div>
 
 <h1>One Time Password</h1>
-<form action="../otp/changepassword" commandName="otpformbean" method="post" >
+<form action="../otp/otprequest" commandName="otpformbean" method="post" >
 
 <p>	
-	<input id="otpKeypad" name="otp" placeholder="one time password" type="password" readonly="readonly" value="${otpformbean.otp}"/>
+	<input id="otpKeypad" name="otp" placeholder="one time password" type="password" maxlength="19" readonly="readonly" value="${otpformbean.otp}"/>
 	<!-- <button id="removeKeypad" type="button" style="display: none;"></button> -->
 </p>
 
-<input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
+<input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="return validateForm();"/>
 
 <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	

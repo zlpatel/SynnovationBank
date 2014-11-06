@@ -13,6 +13,38 @@
 	
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+	
+	<script type="text/javascript">
+	function validateForm()
+	{
+
+	 var username = document.getElementById("username").value;		
+	 var email = document.getElementById("email").value;
+	 
+	 
+	  if (email === "" || username === "") 
+	  {
+	  	alert("Please fill all fields.");
+	  	return false;
+	  }
+	  
+		var regex3 = new RegExp("^[a-zA-Z0-9]+$");
+		 if(!regex3.test(username))
+		{
+			alert('Please remove special characters and spaces from Username');
+			return false; 
+		}
+	  	    
+	    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	    if(!re.test(email))
+	    {
+	    	alert("Please enter a valid e-mail address.");
+	    	return false;
+	    }
+	  
+	 }
+	 </script>
+	
 </head>
 <body>
 
@@ -22,13 +54,13 @@
 <form action="../otp/otprequest" commandName="forgotpasswordformbean" method="post" >
 
 <p>	
-	<input id="username" name="username" placeholder="please enter you username" type="text" value="${forgotpasswordformbean.username}"/>
+	<input id="username" name="username" placeholder="username" type="text" value="${forgotpasswordformbean.username}"/>
 </p>
 <p>
-	<input id="email" name="email" placeholder="please enter your email" type="text" value="${forgotpasswordformbean.email}"/>
+	<input id="email" name="email" placeholder="email" type="text" value="${forgotpasswordformbean.email}"/>
 </p>
 
-<input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
+<input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="return validateForm();"/>
 
 <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	
