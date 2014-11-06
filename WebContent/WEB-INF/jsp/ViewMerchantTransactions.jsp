@@ -25,53 +25,61 @@
 
 <body>
 <center><h1> SYNNOVATION </h1> </center>
-
-<h2> View your transactions here &#9758 </h2>
+<h2> TRANSACTIONS PAGE </h2>
 <ul class="nav nav-tabs">
 <li><a href="MerchantCredit">Credit Amount</a> </li>
 <li><a href="MerchantDebit">Debit Amount</a> </li>
 <li><a href="MerchantTransfer">Transfers</a></li>
-<li><a href="ViewMerchantTransactions">View Transactions</a></li>
+<li class="active"><a href="#">View Transactions</a></li>
 <li><a href="MerchantNotifications">Notifications</a></li>
 <li><a href="ChangeMerchantInfo">Change information</a></li>
 <li><a href="MerchantTechAccountAccess">Technical Account Access</a></li>
+<li><a href="MerchantAcceptNotification">Accept Customer Notifications</a><li>
+<li><a href="MerchantSubmitPayment">Submit Payment</a></li>
 </ul>
-
-<br><br>
-
-<h4>Available balance in your account is: ${balance}</h4> <br><br>
-
+<br>
+<h4>Available balance in your account is: ${balance}</h4> 
+<br>
 <div id="disptran"><font color="red">${error}</font></div>
 <form name ="cust_transactions" method = "post">
 		<table id = "transaction" width="500" border="0" bordercolor="black" class ="table table-striped">
+		<thead>
 		<tr>
-		  <td><b>Transaction Id</b></td>
-		  <td><b>Transaction Amount</b></td>
-          <td><b> Transaction Date</b></td>
-          <td><b> Transaction Name</b></td>
+		  <th>Transaction Id</th>
+		  <th></th>
+		  <th>Transaction Amount</th>
+		  <th></th>
+          <th> Transaction Date</th>
+          <th></th>
+          <th> Transaction Name</th>
+          <th></th>
+          <th> Transaction Status</th>
+          
           
           
          </tr>
+         </thead>
+         <tbody>
       <c:forEach  items="${mercAcc}" var="trans">
         <tr> 
           <td>${trans.transactionId}</td>
+          <td></td>
           <td>${trans.balance}</td>
+          <td></td>
           <td>${trans.transactionDate}</td>
+          <td></td>
           <td>${trans.transactionsName}</td>
+         <td></td>
+         <td>${trans.transactionStatus}</td>
          </tr>
+         
       </c:forEach>
       </table>
-      </form>
-
-
-
-
-
+</tbody>
 
 <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	
-			
-			
+						
 </form>
 
 

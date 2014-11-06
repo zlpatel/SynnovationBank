@@ -83,7 +83,7 @@ public class MerchantDebitServiceImpl implements MerchantDebitService{
 		
 		TransactionDetails td=new TransactionDetails();
 		
-		TransactionType ttype=transactionTypeDAO.fetchTransactionType("debit");
+		TransactionType ttype=transactionTypeDAO.fetchTransactionType("ATM");
 
 		
 		
@@ -97,7 +97,7 @@ public class MerchantDebitServiceImpl implements MerchantDebitService{
 		
 		Set<TransactionDetails> set = new HashSet<TransactionDetails>();
 		set.add(td);
-		
+		t.setCompleteFlag("C");
 		t.setAmount(debit);
 		t.setTransactionDetails(set);
 		t.setDate(Calendar.getInstance().getTime());

@@ -20,24 +20,25 @@
 <p>Only merchants have access to this page.</p><br>
 
 <ul class="nav nav-tabs">
-    <li><a href="MerchantCredit">Credit Amount</a> </li>
-<li><a href="MerchantDebit">Debit Amount</a> </li>
-<li><a href="MerchantTransfer">Transfers</a></li>
-<li><a href="ViewMerchantTransactions">View Transactions</a></li>
-<li><a href="MerchantNotifications">Notifications</a></li>
-<li><a href="ChangeMerchantInfo">Change information</a></li>
-<li><a href="MerchantTechAccountAccess">Technical Account Access</a></li>
-<li class="active"><a href="MerchantAcceptNotification">Accept Customer Notifications</a><li>
+    <li><a href="../merchant/MerchantCredit">Credit Amount</a> </li>
+<li><a href="../merchant/MerchantDebit">Debit Amount</a> </li>
+<li><a href="../merchant/MerchantTransfer">Transfers</a></li>
+<li><a href="../merchant/ViewMerchantTransactions">View Transactions</a></li>
+<li><a href="../merchant/MerchantNotifications">Notifications</a></li>
+<li><a href="../merchant/ChangeMerchantInfo">Change information</a></li>
+<li><a href="../merchant/MerchantTechAccountAccess">Technical Account Access</a></li>
+<li class="active"><a href="#">Accept Customer Notifications</a><li>
 
 </ul>
 
 <br><br>
-<form commandName="merchantNotifAcceptRejectBean" method="post" >
+<form  method="post" >
 <table class="table" class ="table table-striped">
 <thead>
             <tr>
                 <th>Notification ID </th>
                 <th>Amount</th>
+                <th>Description</th>
 <!--                 <th>Notification</th> -->
 <!--                 <th>Amount</th>                                                 -->
 <!--                 <th>Action</th> -->
@@ -50,8 +51,8 @@
           <td>${notification.amount}</td>
           <td>${notification.notifications}</td>
 
-           <td align="center"><input style="width:75px;" id="accept" type="submit" value= "Accept" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'merchantacceptexternaluser?notifId=${notification.notification_id}'; ;return true;"/></td>  
-          <td align="center"><input  style="width:75px;" id="delete" type="submit" value= "Reject" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'merchantrejectexternaluser?notifId=${notification.notification_id}'; ;return true;"/></td> 
+           <td align="center"><input style="width:75px;" id="accept" type="submit" value= "Accept" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'merchantacceptexternaluser/${notification.userName}/${notification.notification_id}/${notification.transaction_id}'; ;return true;"/></td>  
+          <td align="center"><input  style="width:75px;" id="delete" type="submit" value= "Reject" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'merchantrejectexternaluser/${notification.userName}/${notification.notification_id}'; ;return true;"/></td> 
           <!-- <td align="center"><input style="width:75px;" name="approve" type="submit" value= "Approve" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = '/notificationAccepted';;return true;"/></td>  
           <td align="center"><input  style="width:75px;" name="deny" type="submit" value= "Deny" class = "btn btn-primary"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoDenied.html?authUsername=${person.ID}'; ;return true;"/></td>--> 
         </tr>

@@ -29,20 +29,22 @@ public class MerchantTransactionServiceImpl implements MerchantTransactionServic
 		System.out.println("FETCHED USER "+sender.getFirstName()+" "+sender.getLastName());
 		long accNum=sender.getAccount().getAccountNumber(); 
 		
-		MerchantTransactionFormBean customertransactionFormBean=null;
+		MerchantTransactionFormBean merchanttransactionFormBean=null;
     	
     	List<TransactionDetails> transactions=transactionDetailsDao.fetchAccountTransactions(accNum, 10);
     	
     	List<MerchantTransactionFormBean> list=new ArrayList<MerchantTransactionFormBean>();
     	
     	for(TransactionDetails trans: transactions){
-    		customertransactionFormBean = new MerchantTransactionFormBean();
+    		merchanttransactionFormBean = new MerchantTransactionFormBean();
     		
-    		customertransactionFormBean.setBalance(trans.getTransactions().getAmount());
-    		customertransactionFormBean.setTransactionsName(trans.getTransactionType().getTransactionName());
-    		customertransactionFormBean.setTransactionId(trans.getTransactions().getTransactionId());
-    		customertransactionFormBean.setTransactionDate(trans.getTransactions().getDate());
-    		list.add(customertransactionFormBean);
+    		merchanttransactionFormBean.setBalance(trans.getTransactions().getAmount());
+    		merchanttransactionFormBean.setTransactionsName(trans.getTransactionType().getTransactionName());
+    		merchanttransactionFormBean.setTransactionId(trans.getTransactions().getTransactionId());
+    		merchanttransactionFormBean.setTransactionDate(trans.getTransactions().getDate());
+    		merchanttransactionFormBean.setTransactionStatus(trans.getTransactions().getCompleteFlag());
+    		
+    		list.add(merchanttransactionFormBean);
     	}
     	return list;
 	}

@@ -13,6 +13,37 @@
 	
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+	
+	function validateForm()
+	{
+
+	 var debitAmount = document.getElementById("debitAmount").value;
+
+	  if (debitAmount == "") 
+	  {
+	  	alert("Please fill all fields.");
+	  	return false;
+	  }
+	  
+	  if(debitAmount==0)
+	  {
+		  alert("Please Enter a value greater than 0");
+		  return false;
+		  
+	  }
+		
+		var regex2 = new RegExp("^[0-9]+$");
+		if(!regex2.test(debitAmount))
+		{
+				alert('Please remove special characters from Credit Amount Field');
+				return false;
+		}
+		
+	
+	  
+	 }</script>
+	
 </head>
 
 <body>
@@ -25,19 +56,23 @@
 
 <ul class="nav nav-tabs">
 <li><a href="MerchantCredit">Credit Amount</a> </li>
-<li><a href="MerchantDebit">Debit Amount</a> </li>
+<li class="active"><a href="#">Debit Amount</a> </li>
 <li><a href="MerchantTransfer">Transfers</a></li>
 <li><a href="ViewMerchantTransactions">View Transactions</a></li>
 <li><a href="MerchantNotifications">Notifications</a></li>
 <li><a href="ChangeMerchantInfo">Change information</a></li>
 <li><a href="MerchantTechAccountAccess">Technical Account Access</a></li>
+<li><a href="MerchantAcceptNotification">Accept Customer Notifications</a><li>
+<li><a href="MerchantSubmitPayment">Submit Payment</a></li>
 </ul>
 
 <br><br>
-<form action="merchantdebitrequest" commandName="debitFormBean" method="get">
-<input id="debitAmount" type="text" name="debitAmount" placeholder="Enter the amount to be debitted(in USD)" style="width:500px;" value="${debitFormBean.debitAmount}"/><br>
-<input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
+<form commandName="debitFormBean" method="post">
+<input id="debitAmount" type="text" name="debitAmount" maxlength="4" placeholder="Enter the amount to be debitted(in USD)" style="width:500px;" value="${debitFormBean.debitAmount}"/><br>
+<input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="document.forms[0].action = 'merchantdebitrequest' ;return validateForm();"/>
 
+<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />	
 </form>
 
 

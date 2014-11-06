@@ -59,6 +59,29 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 	}
 
 	@Override
+	public boolean updateResolveFlag(Long notificationId, String resolvedFlag) {
+		Session session = null;
+		try{
+			session = factory.getCurrentSession();
+			Notifications notifications = (Notifications)session.get(Notifications.class, notificationId);
+			if(notifications != null){
+				notifications.setResolvedFlag(resolvedFlag);
+				session.update(notifications);
+				return true;
+			}
+			else
+				return false;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+		finally{
+			//HibernateUtil.shutdown();
+		}
+	}
+
+	@Override
 	public boolean updateResolveNotification(Long notificationId, Person person) {
 		Session session = null;
 		try{

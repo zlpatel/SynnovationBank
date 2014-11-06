@@ -47,16 +47,8 @@ public class MerchantCreditServiceImpl implements MerchantCreditService {
 		}
 		
 		
-		if(Float.parseFloat(amount)>500)
-		{
-		System.out.println("***************************************************");
-		System.out.println("CREDIT AMOUNT GREATER THAN $500--- CRITIAL TRANSACTION -- NEEDS APPROVAL !");
-		System.out.println("***************************************************");
-		return false;
-		}
 		
-		
-		
+	
 		
 		System.out.println("***************************************************");
 		System.out.println("UPDATING BALANCE!");
@@ -92,7 +84,7 @@ public class MerchantCreditServiceImpl implements MerchantCreditService {
 		
 		TransactionDetails td=new TransactionDetails();
 		
-		TransactionType ttype=transactionTypeDAO.fetchTransactionType("CREDIT");
+		TransactionType ttype=transactionTypeDAO.fetchTransactionType("ATM");
 	
 		td.setTransactionType(ttype);
 		td.setAccount(a);
@@ -101,6 +93,7 @@ public class MerchantCreditServiceImpl implements MerchantCreditService {
 		Set<TransactionDetails> set = new HashSet<TransactionDetails>();
 		set.add(td);
 		
+		t.setCompleteFlag("C");
 		t.setAmount(credit);
 		t.setTransactionDetails(set);
 		t.setDate(Calendar.getInstance().getTime());

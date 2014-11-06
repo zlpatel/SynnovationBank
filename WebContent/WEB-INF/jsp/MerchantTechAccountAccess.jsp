@@ -34,13 +34,13 @@
 <li><a href="ViewMerchantTransactions">View Transactions</a></li>
 <li><a href="MerchantNotifications">Notifications</a></li>
 <li><a href="ChangeMerchantInfo">Change information</a></li>
-<li><a href="MerchantTechAccountAccess">Technical Account Access</a></li>
+<li class="active"><a href="MerchantTechAccountAccess">Technical Account Access</a></li>
 </ul>
 
 
 <br><br>
 
-<form action="merchanttechaccountaccess" method="get">
+<form action="merchanttechaccountaccess" method="POST">
 <INPUT TYPE="radio" NAME="radios" VALUE="radio1">
              Allow
             <BR>
@@ -48,6 +48,8 @@
              Disallow
             <BR>
 <input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
+<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />	
 </form>
 
 

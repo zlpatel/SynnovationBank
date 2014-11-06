@@ -8,6 +8,7 @@ public class MerchantTransactionFormBean {
 	private long transactionId;
 	private Date transactionDate;
 	private int accountNumber;
+	private String transactionStatus;
 	
 	public float getBalance() {
 		return balance;
@@ -36,6 +37,12 @@ public class MerchantTransactionFormBean {
 	public long getAccountNumber() {
 		
 		return accountNumber;
+	}
+	public String getTransactionStatus() {
+		return transactionStatus;
+	}
+	public void setTransactionStatus(String transactionStatus) {
+		this.transactionStatus = transactionStatus;
 	}
 
 }

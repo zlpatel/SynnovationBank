@@ -13,7 +13,7 @@ public interface PersonDAO {
 	public boolean updateOTP(String userId, String email, String otp);
 	public boolean updateUserDetails(String userId, String fname, String mname, String lname, String email, String address);
 	public boolean updatePassword(String userId, String password);
-	public boolean updateAccessFlag(String userId, boolean accessFlag);
+	public boolean updateAccessFlag(String userId, boolean flag);
 	public boolean updateFailedLoginAttempt(String userId);
 	public boolean updatePIIRequestFlag(String userId, boolean piiRequestFlag);
 	

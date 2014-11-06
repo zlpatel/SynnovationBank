@@ -22,7 +22,8 @@
 </h2>
 
 <ul class="nav nav-tabs">
-<li class="active"><a href="MerchantCredit">Credit Amount</a> </li>
+
+<li><a href="MerchantCredit">Credit Amount</a> </li>
 <li><a href="MerchantDebit">Debit Amount</a> </li>
 <li><a href="MerchantTransfer">Transfers</a></li>
 <li><a href="ViewMerchantTransactions">View Transactions</a></li>
@@ -33,22 +34,6 @@
 <li><a href="MerchantSubmitPayment">Submit Payment</a></li>
 </ul>
 
-
-<c:url value="/j_spring_security_logout" var="logoutUrl" />
- 
-	<!-- csrf for log out-->
-	<form action="${logoutUrl}" method="post" id="logoutForm">
-	  <input type="hidden" 
-		name="${_csrf.parameterName}"
-		value="${_csrf.token}" />
-	</form>
-	
-	<script>
-		function formSubmit() {
-			document.getElementById("logoutForm").submit();
-		}
-	</script>
-<br>
 
 
 

@@ -416,7 +416,7 @@ public class CustomerController {
         }
 		
     
-    	model.put("username", customerTransactionService.getUserName(userName));
+    	model.put("username", userName);
     	return "welcomeUser";
 	}
 	

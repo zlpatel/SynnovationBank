@@ -9,9 +9,9 @@ import edu.asu.secure.SynnovationBank.FormBean.MerchantPaymentFormBean;
 public interface MerchantNotificationService {
 
 public List<MerchantNotifFormBean> notifications(String userName);
-public void sendTransactionDeclinedNotification(String userName); 
-public boolean submitPayment(MerchantPaymentFormBean merchantPaymentFormBean);
-public MerchantPaymentFormBean getPaymentNotifications(Notifications notifObj);
+public void sendTransactionDeclinedNotification(String userName,long notification_id);
 public Notifications getNotificationsById(long notifId);
+public float getTransactionAmount(long transaction_id);
+public void sendTransactionAcceptedNotification(long notification_id);
 
 }

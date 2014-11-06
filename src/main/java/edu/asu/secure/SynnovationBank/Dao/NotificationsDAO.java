@@ -9,6 +9,7 @@ public interface NotificationsDAO {
 
 	public long insertNotification(String userId, Notifications notifications);
 	
+	public boolean updateResolveFlag(Long notificationId, String resolvedFlag);
 	public boolean updateResolveNotification(Long notificationId, Person person);
 	public boolean updateNotificationEmpAdminFlag(Long notificationId, String empOrAdmin);
 	
