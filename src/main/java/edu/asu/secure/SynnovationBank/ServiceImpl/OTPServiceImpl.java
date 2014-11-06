@@ -21,28 +21,31 @@ protected static Logger logger = Logger.getLogger("service");
 	@Override
 	public boolean validateUser(String username, String email) {
 		String otp=OTPGeneratorHandler.GenerateOTP();
-//		if(personDao.updateOTP(username,email,otp)){
-//			OTPGeneratorHandler.SendOTP(email, otp);
-//			return true;
-//		}
-		return false;
-	}
-
-	@Override
-	public boolean compareOTP(String otp) {
-		
-//		if(personDao.checkOTP(otp)){
-//			return true;
-//		}
-		return false;
-		
-	}
-
-	@Override
-	public boolean updatePassword(String newpassword, String username) {
-		String encodedPass=HashCode.getHashPassword(newpassword);
-		if(personDao.updatePassword(username,encodedPass)){
+		if(personDao.updateOTP(username,email,otp)){
+			OTPGeneratorHandler.SendOTP(email, otp);
 			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean compareOTP(String userId,String otp) {
+		
+		if(personDao.authenticateOTP(userId, otp)){
+			return true;
+		}
+		return false;
+		
+	}
+
+	@Override
+	public boolean updatePassword(String newpassword,String retypepassword, String username) {
+		
+		if(!newpassword.trim().isEmpty() && newpassword.equals(retypepassword)){
+			String encodedPass=HashCode.getHashPassword(newpassword);
+			if(personDao.updatePassword(username,encodedPass)){
+				return true;
+			}
 		}
 		return false;
 	}

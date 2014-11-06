@@ -110,10 +110,11 @@ public class CreditServiceImpl implements CreditService {
 		
 		Set<TransactionDetails> set = new HashSet<TransactionDetails>();
 		set.add(td);
-		
+		t.setCompleteFlag("C");
 		t.setAmount(credit);
 		t.setTransactionDetails(set);
 		t.setDate(Calendar.getInstance().getTime());
+		t.setCompleteFlag("C");
 		
 		long transactionID=transactionsDAO.insertTransaction(t);
 		

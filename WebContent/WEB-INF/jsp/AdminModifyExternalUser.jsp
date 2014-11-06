@@ -79,7 +79,7 @@
 <h3>Modify User Account Details</h3>
 <br>
 
-<form action="adminmodifiedexternaluseraccounts" commandName="modifyexternaluserformbean" method="post" >
+<form commandName="modifyexternaluserformbean" method="post" >
 
 <input name="fname" id="fname"  class = "form-control" style="width:200px;" placeholder = "First Name" maxlength="15" value="${modifyexternaluserformbean.fname}"/>
 <br>
@@ -99,9 +99,11 @@
 <br><input name="username" id="username"  class = "form-control" style="width:200px;" placeholder = "Username" maxlength="15" value="${modifyexternaluserformbean.username}" readonly/>
 <br>
 <input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="document.forms[0].action = 'adminmodifiedexternaluseraccounts' ;return validateForm();"/>
-<!-- <a class="btn btn-primary" href="adminaddedexternaluseraccounts" type="submit">Save</a> -->
-<a class="btn btn-deafult" href="adminexternaluseraccounts">Cancel</a>
-<a class="btn btn-deafult" href="javascript:formSubmit()">Logout</a>
+
+<input class="btn btn-info" type="submit" value="Request PII" onclick="document.forms[0].action = 'addadminpiirequest' ;return true;"/>
+<!-- <input class="btn btn-info" href="adminpiirequests">Request PII</a>
+ --><a class="btn btn-default" href="adminexternaluseraccounts">Cancel</a>
+<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
 
 <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	

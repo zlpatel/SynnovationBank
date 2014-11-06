@@ -42,22 +42,19 @@
 	
 </head>
 <body>
-<h2>Employee Page</h2>
-
-
+<center><h1> SYNNOVATION </h1> </center>
+<h2> VIEW CUSTOMER TRANSACTIONS PAGE</h2>
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
     <li><a href="employeeuseraccounts">User Accounts</a></li>
     <li><a href="employeeviewmerchanttransactions">Merchant Requests</a></li>
     <li class="active"><a href="#">View Customer Transactions</a></li>
 </ul>
-<p align="center">View Customer Transactions</p>
-
-    <form name ="user_transactions" method = "post">
+<br>
+ <form name ="user_transactions" method = "post">
 		<table  width="500" border="0" bordercolor="black" class ="table table-striped">
 		<thead>
 		<tr>
-		
 		  <th>Transaction Id</th>
 		  <th></th>
 		  <th>Balance</th>

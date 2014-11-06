@@ -1,5 +1,6 @@
 package edu.asu.secure.SynnovationBank.FormBean;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 
@@ -79,8 +80,11 @@ public class ExternalUserFormBean {
 		return dateOfBirth;
 	}
 	public void setDateOfBirth(Date dateOfBirth) {
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+		// System.out.println("Format 2: " + dateFormatter.format(dateOfBirth));
+		dateFormatter.format(dateOfBirth);
 		this.dateOfBirth = dateOfBirth;
-	}
+		}
 	public String getEmail() {
 		return email;
 	}

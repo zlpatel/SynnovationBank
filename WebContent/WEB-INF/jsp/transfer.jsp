@@ -14,6 +14,51 @@
 	
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+	
+	function validateForm()
+	{
+
+	 var receiverID = document.getElementById("receiverID").value;
+	 var transferAmount = document.getElementById("transferAmount").value;
+	
+
+	  if (receiverID === "")
+	  {
+	  	alert("Please fill userid.");
+	  	return false;
+	  }
+	  var regex1 = new RegExp("^[a-zA-Z]+$");	  
+	  if(!regex1.test(receiverID))  
+		{
+			alert('Only Alphabetic characters are allowed for userid.');
+			return false;
+		}
+	
+
+		  if (transferAmount == "") 
+		  {
+		  	alert("Please fill all fields.");
+		  	return false;
+		  }
+		  
+		  if(transferAmount==0)
+		  {
+			  alert("Please Enter a value greater than 0");
+			  return false;
+			  
+		  }
+			
+			var regex2 = new RegExp("^[0-9]+$");
+			if(!regex2.test(transferAmount))
+			{
+					alert('Please remove special characters from Credit Amount Field');
+					return false;
+			}
+			
+	    
+	  
+	 }</script>
 </head>
 
 
@@ -21,11 +66,8 @@
 
 <body>
 <center><h1> SYNNOVATION </h1> </center>
-
 <h2> TRANSFER AMOUNT PAGE</h2>
-
 <div id="otp-error"><font color="red">${error}</font></div>
-
 <ul class="nav nav-tabs">
 <li><a href="credit_debit">Credit Amount</a> </li>
 <li><a href="debit">Debit Amount</a> </li>
@@ -34,26 +76,15 @@
 <li><a href="customerNotifications">Notifications</a></li>
 <li><a href="changeCustomerInfo">Change information</a></li>
 <li><a href="techAccountAccess">Technical Account Access</a></li>
+<li><a href="payMerchant">Pay Merchant</a></li>
 </ul>
+<br>
+<form  commandName="transferFormBean" method="post">
+<input id="receiverID" type="text" name="receiverID" maxlength= "15" class = "form-control" placeholder="Enter the User ID to which you want to tranfer the amount" style="width:800px;" value="${transferFormBean.receiverID}"/>
+<br>
+<input id="transferAmount" type="text" name="transferAmount" maxlength= "4" class = "form-control" placeholder="Enter the amount which you want to tranfer" style="width:800px;" value="${transferFormBean.transferAmount}"/><br>
 
-
-<br><br>
-
-<br><br>
-
-
-
-
-
-
-
-
-
-<form action="transferrequest" commandName="transferFormBean" method="get">
-<input id="receiverID" type="text" name="receiverID" placeholder="Enter the User ID to which you want to tranfer the amount" style="width:800px;" value="${transferFormBean.receiverID}"/><br>
-<input id="transferAmount" type="text" name="transferAmount" placeholder="Enter the amount which you want to tranfer" style="width:800px;" value="${transferFormBean.transferAmount}"/><br>
-
-<input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
+<input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="document.forms[0].action = 'transferrequest' ;return validateForm();"/>
 </form>
 
 
