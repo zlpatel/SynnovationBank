@@ -16,9 +16,16 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
+
+
+
 <body>
 <center><h1> SYNNOVATION </h1> </center>
-<h2> NOTIFICATIONS PAGE</h2>
+
+<h2> PAY MERCHANT </h2>
+
+<div id="otp-error"><font color="red">${error}</font></div>
+
 <ul class="nav nav-tabs">
 <li><a href="credit_debit">Credit Amount</a> </li>
 <li><a href="debit">Debit Amount</a> </li>
@@ -29,31 +36,11 @@
 <li><a href="techAccountAccess">Technical Account Access</a></li>
 <li><a href="payMerchant">Pay Merchant</a></li>
 </ul>
-<br>
-<form name ="customer_notifications" method = "post" commandName="custNotifFormBean">
-		<table id = "transaction" width="500" border="0" bordercolor="black" class ="table table-striped">
-		<tr>
-		  <!--  td><b>First Name</b></td>
-		  <td><b>Last Name</b></td>
-		  <td><b>User Name</b-->
-          <td><b>Notification from employee</b></td>
-          
-         
-         </tr>
-      <c:forEach  items="${custNotifFormBean}" var="custNotif">
-        <tr> 
-          <!--  td>${empNotif.firstName}</td>
-          <td>${empNotif.lastName}</td>
-          <td>${empNotif.userName}</td-->
-          <td>${custNotif.notifications}</td>
-          
-        </tr>
-      </c:forEach>
-      </table>
-      <input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" />	
-      
-      </form>
+
+
+<br><br>
+
+<br><br>
 
 
 
@@ -61,6 +48,14 @@
 
 
 
+
+
+<form action="merchanttransferrequest" commandName="merchanttransferFormBean" method="get">
+<input id="receiverID" type="text" name="receiverID" placeholder="Enter the Merchant ID to whom you want to pay" style="width:800px;" value="${transferFormBean.receiverID}"/><br>
+<input id="transferAmount" type="text" name="transferAmount" placeholder="Enter the amount which you want to pay" style="width:800px;" value="${transferFormBean.transferAmount}"/><br>
+
+<input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
+</form>
 
 
 
@@ -82,6 +77,7 @@
 		}
 	</script>
 <br><a href="javascript:formSubmit()"> Logout</a>
+
 
 
 

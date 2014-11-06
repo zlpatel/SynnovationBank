@@ -61,6 +61,7 @@
 <li><a href="customerNotifications">Notifications</a></li>
 <li><a href="changeCustomerInfo">Change information</a></li>
 <li><a href="techAccountAccess">Technical Account Access</a></li>
+<li><a href="payMerchant">Pay Merchant</a></li>
 </ul>
 <br>
 <h3>IF YOU DO NOT WISH TO CHANGE YOUR INFORMATION...LEAVE THE CORRESPONDING FIELD AS EMPTY! </h3>

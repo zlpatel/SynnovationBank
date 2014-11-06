@@ -36,7 +36,6 @@
 				/>
 
 		<!-- enable csrf protection -->
-		<!-- <security:csrf request-matcher-ref="csrfSecurityRequestMatcher"/> -->
 		<!-- <security:csrf/> -->
 	</security:http>
 	
