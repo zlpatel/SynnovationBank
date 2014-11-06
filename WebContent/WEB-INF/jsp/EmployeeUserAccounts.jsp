@@ -20,16 +20,15 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2>Employee Page</h2>
-
-
+<center><h1> SYNNOVATION </h1> </center>
+<h2> USER ACCOUNTS PAGE</h2>
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
     <li class="active"><a href="#">User Accounts</a></li>
      <li><a href="employeeviewmerchanttransactions">Merchant Requests</a></li>
      <li><a href="employeeviewtransactions">View Customer Transactions</a></li>
 </ul>
-<p align="center">User Accounts Page</p>
+<br>
 <form action ="employeeuseraccounts" method = "post" >
 		<table id = "transaction" width="500" border="0" bordercolor="black" class ="table table-striped">
 		<thead>

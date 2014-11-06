@@ -17,13 +17,8 @@
 
 <body>
 <center><h1> SYNNOVATION </h1> </center>
-
 <h2> CREDIT PAGE</h2>
-
-
 <div id="otp-error"><font color="red">${error}</font></div>
-
-
 <ul class="nav nav-tabs">
 <li><a href="credit_debit">Credit Amount</a> </li>
 <li><a href="debit">Debit Amount</a> </li>
@@ -33,11 +28,10 @@
 <li><a href="changeCustomerInfo">Change information</a></li>
 <li><a href="techAccountAccess">Technical Account Access</a></li>
 </ul>
-
-
 <br><br>
 <form action="creditrequest" commandName="creditFormBean" method="get">
-<input id="creditAmount" type="text" name="creditAmount" placeholder="Enter the amount to be credited (in USD)" style="width:500px;" value="${creditFormBean.creditAmount}"/><br>
+<input id="creditAmount" type="text" name="creditAmount" class = "form-control" placeholder="Enter the amount to be credited (in USD)" style="width:500px;" value="${creditFormBean.creditAmount}"/>
+<br>
 <input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
 
 </form>

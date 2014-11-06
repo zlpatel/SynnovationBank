@@ -20,14 +20,15 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2>Employee Page</h2>
+<center><h1> SYNNOVATION </h1> </center>
+<h2> MERCHANT REQUESTS PAGE</h2>
 <ul class="nav nav-tabs">
     <li><a href="../employee/home">Notifications</a></li>
     <li><a href="../employee/employeeuseraccounts">User Accounts</a></li>
     <li class="active"><a href="#">Merchant Requests</a></li>
     <li><a href="../employee/employeeviewtransactions">View Customer Transactions</a></li>
 </ul>
-<p align="center">Merchant Requests</p>
+<br>
 <form method="post" >
 <table class="table" class ="table table-striped">
 <thead>

@@ -19,16 +19,15 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2>Employee Page</h2>
-
-
+<center><h1> SYNNOVATION </h1> </center>
+<h2> NOTIFICATIONS PAGE</h2>
 <ul class="nav nav-tabs">
     <li class="active"><a href="#">Notifications</a></li>
     <li><a href="employeeuseraccounts">User Accounts</a></li>
     <li><a href="employeeviewmerchanttransactions">Merchant Requests</a></li>
     <li><a href="employeeviewtransactions">View Customer Transactions</a></li>
 </ul>
-<p align="center">Notifications</p>
+<br>
 <form name ="employee_notifications" method = "post" commandName="empNotifFormBean">
 		<table id = "transaction" width="500" border="0" bordercolor="black" class ="table table-striped">
 		<thead>

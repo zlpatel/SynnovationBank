@@ -25,8 +25,7 @@
 
 <body>
 <center><h1> SYNNOVATION </h1> </center>
-
-<h2> View your transactions here &#9758 </h2>
+<h2> TRANSACTIONS PAGE</h2>
 <ul class="nav nav-tabs">
 <li><a href="credit_debit">Credit Amount</a> </li>
 <li><a href="debit">Debit Amount</a> </li>
@@ -36,8 +35,8 @@
 <li><a href="changeCustomerInfo">Change information</a></li>
 <li><a href="techAccountAccess">Technical Account Access</a></li>
 </ul>
-<h4>Available balance in your account is: ${balance}</h4> <br><br>
-
+<h4>Available balance in your account is: ${balance}</h4>
+<br>
 <div id="disptran"><font color="red">${error}</font></div>
 <form name ="cust_transactions" method = "post">
 		<table id = "transaction" width="500" border="0" bordercolor="black" class ="table table-striped">

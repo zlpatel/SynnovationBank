@@ -16,17 +16,9 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
-
-
-
-
-
-
-
 <body>
 <center><h1> SYNNOVATION </h1> </center>
-
-<h2> Customer Notifications Page !!</h2>
+<h2> NOTIFICATIONS PAGE</h2>
 <ul class="nav nav-tabs">
 <li><a href="credit_debit">Credit Amount</a> </li>
 <li><a href="debit">Debit Amount</a> </li>
@@ -36,15 +28,7 @@
 <li><a href="changeCustomerInfo">Change information</a></li>
 <li><a href="techAccountAccess">Technical Account Access</a></li>
 </ul>
-
-<br><br>
-
-
-
-
-
-
-<p align="center">Customer Notifications</p>
+<br>
 <form name ="customer_notifications" method = "post" commandName="custNotifFormBean">
 		<table id = "transaction" width="500" border="0" bordercolor="black" class ="table table-striped">
 		<tr>
@@ -65,6 +49,9 @@
         </tr>
       </c:forEach>
       </table>
+      <input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />	
+      
       </form>
 
 

@@ -21,7 +21,6 @@
 
 <body>
 <center><h1> SYNNOVATION </h1> </center>
-
 <h2> TRANSFER AMOUNT PAGE</h2>
 
 <div id="otp-error"><font color="red">${error}</font></div>
@@ -35,23 +34,11 @@
 <li><a href="changeCustomerInfo">Change information</a></li>
 <li><a href="techAccountAccess">Technical Account Access</a></li>
 </ul>
-
-
-<br><br>
-
-<br><br>
-
-
-
-
-
-
-
-
-
+<br>
 <form action="transferrequest" commandName="transferFormBean" method="get">
-<input id="receiverID" type="text" name="receiverID" placeholder="Enter the User ID to which you want to tranfer the amount" style="width:800px;" value="${transferFormBean.receiverID}"/><br>
-<input id="transferAmount" type="text" name="transferAmount" placeholder="Enter the amount which you want to tranfer" style="width:800px;" value="${transferFormBean.transferAmount}"/><br>
+<input id="receiverID" type="text" name="receiverID" class = "form-control" placeholder="Enter the User ID to which you want to tranfer the amount" style="width:800px;" value="${transferFormBean.receiverID}"/>
+<br>
+<input id="transferAmount" type="text" name="transferAmount" class = "form-control" placeholder="Enter the amount which you want to tranfer" style="width:800px;" value="${transferFormBean.transferAmount}"/><br>
 
 <input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
 </form>

@@ -154,7 +154,13 @@ public class TransferServiceImpl implements TransferService {
 						transactions.setTransactionId(transactionID);
 						
 						Notifications notification = new Notifications();
+						Person person=personDAO.fetchUserById(receiverID);
+						if(person.getRole().equals("ROLE_CUST")){
 						notification.setEmpAdminFlag("A");
+						}
+						else if(person.getRole().equals("ROLE_MERC")){
+							notification.setEmpAdminFlag(receiverID);
+						}
 						notification.setResolvedFlag("N");
 						notification.setNotificationsType(type);
 						notification.setTransaction(transactions);

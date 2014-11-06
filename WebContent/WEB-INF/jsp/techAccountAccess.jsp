@@ -15,18 +15,9 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
-
-
-
-
-
-
-
-
 <body>
 <center><h1> SYNNOVATION </h1> </center>
-
-<h2> Technical account access page !!</h2>
+<h2> TECHNICAL ACCOUNT ACCESS PAGE</h2>
 <ul class="nav nav-tabs">
 <li><a href="credit_debit">Credit Amount</a> </li>
 <li><a href="debit">Debit Amount</a> </li>
@@ -36,10 +27,7 @@
 <li><a href="changeCustomerInfo">Change information</a></li>
 <li><a href="techAccountAccess">Technical Account Access</a></li>
 </ul>
-
-
-<br><br>
-
+<br>
 <form action="techaccountaccess" method="get">
 <INPUT TYPE="radio" NAME="radios" VALUE="radio1">
              Allow
@@ -48,6 +36,9 @@
              Disallow
             <BR>
 <input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
+<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />	
+
 </form>
 
 
