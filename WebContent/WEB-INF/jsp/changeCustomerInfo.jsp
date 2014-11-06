@@ -65,16 +65,16 @@
 </ul>
 <br>
 <h3>IF YOU DO NOT WISH TO CHANGE YOUR INFORMATION...LEAVE THE CORRESPONDING FIELD AS EMPTY! </h3>
-<form action="changecustomerinforequest" commandName="customerInfoChangeFormBean" method="get">
-<input id="firstName" type="text" name="firstName" class="form-control" placeholder="First Name" style="width:200px;" value="${customerInfoChangeFormBean.firstName}"/>
+<form commandName="customerInfoChangeFormBean" method="get">
+<input id="firstName" type="text" name="firstName" class="form-control" maxlength= "15" placeholder="First Name" style="width:200px;" value="${customerInfoChangeFormBean.firstName}"/>
 <br>
-<input id="lastName" type="text" name="lastName" class="form-control" placeholder="Last Name" style="width:200px;" value="${customerInfoChangeFormBean.lastName}"/>
+<input id="lastName" type="text" name="lastName" class="form-control" maxlength= "15" placeholder="Last Name" style="width:200px;" value="${customerInfoChangeFormBean.lastName}"/>
 <br>
-<input id="address" type="text" name="address" class="form-control" placeholder="Address" style="width:200px;" value="${customerInfoChangeFormBean.address}"/>
+<input id="address" type="text" name="address" class="form-control" maxlength= "50" placeholder="Address" style="width:200px;" value="${customerInfoChangeFormBean.address}"/>
 <br>
-<input id="email" type="text" name="email" class="form-control" placeholder="Email Id" style="width:200px;" value="${customerInfoChangeFormBean.email}"/>
+<input id="email" type="text" name="email" class="form-control" placeholder="Email Id" maxlength= "30" style="width:200px;" value="${customerInfoChangeFormBean.email}"/>
 <br>
-<input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
+<input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="document.forms[0].action = 'changecustomerinforequest' ;return validateForm();"/>
 <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	
 

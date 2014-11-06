@@ -61,7 +61,7 @@
 </ul>
 <br><br>
 <form  commandName="debitFormBean" method="post">
-<input id="debitAmount" type="text" name="debitAmount" class = "form-control" placeholder="Enter the amount to be debitted(in USD)" style="width:500px;" value="${debitFormBean.debitAmount}"/>
+<input id="debitAmount" type="text" name="debitAmount" maxlength= "4" class = "form-control" placeholder="Enter the amount to be debitted(in USD)" style="width:500px;" value="${debitFormBean.debitAmount}"/>
 <br>
 <input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="document.forms[0].action = 'debitrequest' ;return validateForm();"/>
 

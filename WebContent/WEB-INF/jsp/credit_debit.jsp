@@ -61,7 +61,7 @@
 </ul>
 <br><br>
 <form  commandName="creditFormBean" method="post">
-<input id="creditAmount" type="text" name="creditAmount" class = "form-control" placeholder="Enter the amount to be credited (in USD)" style="width:500px;" value="${creditFormBean.creditAmount}"/>
+<input id="creditAmount" type="text" name="creditAmount" maxlength= "4" class = "form-control" placeholder="Enter the amount to be credited (in USD)" style="width:500px;" value="${creditFormBean.creditAmount}"/>
 <br>
 <input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="document.forms[0].action = 'creditrequest' ;return validateForm();"/>
 
