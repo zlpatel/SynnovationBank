@@ -251,7 +251,7 @@ public class TransferServiceImpl implements TransferService {
 		Set<TransactionDetails> set = new HashSet<TransactionDetails>();
 		set.add(td1);
 		set.add(td2);
-		
+		t.setCompleteFlag("C");
 		t.setAmount(debit);
 		t.setTransactionDetails(set);
 		t.setDate(Calendar.getInstance().getTime());
@@ -351,7 +351,7 @@ public class TransferServiceImpl implements TransferService {
 		Set<TransactionDetails> set = new HashSet<TransactionDetails>();
 		set.add(td1);
 		set.add(td2);
-		
+		t.setCompleteFlag("P");
 		t.setAmount(debit);
 		t.setTransactionDetails(set);
 		t.setDate(Calendar.getInstance().getTime());
@@ -375,7 +375,7 @@ public class TransferServiceImpl implements TransferService {
 		transactions.setTransactionId(transactionID);
 		
 		Notifications notification = new Notifications();
-		notification.setEmpAdminFlag("M");
+		notification.setEmpAdminFlag(receiverID);
 		notification.setResolvedFlag("N");
 		notification.setNotificationsType(type);
 		notification.setTransaction(transactions);

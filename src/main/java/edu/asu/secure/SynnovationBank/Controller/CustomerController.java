@@ -91,36 +91,6 @@ public class CustomerController {
     	
 	}
 
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	//merchant transer request
 	// controller for 		transferrequest
 	
@@ -152,16 +122,6 @@ public class CustomerController {
 			}
 		
 
-
-	
-	
-	
-	
-	
-	// customer information change request
-	
-	
-	
 	
 	@RequestMapping(value = "/changecustomerinforequest", method = RequestMethod.GET)
     public String getNewCustomerInfo(@ModelAttribute("customerInfoChangeFormBean") CustomerInfoChangeFormBean customerInfoChangeFormBean, HttpServletRequest request, HttpSession session) {
@@ -221,17 +181,8 @@ public class CustomerController {
 	}
 	
 
-	
-	
-	
-	
-	
-	
-	
-	//controller for techaccountaccess
-	
 
-	@RequestMapping(value = "/techaccountaccess", method = RequestMethod.GET)
+	@RequestMapping(value = "/techaccountaccess", method = RequestMethod.POST)
 	public String env(HttpServletRequest request, HttpSession session){
 
 		String userName="";
@@ -273,7 +224,7 @@ public class CustomerController {
 	
 	// controller for crediting
 	
-	@RequestMapping(value = "/creditrequest", method = RequestMethod.GET)
+	@RequestMapping(value = "/creditrequest", method = RequestMethod.POST)
     public String getCreditRqstPage(@RequestParam(value="error", required=false) boolean error,ModelMap model, @ModelAttribute("creditFormBean") CreditFormBean creditFormBean, HttpServletRequest request, HttpSession session) {
 
 		String userName="";
@@ -300,7 +251,7 @@ public class CustomerController {
 	
 	// controller for debiting
 	
-		@RequestMapping(value = "/debitrequest", method = RequestMethod.GET)
+		@RequestMapping(value = "/debitrequest", method = RequestMethod.POST)
 	    public String getDebitRqstPage(@RequestParam(value="error", required=false) boolean error,ModelMap model,@ModelAttribute("debitFormBean") DebitFormBean debitFormBean, HttpServletRequest request, HttpSession session) {
 
 			String userName="";
@@ -332,7 +283,7 @@ public class CustomerController {
 	
 		// controller for 		transferrequest
 		
-		@RequestMapping(value = "/transferrequest", method = RequestMethod.GET)
+		@RequestMapping(value = "/transferrequest", method = RequestMethod.POST)
 	    public String getTransferRqstPage(@RequestParam(value="error", required=false) boolean error, ModelMap model,@ModelAttribute("transferFormBean") TransferFormBean transferFormBean, HttpServletRequest request, HttpSession session) {
 			
 			String userName="";

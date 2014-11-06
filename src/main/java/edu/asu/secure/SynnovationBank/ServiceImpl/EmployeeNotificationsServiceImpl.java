@@ -87,6 +87,8 @@ public class EmployeeNotificationsServiceImpl implements EmployeeNotificationsSe
 	    		adminNotifFormBean.setNotifications(notif.getNotificationsType().getDescription());
 	    		adminNotifFormBean.setAccountNumber(notif.getPerson().getAccount().getAccountNumber());
 	    		adminNotifFormBean.setTransactionAmount(notif.getTransaction().getAmount());
+	    		adminNotifFormBean.setNotificationId(notif.getNotificationId());
+	    		adminNotifFormBean.setTransactionId(notif.getTransaction().getTransactionId());
 
 	    		list.add(adminNotifFormBean);
 	    	}
@@ -94,7 +96,7 @@ public class EmployeeNotificationsServiceImpl implements EmployeeNotificationsSe
 		}
 		
 		@Override
-        public void sendTransactionDeclinedNotification(String userId, long nId) {
+        public void sendTransactionDeclinedNotification(String userId, long tId, long nId) {
         // TODO Auto-generated method stub
 
         //send new notification to user    
@@ -111,7 +113,10 @@ public class EmployeeNotificationsServiceImpl implements EmployeeNotificationsSe
         
         //update this CT notification. set resolved.
         Person person = personDAO.fetchUserById(userId);
-        notificationsDAO.updateResolveNotification(nId, person);        
+        notificationsDAO.updateResolveNotification(nId, person); 
+        Transactions transactions =  transactionDAO.fetchTransactionById(tId);
+        transactions.setCompleteFlag("D");
+        
         //
 }
 		 

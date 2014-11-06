@@ -29,7 +29,7 @@
 <li><a href="payMerchant">Pay Merchant</a></li>
 </ul>
 <br>
-<form action="techaccountaccess" method="get">
+<form action="techaccountaccess" method="post">
 <INPUT TYPE="radio" NAME="radios" VALUE="radio1">
              Allow
             <BR>

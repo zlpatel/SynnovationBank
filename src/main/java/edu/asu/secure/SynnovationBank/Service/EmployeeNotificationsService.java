@@ -8,7 +8,7 @@ public interface EmployeeNotificationsService {
 	
 	public List<AdminCriticalTransactionsFormBean> merchantRequestsCriticalTrans();
 
-    public void sendTransactionDeclinedNotification(String userName, long nId);
+    public void sendTransactionDeclinedNotification(String userName,long tId, long nId);
 
 	public void sendTransactionAcceptedNotification(String userName, long transactionId, long notificationId);
 }

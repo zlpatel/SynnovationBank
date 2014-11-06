@@ -113,16 +113,16 @@ public class EmployeeController {
 	}
     
 
-    @RequestMapping(value = "/employeetransactiondeclined/{userName}/{notificationId}", method = RequestMethod.POST)
-    public String adminTransactionDeclined(@PathVariable("userName") String userId, @PathVariable("notificationId") Long notificationId, ModelMap model, HttpServletRequest request) {
+    @RequestMapping(value = "/employeetransactiondeclined/{userName}/{transactionId}/{notificationId}", method = RequestMethod.POST)
+    public String adminTransactionDeclined(@PathVariable("userName") String userId, @PathVariable("transactionId") Long transactionId, @PathVariable("notificationId") Long notificationId, ModelMap model, HttpServletRequest request) {
     	logger.debug("Received request to delete user with Id: " + userId);
     	
-    	employeeNotificationService.sendTransactionDeclinedNotification(userId, notificationId);
+    	employeeNotificationService.sendTransactionDeclinedNotification(userId, transactionId,notificationId);
         	return "redirect:/secure/employee/employeeviewmerchanttransactions";
   	
 	}
     
-    @RequestMapping(value = "/employeetransactionaccepted/{userName}/{transactionId}/{notoficationId}", method ={RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/employeetransactionaccepted/{userName}/{transactionId}/{notificationId}", method ={RequestMethod.GET, RequestMethod.POST})
     public String adminTransactionAccepted(@PathVariable("userName") String userId, @PathVariable("transactionId") Long transactionId, @PathVariable("notificationId") Long notificationId, ModelMap model, HttpServletRequest request)
     {
     	

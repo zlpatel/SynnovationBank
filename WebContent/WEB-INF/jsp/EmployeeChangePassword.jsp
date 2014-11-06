@@ -51,12 +51,12 @@
           <td></td>
           <td>${notification.accountNumber}</td>
           <td></td>
-          <td>${notification.notification}</td>
+          <td>${notification.notifications}</td>
           <td></td>
           <td>${notification.transactionAmount}</td>
           
-           <td align="center"><input style="width:75px;" name="Modify" type="submit" value= "Accept" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'employeetransactionaccepted?userId=${notification.userName}/${notification.transactionId}/${notification.notificationId}'; ;return true;"/></td>  
-          <td align="center"><input  style="width:75px;" name="Delete" type="submit" value= "Decline" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'employeetransactiondeclined?userId=${notification.userName}/${notification.notificationId}'; ;return true;"/></td> 
+           <td align="center"><input style="width:75px;" name="Modify" type="submit" value= "Accept" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'employeetransactionaccepted/${notification.userName}/${notification.transactionId}/${notification.notificationId}'; ;return true;"/></td>  
+          <td align="center"><input  style="width:75px;" name="Delete" type="submit" value= "Decline" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'employeetransactiondeclined/${notification.userName}/${notification.transactionId}/${notification.notificationId}'; ;return true;"/></td> 
           
         </tr>
       </c:forEach>
