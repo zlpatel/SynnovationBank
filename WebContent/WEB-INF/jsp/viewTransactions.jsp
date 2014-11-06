@@ -36,48 +36,44 @@
 <li><a href="changeCustomerInfo">Change information</a></li>
 <li><a href="techAccountAccess">Technical Account Access</a></li>
 </ul>
-
-<br><br>
-
 <h4>Available balance in your account is: ${balance}</h4> <br><br>
 
 <div id="disptran"><font color="red">${error}</font></div>
 <form name ="cust_transactions" method = "post">
 		<table id = "transaction" width="500" border="0" bordercolor="black" class ="table table-striped">
+		<thead>
 		<tr>
-		  <td><b>Transaction Id</b></td>
-		  <td><b>Transaction Amount</b></td>
-          <td><b> Transaction Date</b></td>
-          <td><b> Transaction Name</b></td>
-          
-          
-         </tr>
+		  <th>Transaction Id</th>
+		  <th></th>
+		  <th>Transaction Amount</th>
+		  <th></th>
+          <th> Transaction Date</th>
+          <th></th>
+          <th> Transaction Name</th>
+		  <th></th>
+		  <th> Transaction Status</th>          
+          </tr>
+          </thead>
+          <tbody>
       <c:forEach  items="${custAcc}" var="trans">
         <tr> 
           <td>${trans.transactionId}</td>
+          <td></td>
           <td>${trans.balance}</td>
+          <td></td>
           <td>${trans.transactionDate}</td>
+          <td></td>
           <td>${trans.transactionsName}</td>
+          <td></td>
+          <td>${trans.transactionStatus}</td>
          </tr>
       </c:forEach>
+      </tbody>
       </table>
-      </form>
-
-
-
-
-
-
-<input type="hidden" name="${_csrf.parameterName}"
+      <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	
 			
-			
-</form>
-
-
-<br><br>
-
-
+      </form>
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  

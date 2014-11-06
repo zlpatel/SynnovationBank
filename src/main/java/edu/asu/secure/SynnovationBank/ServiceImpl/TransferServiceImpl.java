@@ -130,6 +130,7 @@ public class TransferServiceImpl implements TransferService {
 						set.add(td1);
 						set.add(td2);
 						
+						t.setCompleteFlag("P");
 						t.setAmount(debit);
 						t.setTransactionDetails(set);
 						t.setDate(Calendar.getInstance().getTime());
