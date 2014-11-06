@@ -93,88 +93,96 @@ public class EmployeeNotificationsServiceImpl implements EmployeeNotificationsSe
 	    	return list;
 		}
 		
-		  @Override
-		    public void sendTransactionDeclinedNotification(String userName) {
-		    // TODO Auto-generated method stub
+		@Override
+        public void sendTransactionDeclinedNotification(String userId, long nId) {
+        // TODO Auto-generated method stub
 
-		    //set and push Technical Account //Access notification
-		    //Transactions t=new Transactions();
-		    System.out.println("The username in service layer " + userName);
-		    Notifications n=new Notifications();
-		    n.setEmpAdminFlag(userName); // notification to customer
+        //send new notification to user    
+        System.out.println("The username in service layer " + userId);
+        Notifications n=new Notifications();
+        n.setEmpAdminFlag(userId); // notification to customer
 
-		    NotificationsType nt= notificationsTypeDAO.fetchNotificationsType("TD");
-		    //t.setTransactionId(1L);
-		    //n.setTransaction(t);
-		    n.setNotificationsType(nt);
-		    //send userId as well in this method
-		    n.setResolvedFlag("Y");
-		    System.out.println("You are in the service impl");
-		    notificationsDAO.insertNotification("emp",n);
-	}
-		  
-		  @Override
-		    public void sendTransactionAcceptedNotification(AdminCriticalTransactionsFormBean criticalTransactionFormBean)
-		    {
-		    	
-		    	//send notification to sender that transaction has been accepted
-		    	//notification type set as "CT" --> add new type in DB
-		    	
-		    	
-		    	//update balance
-		    	
-		    	
-		    	
-		    	System.out.println("The username in service layer " + criticalTransactionFormBean.getUserName());
-			    Notifications n=new Notifications();
-			    n.setEmpAdminFlag(criticalTransactionFormBean.getUserName()); // notification to customer
-
-			    NotificationsType nt= notificationsTypeDAO.fetchNotificationsType("TA");
-			    //t.setTransactionId(1L);
-			    //n.setTransaction(t);
-			    n.setNotificationsType(nt);
-			    //send userId as well in this method
-			    n.setResolvedFlag("Y");
-			    notificationsDAO.insertNotification("emp",n);
+        NotificationsType nt= notificationsTypeDAO.fetchNotificationsType("TD");
+        n.setNotificationsType(nt);
+        //send userId as well in this method
+        n.setResolvedFlag("Y");
+        System.out.println("You are in the service impl");
+        notificationsDAO.insertNotification("emp",n);
+        
+        //update this CT notification. set resolved.
+        Person person = personDAO.fetchUserById(userId);
+        notificationsDAO.updateResolveNotification(nId, person);        
+        //
+}
 		 
-			    
-			    
-		    	Person sender = personDAO.fetchUserById(criticalTransactionFormBean.getUserName());
-				Account a=(Account) sender.getAccount();
-				float balance=a.getBalance();
-				float debit=criticalTransactionFormBean.getTransactionAmount();
-				float new_balance=balance-debit;
-				a.setBalance(new_balance);
-				
-		    	//get receiver's account number
-				long receiverAccountNo =  transactionDAO.fetchCreditorAccountNo(criticalTransactionFormBean.getTransactionId());
-				
-				//get Account from account number
-				
-				Account b=(Account) accountDAO.fetchAccountByNumber(receiverAccountNo);
-				float balanceB=b.getBalance();
-				float credit=criticalTransactionFormBean.getTransactionAmount();
-				float new_balanceB=balanceB+credit;
-				b.setBalance(new_balanceB);
-				
-				System.out.println("***************************************************");
-				System.out.println("PERFORMING DEBIT FROM YOUR ACCOUNT AND CREDITING TO THE OTHER ACCOUNT!");
-				System.out.println("***************************************************");
-				
-				accountDAO.updateAccountBalance(a.getAccountNumber(), a.getBalance());
-				System.out.println("Debitted sender account table");
-				
-				accountDAO.updateAccountBalance(b.getAccountNumber(), b.getBalance());
-				System.out.println("Creddited receiver account table");
-				
-				//get transaction from transaction id
-				long transactionId = criticalTransactionFormBean.getTransactionId();
-				Transactions transactions =  transactionDAO.fetchTransactionById(transactionId);
-				
-		    	//set transaction status to C from P
-				transactions.setCompleteFlag("C");
-				
-				
+		    	
+			  @Override
+		        public void sendTransactionAcceptedNotification(String userId, long tId, long nId)
+		        {
+		            System.out.println(tId);
+//		            long tId = Long.valueOf(transactionId).longValue();
+		            Transactions t = new Transactions();
+		            t = transactionDAO.fetchTransactionById(tId);
+		            
+		            
+		            //send notification to sender that transaction has been accepted
+		            //notification type set as "CT" --> add new type in DB
+		            
+		            
+		            //update balance
+		            
+		            
+		            
+		            System.out.println("The username in service layer " + userId);
+		            Notifications n=new Notifications();
+		            n.setEmpAdminFlag(userId); // notification to customer
+
+		            NotificationsType nt= notificationsTypeDAO.fetchNotificationsType("TA");
+		            //t.setTransactionId(1L);
+		            //n.setTransaction(t);
+		            n.setNotificationsType(nt);
+		            //send userId as well in this method
+		            n.setResolvedFlag("Y");
+		            notificationsDAO.insertNotification("emp",n);
+		     
+		        
+		            
+		            Person sender = personDAO.fetchUserById(userId);
+		            Account a=(Account) sender.getAccount();
+		            float balance=a.getBalance();
+		            float debit=t.getAmount();
+		            float new_balance=balance-debit;
+		            a.setBalance(new_balance);
+		            
+		            //get receiver's account number
+		            long receiverAccountNo =  transactionDAO.fetchCreditorAccountNo(tId);
+		            
+		            //get Account from account number
+		            
+		            Account b=(Account) accountDAO.fetchAccountByNumber(receiverAccountNo);
+		            float balanceB=b.getBalance();
+		            float credit=t.getAmount();
+		            float new_balanceB=balanceB+credit;
+		            b.setBalance(new_balanceB);
+		            
+		            System.out.println("***************************************************");
+		            System.out.println("PERFORMING DEBIT FROM YOUR ACCOUNT AND CREDITING TO THE OTHER ACCOUNT!");
+		            System.out.println("***************************************************");
+		            
+		            accountDAO.updateAccountBalance(a.getAccountNumber(), a.getBalance());
+		            System.out.println("Debitted sender account table");
+		            
+		            accountDAO.updateAccountBalance(b.getAccountNumber(), b.getBalance());
+		            System.out.println("Creddited receiver account table");
+		            
+		            //get transaction from transaction id
+		            Transactions transactions =  transactionDAO.fetchTransactionById(tId);
+		            transactions.setCompleteFlag("C");
+		            
+		            Person person = personDAO.fetchUserById(userId);
+		            notificationsDAO.updateResolveNotification(nId, person);        
+		            
+		        }
 				
 		    }
-}
+
