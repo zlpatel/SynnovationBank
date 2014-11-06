@@ -36,7 +36,6 @@
 				/>
 
 		<!-- enable csrf protection -->
-		<!-- <security:csrf request-matcher-ref="csrfSecurityRequestMatcher"/> -->
 		<!-- <security:csrf/> -->
 	</security:http>
 	
@@ -58,8 +57,8 @@
 
 	<!-- A custom service where Spring will retrieve users and their corresponding access levels  -->
 	<bean id="myUserDetailsService" class="edu.asu.secure.SynnovationBank.ServiceImpl.CustomUserDetailsService">
-		<property name="usersByUsernameQuery" value="select * from person where user_id = ?"/>
-		<property name="authoritiesByUsernameQuery" value="select user_id, role from person where user_id =?" />
+		<property name="usersByUsernameQuery" value="select * from person where user_id = lower(?)"/>
+		<property name="authoritiesByUsernameQuery" value="select user_id, role from person where user_id =lower(?)" />
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	

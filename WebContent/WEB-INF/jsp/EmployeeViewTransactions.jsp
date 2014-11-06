@@ -46,21 +46,19 @@
 	
 </head>
 <body>
-<h2>Employee Page</h2>
-
-
+<center><h1> SYNNOVATION </h1> </center>
+<h2> VIEW CUSTOMER TRANSACTIONS PAGE</h2>
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
     <li><a href="employeeuseraccounts">User Accounts</a></li>
      <li><a href="employeeviewmerchanttransactions">Merchant Requests</a></li>
     <li class="active"><a href="#">View Customer Transactions</a></li>
 </ul>
-<p align="center">View Customer Transactions</p>
+<br>
 <div id="error"><font color="red">${error}</font></div>
 <form action ="viewtransactions" method="post" commandName="usertransactionformbean">
-
-
 <input name="userName"  id="username" class = "form-control" style="width:200px;" placeholder = "User Name" type="text" maxlength="15" value="${usertransactionformbean.userName}">
+<br>
 <input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="document.forms[0].action = 'viewtransactions' ;return validateForm();"/>
 <!-- <input class="btn btn-lg btn-primary" type="submit" value="Submit"/>-->
 

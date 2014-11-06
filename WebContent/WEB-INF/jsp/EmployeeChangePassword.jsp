@@ -20,19 +20,20 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2>Employee Page</h2>
+<center><h1> SYNNOVATION </h1> </center>
+<h2> MERCHANT REQUESTS PAGE</h2>
 <ul class="nav nav-tabs">
-    <li><a href="home">Notifications</a></li>
-    <li><a href="employeeuseraccounts">User Accounts</a></li>
+    <li><a href="../employee/home">Notifications</a></li>
+    <li><a href="../employee/employeeuseraccounts">User Accounts</a></li>
     <li class="active"><a href="#">Merchant Requests</a></li>
-    <li><a href="employeeviewtransactions">View Customer Transactions</a></li>
+    <li><a href="../employee/employeeviewtransactions">View Customer Transactions</a></li>
 </ul>
-<p align="center">Merchant Requests</p>
-<form action="employeecriticaltransactions" commandName="getadmincriticaltransactions" method="get" >
+<br>
+<form method="post" >
 <table class="table" class ="table table-striped">
 <thead>
             <tr>
-                <th>Username</th>
+                <th>User Name</th>
                 <th></th>
                 <th>Account Number</th>
                 <th></th>
@@ -50,12 +51,12 @@
           <td></td>
           <td>${notification.accountNumber}</td>
           <td></td>
-          <td>${notification.notification}</td>
+          <td>${notification.notifications}</td>
           <td></td>
           <td>${notification.transactionAmount}</td>
           
-           <td align="center"><input style="width:75px;" name="Modify" type="submit" value= "Accept" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'employeetransactionaccepted?userId=${notification}'; ;return true;"/></td>  
-          <td align="center"><input  style="width:75px;" name="Delete" type="submit" value= "Decline" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'employeetransactiondeclined?userId=${notification.userName}'; ;return true;"/></td> 
+           <td align="center"><input style="width:75px;" name="Modify" type="submit" value= "Accept" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'employeetransactionaccepted/${notification.userName}/${notification.transactionId}/${notification.notificationId}'; ;return true;"/></td>  
+          <td align="center"><input  style="width:75px;" name="Delete" type="submit" value= "Decline" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'employeetransactiondeclined/${notification.userName}/${notification.transactionId}/${notification.notificationId}'; ;return true;"/></td> 
           
         </tr>
       </c:forEach>

@@ -1,7 +1,6 @@
 package edu.asu.secure.SynnovationBank.FormBean;
 
-public class MerchantTransferFormBean {
-
+public class MerchanttransferFormBean {
 	private String receiverID;
 	private String transferAmount;
 

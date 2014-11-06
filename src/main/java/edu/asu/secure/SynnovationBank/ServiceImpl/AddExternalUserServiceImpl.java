@@ -1,6 +1,7 @@
 package edu.asu.secure.SynnovationBank.ServiceImpl;
 
 import java.util.Date;
+import java.util.UUID;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,15 +42,27 @@ public class AddExternalUserServiceImpl implements AddExternalUserService{
 	person.setEmail(addexternaluserformbean.getEmail());
 	person.setUserId(addexternaluserformbean.getUsername());
 	person.setPassword(HashCode.getHashPassword(addexternaluserformbean.getPassword()));
-	person.setDateOfBirth(new Date(1220227200));
-	person.setRole("ROLE_CUST");
+	person.setDateOfBirth(addexternaluserformbean.getDateOfBirth());
+	person.setRole(addexternaluserformbean.getRole());
+//	person.setRole("ROLE_CUST");
 	person.setAllowAccessFlag(false);
-
+	person.setAccountLockedFlag(false);
+	person.setLoginAttempts(0);
+	person.setPiiRequestFlag(false);
+	
+	Long uuid = UUID.randomUUID().getLeastSignificantBits();
+	if(uuid < 0) {
+		uuid = uuid * -1;
+		}
+	String ssn = uuid.toString().substring(0, 9);
+	person.setSsn(ssn);
+	
 	Account account = new Account();
 	account.setPerson(person);
-	account.setBalance(1000.0f);
 	account.setRoutingNumber(12345);
 	account.setAccountType("Checking");
+	
+	
 
 	person.setAccount(account);
 

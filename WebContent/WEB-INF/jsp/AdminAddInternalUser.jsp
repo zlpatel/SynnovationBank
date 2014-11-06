@@ -15,6 +15,11 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/jquery-ui.css" />
+	<script src="${pageContext.request.contextPath}/bootstrap/js/jquery-1.9.1.js"></script>
+	<script src="${pageContext.request.contextPath}/bootstrap/js/jquery-ui.js"></script>
+	<script src="${pageContext.request.contextPath}/bootstrap/js/jquery.validate.js"></script>
+	
 	<script type="text/javascript">
 	
 	function validateForm()
@@ -26,6 +31,15 @@
 	 var email = document.getElementById("email").value;
 	 var username = document.getElementById("username").value;
 	 var password = document.getElementById("password").value;
+	 var selectedDate = $('#datepicker1').datepicker('getDate');
+	 
+	 var now = new Date();
+	 
+	 if (selectedDate > now) {
+	 alert("date is invalid");
+	 return false;
+	 // selected date is in the past
+	 }
 
 	  if (fname === "" || lname === "" || address === "" || email === "" || username === "" || password === "") 
 	  {
@@ -61,6 +75,15 @@
 	    }
 	  
 	 }</script>
+	 
+	 <script>
+$(function() {
+$( "#datepicker1" ).datepicker({
+changeMonth: true,
+changeYear: true
+});
+});
+</script>
 	
 </head>
 <body>
@@ -85,6 +108,8 @@
 <br>
 <input name="lname" id="lname"  type="text" class = "form-control" style="width:200px;" placeholder = "Last Name" maxlength="14" value="${addinternaluserformbean.lname}"/>
 <br>
+<input name="dateOfBirth" type="text" id="datepicker1" placeholder="date of birth" readonly="true" class = "form-control" style="width:200px;" maxlength="14" value="${addinternaluserformbean.dateOfBirth}"/>
+<br>
 <input name="address" id="address"  type="text" class = "form-control" style="width:200px;" placeholder = "Address" maxlength="50" value="${addinternaluserformbean.address}"/>
 <br>
 <%-- <input name="city"  type="text" class = "form-control" style="width:200px;" placeholder = "City" maxlength="15" value="${addinternaluserformbean.city}"/>
@@ -97,13 +122,13 @@
 <br>
 --%><input name="email" id="email"  type="text" class = "form-control" style="width:200px;" placeholder = "Email" maxlength="30" value="${addinternaluserformbean.email}"/>
 <br><input name="username" id="username"  class = "form-control" style="width:200px;" placeholder = "Username" maxlength="15" value="${addinternaluserformbean.username}"/>
-<br><input name="password" id="password" type="password" class="form-control" style="width:200px;" placeholder="Password" value="${addinternaluserformbean.password}"/>
+<br><input name="password" id="password" type="password" class="form-control" style="width:200px;" placeholder="Password" maxlength="15" value="${addinternaluserformbean.password}"/>
 <br>
 
 <input class="btn btn-lg btn-primary" type="submit" value="Add User" onclick="document.forms[0].action = 'adminaddedinternaluseraccounts' ;return validateForm();"/>
 <!-- <a class="btn btn-primary" href="adminaddedexternaluseraccounts" type="submit">Save</a> -->
-<a class="btn btn-deafult" href="admininternaluseraccounts">Cancel</a>
-<a class="btn btn-deafult" href="javascript:formSubmit()">Logout</a>
+<a class="btn btn-default" href="admininternaluseraccounts">Cancel</a>
+<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
 
 <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	

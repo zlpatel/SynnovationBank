@@ -1,5 +1,6 @@
 package edu.asu.secure.SynnovationBank.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,10 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.asu.secure.SynnovationBank.FormBean.AdminCriticalTransactionsFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.ExternalUserFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.InternalUserFormBean;
 import edu.asu.secure.SynnovationBank.Service.AddExternalUserService;
@@ -103,16 +106,26 @@ public class AdminController {
      * 
      * @return the name of the JSP page
      */
-    @RequestMapping(value = "/adminpiirequests", method = RequestMethod.GET)
-    public String getAdminPIIRequestsPage() {
+    @RequestMapping(value = "/adminpiirequests", method = {RequestMethod.GET, RequestMethod.POST})
+    public String getAdminPIIRequestsPage(@ModelAttribute("modifyexternaluserformbean")
+    ExternalUserFormBean modifyexternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
     	logger.debug("Received request to show admin pii requests page");
     	
-    	// Do your work here. Whatever you like
-    	// i.e call a custom service to do your business
-    	// Prepare a model to be used by the JSP page
+    	model.put("piirequestslist", adminNotificationService.getPIIRequestNotifications());
     	
     	// This will resolve to /WEB-INF/jsp/AdminPIIRequests.jsp
     	return "AdminPIIRequests";
+	}
+    
+    @RequestMapping(value = "/addadminpiirequest", method = {RequestMethod.GET, RequestMethod.POST})
+    public String addAdminPIIRequest(@ModelAttribute("modifyexternaluserformbean")
+    ExternalUserFormBean modifyexternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
+    	logger.debug("Received request to show admin pii requests page");
+    	
+    	adminNotificationService.addPIIRequestNotification(modifyexternaluserformbean);
+    	
+    	// This will resolve to /WEB-INF/jsp/AdminPIIRequests.jsp
+    	return "redirect:adminpiirequests";
 	}
     
     /**
@@ -141,10 +154,11 @@ public class AdminController {
     public String getAdminAdminCriticalTransactionsPage(ModelMap model) {
     	logger.debug("Received request to show admin critical transactions page");
     
-        model.put("adminCriticalNotifFormBean", adminNotificationService.notifications());
+        model.put("adminCriticalNotifFormBean", adminNotificationService.getCriticalTransactionNotifications());
     	// This will resolve to /WEB-INF/jsp/AdminCriticalTransactions.jsp
     	return "AdminCriticalTransactions";
 	}
+    
     
     /**
      * Handles and retrieves the admin JSP page that only admins can see
@@ -170,9 +184,14 @@ public class AdminController {
      * @return the name of the JSP page
      */
     @RequestMapping(value = "/adminaddexternaluser", method = RequestMethod.GET)
-    public String getAdminAddExternalUser() {
+    public String getAdminAddExternalUser(ModelMap model) {
     	logger.debug("Received request to show add external user page");
-    
+    	
+//    	List<String> rolesList = new ArrayList<String>();
+//    	rolesList.add("ROLE_CUST");
+//    	rolesList.add("ROLE_MERC");
+//    	model.put("rolesList", rolesList);    	
+    	
     	return "AdminAddExternalUser";
     	
 	}
@@ -200,7 +219,8 @@ public class AdminController {
     ExternalUserFormBean addexternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
     	logger.debug("Received request to show ADDED external user page ......");
        	
-    	System.out.println(addexternaluserformbean.getFname());
+//    	System.out.println(request.getParameter("radios"));
+    	addexternaluserformbean.setRole(request.getParameter("radios"));
     	
     	if(addExternalUserService.addExternalUser(addexternaluserformbean))
     	{
@@ -343,4 +363,33 @@ public class AdminController {
 			return "AdminExternalUserAccounts";
     	}   	
 	}   
+    
+    
+    @RequestMapping(value = "/admintransactiondeclined/{userId}/{notificationId}", method = {RequestMethod.POST, RequestMethod.GET})
+    public String adminTransactionDeclined(@PathVariable("userId") String userId, @PathVariable("notificationId") Long notificationId, ModelMap model, HttpServletRequest request) {
+    	logger.debug("Received request to decline transaction for user with Id: " + userId);
+    	
+    	adminNotificationService.sendTransactionDeclinedNotification(userId, notificationId);
+        	return "redirect:/secure/admin/admincriticaltransactions";
+    	
+//    	else
+//    	{
+//			model.put("error","true");
+//			logger.debug("Some error deleting user!");
+//			return "AdminExternalUserAccounts";
+//    	}   	
+	}   
+    
+    @RequestMapping(value = "/admintransactionaccepted/{userId}/{transactionId}/{notificationId}", method = {RequestMethod.POST, RequestMethod.GET})
+    public String adminTransactionAccepted(@PathVariable("userId") String userId, @PathVariable("transactionId") Long transactionId, @PathVariable("notificationId") Long notificationId, ModelMap model, HttpServletRequest request){
+    		
+//        public String adminTransactionAccepted(@RequestParam(value="notification", required=true) AdminCriticalTransactionsFormBean notification, HttpServletRequest request,  
+//                HttpServletResponse response, ModelMap model) {
+    	
+    	logger.debug("Received request to accept critical transaction");
+    	
+    	adminNotificationService.sendTransactionAcceptedNotification(userId, transactionId, notificationId);
+        	return "redirect:/secure/admin/admincriticaltransactions";
+    }
+    
 }
