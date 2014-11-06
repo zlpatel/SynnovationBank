@@ -23,7 +23,11 @@
 	 var lname = document.getElementById("lastName").value;
 	 var address = document.getElementById("address").value;
 	 var email = document.getElementById("email").value;
-	
+	 if (fname === "" || lname === "" || address === "" || email === "") 
+	  {
+	  	alert("Please fill all fields.");
+	  	return false;
+	  }
 	 
 	  var regex1 = new RegExp("^[a-zA-Z]+$");	  
 	  if(!regex1.test(fname) || !regex1.test(lname))  
@@ -64,7 +68,7 @@
 <li><a href="payMerchant">Pay Merchant</a></li>
 </ul>
 <br>
-<h3>IF YOU DO NOT WISH TO CHANGE YOUR INFORMATION...LEAVE THE CORRESPONDING FIELD AS EMPTY! </h3>
+<h3>IF YOU DO NOT WISH TO CHANGE YOUR INFORMATION </h3>
 <form commandName="customerInfoChangeFormBean" method="get">
 <input id="firstName" type="text" name="firstName" class="form-control" maxlength= "15" placeholder="First Name" style="width:200px;" value="${customerInfoChangeFormBean.firstName}"/>
 <br>
