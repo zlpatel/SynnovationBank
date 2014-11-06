@@ -34,6 +34,7 @@ import edu.asu.secure.SynnovationBank.Service.TransferService;
 @RequestMapping("/customer")
 public class CustomerController {
 	protected static Logger logger = Logger.getLogger("controller");
+	
 	@Autowired
 	private CreditService creditService;
 	@Autowired
@@ -513,7 +514,7 @@ public class CustomerController {
         }
 		
     
-    	model.put("username", customerTransactionService.getUserName(userName));
+    	model.put("username", userName);
     	return "welcomeUser";
 	}
 	

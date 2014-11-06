@@ -16,5 +16,6 @@ public interface NotificationsDAO {
 	public List<Notifications> fetchNotifications(String empOrAdmin, String resolvedFlag);
 	public List<Notifications> fetchNotifications(String empOrAdmin, long notificationTypeId, String resolvedFlag);
 	public Notifications fetchByNotificationId(Long notificationId);
+
 	
 }
