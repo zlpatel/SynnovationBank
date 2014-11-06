@@ -30,8 +30,8 @@ public class EmployeeUserAccountsServiceImpl implements EmployeeUserAccountServi
     public List<EmpUserAccFormBean> userAccounts() {
     	 
     	EmpUserAccFormBean empUserAccFormBean=null;
-    	//change account to person and pass argument "c"
-    	List<Person> person=personDAO.fetchUserByRole("C");
+    	
+    	List<Person> person=personDAO.fetchUserByRole("ROLE_CUST");
     	List<EmpUserAccFormBean> list=new ArrayList<EmpUserAccFormBean>();
     	
     	for(Person per: person){
@@ -39,6 +39,7 @@ public class EmployeeUserAccountsServiceImpl implements EmployeeUserAccountServi
     		
     		empUserAccFormBean.setFirstName(per.getFirstName());
     		empUserAccFormBean.setLastName(per.getLastName());
+    		empUserAccFormBean.setUserName(per.getUserId());
     		empUserAccFormBean.setGetAccountNumber(per.getAccount().getAccountNumber());
     		empUserAccFormBean.setGetBalance(per.getAccount().getBalance());
     		list.add(empUserAccFormBean);

@@ -9,6 +9,7 @@ public class AdminCriticalTransactionsFormBean
 	private String notifications;
 	private long accountNumber;
 	private float transactionAmount;
+	private long transactionId;
 	
 	public String getFirstName() {
 		return firstName;
@@ -45,6 +46,12 @@ public class AdminCriticalTransactionsFormBean
 	}
 	public void setTransactionAmount(float transactionAmount) {
 		this.transactionAmount = transactionAmount;
+	}
+	public Long getTransactionId() {
+		return transactionId;
+	}
+	public void setTransactionId(long transactionId) {
+		this.transactionId = transactionId;
 	}
 	
 }
