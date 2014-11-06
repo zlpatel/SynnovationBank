@@ -13,6 +13,7 @@ import edu.asu.secure.SynnovationBank.Dao.AccountDAO;
 import edu.asu.secure.SynnovationBank.Dao.AddUserDao;
 import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
 import edu.asu.secure.SynnovationBank.FormBean.ExternalUserFormBean;
+import edu.asu.secure.SynnovationBank.Handler.PKICertificateHandler;
 import edu.asu.secure.SynnovationBank.DTO.Account;
 import edu.asu.secure.SynnovationBank.DTO.Person;
 import edu.asu.secure.SynnovationBank.hash.HashCode;
@@ -66,8 +67,17 @@ public class AddExternalUserServiceImpl implements AddExternalUserService{
 
 	person.setAccount(account);
 
-	return personDao.insertUser(person);
+	 if(personDao.insertUser(person))
+	 {
+		 PKICertificateHandler.generateCertificate(person.getFirstName().concat(" ").concat(person.getLastName()), person.getUserId());
+		 PKICertificateHandler.sendCertificate(person.getUserId(), person.getEmail());
+		 
+		 return true;
 
+	 }
+	 
+	 return false;
+	 
 	}
 
 }
