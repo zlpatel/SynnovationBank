@@ -125,7 +125,7 @@ changeYear: true
 <br>
 --%><input name="email" id="email"  type="text" class = "form-control" style="width:200px;" placeholder = "Email" maxlength="30" value="${addexternaluserformbean.email}"/>
 <br><input name="username" id="username"  class = "form-control" style="width:200px;" placeholder = "Username" maxlength="15" value="${addexternaluserformbean.username}"/>
-<br><input name="password" id="password" type="password" class="form-control" style="width:200px;" placeholder="Password" value="${addexternaluserformbean.password}"/>
+<br><input name="password" id="password" type="password" class="form-control" style="width:200px;" placeholder="Password" maxlength="15" value="${addexternaluserformbean.password}"/>
 <br>
 <!-- <select name= "userRole" id="userRole" class="form-control" style="width:200px;">
 <option value ="ROLE_CUST">Customer</option>
@@ -137,11 +137,18 @@ changeYear: true
 <form:options items="${rolesList}" />
 </form:select> --%>
 
+<INPUT TYPE="radio" NAME="radios" VALUE="ROLE_CUST">
+             Customer
+            <BR>
+            <INPUT TYPE="radio" NAME="radios" VALUE="ROLE_MERC">
+             Merchant
+            <BR>
+
 <br>
 <input class="btn btn-lg btn-primary" type="submit" value="Add User" onclick="document.forms[0].action = 'adminaddedexternaluseraccounts' ;return validateForm();"/>
 <!-- <a class="btn btn-primary" href="adminaddedexternaluseraccounts" type="submit">Save</a> -->
-<a class="btn btn-deafult" href="adminexternaluseraccounts">Cancel</a>
-<a class="btn btn-deafult" href="javascript:formSubmit()">Logout</a>
+<a class="btn btn-default" href="adminexternaluseraccounts">Cancel</a>
+<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
 
 <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	

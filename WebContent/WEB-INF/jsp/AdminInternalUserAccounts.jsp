@@ -79,6 +79,6 @@
 		}
 	</script>
 <a class="btn btn-default" href="adminaddinternaluser">Add New Internal User</a>
-<a href="javascript:formSubmit()"> Logout</a>
+<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
 </body>
 </html>

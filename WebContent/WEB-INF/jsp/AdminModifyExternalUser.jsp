@@ -100,7 +100,7 @@
 <br>
 <input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="document.forms[0].action = 'adminmodifiedexternaluseraccounts' ;return validateForm();"/>
 
-<input class="btn btn-info" type="submit" value="Request PII" onclick="document.forms[0].action = 'adminpiirequests' ;return true;"/>
+<input class="btn btn-info" type="submit" value="Request PII" onclick="document.forms[0].action = 'addadminpiirequest' ;return true;"/>
 <!-- <input class="btn btn-info" href="adminpiirequests">Request PII</a>
  --><a class="btn btn-default" href="adminexternaluseraccounts">Cancel</a>
 <a class="btn btn-default" href="javascript:formSubmit()">Logout</a>

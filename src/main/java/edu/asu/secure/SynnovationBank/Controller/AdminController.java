@@ -111,11 +111,21 @@ public class AdminController {
     ExternalUserFormBean modifyexternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
     	logger.debug("Received request to show admin pii requests page");
     	
-    	adminNotificationService.addPIIRequestNotification(modifyexternaluserformbean);
     	model.put("piirequestslist", adminNotificationService.getPIIRequestNotifications());
     	
     	// This will resolve to /WEB-INF/jsp/AdminPIIRequests.jsp
     	return "AdminPIIRequests";
+	}
+    
+    @RequestMapping(value = "/addadminpiirequest", method = {RequestMethod.GET, RequestMethod.POST})
+    public String addAdminPIIRequest(@ModelAttribute("modifyexternaluserformbean")
+    ExternalUserFormBean modifyexternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
+    	logger.debug("Received request to show admin pii requests page");
+    	
+    	adminNotificationService.addPIIRequestNotification(modifyexternaluserformbean);
+    	
+    	// This will resolve to /WEB-INF/jsp/AdminPIIRequests.jsp
+    	return "redirect:adminpiirequests";
 	}
     
     /**
@@ -177,11 +187,11 @@ public class AdminController {
     public String getAdminAddExternalUser(ModelMap model) {
     	logger.debug("Received request to show add external user page");
     	
-    	List<String> rolesList = new ArrayList<String>();
-    	rolesList.add("ROLE_CUST");
-    	rolesList.add("ROLE_MERC");
-    	model.put("rolesList", rolesList);    	
-
+//    	List<String> rolesList = new ArrayList<String>();
+//    	rolesList.add("ROLE_CUST");
+//    	rolesList.add("ROLE_MERC");
+//    	model.put("rolesList", rolesList);    	
+    	
     	return "AdminAddExternalUser";
     	
 	}
@@ -209,7 +219,8 @@ public class AdminController {
     ExternalUserFormBean addexternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
     	logger.debug("Received request to show ADDED external user page ......");
        	
-    	System.out.println(addexternaluserformbean.getRole());
+//    	System.out.println(request.getParameter("radios"));
+    	addexternaluserformbean.setRole(request.getParameter("radios"));
     	
     	if(addExternalUserService.addExternalUser(addexternaluserformbean))
     	{

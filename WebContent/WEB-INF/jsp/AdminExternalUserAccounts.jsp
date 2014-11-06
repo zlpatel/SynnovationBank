@@ -86,7 +86,7 @@
 	</script>
 <br>
 <a class="btn btn-default" href="adminaddexternaluser">Add New External User</a>
-<a class="btn btn-deafult" href="javascript:formSubmit()"> Logout</a>
+<a class="btn btn-default" href="javascript:formSubmit()"> Logout</a>
 
 </body>
 </html>

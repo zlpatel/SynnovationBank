@@ -61,6 +61,8 @@
 		name="${_csrf.parameterName}"
 		value="${_csrf.token}" />
       
+      <a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
+      
       </form>
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
@@ -77,7 +79,7 @@
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-<br> <a href="javascript:formSubmit()"> Logout</a>
+<br> <!-- <a href="javascript:formSubmit()"> Logout</a> -->
 
 </body>
 </html>

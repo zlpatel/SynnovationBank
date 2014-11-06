@@ -122,13 +122,13 @@ changeYear: true
 <br>
 --%><input name="email" id="email"  type="text" class = "form-control" style="width:200px;" placeholder = "Email" maxlength="30" value="${addinternaluserformbean.email}"/>
 <br><input name="username" id="username"  class = "form-control" style="width:200px;" placeholder = "Username" maxlength="15" value="${addinternaluserformbean.username}"/>
-<br><input name="password" id="password" type="password" class="form-control" style="width:200px;" placeholder="Password" value="${addinternaluserformbean.password}"/>
+<br><input name="password" id="password" type="password" class="form-control" style="width:200px;" placeholder="Password" maxlength="15" value="${addinternaluserformbean.password}"/>
 <br>
 
 <input class="btn btn-lg btn-primary" type="submit" value="Add User" onclick="document.forms[0].action = 'adminaddedinternaluseraccounts' ;return validateForm();"/>
 <!-- <a class="btn btn-primary" href="adminaddedexternaluseraccounts" type="submit">Save</a> -->
-<a class="btn btn-deafult" href="admininternaluseraccounts">Cancel</a>
-<a class="btn btn-deafult" href="javascript:formSubmit()">Logout</a>
+<a class="btn btn-default" href="admininternaluseraccounts">Cancel</a>
+<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
 
 <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	

@@ -45,10 +45,10 @@ public class AdminUserAccountsServiceImpl implements AdminUserAccountsService {
 	public List<ExternalUserFormBean> getExternalUserAccounts() {
 
 		ExternalUserFormBean externalUserFormBean=null;
-		List<Person> person=personDAO.fetchUserByRole("ROLE_CUST");
+		List<Person> customer=personDAO.fetchUserByRole("ROLE_CUST");
 		List<ExternalUserFormBean> list=new ArrayList<ExternalUserFormBean>();
-
-		for(Person per: person){
+		
+		for(Person per: customer){
 			externalUserFormBean = new ExternalUserFormBean();
 
 			externalUserFormBean.setFname(per.getFirstName());
@@ -58,6 +58,21 @@ public class AdminUserAccountsServiceImpl implements AdminUserAccountsService {
 			externalUserFormBean.setAccountBalance(per.getAccount().getBalance());
 			list.add(externalUserFormBean);
 		}
+		
+		List<Person> merchant=personDAO.fetchUserByRole("ROLE_MERC");
+		
+		for(Person per:merchant)
+		{
+			externalUserFormBean = new ExternalUserFormBean();
+
+			externalUserFormBean.setFname(per.getFirstName());
+			externalUserFormBean.setLname(per.getLastName());
+			externalUserFormBean.setUsername(per.getUserId());
+			externalUserFormBean.setAccountNumber(per.getAccount().getAccountNumber());
+			externalUserFormBean.setAccountBalance(per.getAccount().getBalance());
+			list.add(externalUserFormBean);
+		}
+		
 		return list;	
 
 	}

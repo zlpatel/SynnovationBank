@@ -40,8 +40,12 @@ public class AddInternalUserServiceImpl implements AddInternalUserService{
 		person.setPassword(HashCode.getHashPassword(addinternaluserformbean.getPassword()));
 		
 		person.setDateOfBirth(addinternaluserformbean.getDateOfBirth());
+		//get role from form bean
 		person.setRole("ROLE_BNK_EMPL");
 		person.setAllowAccessFlag(false);
+		person.setAccountLockedFlag(false);
+		person.setLoginAttempts(0);
+		person.setPiiRequestFlag(false);
 
 		return personDao.insertUser(person);
 		
