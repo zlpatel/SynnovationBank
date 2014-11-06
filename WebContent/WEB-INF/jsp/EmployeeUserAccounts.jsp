@@ -1,3 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -16,38 +20,55 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2>Employee Page</h2>
-<form name ="employee_userAccounts" method = "post" commandName="empUserAccFormBean">
+<center><h1> SYNNOVATION </h1> </center>
+<h2> USER ACCOUNTS PAGE</h2>
+<ul class="nav nav-tabs">
+    <li><a href="home">Notifications</a></li>
+    <li class="active"><a href="#">User Accounts</a></li>
+     <li><a href="employeeviewmerchanttransactions">Merchant Requests</a></li>
+     <li><a href="employeeviewtransactions">View Customer Transactions</a></li>
+</ul>
+<br>
+<form action ="employeeuseraccounts" method = "post" >
 		<table id = "transaction" width="500" border="0" bordercolor="black" class ="table table-striped">
+		<thead>
 		<tr>
-		  <td><b>First Name</b></td>
-		  <td><b>Last Name</b></td>
-          <td><b>Account Number</b></td>
-          <td><b>Balance</b></td>
-          
-          <td colspan="2" align="center"><b>Action</b></td>
+		  <th>First Name</th>
+		  <th></th>
+		  <th>Last Name</th>
+		  <th></th>
+		  <th>User Name</th>
+		  <th></th>
+          <th>Account Number</th>
+          <th></th>
+          <th>Balance</th>
          </tr>
-      <c:forEach  items="${empUserAccFormBean}">
+         </thead>
+         <tbody>
+      <c:forEach  items="${empUserAcc}" var="empUser">
         <tr> 
-          <td>${empUserAccFormBean.getFirstName}</td>
-          <td>${empUserAccFormBean.getLastName}</td>
-          <td>${empUserAccFormBean.getAccountNumber}</td>
-          <td>${empUserAccFormBean.getBalance}</td>
-          <!-- <td align="center"><input style="width:75px;" name="request to view transaction" type="submit" value= "View Transaction" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoApproved.html?authUsername=${person.ID}';;return true;"/></td> --> 
+          <td>${empUser.firstName}</td>
+          <td></td>
+          <td>${empUser.lastName}</td>
+          <td></td>
+          <td>${empUser.userName}</td>
+          <td></td>
+          <td>${empUser.getAccountNumber}</td>
+          <td></td>
+          <td>${empUser.getBalance}</td>
+          
           
         </tr>
       </c:forEach>
+      </tbody>
       </table>
+      <input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />	
+      
       </form>
 
 
-<ul class="nav nav-tabs">
-    <li><a href="employee">Notifications</a></li>
-    <li class="active"><a href="#">User Accounts</a></li>
-    <li><a href="employeechangepassword">Change Password</a></li>
-</ul>
 
-<p align="center">User Accounts Page</p>
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  

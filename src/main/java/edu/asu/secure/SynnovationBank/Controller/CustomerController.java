@@ -18,6 +18,7 @@ import edu.asu.secure.SynnovationBank.FormBean.CreditFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.CustomerInfoChangeFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.CustomertransactionFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.DebitFormBean;
+import edu.asu.secure.SynnovationBank.FormBean.FileUploadFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.TechAccessFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.TransferFormBean;
 import edu.asu.secure.SynnovationBank.Service.CreditService;
@@ -25,6 +26,7 @@ import edu.asu.secure.SynnovationBank.Service.CustomerInfoChangeService;
 import edu.asu.secure.SynnovationBank.Service.CustomerNotificationService;
 import edu.asu.secure.SynnovationBank.Service.CustomerTransactionService;
 import edu.asu.secure.SynnovationBank.Service.DebitService;
+import edu.asu.secure.SynnovationBank.Service.PKIService;
 import edu.asu.secure.SynnovationBank.Service.TechAccountAccessService;
 import edu.asu.secure.SynnovationBank.Service.TransferService;
 
@@ -60,10 +62,66 @@ public class CustomerController {
     
 	
 	
-	// customer information change request
 	
 	
+	@RequestMapping(value = "/paymerchantrqst", method = RequestMethod.GET)
+    public String getMerchantTransferRqstPage(@RequestParam(value="error", required=false) boolean error, ModelMap model,@ModelAttribute("transferFormBean") TransferFormBean transferFormBean, HttpServletRequest request, HttpSession session) {
+		
+		String userName="";
+		session = request.getSession(false);
+        if (session != null) {
+            userName=(String)request.getSession().getAttribute("USERNAME");
+        }
+
+		logger.debug("Received request to show transfer rqst page");
+		System.out.println("Send from:" +userName); 
+		System.out.println("Send to :"+transferFormBean.getReceiverID());
+		System.out.println("Transfer amount :"+transferFormBean.getTransferAmount());
+			
+		if(transferService.performTransfer(userName, transferFormBean.getReceiverID(),transferFormBean.getTransferAmount()))
+		{
+			
+			return "welcomeUser";
+		}
+		else
+		{
+			model.put("error","TRANSFER UNSUCCESSFULL (or) PENDING FOR APPROVAL FROM ADMINISTRATOR --- CHECK ''VIEW TRANSACTIONS'' TAB TO SEE IF A TRANSACTION IS CREATED FOR YOUR REQUEST (Your account balance won't be updated until approval from bank admin)");
+				return "transfer";
+		}
+    	
+	}
+
+	//merchant transer request
+	// controller for 		transferrequest
 	
+			@RequestMapping(value = "/merchanttransferrequest", method = RequestMethod.GET)
+		    public String getMerchantTransferRqstPage1(@RequestParam(value="error", required=false) boolean error, ModelMap model,@ModelAttribute("transferFormBean") TransferFormBean transferFormBean, HttpServletRequest request, HttpSession session) {
+				
+				String userName="";
+				session = request.getSession(false);
+		        if (session != null) {
+		            userName=(String)request.getSession().getAttribute("USERNAME");
+		        }
+
+				logger.debug("Received request to show merchant payment rqst page");
+				System.out.println("Send from:" +userName); 
+				System.out.println("Send to :"+transferFormBean.getReceiverID());
+				System.out.println("Transfer amount :"+transferFormBean.getTransferAmount());
+					
+				if(transferService.performTransfer(0,userName, transferFormBean.getReceiverID(),transferFormBean.getTransferAmount()))
+				{
+					
+					return "welcomeUser";
+				}
+				else
+				{
+					model.put("error","TRANSFER UNSUCCESSFULL (or) PENDING FOR APPROVAL FROM ADMINISTRATOR --- CHECK ''VIEW TRANSACTIONS'' TAB TO SEE IF A TRANSACTION IS CREATED FOR YOUR REQUEST (Your account balance won't be updated until approval from bank admin)");
+						return "transfer";
+				}
+		    	
+			}
+		
+
 	
 	@RequestMapping(value = "/changecustomerinforequest", method = RequestMethod.GET)
     public String getNewCustomerInfo(@ModelAttribute("customerInfoChangeFormBean") CustomerInfoChangeFormBean customerInfoChangeFormBean, HttpServletRequest request, HttpSession session) {
@@ -123,17 +181,8 @@ public class CustomerController {
 	}
 	
 
-	
-	
-	
-	
-	
-	
-	
-	//controller for techaccountaccess
-	
 
-	@RequestMapping(value = "/techaccountaccess", method = RequestMethod.GET)
+	@RequestMapping(value = "/techaccountaccess", method = RequestMethod.POST)
 	public String env(HttpServletRequest request, HttpSession session){
 
 		String userName="";
@@ -144,15 +193,15 @@ public class CustomerController {
 		logger.debug("Received request to show change tech account access rqst page");
 		
 		
-		String selection=null;		 
+		boolean selection=false;		 
              if(request.getParameter("radios").equals("radio1")) {
-            	 selection="Y";
+            	 selection=true;
             	 System.out.println("**********************************");
                  System.out.println("ALLOW TECHNICAL ACCOUNT ACCESS");
                  System.out.println("**********************************");
              }
              else
-             {selection="N";
+             {selection=false;
         	 System.out.println("*****************************************");
              System.out.println("DO NOT ALLOW TECHNICAL ACCOUNT ACCESS");
              System.out.println("*****************************************");
@@ -175,7 +224,7 @@ public class CustomerController {
 	
 	// controller for crediting
 	
-	@RequestMapping(value = "/creditrequest", method = RequestMethod.GET)
+	@RequestMapping(value = "/creditrequest", method = RequestMethod.POST)
     public String getCreditRqstPage(@RequestParam(value="error", required=false) boolean error,ModelMap model, @ModelAttribute("creditFormBean") CreditFormBean creditFormBean, HttpServletRequest request, HttpSession session) {
 
 		String userName="";
@@ -202,7 +251,7 @@ public class CustomerController {
 	
 	// controller for debiting
 	
-		@RequestMapping(value = "/debitrequest", method = RequestMethod.GET)
+		@RequestMapping(value = "/debitrequest", method = RequestMethod.POST)
 	    public String getDebitRqstPage(@RequestParam(value="error", required=false) boolean error,ModelMap model,@ModelAttribute("debitFormBean") DebitFormBean debitFormBean, HttpServletRequest request, HttpSession session) {
 
 			String userName="";
@@ -234,7 +283,7 @@ public class CustomerController {
 	
 		// controller for 		transferrequest
 		
-		@RequestMapping(value = "/transferrequest", method = RequestMethod.GET)
+		@RequestMapping(value = "/transferrequest", method = RequestMethod.POST)
 	    public String getTransferRqstPage(@RequestParam(value="error", required=false) boolean error, ModelMap model,@ModelAttribute("transferFormBean") TransferFormBean transferFormBean, HttpServletRequest request, HttpSession session) {
 			
 			String userName="";
@@ -383,6 +432,55 @@ public class CustomerController {
 	
 	
 	
+	
+	@RequestMapping(value = "/payMerchant", method = RequestMethod.GET)
+    public String getMerchantPage1(@RequestParam(value="error", required=false) boolean error, ModelMap model) {
+		if(error==true){
+			model.put("error", "TRANSFER NOT SUCCESSFULL !!");	
+		}else{
+			model.put("error","");
+		}
+		
+		logger.debug("Received request to show merchant payment page");
+    
+    	// Do your work here. Whatever you like
+    	// i.e call a custom service to do your business
+    	// Prepare a model to be used by the JSP page
+    	
+    	// This will resolve to /WEB-INF/jsp/commonpage.jsp
+    	return "fileUpload";
+	}
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/payMerchantActual", method = RequestMethod.GET)
+    public String getMerchantPage(@RequestParam(value="error", required=false) boolean error, ModelMap model) {
+		if(error==true){
+			model.put("error", "TRANSFER NOT SUCCESSFULL !!");	
+		}else{
+			model.put("error","");
+		}
+		
+		logger.debug("Received request to show merchant payment page");
+    
+    	// Do your work here. Whatever you like
+    	// i.e call a custom service to do your business
+    	// Prepare a model to be used by the JSP page
+    	
+    	// This will resolve to /WEB-INF/jsp/commonpage.jsp
+    	return "payMerchant";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value = "/viewTransactions", method = RequestMethod.GET)
     public String getviewTransactions(ModelMap model, HttpServletRequest request,HttpSession session ) {
 		
@@ -443,6 +541,40 @@ public class CustomerController {
     
     
     
+	
+	
+	@Autowired
+	private PKIService pkiService;
+	
+	@RequestMapping(value = "/fileUploader" ,method = RequestMethod.GET)
+	public String getUploadFilePage(@RequestParam(value="error", required=false) boolean error,ModelMap model ) {
+		
+		if(error==true){
+			model.put("error", "Certificate is not valid");	
+		}else{
+			model.put("error","");
+		}
+		logger.debug("Received request to show fileUpload page");
+    	return "fileUpload";
+	}
+	@RequestMapping(value = "/uploadfile", method=RequestMethod.POST)
+	public String uploadFileHandler(@ModelAttribute("fileuploadformbean") FileUploadFormBean fileUploadFormBean,HttpSession session,BindingResult result,ModelMap model) {
+
+		
+		// just to check the flow go to paymerchant page
+		return "payMerchantActual";
+		
+		//include this service layer call later
+		
+		/*if(pkiService.verifyCertificate(fileUploadFormBean.getFile(),(String)session.getAttribute("USERNAME"))){
+			return "changepasswordsuccessfulpage";
+		}
+		else{
+			model.put("error",true);
+			return "redirect:fileUploader";
+		}*/
+	}
+
     
     
     

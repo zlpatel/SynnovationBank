@@ -43,6 +43,7 @@ public class CustomerTransactionServiceImpl implements CustomerTransactionServic
     		customertransactionFormBean.setTransactionsName(trans.getTransactionType().getTransactionName());
     		customertransactionFormBean.setTransactionId(trans.getTransactions().getTransactionId());
     		customertransactionFormBean.setTransactionDate(trans.getTransactions().getDate());
+    		customertransactionFormBean.setTransactionStatus(trans.getTransactions().getCompleteFlag());
     		list.add(customertransactionFormBean);
     	}
     	return list;

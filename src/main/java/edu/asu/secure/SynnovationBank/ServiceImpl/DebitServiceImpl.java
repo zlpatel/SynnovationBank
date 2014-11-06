@@ -96,7 +96,7 @@ public class DebitServiceImpl implements DebitService{
 		
 		Set<TransactionDetails> set = new HashSet<TransactionDetails>();
 		set.add(td);
-		
+		t.setCompleteFlag("C");
 		t.setAmount(debit);
 		t.setTransactionDetails(set);
 		t.setDate(Calendar.getInstance().getTime());

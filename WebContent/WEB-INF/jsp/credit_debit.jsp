@@ -13,17 +13,42 @@
 	
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	
+	function validateForm()
+	{
+
+	 var creditAmount = document.getElementById("creditAmount").value;
+
+	  if (creditAmount == "") 
+	  {
+	  	alert("Please fill all fields.");
+	  	return false;
+	  }
+	  
+	  if(creditAmount==0)
+	  {
+		  alert("Please Enter a value greater than 0");
+		  return false;
+		  
+	  }
+		
+		var regex2 = new RegExp("^[0-9]+$");
+		if(!regex2.test(creditAmount))
+		{
+				alert('Please remove special characters from Credit Amount Field');
+				return false;
+		}
+		
+	
+	  
+	 }</script>
 </head>
 
 <body>
 <center><h1> SYNNOVATION </h1> </center>
-
 <h2> CREDIT PAGE</h2>
-
-
 <div id="otp-error"><font color="red">${error}</font></div>
-
-
 <ul class="nav nav-tabs">
 <li><a href="credit_debit">Credit Amount</a> </li>
 <li><a href="debit">Debit Amount</a> </li>
@@ -32,13 +57,13 @@
 <li><a href="customerNotifications">Notifications</a></li>
 <li><a href="changeCustomerInfo">Change information</a></li>
 <li><a href="techAccountAccess">Technical Account Access</a></li>
+<li><a href="payMerchant">Pay Merchant</a></li>
 </ul>
-
-
 <br><br>
-<form action="creditrequest" commandName="creditFormBean" method="get">
-<input id="creditAmount" type="text" name="creditAmount" placeholder="Enter the amount to be credited (in USD)" style="width:500px;" value="${creditFormBean.creditAmount}"/><br>
-<input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
+<form  commandName="creditFormBean" method="post">
+<input id="creditAmount" type="text" name="creditAmount" maxlength= "4" class = "form-control" placeholder="Enter the amount to be credited (in USD)" style="width:500px;" value="${creditFormBean.creditAmount}"/>
+<br>
+<input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="document.forms[0].action = 'creditrequest' ;return validateForm();"/>
 
 </form>
 

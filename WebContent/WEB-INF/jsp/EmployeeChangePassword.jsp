@@ -1,3 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -16,16 +20,53 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2>Employee Page</h2>
-<p>Only employees have access to this page.</p><br>
-
+<center><h1> SYNNOVATION </h1> </center>
+<h2> MERCHANT REQUESTS PAGE</h2>
 <ul class="nav nav-tabs">
-    <li><a href="employee">Notifications</a></li>
-    <li><a href="employeeuseraccounts">User Accounts</a></li>
-    <li class="active"><a href="#">Change Password</a></li>
+    <li><a href="../employee/home">Notifications</a></li>
+    <li><a href="../employee/employeeuseraccounts">User Accounts</a></li>
+    <li class="active"><a href="#">Merchant Requests</a></li>
+    <li><a href="../employee/employeeviewtransactions">View Customer Transactions</a></li>
 </ul>
+<br>
+<form method="post" >
+<table class="table" class ="table table-striped">
+<thead>
+            <tr>
+                <th>User Name</th>
+                <th></th>
+                <th>Account Number</th>
+                <th></th>
+                <th>Notification</th>
+                <th></th>
+                <th>Amount</th>
+                <th></th>                                                
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach  items="${adminCriticalNotifFormBean}" var="notification">
+        <tr> 
+          <td>${notification.userName}</td>
+          <td></td>
+          <td>${notification.accountNumber}</td>
+          <td></td>
+          <td>${notification.notifications}</td>
+          <td></td>
+          <td>${notification.transactionAmount}</td>
+          
+           <td align="center"><input style="width:75px;" name="Modify" type="submit" value= "Accept" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'employeetransactionaccepted/${notification.userName}/${notification.transactionId}/${notification.notificationId}'; ;return true;"/></td>  
+          <td align="center"><input  style="width:75px;" name="Delete" type="submit" value= "Decline" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'employeetransactiondeclined/${notification.userName}/${notification.transactionId}/${notification.notificationId}'; ;return true;"/></td> 
+          
+        </tr>
+      </c:forEach>
+        </tbody>
+    </table>
+    <input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />	
+</form>
 
-<p align="center">Change Password Page</p>
+
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  

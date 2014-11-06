@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -16,38 +19,48 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2>Employee Page</h2>
-<p>Only employees have access to this page.</p><br>
-
+<center><h1> SYNNOVATION </h1> </center>
+<h2> NOTIFICATIONS PAGE</h2>
 <ul class="nav nav-tabs">
     <li class="active"><a href="#">Notifications</a></li>
     <li><a href="employeeuseraccounts">User Accounts</a></li>
-    <li><a href="employeechangepassword">Change Password</a></li>
+    <li><a href="employeeviewmerchanttransactions">Merchant Requests</a></li>
     <li><a href="employeeviewtransactions">View Customer Transactions</a></li>
 </ul>
-
-<p align="center">Notifications</p>
+<br>
 <form name ="employee_notifications" method = "post" commandName="empNotifFormBean">
 		<table id = "transaction" width="500" border="0" bordercolor="black" class ="table table-striped">
+		<thead>
 		<tr>
-		  <td><b>First Name</b></td>
-		  <td><b>Last Name</b></td>
-		  <td><b>User Name</b>
-          <td><b>Notifications</b></td>
-          
-          <td colspan="2" align="center"><b>Action</b></td>
+			
+			
+		  	<th>First Name</th>
+		  	<th></th>
+		  	<th>Last Name</th>
+		  	<th></th>
+		  	<th>User Name</th>
+		  	<th></th>
+          	<th>Notification</th>
          </tr>
-      <c:forEach  items="${empNotifFormBean}">
+        </thead>
+        <tbody> 
+      <c:forEach  items="${empNotifFormBean}" var="empNotif">
         <tr> 
-          <td>${empNotifFormBean.getFirstName}</td>
-          <td>${empNotifFormBean.getLastName}</td>
-          <td>${empNotifFormBean.getUserName}</td>
-          <td>${empNotifFormBean.getNotifications}</td>
-          <!-- <td align="center"><input style="width:75px;" name="approve" type="submit" value= "Approve" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = '/notificationAccepted';;return true;"/></td>  
-          <td align="center"><input  style="width:75px;" name="deny" type="submit" value= "Deny" class = "btn btn-primary"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoDenied.html?authUsername=${person.ID}'; ;return true;"/></td>--> 
+          <td>${empNotif.firstName}</td>
+          <td></td>
+          <td>${empNotif.lastName}</td>
+          <td></td>
+          <td>${empNotif.userName}</td>
+          <td></td>
+          <td>${empNotif.notifications}</td>
+          
         </tr>
+        
       </c:forEach>
+      </tbody>
       </table>
+      <input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />	
       </form>
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
