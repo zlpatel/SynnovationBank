@@ -6,17 +6,10 @@ public class AdminPIIRequestsFormBean
 	private String firstName;
 	private String lastName;
 	private String userName;
-	private String notifications;
 	private long accountNumber;
-	private float transactionAmount;
-	private long transactionId;
+	private String ssn;
+	private String dateOfBirth;
 	
-	public long getTransactionId() {
-		return transactionId;
-	}
-	public void setTransactionId(long transactionId) {
-		this.transactionId = transactionId;
-	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -35,23 +28,24 @@ public class AdminPIIRequestsFormBean
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getNotifications() {
-		return notifications;
-	}
-	public void setNotifications(String notifications) {
-		this.notifications = notifications;
-	}
 	public long getAccountNumber() {
 		return accountNumber;
 	}
 	public void setAccountNumber(long accountNumber) {
 		this.accountNumber = accountNumber;
 	}
-	public float getTransactionAmount() {
-		return transactionAmount;
+	public String getSsn() {
+		return ssn;
 	}
-	public void setTransactionAmount(float transactionAmount) {
-		this.transactionAmount = transactionAmount;
+	public void setSsn(String ssn) {
+		this.ssn = ssn;
 	}
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+	
 	
 }

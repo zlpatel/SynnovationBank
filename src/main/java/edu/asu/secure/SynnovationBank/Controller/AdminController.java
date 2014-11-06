@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -105,12 +106,10 @@ public class AdminController {
      * @return the name of the JSP page
      */
     @RequestMapping(value = "/adminpiirequests", method = RequestMethod.GET)
-    public String getAdminPIIRequestsPage() {
+    public String getAdminPIIRequestsPage(ModelMap model) {
     	logger.debug("Received request to show admin pii requests page");
     	
-    	// Do your work here. Whatever you like
-    	// i.e call a custom service to do your business
-    	// Prepare a model to be used by the JSP page
+    	model.put("personandpii", adminNotificationService.getPIIRequestNotifications());
     	
     	// This will resolve to /WEB-INF/jsp/AdminPIIRequests.jsp
     	return "AdminPIIRequests";
@@ -346,15 +345,13 @@ public class AdminController {
     	}   	
 	}   
     
-    //getadmincriticaltransactions
     
-    @RequestMapping(value = "/admintransactiondeclined", method = RequestMethod.POST)
-    public String adminTransactionDeclined(@RequestParam(value="userId", required=true) String userId, HttpServletRequest request,  
-            HttpServletResponse response, ModelMap model) {
-    	logger.debug("Received request to delete user with Id: " + userId);
+    @RequestMapping(value = "/admintransactiondeclined/{userId}/{notificationId}", method = {RequestMethod.POST, RequestMethod.GET})
+    public String adminTransactionDeclined(@PathVariable("userId") String userId, @PathVariable("notificationId") Long notificationId, ModelMap model, HttpServletRequest request) {
+    	logger.debug("Received request to decline transaction for user with Id: " + userId);
     	
-    	adminNotificationService.sendTransactionDeclinedNotification(userId);
-        	return "redirect:admincriticaltransactions";
+    	adminNotificationService.sendTransactionDeclinedNotification(userId, notificationId);
+        	return "redirect:/secure/admin/admincriticaltransactions";
     	
 //    	else
 //    	{
@@ -364,14 +361,16 @@ public class AdminController {
 //    	}   	
 	}   
     
-    @RequestMapping(value = "/admintransactionaccepted", method = RequestMethod.POST)
-    public String adminTransactionAccepted(@ModelAttribute("adminCriticalNotifFormBean")
-    AdminCriticalTransactionsFormBean adminCriticalNotifFormBean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
+    @RequestMapping(value = "/admintransactionaccepted/{userId}/{transactionId}/{notificationId}", method = {RequestMethod.POST, RequestMethod.GET})
+    public String adminTransactionAccepted(@PathVariable("userId") String userId, @PathVariable("transactionId") Long transactionId, @PathVariable("notificationId") Long notificationId, ModelMap model, HttpServletRequest request){
+    		
+//        public String adminTransactionAccepted(@RequestParam(value="notification", required=true) AdminCriticalTransactionsFormBean notification, HttpServletRequest request,  
+//                HttpServletResponse response, ModelMap model) {
     	
     	logger.debug("Received request to accept critical transaction");
     	
-    	adminNotificationService.sendTransactionAcceptedNotification(adminCriticalNotifFormBean);
-        	return "redirect:admincriticaltransactions";
+    	adminNotificationService.sendTransactionAcceptedNotification(userId, transactionId, notificationId);
+        	return "redirect:/secure/admin/admincriticaltransactions";
     }
     
 }

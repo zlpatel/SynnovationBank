@@ -20,24 +20,25 @@
 <p>Only admins have access to this page.</p><br>
 
 <ul class="nav nav-tabs">
-    <li><a href="home">Notifications</a></li>
-    <li><a href="admininternaluseraccounts">Internal User Accounts</a></li>
-    <li><a href="adminexternaluseraccounts">External User Accounts</a></li>
-    <li><a href="adminpiirequests">PII Requests</a></li>
+    <li><a href="../admin/home">Notifications</a></li>
+    <li><a href="../admin/admininternaluseraccounts">Internal User Accounts</a></li>
+    <li><a href="../admin/adminexternaluseraccounts">External User Accounts</a></li>
+    <li><a href="../admin/adminpiirequests">PII Requests</a></li>
     <li class="active"><a href="#">Critical Transactions</a></li>
-    <li><a href="adminsystemlog">System Log</a></li>   
-    <li><a href="adminchangepassword">Change Password</a></li>
+    <li><a href="../admin/adminsystemlog">System Log</a></li>   
+    <li><a href="../admin/adminchangepassword">Change Password</a></li>
 </ul>
 
 <br><br>
-<form action="admincriticaltransactions" commandName="adminCriticalNotifFormBean" method="post" >
+<form method="post" >
 <table class="table" class ="table table-striped">
 <thead>
             <tr>
                 <th>Username</th>
                 <th>Account Number</th>
                 <th>Notification</th>
-                <th>Amount</th>                                                
+                <th>Amount</th>
+                <th>Transaction ID</th>                                                                                                                
                 <th>Action</th>
             </tr>
         </thead>
@@ -46,17 +47,22 @@
         <tr> 
           <td>${notification.userName}</td>
           <td>${notification.accountNumber}</td>
-          <td>${notification.notification}</td>
+          <td>${notification.notifications}</td>
           <td>${notification.transactionAmount}</td>
-           <td align="center"><input style="width:75px;" name="Accept" type="Accept" value= "Modify" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'adminmodifyexternaluser?userId=${notification}'; ;return true;"/></td>  
-          <td align="center"><input  style="width:75px;" name="Decline" type="Decline" value= "Delete" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'admintransactiondeclined?userId=${notification.userName}'; ;return true;"/></td> 
+          <td>${notification.transactionId}</td>
+           <td align="center"><input style="width:75px;" name="Accept" type="submit" value= "Accept" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'admintransactionaccepted/${notification.userName}/${notification.transactionId}/${notification.notificationId}'; ;return true;"/></td>  
+          <td align="center"><input  style="width:75px;" name="Decline" type="submit" value= "Decline" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'admintransactiondeclined/${notification.userName}/${notification.notificationId}'; ;return true;"/></td> 
           <!-- <td align="center"><input style="width:75px;" name="approve" type="submit" value= "Approve" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = '/notificationAccepted';;return true;"/></td>  
           <td align="center"><input  style="width:75px;" name="deny" type="submit" value= "Deny" class = "btn btn-primary"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoDenied.html?authUsername=${person.ID}'; ;return true;"/></td>--> 
         </tr>
       </c:forEach>
         </tbody>
     </table>
-
+    
+    <input type="hidden" 
+		name="${_csrf.parameterName}"
+		value="${_csrf.token}" />
+</form>
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  
 	<!-- csrf for log out-->

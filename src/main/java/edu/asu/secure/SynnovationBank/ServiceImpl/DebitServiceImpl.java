@@ -100,6 +100,7 @@ public class DebitServiceImpl implements DebitService{
 		t.setAmount(debit);
 		t.setTransactionDetails(set);
 		t.setDate(Calendar.getInstance().getTime());
+		t.setCompleteFlag("C");
 		
 		long transactionID=transactionsDAO.insertTransaction(t);
 		

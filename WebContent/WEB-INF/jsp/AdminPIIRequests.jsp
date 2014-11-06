@@ -16,8 +16,6 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2>Admin Page</h2>
-<p>Only admins have access to this page.</p><br>
 
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
@@ -29,7 +27,41 @@
     <li><a href="adminchangepassword">Change Password</a></li>
 </ul>
 
-<br><br><p>PII Requests Page.</p>
+<h3>PII Requests Accepted</h3>
+
+<br><br>
+
+<form action="adminpiirequests" method="post">
+<table class ="table table-striped">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Account Number</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date of Birth</th>
+                <th>SSN</th>
+            </tr>
+        </thead>
+        <tbody>
+         <c:forEach  items="${piirequestslist}" var="personandpii">
+        <tr> 
+          <td>${personandpii.username}</td>
+          <td>${personandpii.accountNumber}</td>
+          <td>${personandpii.fname}</td>
+          <td>${personandpii.lname}</td>
+          <td>${personandpii.dateOfBirth}</td>
+          <td>${personandpii.ssn}</td>                              
+        </tr>
+      </c:forEach>
+      </tbody>
+      </table>
+      
+      <input type="hidden" 
+		name="${_csrf.parameterName}"
+		value="${_csrf.token}" />
+      
+      </form>
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  

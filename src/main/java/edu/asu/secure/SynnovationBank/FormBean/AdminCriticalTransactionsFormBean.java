@@ -10,7 +10,14 @@ public class AdminCriticalTransactionsFormBean
 	private long accountNumber;
 	private float transactionAmount;
 	private long transactionId;
+	private long notificationId;
 	
+	public long getNotificationId() {
+		return notificationId;
+	}
+	public void setNotificationId(long notificationId) {
+		this.notificationId = notificationId;
+	}
 	public long getTransactionId() {
 		return transactionId;
 	}

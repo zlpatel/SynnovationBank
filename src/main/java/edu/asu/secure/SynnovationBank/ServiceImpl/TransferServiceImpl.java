@@ -133,6 +133,7 @@ public class TransferServiceImpl implements TransferService {
 						t.setAmount(debit);
 						t.setTransactionDetails(set);
 						t.setDate(Calendar.getInstance().getTime());
+						t.setCompleteFlag("P");
 						
 						long transactionID=transactionsDAO.insertTransaction(t);
 						
@@ -248,6 +249,7 @@ public class TransferServiceImpl implements TransferService {
 		t.setAmount(debit);
 		t.setTransactionDetails(set);
 		t.setDate(Calendar.getInstance().getTime());
+		t.setCompleteFlag("C");
 		
 		long transactionID=transactionsDAO.insertTransaction(t);
 		

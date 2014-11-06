@@ -64,6 +64,8 @@ public class AdminNotificationsServiceImpl implements AdminNotificationsService 
 	    		adminNotifFormBean.setNotifications(notif.getNotificationsType().getDescription());
 	    		adminNotifFormBean.setAccountNumber(notif.getPerson().getAccount().getAccountNumber());
 	    		adminNotifFormBean.setTransactionAmount(notif.getTransaction().getAmount());
+	    		adminNotifFormBean.setTransactionId(notif.getTransaction().getTransactionId());
+	    		adminNotifFormBean.setNotificationId(notif.getNotificationId());
 
 	    		list.add(adminNotifFormBean);
 	    	}
@@ -72,28 +74,35 @@ public class AdminNotificationsServiceImpl implements AdminNotificationsService 
 	    }
 	    
 	    @Override
-	    public void sendTransactionDeclinedNotification(String userName) {
+	    public void sendTransactionDeclinedNotification(String userId, long nId) {
 	    // TODO Auto-generated method stub
 
-	    //set and push Technical Account //Access notification
-	    //Transactions t=new Transactions();
-	    System.out.println("The username in service layer " + userName);
+	    //send new notification to user	
+	    System.out.println("The username in service layer " + userId);
 	    Notifications n=new Notifications();
-	    n.setEmpAdminFlag(userName); // notification to customer
+	    n.setEmpAdminFlag(userId); // notification to customer
 
 	    NotificationsType nt= notificationsTypeDAO.fetchNotificationsType("TD");
-	    //t.setTransactionId(1L);
-	    //n.setTransaction(t);
 	    n.setNotificationsType(nt);
 	    //send userId as well in this method
 	    n.setResolvedFlag("Y");
 	    System.out.println("You are in the service impl");
 	    notificationsDAO.insertNotification("admin",n);
+	    
+	    //update this CT notification. set resolved.
+	    Person person = personDAO.fetchUserById(userId);
+	    notificationsDAO.updateResolveNotification(nId, person);	    
+	    //
 }
 	    
 	    @Override
-	    public void sendTransactionAcceptedNotification(AdminCriticalTransactionsFormBean criticalTransactionFormBean)
+	    public void sendTransactionAcceptedNotification(String userId, long tId, long nId)
 	    {
+	    	System.out.println(tId);
+//	    	long tId = Long.valueOf(transactionId).longValue();
+	    	Transactions t = new Transactions();
+	    	t = transactionDAO.fetchTransactionById(tId);
+	    	
 	    	
 	    	//send notification to sender that transaction has been accepted
 	    	//notification type set as "CT" --> add new type in DB
@@ -103,9 +112,9 @@ public class AdminNotificationsServiceImpl implements AdminNotificationsService 
 	    	
 	    	
 	    	
-	    	System.out.println("The username in service layer " + criticalTransactionFormBean.getUserName());
+	    	System.out.println("The username in service layer " + userId);
 		    Notifications n=new Notifications();
-		    n.setEmpAdminFlag(criticalTransactionFormBean.getUserName()); // notification to customer
+		    n.setEmpAdminFlag(userId); // notification to customer
 
 		    NotificationsType nt= notificationsTypeDAO.fetchNotificationsType("TA");
 		    //t.setTransactionId(1L);
@@ -115,23 +124,23 @@ public class AdminNotificationsServiceImpl implements AdminNotificationsService 
 		    n.setResolvedFlag("Y");
 		    notificationsDAO.insertNotification("admin",n);
 	 
+		
 		    
-		    
-	    	Person sender = personDAO.fetchUserById(criticalTransactionFormBean.getUserName());
+	    	Person sender = personDAO.fetchUserById(userId);
 			Account a=(Account) sender.getAccount();
 			float balance=a.getBalance();
-			float debit=criticalTransactionFormBean.getTransactionAmount();
+			float debit=t.getAmount();
 			float new_balance=balance-debit;
 			a.setBalance(new_balance);
 			
 	    	//get receiver's account number
-			long receiverAccountNo =  transactionDAO.fetchCreditorAccountNo(criticalTransactionFormBean.getTransactionId());
+			long receiverAccountNo =  transactionDAO.fetchCreditorAccountNo(tId);
 			
 			//get Account from account number
 			
 			Account b=(Account) accountDAO.fetchAccountByNumber(receiverAccountNo);
 			float balanceB=b.getBalance();
-			float credit=criticalTransactionFormBean.getTransactionAmount();
+			float credit=t.getAmount();
 			float new_balanceB=balanceB+credit;
 			b.setBalance(new_balanceB);
 			
@@ -146,20 +155,34 @@ public class AdminNotificationsServiceImpl implements AdminNotificationsService 
 			System.out.println("Creddited receiver account table");
 			
 			//get transaction from transaction id
-			long transactionId = criticalTransactionFormBean.getTransactionId();
-			Transactions transactions =  transactionDAO.fetchTransactionById(transactionId);
+			Transactions transactions =  transactionDAO.fetchTransactionById(tId);
+			transactions.setCompleteFlag("C");
 			
-	    	//set transaction status to C from P
-			//transactions.setStatus("C");
-			
-			
+		    Person person = personDAO.fetchUserById(userId);
+		    notificationsDAO.updateResolveNotification(nId, person);	    
 			
 	    }
 
 		@Override
 		public List<AdminPIIRequestsFormBean> getPIIRequestNotifications() {
-			// TODO Auto-generated method stub
-			return null;
-		}
+
+			AdminPIIRequestsFormBean adminPIIRequestsFormBean=null;
+	    	List<Notifications> notification=notificationsDAO.fetchNotifications("A", 5 ,"N");
+	    	List<AdminPIIRequestsFormBean> list=new ArrayList<AdminPIIRequestsFormBean>();
+	    	
+	    	for(Notifications notif: notification){
+	    		
+	    		adminPIIRequestsFormBean = new AdminPIIRequestsFormBean();
+	    		
+	    		adminPIIRequestsFormBean.setFirstName(notif.getPerson().getFirstName());
+	    		adminPIIRequestsFormBean.setLastName(notif.getPerson().getLastName());
+	    		adminPIIRequestsFormBean.setUserName(notif.getPerson().getUserId());
+	    		adminPIIRequestsFormBean.setAccountNumber(notif.getPerson().getAccount().getAccountNumber());
+	    		adminPIIRequestsFormBean.setDateOfBirth(notif.getPerson().getDateOfBirth().toString());
+	    		adminPIIRequestsFormBean.setSsn(notif.getPerson().getSsn());
+
+	    		list.add(adminPIIRequestsFormBean);
+	    	}
+	    	return list;		}
 	    
 	    }

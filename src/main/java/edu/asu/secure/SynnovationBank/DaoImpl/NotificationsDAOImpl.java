@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -144,19 +145,16 @@ public class NotificationsDAOImpl implements NotificationsDAO {
 		List rawList = null;
 		try{
 			session = factory.getCurrentSession();
-			Criteria criteria = session.createCriteria(Notifications.class);
-			criteria.add(Restrictions.eq("empAdminFlag",empOrAdmin));
-			criteria.add(Restrictions.eq("resolvedFlag",resolvedFlag));
-			criteria.createCriteria("person");
-			criteria.setFetchMode("person",FetchMode.JOIN);
-			criteria.createCriteria("notificationsType");
-			criteria.setFetchMode("notificationsType",FetchMode.JOIN);
-			criteria.add(Restrictions.eq("notificationsType.notificationTypeId", notificationTypeId));
-			rawList = criteria.list();
+			Query query = session.createQuery("select N from Notifications as N JOIN N.person as NP JOIN N.notificationsType as NT "
+			+ "WHERE N.person = NP AND N.notificationsType = NT AND N.empAdminFlag = :empOrAdmin AND N.resolvedFlag = :resolvedFlag AND NT.notificationTypeId = :notificationTypeId");
+			query.setString("empOrAdmin", empOrAdmin);
+			query.setString("resolvedFlag", resolvedFlag);
+			query.setLong("notificationTypeId", notificationTypeId);
+			rawList = query.list();
 			@SuppressWarnings("rawtypes")
 			Iterator itr = rawList.iterator();
 			while(itr.hasNext())
-				list.add((Notifications)itr.next());
+			list.add((Notifications)itr.next());
 			return list;
 		}
 		catch(Exception e){
