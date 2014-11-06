@@ -1,17 +1,12 @@
 package edu.asu.secure.SynnovationBank.DaoImpl;
 
-import java.util.Iterator;
-import java.util.Set;
-
-import org.hibernate.Criteria;
-import org.hibernate.FetchMode;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import edu.asu.secure.SynnovationBank.DTO.TransactionDetails;
+import edu.asu.secure.SynnovationBank.DTO.Account;
 import edu.asu.secure.SynnovationBank.DTO.Transactions;
 import edu.asu.secure.SynnovationBank.Dao.TransactionsDAO;
 
@@ -82,20 +77,14 @@ public class TransactionsDAOImpl implements TransactionsDAO {
 		Session session = null;
 		Long creditorAccount = -1L;
 		try{
-			session = factory.getCurrentSession();
-			Criteria criteria = session.createCriteria(Transactions.class);
-			criteria.createCriteria("transactionDetails");
-			criteria.setFetchMode("transactionDetails",FetchMode.JOIN);
-			criteria.createCriteria("account");
-			criteria.setFetchMode("account",FetchMode.JOIN);
-			criteria.createCriteria("transactionType");
-			criteria.setFetchMode("transactionType",FetchMode.JOIN);
-			criteria.add(Restrictions.eq("transactionType.transactionName", "CREDIT"));
-			Transactions transaction = (Transactions)criteria.uniqueResult();
-			Set<TransactionDetails> transactionDetails = transaction.getTransactionDetails();
-			Iterator<TransactionDetails> itr = transactionDetails.iterator();
-			creditorAccount = itr.next().getAccount().getAccountNumber();
-			return creditorAccount;
+			Account account = null;
+            session = factory.getCurrentSession();
+            Query query = session.createQuery("SELECT A FROM TransactionDetails as TD JOIN TD.transactionType as TT JOIN TD.account as A JOIN TD.transactions as T"
+            + " WHERE TD.transactionType = TT AND TD.account = A AND TD.transactions = T AND TT.transactionName = 'CREDIT' AND T.transactionId = :transactionId");
+            query.setLong("transactionId", transactionId);
+            account = (Account)query.uniqueResult();
+            creditorAccount = account.getAccountNumber();
+            return creditorAccount;
 		}
 		catch(Exception e){
 			e.printStackTrace();
