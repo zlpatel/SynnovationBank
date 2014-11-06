@@ -71,9 +71,11 @@ public class PersonDAOImpl implements PersonDAO {
 			if(person != null && person.getEmail().equals(email) && !person.getAccountLockedFlag()){
 				person.setOneTimePassword(otp);
 				person.setOtpExpiry(cal.getTime());
+				session.update(person);
+				return true;
 			}
-			session.update(person);
-			return true;
+			else
+				return false;
 		}
 		catch(Exception e){
 			e.printStackTrace();
