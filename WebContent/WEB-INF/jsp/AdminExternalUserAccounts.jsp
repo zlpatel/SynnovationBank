@@ -36,7 +36,7 @@
 <br><br>
 
 <form action="adminexternaluseraccounts" commandName="getexternaluseraccounts" method="post" >
-<table class="table" class ="table table-striped">
+<table class ="table table-striped">
         <thead>
             <tr>
                 <th>Username</th>
@@ -57,7 +57,7 @@
           <td>${externalUser.accountBalance}</td>          
           <!-- <td><button type="button" class="btn btn-primary">Modify</button>
                 <button type="button" class="btn btn-danger">Delete</button></td> -->
-          <td align="center"><input style="width:75px;" name="Modify" type="submit" value= "Modify" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'adminmodifyexternaluser?userId=${externalUser.username}'; ;return true;"/></td>  
+          <td align="center"><input style="width:100px;" name="Modify" type="submit" value= "View/Modify" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'adminmodifyexternaluser?userId=${externalUser.username}'; ;return true;"/></td>  
           <td align="center"><input  style="width:75px;" name="Delete" type="submit" value= "Delete" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'admindeleteexternaluser?userId=${externalUser.username}'; ;return true;"/></td> 
         </tr>
       </c:forEach>

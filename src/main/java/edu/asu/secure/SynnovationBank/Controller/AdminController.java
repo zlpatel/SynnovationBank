@@ -1,5 +1,6 @@
 package edu.asu.secure.SynnovationBank.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -105,11 +106,13 @@ public class AdminController {
      * 
      * @return the name of the JSP page
      */
-    @RequestMapping(value = "/adminpiirequests", method = RequestMethod.GET)
-    public String getAdminPIIRequestsPage(ModelMap model) {
+    @RequestMapping(value = "/adminpiirequests", method = {RequestMethod.GET, RequestMethod.POST})
+    public String getAdminPIIRequestsPage(@ModelAttribute("modifyexternaluserformbean")
+    ExternalUserFormBean modifyexternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
     	logger.debug("Received request to show admin pii requests page");
     	
-    	model.put("personandpii", adminNotificationService.getPIIRequestNotifications());
+    	adminNotificationService.addPIIRequestNotification(modifyexternaluserformbean);
+    	model.put("piirequestslist", adminNotificationService.getPIIRequestNotifications());
     	
     	// This will resolve to /WEB-INF/jsp/AdminPIIRequests.jsp
     	return "AdminPIIRequests";
@@ -171,9 +174,14 @@ public class AdminController {
      * @return the name of the JSP page
      */
     @RequestMapping(value = "/adminaddexternaluser", method = RequestMethod.GET)
-    public String getAdminAddExternalUser() {
+    public String getAdminAddExternalUser(ModelMap model) {
     	logger.debug("Received request to show add external user page");
-    
+    	
+    	List<String> rolesList = new ArrayList<String>();
+    	rolesList.add("ROLE_CUST");
+    	rolesList.add("ROLE_MERC");
+    	model.put("rolesList", rolesList);    	
+
     	return "AdminAddExternalUser";
     	
 	}
@@ -201,7 +209,7 @@ public class AdminController {
     ExternalUserFormBean addexternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
     	logger.debug("Received request to show ADDED external user page ......");
        	
-    	System.out.println(addexternaluserformbean.getFname());
+    	System.out.println(addexternaluserformbean.getRole());
     	
     	if(addExternalUserService.addExternalUser(addexternaluserformbean))
     	{

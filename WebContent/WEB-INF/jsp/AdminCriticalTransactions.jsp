@@ -31,7 +31,7 @@
 
 <br><br>
 <form method="post" >
-<table class="table" class ="table table-striped">
+<table class ="table table-striped">
 <thead>
             <tr>
                 <th>Username</th>

@@ -46,10 +46,10 @@
         <tbody>
          <c:forEach  items="${piirequestslist}" var="personandpii">
         <tr> 
-          <td>${personandpii.username}</td>
+          <td>${personandpii.userName}</td>
           <td>${personandpii.accountNumber}</td>
-          <td>${personandpii.fname}</td>
-          <td>${personandpii.lname}</td>
+          <td>${personandpii.firstName}</td>
+          <td>${personandpii.lastName}</td>
           <td>${personandpii.dateOfBirth}</td>
           <td>${personandpii.ssn}</td>                              
         </tr>

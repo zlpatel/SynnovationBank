@@ -21,6 +21,7 @@ import edu.asu.secure.SynnovationBank.Dao.TransactionDetailsDAO;
 import edu.asu.secure.SynnovationBank.Dao.TransactionsDAO;
 import edu.asu.secure.SynnovationBank.FormBean.AdminCriticalTransactionsFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.AdminPIIRequestsFormBean;
+import edu.asu.secure.SynnovationBank.FormBean.ExternalUserFormBean;
 import edu.asu.secure.SynnovationBank.Service.AdminNotificationsService;
 
 @Service
@@ -184,5 +185,21 @@ public class AdminNotificationsServiceImpl implements AdminNotificationsService 
 	    		list.add(adminPIIRequestsFormBean);
 	    	}
 	    	return list;		}
+
+		@Override
+		public void addPIIRequestNotification(
+				ExternalUserFormBean modifyexternaluserformbean) 
+		{
+			//send new notification to Admin	
+		    System.out.println("The username in service layer " + modifyexternaluserformbean.getUsername());
+		    Notifications n=new Notifications();
+		    n.setEmpAdminFlag("A"); // notification to admin
+
+		    NotificationsType nt= notificationsTypeDAO.fetchNotificationsType("PII");
+		    n.setNotificationsType(nt);
+		    //send userId as well in this method
+		    n.setResolvedFlag("N");
+		    notificationsDAO.insertNotification(modifyexternaluserformbean.getUsername(),n);
+		}
 	    
 	    }

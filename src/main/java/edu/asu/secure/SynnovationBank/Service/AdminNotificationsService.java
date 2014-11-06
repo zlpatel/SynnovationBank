@@ -9,4 +9,5 @@ public interface AdminNotificationsService
 	public List<AdminPIIRequestsFormBean> getPIIRequestNotifications();
 	public void sendTransactionDeclinedNotification(String userId, long nId);
 	public void sendTransactionAcceptedNotification(String userId, long tId, long nId);
+	public void addPIIRequestNotification(ExternalUserFormBean modifyexternaluserformbean);
 }

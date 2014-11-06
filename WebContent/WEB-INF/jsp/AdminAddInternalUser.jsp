@@ -15,10 +15,10 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 	
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-	<SCRIPT src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js"></SCRIPT>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/jquery-ui.css" />
+	<script src="${pageContext.request.contextPath}/bootstrap/js/jquery-1.9.1.js"></script>
+	<script src="${pageContext.request.contextPath}/bootstrap/js/jquery-ui.js"></script>
+	<script src="${pageContext.request.contextPath}/bootstrap/js/jquery.validate.js"></script>
 	
 	<script type="text/javascript">
 	

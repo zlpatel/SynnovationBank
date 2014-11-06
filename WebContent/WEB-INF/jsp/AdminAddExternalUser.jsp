@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -32,6 +33,8 @@
 	 var username = document.getElementById("username").value;
 	 var password = document.getElementById("password").value;
 	 var selectedDate = $('#datepicker1').datepicker('getDate');
+	 
+	 alert(document.getElementById("role").value);
 	 
 	 var now = new Date();
 	 
@@ -124,10 +127,16 @@ changeYear: true
 <br><input name="username" id="username"  class = "form-control" style="width:200px;" placeholder = "Username" maxlength="15" value="${addexternaluserformbean.username}"/>
 <br><input name="password" id="password" type="password" class="form-control" style="width:200px;" placeholder="Password" value="${addexternaluserformbean.password}"/>
 <br>
-<select name= "userRole" id="userRole" class="form-control" style="width:200px;" value="${addexternaluserformbean.role}">
-<option value = "ROLE_CUST">Customer</option>
-<option value = "ROLE_MERC">Merchant</option>
-</select>
+<!-- <select name= "userRole" id="userRole" class="form-control" style="width:200px;">
+<option value ="ROLE_CUST">Customer</option>
+<option value ="ROLE_MERC">Merchant</option>
+</select> -->
+
+<%-- <form:select path="role">
+<form:option value="" label="...." />
+<form:options items="${rolesList}" />
+</form:select> --%>
+
 <br>
 <input class="btn btn-lg btn-primary" type="submit" value="Add User" onclick="document.forms[0].action = 'adminaddedexternaluseraccounts' ;return validateForm();"/>
 <!-- <a class="btn btn-primary" href="adminaddedexternaluseraccounts" type="submit">Save</a> -->
