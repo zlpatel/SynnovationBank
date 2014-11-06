@@ -1,5 +1,7 @@
 package edu.asu.secure.SynnovationBank.FormBean;
 
+import edu.asu.secure.SynnovationBank.DTO.NotificationsType;
+import edu.asu.secure.SynnovationBank.DTO.Person;
 
 public class EmpNotifFormBean {
 
@@ -34,8 +36,8 @@ public class EmpNotifFormBean {
 	public String getNotifications() {
 		return notifications;
 	}
-	public void setNotifications(String notification) {
-		this.notifications = notification;
+	public void setNotifications(String notificatins) {
+		this.notifications = notificatins;
 	}
 	
 	

@@ -36,15 +36,13 @@ public class EmployeeController {
 
 	protected static Logger logger = Logger.getLogger("controller");
 	
+	
+	//This is to display all the Employee notifications
     @RequestMapping(value = "/home", method = RequestMethod.GET)
    	 public String getEmployeePage( ModelMap model) {
-    		 
-    	        //model.put("empNotification", new Notifications());
-    	        model.put("empNotifFormBean", employeeNotificationService.notifications());
-    	        logger.debug("Received request to show employee page");
-    	       
-    	    
-    	//return "empNotifFormBean";----should this be written?
+  
+    	model.put("empNotifFormBean", employeeNotificationService.notifications());
+    	logger.debug("Received request to show employee page");
     	
     	return "employeepage";
 	}
@@ -121,13 +119,7 @@ public class EmployeeController {
     	
     	employeeNotificationService.sendTransactionDeclinedNotification(userId);
         	return "redirect:admincriticaltransactions";
-    	
-//    	else
-//    	{
-//			model.put("error","true");
-//			logger.debug("Some error deleting user!");
-//			return "AdminExternalUserAccounts";
-//    	}   	
+  	
 	}
     
     @RequestMapping(value = "/employeetransactionaccepted", method = RequestMethod.POST)

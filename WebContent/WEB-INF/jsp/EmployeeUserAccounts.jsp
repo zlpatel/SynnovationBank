@@ -1,3 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -22,32 +26,33 @@
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
     <li class="active"><a href="#">User Accounts</a></li>
-    <li><a href="employeechangepassword">Change Password</a></li>
+     <li><a href="employeeviewmerchanttransactions">Merchant Requests</a></li>
      <li><a href="employeeviewtransactions">View Customer Transactions</a></li>
 </ul>
 <p align="center">User Accounts Page</p>
 <form action ="employeeuseraccounts" method = "post" >
 		<table id = "transaction" width="500" border="0" bordercolor="black" class ="table table-striped">
+		<thead>
 		<tr>
-		  <td><b>First Name</b></td>
-		  <td></td>
-		  <td><b>Last Name</b></td>
-		  <td></td>
-		  <td><b>User Name</b></td>
-		  <td></td>
-          <td><b>Account Number</b></td>
-          <td></td>
-          <td><b>Balance</b></td>
-          
-         
+		  <th>First Name</th>
+		  <th></th>
+		  <th>Last Name</th>
+		  <th></th>
+		  <th>User Name</th>
+		  <th></th>
+          <th>Account Number</th>
+          <th></th>
+          <th>Balance</th>
          </tr>
+         </thead>
+         <tbody>
       <c:forEach  items="${empUserAcc}" var="empUser">
         <tr> 
           <td>${empUser.firstName}</td>
           <td></td>
           <td>${empUser.lastName}</td>
           <td></td>
-          <td>${empUser.userId}</td>
+          <td>${empUser.userName}</td>
           <td></td>
           <td>${empUser.getAccountNumber}</td>
           <td></td>
@@ -56,6 +61,7 @@
           
         </tr>
       </c:forEach>
+      </tbody>
       </table>
       <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	

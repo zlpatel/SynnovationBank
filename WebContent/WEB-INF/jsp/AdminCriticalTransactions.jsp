@@ -56,7 +56,6 @@
       </c:forEach>
         </tbody>
     </table>
-    </form>
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  

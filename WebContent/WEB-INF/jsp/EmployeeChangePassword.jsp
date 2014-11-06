@@ -1,3 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -17,24 +21,25 @@
 </head>
 <body>
 <h2>Employee Page</h2>
-<p>Only employees have access to this page.</p><br>
-
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
     <li><a href="employeeuseraccounts">User Accounts</a></li>
-    <li class="active"><a href="#">Merchant Transactions</a></li>
+    <li class="active"><a href="#">Merchant Requests</a></li>
     <li><a href="employeeviewtransactions">View Customer Transactions</a></li>
 </ul>
-<br><br>
 <p align="center">Merchant Requests</p>
 <form action="employeecriticaltransactions" commandName="getadmincriticaltransactions" method="get" >
 <table class="table" class ="table table-striped">
 <thead>
             <tr>
                 <th>Username</th>
+                <th></th>
                 <th>Account Number</th>
+                <th></th>
                 <th>Notification</th>
-                <th>Amount</th>                                                
+                <th></th>
+                <th>Amount</th>
+                <th></th>                                                
                 <th>Action</th>
             </tr>
         </thead>
@@ -42,9 +47,13 @@
             <c:forEach  items="${adminCriticalNotifFormBean}" var="notification">
         <tr> 
           <td>${notification.userName}</td>
+          <td></td>
           <td>${notification.accountNumber}</td>
+          <td></td>
           <td>${notification.notification}</td>
+          <td></td>
           <td>${notification.transactionAmount}</td>
+          
            <td align="center"><input style="width:75px;" name="Modify" type="submit" value= "Accept" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'employeetransactionaccepted?userId=${notification}'; ;return true;"/></td>  
           <td align="center"><input  style="width:75px;" name="Delete" type="submit" value= "Decline" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'employeetransactiondeclined?userId=${notification.userName}'; ;return true;"/></td> 
           
@@ -52,6 +61,8 @@
       </c:forEach>
         </tbody>
     </table>
+    <input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />	
 </form>
 
 

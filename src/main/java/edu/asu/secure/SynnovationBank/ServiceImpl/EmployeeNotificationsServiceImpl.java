@@ -42,9 +42,9 @@ public class EmployeeNotificationsServiceImpl implements EmployeeNotificationsSe
 	    public List<EmpNotifFormBean> notifications() {
 	    	 
 	    	EmpNotifFormBean empNotifFormBean=null;
-	    	//System.out.println("Hi it is here!");
-	    	List<Notifications> notification=notificationsDAO.fetchNotifications("E");
-	    	//System.out.println("Hi it is here 2!");
+	    	System.out.println("Hi it is here!");
+	    	List<Notifications> notification=notificationsDAO.fetchNotifications("E", "N");
+	    	System.out.println("Hi it is here 2!");
 	    	List<EmpNotifFormBean> list=new ArrayList<EmpNotifFormBean>();
 	    	
 	    	for(Notifications notif: notification){
@@ -172,7 +172,7 @@ public class EmployeeNotificationsServiceImpl implements EmployeeNotificationsSe
 				Transactions transactions =  transactionDAO.fetchTransactionById(transactionId);
 				
 		    	//set transaction status to C from P
-				//transactions.setStatus("C");
+				transactions.setCompleteFlag("C");
 				
 				
 				

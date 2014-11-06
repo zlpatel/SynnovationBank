@@ -8,7 +8,7 @@ public class EmpUserAccFormBean {
 	private String lastName;
 	private long getAccountNumber;
 	private float getBalance;
-	private String userId;
+	private String userName;
 	
 	public String getFirstName() {
 		return firstName;
@@ -34,11 +34,11 @@ public class EmpUserAccFormBean {
 	public void setGetBalance(float getBalance) {
 		this.getBalance = getBalance;
 	}
-	public void setUserId(String userId) {
-		this.userId=userId;
-		
-	} 
-	public String getUserId() {
-		return userId;
+	public String getUserName() {
+		return userName;
 	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	} 
+
 }

@@ -26,11 +26,11 @@ public class EmployeeUserAccountsServiceImpl implements EmployeeUserAccountServi
      
     
  
-    @Override
+    @Transactional
     public List<EmpUserAccFormBean> userAccounts() {
     	 
     	EmpUserAccFormBean empUserAccFormBean=null;
-    	//change account to person and pass argument "c"
+    	
     	List<Person> person=personDAO.fetchUserByRole("ROLE_CUST");
     	List<EmpUserAccFormBean> list=new ArrayList<EmpUserAccFormBean>();
     	
@@ -39,7 +39,7 @@ public class EmployeeUserAccountsServiceImpl implements EmployeeUserAccountServi
     		
     		empUserAccFormBean.setFirstName(per.getFirstName());
     		empUserAccFormBean.setLastName(per.getLastName());
-    		empUserAccFormBean.setUserId(per.getUserId());
+    		empUserAccFormBean.setUserName(per.getUserId());
     		empUserAccFormBean.setGetAccountNumber(per.getAccount().getAccountNumber());
     		empUserAccFormBean.setGetBalance(per.getAccount().getBalance());
     		list.add(empUserAccFormBean);

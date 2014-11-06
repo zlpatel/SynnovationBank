@@ -1,3 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -48,7 +52,7 @@
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
     <li><a href="employeeuseraccounts">User Accounts</a></li>
-    <li><a href="employeechangepassword"> Change Password</a></li>
+     <li><a href="employeeviewmerchanttransactions">Merchant Requests</a></li>
     <li class="active"><a href="#">View Customer Transactions</a></li>
 </ul>
 <p align="center">View Customer Transactions</p>
@@ -56,7 +60,7 @@
 <form action ="viewtransactions" method="post" commandName="usertransactionformbean">
 
 
-<input name="userName"  id="username" class = "form-control"  placeholder = "User Name" type="text" maxlength="15" value="${usertransactionformbean.userName}">
+<input name="userName"  id="username" class = "form-control" style="width:200px;" placeholder = "User Name" type="text" maxlength="15" value="${usertransactionformbean.userName}">
 <input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="document.forms[0].action = 'viewtransactions' ;return validateForm();"/>
 <!-- <input class="btn btn-lg btn-primary" type="submit" value="Submit"/>-->
 

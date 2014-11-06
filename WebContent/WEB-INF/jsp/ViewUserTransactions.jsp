@@ -48,24 +48,26 @@
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
     <li><a href="employeeuseraccounts">User Accounts</a></li>
-    <li><a href="employeechangepassword"> Change Password</a></li>
+    <li><a href="employeeviewmerchanttransactions">Merchant Requests</a></li>
     <li class="active"><a href="#">View Customer Transactions</a></li>
 </ul>
 <p align="center">View Customer Transactions</p>
 
     <form name ="user_transactions" method = "post">
 		<table  width="500" border="0" bordercolor="black" class ="table table-striped">
+		<thead>
 		<tr>
-		  <td><b>Transaction Id</b></td>
-		  <td></td>
-		  <td><b>Balance</b></td>
-          <td></td>
-          <td><b>Transaction Date</b></td>
-          <td></td>
-          <td><b>Transaction Name</b></td>
-          
-          
+		
+		  <th>Transaction Id</th>
+		  <th></th>
+		  <th>Balance</th>
+          <th></th>
+          <th>Transaction Date</th>
+          <th></th>
+          <th>Transaction Name</th>
          </tr>
+         </thead>
+         <tbody>
       <c:forEach  items="${userTransaction}" var="trans">
         <tr> 
           <td>${trans.transactionId}</td>
@@ -77,6 +79,7 @@
           <td>${trans.transactionsName}</td>
          </tr>
       </c:forEach>
+      </tbody>
       </table>
       <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	

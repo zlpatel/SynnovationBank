@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -22,10 +25,9 @@
 <ul class="nav nav-tabs">
     <li class="active"><a href="#">Notifications</a></li>
     <li><a href="employeeuseraccounts">User Accounts</a></li>
-    <li><a href="employeeviewmerchanttransactions">Merchant Transactions</a></li>
+    <li><a href="employeeviewmerchanttransactions">Merchant Requests</a></li>
     <li><a href="employeeviewtransactions">View Customer Transactions</a></li>
 </ul>
-
 <p align="center">Notifications</p>
 <form name ="employee_notifications" method = "post" commandName="empNotifFormBean">
 		<table id = "transaction" width="500" border="0" bordercolor="black" class ="table table-striped">
@@ -34,8 +36,11 @@
 			
 			
 		  	<th>First Name</th>
+		  	<th></th>
 		  	<th>Last Name</th>
+		  	<th></th>
 		  	<th>User Name</th>
+		  	<th></th>
           	<th>Notification</th>
          </tr>
         </thead>
@@ -43,8 +48,11 @@
       <c:forEach  items="${empNotifFormBean}" var="empNotif">
         <tr> 
           <td>${empNotif.firstName}</td>
+          <td></td>
           <td>${empNotif.lastName}</td>
+          <td></td>
           <td>${empNotif.userName}</td>
+          <td></td>
           <td>${empNotif.notifications}</td>
           
         </tr>
@@ -52,6 +60,8 @@
       </c:forEach>
       </tbody>
       </table>
+      <input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />	
       </form>
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
