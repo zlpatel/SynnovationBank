@@ -1,5 +1,7 @@
 package edu.asu.secure.SynnovationBank.Controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,13 +48,17 @@ public class OTPController {
 	
 	@RequestMapping(value = "/otprequest", method = {RequestMethod.POST,RequestMethod.GET})
     public String getOTPPage(@RequestParam(value="error", required=false) boolean error,@ModelAttribute("forgotPasswordFormBean")
-    ForgotPasswordFormBean forgotPasswordFormBean, BindingResult result,ModelMap model) {
+    ForgotPasswordFormBean forgotPasswordFormBean, BindingResult result,ModelMap model,HttpSession session) {
 
 		if(error==true){
-			model.put("error", "The OTP you have entered is not correct!");	
+			model.put("error", "The OTP you have entered is not correct!");
 		}else{
 			model.put("error","");
 			if(otpService.validateUser(forgotPasswordFormBean.getUsername(),forgotPasswordFormBean.getEmail())){
+				
+	            if (session != null) {
+	                session.setAttribute("USERNAME", forgotPasswordFormBean.getUsername());
+	            }
 				logger.debug("Received request to show otp page");
 			}else{
 				model.put("error", true);
@@ -65,20 +71,22 @@ public class OTPController {
 	
 	@RequestMapping(value = "/changepassword", method = {RequestMethod.POST,RequestMethod.GET})
     public String getChangePasswordPage(@RequestParam(value="error", required=false) boolean error,@ModelAttribute("otpformbean")
-    OTPFormBean otpFormBean, BindingResult result,ModelMap model) {
+    OTPFormBean otpFormBean, BindingResult result,ModelMap model, HttpSession session) {
 		if(error==true){
 			model.put("error", "Passwords doesn't match!");	
 		}else{
 			model.put("error","");
-			if(otpService.compareOTP(otpFormBean.getOtp())){
-				logger.debug("Received request to show changepassword page");
-		    	
-			}
-			else{
-				model.put("error","true");
-				logger.debug("entered OTP is not correct");
-				return "redirect:otprequest";
-			}
+				if(otpService.compareOTP((String)session.getAttribute("USERNAME"),otpFormBean.getOtp())){
+					
+					logger.debug("Received request to show changepassword page");
+			    	
+				}
+				else{
+					model.put("error",true);
+					logger.debug("entered OTP is not correct");
+					return "redirect:otprequest";
+				}
+			
 		}
 		return "changepasswordpage";
     	
@@ -88,14 +96,16 @@ public class OTPController {
     public String getChangePasswordSuccessfulPage(@ModelAttribute("changepasswordformbean")
     ChangePasswordFormBean changePasswordFormBean, BindingResult result,ModelMap model) {
 		
-		if(otpService.updatePassword(changePasswordFormBean.getNewpassword(),changePasswordFormBean.getUsername())){
+		if(otpService.updatePassword(changePasswordFormBean.getNewpassword(),changePasswordFormBean.getRetypepassword(),changePasswordFormBean.getUsername())){
 			logger.debug("Received request to show changepasswordsuccessful page");
 	    	return "changepasswordsuccessfulpage";
 		}else{
-			model.put("error","true");
+			model.put("error",true);
 			logger.debug("password doesn't match!");
 			return "redirect:changepassword";
 		}
 		
 	}
+	
+
 }

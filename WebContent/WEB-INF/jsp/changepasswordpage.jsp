@@ -13,6 +13,31 @@
 	
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+	
+	function validateForm()
+	{
+
+	 var username = document.getElementById("username").value;
+	 var newpassword = document.getElementById("newpassword").value;
+	 var retypepassword = document.getElementById("retypepassword").value;
+
+	  if (username === "" || newpassword === "" || retypepassword === "") 
+	  {
+	  	alert("Please fill all fields.");
+	  	return false;
+	  }
+	  
+		var regex3 = new RegExp("^[a-zA-Z0-9]+$");
+		 if(!regex3.test(username))
+		{
+			alert('Please remove special characters and spaces from Username');
+			return false; 
+		}
+	  	    
+	
+	  
+	 }</script>
 </head>
 <body>
 <div id="password-error"><font color="red">${error}</font></div>
@@ -20,13 +45,16 @@
 <form action="../otp/changepasswordsuccessful" commandName="changepasswordformbean" method="post" >
 
 <p>	
-	<input id="username" name="username" placeholder="please enter you username" type="text" value="${changepasswordformbean.username}"/>
+	<input id="username" name="username" placeholder="username" type="text" value="${changepasswordformbean.username}"/>
 </p>
 <p>
-	<input id="newpassword" name="newpassword" placeholder="please enter your new password" type="text" value="${changepasswordformbean.newpassword}"/>
+	<input id="newpassword" name="newpassword" placeholder="new password" type="password" value="${changepasswordformbean.newpassword}"/>
+</p>
+<p>
+	<input id="retypepassword" name="retypepassword" placeholder="retype password" type="password" value="${changepasswordformbean.retypepassword}"/>
 </p>
 
-<input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
+<input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="return validateForm();"/>
 
 <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	
