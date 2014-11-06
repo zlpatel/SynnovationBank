@@ -27,14 +27,14 @@
 
 <h1>Login</h1>
 
-<%-- <div id="login-error">${error}</div> --%>
+<div id="login-error">${error}</div>
 
-<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+<%-- <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
       <font color="red">
         Your login attempt was not successful due to <br/><br/>
         <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
       </font>
-    </c:if>
+    </c:if> --%>
 
 <form action="../../j_spring_security_check" method="post" >
 

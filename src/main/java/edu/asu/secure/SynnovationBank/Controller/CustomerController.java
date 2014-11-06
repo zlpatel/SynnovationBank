@@ -145,15 +145,15 @@ public class CustomerController {
 		logger.debug("Received request to show change tech account access rqst page");
 		
 		
-		String selection=null;		 
+		boolean selection=false;		 
              if(request.getParameter("radios").equals("radio1")) {
-            	 selection="Y";
+            	 selection=true;
             	 System.out.println("**********************************");
                  System.out.println("ALLOW TECHNICAL ACCOUNT ACCESS");
                  System.out.println("**********************************");
              }
              else
-             {selection="N";
+             {selection=false;
         	 System.out.println("*****************************************");
              System.out.println("DO NOT ALLOW TECHNICAL ACCOUNT ACCESS");
              System.out.println("*****************************************");

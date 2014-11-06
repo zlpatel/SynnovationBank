@@ -16,19 +16,11 @@
 		<security:intercept-url pattern="/secure/employee/**" requires-channel="https" access="hasRole('ROLE_BNK_EMPL')"/>
 		<security:intercept-url pattern="/secure/customer/**" requires-channel="https" access="hasRole('ROLE_CUST')"/>
 		<security:intercept-url pattern="/secure/merchant/**" requires-channel="https" access="hasRole('ROLE_MERC')"/>
-		
-		
-		<!-- <security:intercept-url pattern="/secure/admin/**" requires-channel="https" access="permitAll"/>
-		<security:intercept-url pattern="/secure/employee/**" requires-channel="https" access="permitAll"/>
-		<security:intercept-url pattern="/secure/customer/**" requires-channel="https" access="permitAll"/>
-		<security:intercept-url pattern="/secure/merchant/**" requires-channel="https" access="permitAll"/>-->
-		
-		
-		
+			
 		<security:form-login
 				login-page="/secure/auth/login"
 				authentication-failure-url="/secure/auth/login?error=true" 
-				authentication-success-handler-ref="myAuthenticationSuccessHandler"				
+				authentication-success-handler-ref="myAuthenticationSuccessHandler"			
 				/>
 			
 		<security:session-management invalid-session-url="/secure/auth/login" session-authentication-error-url="/secure/maxsession" session-fixation-protection="migrateSession">
@@ -44,28 +36,50 @@
 				/>
 
 		<!-- enable csrf protection -->
-		<security:csrf/>
+		<!-- <security:csrf request-matcher-ref="csrfSecurityRequestMatcher"/> -->
+		<!-- <security:csrf/> -->
 	</security:http>
+	
+	<bean id="csrfSecurityRequestMatcher"
+        class="edu.asu.secure.SynnovationBank.Handler.CsrfSecurityRequestMatcher" />
 	
 	<bean id="authenticationTrustResolver"
         class="org.springframework.security.authentication.AuthenticationTrustResolverImpl" />
 	
+	<!-- Use a BCrypt encoder since the user's passwords are stored as BCrypt in the database -->
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		<constructor-arg name="strength" value="10" /> 
+  	</bean>
+  	
+  	<!-- A custom service where Spring will retrieve users and their corresponding access levels  -->
+	<bean id="userDetailsDao" class="edu.asu.secure.SynnovationBank.DaoImpl.UserDetailsDaoImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- A custom service where Spring will retrieve users and their corresponding access levels  -->
+	<bean id="myUserDetailsService" class="edu.asu.secure.SynnovationBank.ServiceImpl.CustomUserDetailsService">
+		<property name="usersByUsernameQuery" value="select * from person where user_id = ?"/>
+		<property name="authoritiesByUsernameQuery" value="select user_id, role from person where user_id =?" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	
+	<bean id="authenticationProvider"
+        	class="edu.asu.secure.SynnovationBank.Handler.LimitLoginAuthenticationProvider">
+        	<property name ="userDetailsService" ref="myUserDetailsService"></property>
+        	<property name ="userDetailsDao" ref="userDetailsDao"></property>
+        	<property name ="passwordEncoder" ref="passwordEncoder"></property>
+        </bean>
+        	
+        	
 	<!-- The custom authentication success handler to redirect user's to user specific page instead of common page-->
 	<bean id="myAuthenticationSuccessHandler"
         	class="edu.asu.secure.SynnovationBank.Handler.UrlAuthenticationSuccessHandler" />
 	
 	<!-- Declare an authentication-manager to use a custom userDetailsService -->
 	<security:authentication-manager>
-	        <security:authentication-provider user-service-ref="myUserDetailsService">
-	        		<security:password-encoder ref="passwordEncoder"/>
+	        <security:authentication-provider ref="authenticationProvider">
 	        </security:authentication-provider>
 	</security:authentication-manager>
-	
-	<!-- Use a BCrypt encoder since the user's passwords are stored as BCrypt in the database -->
-	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
-		<constructor-arg name="strength" value="10" /> 
-  	</bean>
 
-	<!-- A custom service where Spring will retrieve users and their corresponding access levels  -->
-	<bean id="myUserDetailsService" class="edu.asu.secure.SynnovationBank.ServiceImpl.MyUserDetailsServiceImpl"/>
 </beans>
