@@ -4,10 +4,13 @@
 package edu.asu.secure.SynnovationBank.Controller;
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +38,7 @@ public class LoginLogoutController {
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String getLoginPage(@RequestParam(value="error", required=false) boolean error, 
-			ModelMap model,HttpSession session) {
+			ModelMap model,HttpServletRequest request,HttpSession session) {
 		logger.debug("Received request to show login page");
 
 		// Add an error message to the model if login is unsuccessful
@@ -45,7 +48,8 @@ public class LoginLogoutController {
 		if (securityContextAccessor.isCurrentAuthenticationAnonymous()) {
 			if (error == true) {
 				// Assign an error message
-				model.put("error", "You have entered an invalid username or password!");
+				model.put("error", getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION"));
+//				model.put("error", "You have entered an invalid username or password!");
 			} else {
 				model.put("error", "");
 			}
@@ -55,6 +59,23 @@ public class LoginLogoutController {
 		    return securityContextAccessor.determineDefaultTargetUrl();
 		 }
 		
+	}
+	
+	private String getErrorMessage(HttpServletRequest request, String key){
+		 
+		Exception exception = 
+                   (Exception) request.getSession().getAttribute(key);
+ 
+		String error = "";
+		if (exception instanceof BadCredentialsException) {
+			error = "Invalid username and password!";
+		}else if(exception instanceof LockedException) {
+			error = exception.getMessage();
+		}else{
+			error = "Invalid username and password!";
+		}
+ 
+		return error;
 	}
 	
 	/**

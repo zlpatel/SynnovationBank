@@ -1,6 +1,6 @@
 package edu.asu.secure.SynnovationBank.FormBean;
 
-public class AdminCriticalTransactionsFormBean 
+public class AdminPIIRequestsFormBean 
 {
 	
 	private String firstName;
@@ -11,6 +11,12 @@ public class AdminCriticalTransactionsFormBean
 	private float transactionAmount;
 	private long transactionId;
 	
+	public long getTransactionId() {
+		return transactionId;
+	}
+	public void setTransactionId(long transactionId) {
+		this.transactionId = transactionId;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -46,12 +52,6 @@ public class AdminCriticalTransactionsFormBean
 	}
 	public void setTransactionAmount(float transactionAmount) {
 		this.transactionAmount = transactionAmount;
-	}
-	public Long getTransactionId() {
-		return transactionId;
-	}
-	public void setTransactionId(long transactionId) {
-		this.transactionId = transactionId;
 	}
 	
 }

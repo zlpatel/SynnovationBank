@@ -25,11 +25,11 @@ public class TechAccountAccessServiceImpl implements TechAccountAccessService {
 	private NotificationsDAO notificationsDAO; 
 	
 	@Override
-	public boolean setAccessFlag(String userID, String flag) {
+	public boolean setAccessFlag(String userID, boolean flag) {
 	
 		System.out.println("Inside service layer!");
 		
-		if(flag=="N")
+		if(flag==false)
 		{
 			System.out.println("**********************************************************");
 			System.out.println("User diallowed TAA...so no notifications...direct DB update");
@@ -49,7 +49,7 @@ public class TechAccountAccessServiceImpl implements TechAccountAccessService {
 			
 			
 			
-			
+			/*
 			//set and push Technical Account Access notification
 			
 			Notifications n=new Notifications();
@@ -59,8 +59,8 @@ public class TechAccountAccessServiceImpl implements TechAccountAccessService {
 			
 			n.setNotificationsType(nt);
 			
-			n.setResolvedFlag("N");
-			notificationsDAO.insertNotification(userID,n);
+			
+			notificationsDAO.insertNotification(userID,n);*/
 			
 			return true;
 		}
