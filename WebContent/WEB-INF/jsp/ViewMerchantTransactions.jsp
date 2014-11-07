@@ -35,7 +35,7 @@
 <li><a href="ChangeMerchantInfo">Change information</a></li>
 <li><a href="MerchantTechAccountAccess">Technical Account Access</a></li>
 <li><a href="MerchantAcceptNotification">Accept Customer Notifications</a><li>
-<li><a href="MerchantSubmitPayment">Submit Payment</a></li>
+<!-- <li><a href="MerchantSubmitPayment">Submit Payment</a></li> -->
 </ul>
 <br>
 <h4>Available balance in your account is: ${balance}</h4> 

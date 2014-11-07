@@ -28,7 +28,7 @@ public class JavaRunCommand {
  
         try {
         	
-        	String strCom = "keytool -genkeypair -dname \"cn=admin, ou=Java, o=Oracle, c=US\" -alias user1 -keypass 123456 -keystore /Users/zeel/sb_keystore.jks -storepass 123456 -validity 180";
+        	String strCom = "keytool -genkeypair -dname \"cn=admin, ou=Java, o=Oracle, c=US\" -alias merchant -keypass 123456 -keystore /Users/pratik/pkstore.jks -storepass 123456 -validity 180";
         	String strCom2 = "keytool -genkeypair -dname \"cn=Rohit Kharat, ou=Java, o=Oracle, c=US\" -alias user2 -keypass 123456 -keystore /Users/zeel/sb_keystore.jks -storepass 123456 -validity 180";
              
         // run the Unix "ps -ef" command
@@ -165,7 +165,7 @@ public class JavaRunCommand {
 		
 		 
 		 java.io.FileInputStream fis = null; try { fis = new
-		 java.io.FileInputStream("/Users/zeel/sb_keystore.jks"); 
+		 java.io.FileInputStream("/Users/pratik/pkstore.jks"); 
 		 ks.load(fis,"123456".toCharArray()); }  
 		 
 		 finally {
@@ -185,39 +185,39 @@ public class JavaRunCommand {
 			 //ks.deleteEntry(aliasList.nextElement().toString());
 			 aliasList.nextElement();
 			 }
-			System.out.println(ks.containsAlias("admin"));
+			System.out.println(ks.containsAlias("merchant"));
 			System.out.println(ks.containsAlias("user2"));
 			
 			System.out.println(ks.getCertificate(ks.aliases().nextElement()));
 			
-			FileOutputStream cos = new FileOutputStream("/Users/zeel/user1Cert.cer");
+			FileOutputStream cos = new FileOutputStream("/Users/pratik/user1Cert.cer");
 			 //Key pvt = ks.getKey("SBSG2", "123456".toCharArray());
-			 Certificate pub = ks.getCertificate("admin");
+			 Certificate pub = ks.getCertificate("merchant");
 			 Certificate pub2 = ks.getCertificate("user2");
 			 
 			 cos.write(pub.getEncoded());
-			 FileOutputStream cos2 = new FileOutputStream("/Users/zeel/user2Cert.cer");
+			 FileOutputStream cos2 = new FileOutputStream("/Users/pratik/user2Cert.cer");
 			 cos2.write(pub2.getEncoded());
 			 
 			 pub2.verify(pub2.getPublicKey());
 			 
-			 InputStream inStream = null;
-			 try {
-			     inStream = new FileInputStream("/Users/zeel/user1Cert.cer");
-			     CertificateFactory cf = CertificateFactory.getInstance("X.509");
-			     Certificate cert = cf.generateCertificate(inStream);
-			     byte[] certData=cert.getEncoded();
-			     X509Certificate c = X509Certificate.getInstance(certData);
-			     System.out.println("x509 id:"+c.getIssuerDN());
-			     
-			 }catch(Exception certException){
-				 certException.printStackTrace();
-			 }
-			 finally {
-			     if (inStream != null) {
-			         inStream.close();
-			     }
-			 }
+//			 InputStream inStream = null;
+//			 try {
+//			     inStream = new FileInputStream("/Users/pratik/user1Cert.cer");
+//			     CertificateFactory cf = CertificateFactory.getInstance("X.509");
+//			     Certificate cert = cf.generateCertificate(inStream);
+//			     byte[] certData=cert.getEncoded();
+//			     X509Certificate c = X509Certificate.getInstance(certData);
+//			     System.out.println("x509 id:"+c.getIssuerDN());
+//			     
+//			 }catch(Exception certException){
+//				 certException.printStackTrace();
+//			 }
+//			 finally {
+//			     if (inStream != null) {
+//			         inStream.close();
+//			     }
+//			 }
 			 
 			 
 			 

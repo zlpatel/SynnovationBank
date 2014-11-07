@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Merchant Page</title>
+<title>Merchant Bad Certificate</title>
 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
 	
@@ -15,27 +15,24 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
-
 <body>
 <center><h1>SYNNOVATION</h1></center>
-<center><h2> Hi ${username} ! </h2> </center>
-
+<h2>INVALID CERTIFICATE</h2>
 <ul class="nav nav-tabs">
-
-<li><a href="MerchantCredit">Credit Amount</a> </li>
-<li><a href="MerchantDebit">Debit Amount</a> </li>
-<li><a href="MerchantTransfer">Transfers</a></li>
-<li><a href="ViewMerchantTransactions">View Transactions</a></li>
-<li><a href="MerchantNotifications">Notifications</a></li>
-<li><a href="ChangeMerchantInfo">Change information</a></li>
-<li><a href="MerchantTechAccountAccess">Technical Account Access</a></li>
-<li><a href="MerchantAcceptNotification">Accept Customer Notifications</a><li>
-<!-- <li><a href="MerchantSubmitPayment">Submit Payment</a></li> -->
+    <li><a href="../../MerchantCredit">Credit Amount</a> </li>
+<li><a href="../../MerchantDebit">Debit Amount</a> </li>
+<li><a href="../../MerchantTransfer">Transfers</a></li>
+<li><a href="../../ViewMerchantTransactions">View Transactions</a></li>
+<li><a href="../merchant/MerchantNotifications">Notifications</a></li>
+<li><a href="../../ChangeMerchantInfo">Change information</a></li>
+<li><a href="../../MerchantAcceptNotification">Accept Customer Notifications</a><li>
+<li><a href="MerchantSubmitPayment">Submit Payment</a></li>
 </ul>
+<br>
 
+<form>
 <a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
-
-
+</form>
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  
 	<!-- csrf for log out-->
@@ -51,8 +48,5 @@
 		}
 	</script>
 
-
-
 </body>
-
 </html>

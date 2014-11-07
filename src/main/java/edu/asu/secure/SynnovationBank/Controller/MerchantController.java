@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.asu.secure.SynnovationBank.DTO.Notifications;
 import edu.asu.secure.SynnovationBank.FormBean.CreditFormBean;
@@ -61,7 +62,7 @@ public class MerchantController {
      * @return the name of the JSP page
      */
 
-	@RequestMapping(value = "/changemerchantinforequest", method = RequestMethod.GET)
+	@RequestMapping(value = "/changemerchantinforequest", method = RequestMethod.POST)
     public String getNewCustomerInfo(@ModelAttribute("merchantInfoChangeFormBean") MerchantInfoChangeFormBean merchantInfoChangeFormBean, HttpServletRequest request, HttpSession session) {
 
 		String userName="";
@@ -98,12 +99,12 @@ public class MerchantController {
     	
 	}
 	
-	
+
 	
 	//controller for techaccountaccess
 	
 
-	@RequestMapping(value = "/merchanttechaccountaccess", method = RequestMethod.GET)
+	@RequestMapping(value = "/merchanttechaccountaccess", method = RequestMethod.POST)
 	public String env(HttpServletRequest request, HttpSession session){
 
 		String userName="";
@@ -148,7 +149,7 @@ public class MerchantController {
         	return "redirect:/secure/admin/admincriticaltransactions";
     }*/
 	
-	@RequestMapping(value = "/merchantacceptexternaluser/{userName}/{notification_id}/{transaction_id}", method ={ RequestMethod.POST,RequestMethod.GET})
+	@RequestMapping(value = "/merchantacceptexternaluser/{userName}/{notification_id}/{transaction_id}", method =RequestMethod.POST)
     public String getMerchantAccept(@PathVariable("userName") String userName, @PathVariable("transaction_id") Long transaction_id, @PathVariable("notification_id") Long notification_id, ModelMap model, HttpServletRequest request) {
 
 		
@@ -165,7 +166,7 @@ public class MerchantController {
 		
 		model.put("merchantPaymentFormBean",merchantPaymentFormBean);
 		
-		return "redirect:/secure/merchant/MerchantSubmitPayment";
+		return "MerchantSubmitPayment";
     	
 	}
 	
@@ -177,7 +178,7 @@ public class MerchantController {
 		System.out.println("Rejected Notification :"+notification_id);		
 		
 		merchantNotificationService.sendTransactionDeclinedNotification(userName,notification_id);
-		return "redirect:/secure/merchant/MerchantSubmitPayment";
+		return "MerchantDisplayReject";
     	
 	}
 	
@@ -196,39 +197,42 @@ public class MerchantController {
 	
 	*/
 	//Controller for redirecting when accept notification  by merchant
-		@RequestMapping(value = "/submitpayment", method = RequestMethod.POST)
-	    public String getSubmitPayment(ModelMap model, @ModelAttribute("merchantPaymentFormBean") MerchantPaymentFormBean merchantPaymentFormBean, HttpServletRequest request, HttpSession session) {
+		@RequestMapping(value = "/submitpayment/{notification_id}", method = RequestMethod.POST)
+	    public @ResponseBody String getSubmitPayment(@ModelAttribute("merchantPaymentFormBean") MerchantPaymentFormBean merchantPaymentFormBean,ModelMap model, @PathVariable("notification_id") Long notification_id, HttpServletRequest request, HttpSession session) {
 
 			logger.debug("Received request to show submit payment page");	
 			
 		    //verify PKI certificate
 			if(pkiService.verifyCertificate(merchantPaymentFormBean.getFile(),(String)session.getAttribute("USERNAME"))){
-				//return "CertificateVerified";
-				merchantNotificationService.sendTransactionAcceptedNotification(merchantPaymentFormBean.getNotification_id());
+				merchantNotificationService.sendTransactionAcceptedNotification(notification_id);
+				return "MerchantDisplaySubmitPaymentResult";
+				
 			}
 			
 			else{
-				model.put("error",true);
+				return "Certificate invalid";
+				
+			
 			}
 			
 			
-			return "redirect:/secure/merchant/MerchantSubmitPayment";
+		
 	    	
 		}
 	
 	
-	@RequestMapping(value = "/MerchantSubmitPayment", method = {RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value = "/MerchantSubmitPayment", method = RequestMethod.POST)
     public String submitPayment(@RequestParam(value="error", required=false) boolean error,ModelMap model) { 
 	
-		logger.debug("Received request to show credit/debit page");
-    
-		if(error==true){
-			System.out.println("ERROR SUBMITTING THE PAYMENT");
-		}
-		else{
-			System.out.println("PAYMENT SUBMITTED SUCCESSFULLY");
-			
-		}
+		logger.debug("Received request to submit payment");
+//    
+//		if(error==true){
+//			System.out.println("ERROR SUBMITTING THE PAYMENT");
+//		}
+//		else{
+//			System.out.println("PAYMENT SUBMITTED SUCCESSFULLY");
+//			
+//		}
 		
 		
     	return "MerchantSubmitPayment";
@@ -253,7 +257,7 @@ public class MerchantController {
 	
 	// controller for crediting
 	
-	@RequestMapping(value = "/merchantcreditrequest", method = {RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value = "/merchantcreditrequest", method = RequestMethod.POST)
     public String getCreditRqstPage(@RequestParam(value="error", required=false) boolean error,ModelMap model, @ModelAttribute("creditFormBean") CreditFormBean creditFormBean, HttpServletRequest request, HttpSession session) {
 
 		String userName="";
@@ -285,7 +289,7 @@ public class MerchantController {
 	
 	// controller for debiting
 	
-		@RequestMapping(value = "/merchantdebitrequest", method = {RequestMethod.POST, RequestMethod.GET})
+		@RequestMapping(value = "/merchantdebitrequest", method = RequestMethod.POST)
 	    public String getDebitRqstPage(@RequestParam(value="error", required=false) boolean error,ModelMap model,@ModelAttribute("debitFormBean") DebitFormBean debitFormBean, HttpServletRequest request, HttpSession session) {
 
 			String userName="";
@@ -312,7 +316,7 @@ public class MerchantController {
 	
 		// controller for 		transferrequest
 		
-		@RequestMapping(value = "/merchanttransferrequest", method = {RequestMethod.POST, RequestMethod.GET})
+		@RequestMapping(value = "/merchanttransferrequest", method = RequestMethod.POST)
 	    public String getTransferRqstPage(@RequestParam(value="error", required=false) boolean error, ModelMap model,@ModelAttribute("transferFormBean") TransferFormBean transferFormBean, HttpServletRequest request, HttpSession session) {
 			
 			String userName="";
@@ -424,31 +428,31 @@ public class MerchantController {
 	
 	@RequestMapping(value = "/MerchantTechAccountAccess", method = {RequestMethod.POST, RequestMethod.GET})
     public String gettechAccountAccess(HttpServletRequest request, HttpSession session) {
-    	String userName="";
-		session = request.getSession(false);
-        if (session != null) {
-            userName=(String)request.getSession().getAttribute("USERNAME");
-        }
-		logger.debug("Received request to show change tech account access rqst page");
-		
-		
-		boolean selection=false;		 
-             if(request.getParameter("radios").equals("radio1")) {
-            	 selection=true;
-            	 System.out.println("**********************************");
-                 System.out.println("ALLOW TECHNICAL ACCOUNT ACCESS");
-                 System.out.println("**********************************");
-             }
-             else
-             {selection=false;
-        	 System.out.println("*****************************************");
-             System.out.println("DO NOT ALLOW TECHNICAL ACCOUNT ACCESS");
-             System.out.println("*****************************************");
-             }
-             
-             if(techAccountAccessService.setAccessFlag(userName, selection))
-            	 	return "WelcomeMerchant";
-             else
+//    	String userName="";
+//		session = request.getSession(false);
+//        if (session != null) {
+//            userName=(String)request.getSession().getAttribute("USERNAME");
+//        }
+//		logger.debug("Received request to show change tech account access rqst page");
+//		
+//		
+//		boolean selection=false;		 
+//             if(request.getParameter("radios").equals("radio1")) {
+//            	 selection=true;
+//            	 System.out.println("**********************************");
+//                 System.out.println("ALLOW TECHNICAL ACCOUNT ACCESS");
+//                 System.out.println("**********************************");
+//             }
+//             else
+//             {selection=false;
+//        	 System.out.println("*****************************************");
+//             System.out.println("DO NOT ALLOW TECHNICAL ACCOUNT ACCESS");
+//             System.out.println("*****************************************");
+//             }
+//             
+//             if(techAccountAccessService.setAccessFlag(userName, selection))
+//            	 	return "WelcomeMerchant";
+//             else
             	    return "MerchantTechAccountAccess";
 	}
 	

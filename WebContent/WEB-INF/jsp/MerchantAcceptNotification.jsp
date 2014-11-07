@@ -23,10 +23,11 @@
 <li><a href="../merchant/MerchantDebit">Debit Amount</a> </li>
 <li><a href="../merchant/MerchantTransfer">Transfers</a></li>
 <li><a href="../merchant/ViewMerchantTransactions">View Transactions</a></li>
-<!-- <li><a href="../merchant/MerchantNotifications">Notifications</a></li> -->
+<li><a href="../merchant/MerchantNotifications">Notifications</a></li>
 <li><a href="../merchant/ChangeMerchantInfo">Change information</a></li>
+<li><a href="MerchantTechAccountAccess">Technical Account Access</a></li>
 <li class="active"><a href="#">Accept Customer Notifications</a><li>
-<li><a href="MerchantSubmitPayment">Submit Payment</a></li>
+<!-- <li><a href="MerchantSubmitPayment">Submit Payment</a></li> -->
 </ul>
 <br>
 <form  method="post" >
