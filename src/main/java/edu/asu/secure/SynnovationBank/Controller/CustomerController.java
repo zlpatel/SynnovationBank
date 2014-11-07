@@ -332,24 +332,25 @@ public class CustomerController {
 			System.out.println("Send from:" +userName); 
 			System.out.println("Send to :"+transferFormBean.getReceiverID());
 			System.out.println("Transfer amount :"+transferFormBean.getTransferAmount());
-			Person person=personDao.fetchUserById("merchant");
-		System.out.println(person);
-		String role=person.getRole();
-		System.out.println(role);
-			if(!person.getRole().equals("ROLE_MERC")){
+			System.out.println("length of username = " + transferFormBean.getReceiverID().length());
+			
+			if(!(transferService.getReceiverRole(transferFormBean.getReceiverID())).equalsIgnoreCase("ROLE_MERC"))
+			{
 			if(transferService.performTransfer(userName, transferFormBean.getReceiverID(),transferFormBean.getTransferAmount()))
 			{
 				
 				return "welcomeUser";
 			}
+			
 			else
 			{
-				model.put("error","TRANSFER UNSUCCESSFULL (or) You have a critical transaction..Go to critical transaction section to make the transaction !");
+				model.put("error","TRANSFER UNSUCCESSFULL (or) PENDING FOR APPROVAL FROM ADMINISTRATOR --- CHECK ''VIEW TRANSACTIONS'' TAB TO SEE IF A TRANSACTION IS CREATED FOR YOUR REQUEST (Your account balance won't be updated until approval from bank admin)");
 					return "transfer";
 			}
-		}else
+			
+			}else
 			{
-				model.put("error","Use Merchant Payment to pay to merchant)");
+				model.put("error","Please Use Merchant Payment to pay to a Merchant");
 				return "transfer";
 			}
 	    	
