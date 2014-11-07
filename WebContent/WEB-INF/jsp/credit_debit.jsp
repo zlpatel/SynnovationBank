@@ -59,12 +59,12 @@
 <li><a href="techAccountAccess">Technical Account Access</a></li>
 <li><a href="payMerchant">Pay Merchant</a></li>
 </ul>
-<br><br>
+<br>
 <form  commandName="creditFormBean" method="post">
 <input id="creditAmount" type="text" name="creditAmount" maxlength= "4" class = "form-control" placeholder="Enter the amount to be credited (in USD)" style="width:500px;" value="${creditFormBean.creditAmount}"/>
 <br>
 <input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="document.forms[0].action = 'creditrequest' ;return validateForm();"/>
-
+<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
 </form>
 
 
@@ -79,16 +79,10 @@
 	</form>
 	
 	<script>
-		/* This code detects the tab/window close of the browser and we are performing logout function on it */
-		/* window.onbeforeunload = function(){ formSubmit(); } */
-	
 		function formSubmit() {
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-<br><a href="javascript:formSubmit()"> Logout</a>
-
-
 
 
 </body>

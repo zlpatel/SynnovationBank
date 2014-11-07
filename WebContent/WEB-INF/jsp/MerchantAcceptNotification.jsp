@@ -16,22 +16,19 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2>Merchant Page</h2>
-<p>Only merchants have access to this page.</p><br>
-
+<center><h1>SYNNOVATION</h1></center>
+<h2>ACCEPT NOTIFICATIONS</h2>
 <ul class="nav nav-tabs">
     <li><a href="../merchant/MerchantCredit">Credit Amount</a> </li>
 <li><a href="../merchant/MerchantDebit">Debit Amount</a> </li>
 <li><a href="../merchant/MerchantTransfer">Transfers</a></li>
 <li><a href="../merchant/ViewMerchantTransactions">View Transactions</a></li>
-<li><a href="../merchant/MerchantNotifications">Notifications</a></li>
+<!-- <li><a href="../merchant/MerchantNotifications">Notifications</a></li> -->
 <li><a href="../merchant/ChangeMerchantInfo">Change information</a></li>
-<li><a href="../merchant/MerchantTechAccountAccess">Technical Account Access</a></li>
 <li class="active"><a href="#">Accept Customer Notifications</a><li>
-
+<li><a href="MerchantSubmitPayment">Submit Payment</a></li>
 </ul>
-
-<br><br>
+<br>
 <form  method="post" >
 <table class="table" class ="table table-striped">
 <thead>
@@ -59,7 +56,8 @@
       </c:forEach>
         </tbody>
     </table>
-
+<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
+</form>
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  
 	<!-- csrf for log out-->
@@ -74,12 +72,6 @@
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-<br> <a href="javascript:formSubmit()"> Logout</a>
-
-<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
-<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
-
-
 
 </body>
 </html>

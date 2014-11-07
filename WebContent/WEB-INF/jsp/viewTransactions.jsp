@@ -30,7 +30,7 @@
 <li><a href="credit_debit">Credit Amount</a> </li>
 <li><a href="debit">Debit Amount</a> </li>
 <li><a href="transfer">Transfers</a></li>
-<li><a href="viewTransactions">View Transactions</a></li>
+<li class="active"><a href="#">View Transactions</a></li>
 <li><a href="customerNotifications">Notifications</a></li>
 <li><a href="changeCustomerInfo">Change information</a></li>
 <li><a href="techAccountAccess">Technical Account Access</a></li>
@@ -72,7 +72,7 @@
       </table>
       <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	
-			
+		<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>	
       </form>
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
@@ -85,14 +85,11 @@
 	</form>
 	
 	<script>
-		/* This code detects the tab/window close of the browser and we are performing logout function on it */
-		/* window.onbeforeunload = function(){ formSubmit(); } */
-	
 		function formSubmit() {
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-<br><a href="javascript:formSubmit()"> Logout</a>
+
 
 
 

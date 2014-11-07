@@ -71,7 +71,7 @@
 <ul class="nav nav-tabs">
 <li><a href="credit_debit">Credit Amount</a> </li>
 <li><a href="debit">Debit Amount</a> </li>
-<li><a href="transfer">Transfers</a></li>
+<li class="active"><a href="#">Transfers</a></li>
 <li><a href="viewTransactions">View Transactions</a></li>
 <li><a href="customerNotifications">Notifications</a></li>
 <li><a href="changeCustomerInfo">Change information</a></li>
@@ -83,23 +83,12 @@
 <input id="receiverID" type="text" name="receiverID" maxlength= "15" class = "form-control" placeholder="Enter the User ID to which you want to tranfer the amount" style="width:800px;" value="${transferFormBean.receiverID}"/>
 <br>
 <input id="transferAmount" type="text" name="transferAmount" maxlength= "4" class = "form-control" placeholder="Enter the amount which you want to tranfer" style="width:800px;" value="${transferFormBean.transferAmount}"/><br>
-
-<<<<<<< HEAD
-
-<br><br>
-
-<br><br>
+<br>
 
 
 
-<form action="transferrequest" commandName="transferFormBean" method="get">
-<input id="receiverID" type="text" name="receiverID" placeholder="Enter the account number to which you want to tranfer the amount" style="width:800px;" value="${transferFormBean.receiverID}"/><br>
-<input id="transferAmount" type="text" name="transferAmount" placeholder="Enter the amount which you want to tranfer" style="width:800px;" value="${transferFormBean.transferAmount}"/><br>
-
-<input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
-=======
 <input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="document.forms[0].action = 'transferrequest' ;return validateForm();"/>
->>>>>>> refs/heads/master
+<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
 </form>
 
 
@@ -114,14 +103,11 @@
 	</form>
 	
 	<script>
-		/* This code detects the tab/window close of the browser and we are performing logout function on it */
-		/* window.onbeforeunload = function(){ formSubmit(); } */
-	
 		function formSubmit() {
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-<br><a href="javascript:formSubmit()"> Logout</a>
+
 
 
 

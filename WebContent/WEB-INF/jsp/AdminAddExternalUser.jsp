@@ -63,10 +63,10 @@
 				return false;
 		}
 		
-		var regex3 = new RegExp("^[a-zA-Z0-9]+$");
+		 var regex3 = new RegExp("^[a-zA-Z]+$");	  
 		 if(!regex3.test(username))
 		{
-			alert('Please remove special characters and spaces from Username');
+			alert('Please enter only alphabets for Username');
 			return false; 
 		}
 	  	    
@@ -90,23 +90,19 @@ changeYear: true
 	
 </head>
 <body>
-<h2>Admin Page</h2>
-<p>Only admins have access to this page.</p><br>
-
+<center><h1>SYNNOVATION</h1></center>
+<h2>ADD EXTERNAL USER PAGE</h2>
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
     <li><a href="admininternaluseraccounts">Internal User Accounts</a></li>
     <li class="active"><a href="#">External User Accounts</a></li>
     <li><a href="adminpiirequests">PII Requests</a></li>
     <li><a href="admincriticaltransactions">Critical Transactions</a></li>
-    <li><a href="adminsystemlog">System Log</a></li>   
-    <li><a href="adminchangepassword">Change Password</a></li>
+    
+
 </ul>
-
-<br><br>
-
-<form action="adminaddedexternaluseraccounts" commandName="addexternaluserformbean" method="post" >
-
+<br>
+<form  commandName="addexternaluserformbean" method="post" >
 <input name="fname" id="fname"  class = "form-control" style="width:200px;" placeholder = "First Name" maxlength="15" value="${addexternaluserformbean.fname}"/>
 <br>
 <input name="lname" id="lname"  type="text" class = "form-control" style="width:200px;" placeholder = "Last Name" maxlength="14" value="${addexternaluserformbean.lname}"/>
