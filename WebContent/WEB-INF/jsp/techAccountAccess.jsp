@@ -33,7 +33,7 @@
 <INPUT TYPE="radio" NAME="radios" VALUE="radio1">
              Allow
             <BR>
-            <INPUT TYPE="radio" NAME="radios" VALUE="radio2">
+            <INPUT TYPE="radio" checked NAME="radios" VALUE="radio2">
              Disallow
             <BR>
 <input class="btn btn-lg btn-primary" type="submit" value="Submit"/>

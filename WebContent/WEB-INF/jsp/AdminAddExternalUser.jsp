@@ -130,9 +130,8 @@ changeYear: true
 <form:options items="${rolesList}" />
 </form:select> --%>
 
-<!-- <INPUT TYPE="radio" checked NAME="radios" VALUE="ROLE_CUST"/> Customer<BR>
+<INPUT TYPE="radio" checked NAME="radios" VALUE="ROLE_CUST"/> Customer<BR>
 <INPUT TYPE="radio" NAME="radios" VALUE="ROLE_MERC"/> Merchant<BR>
- -->
 <br>
 <input class="btn btn-lg btn-primary" type="submit" value="Add User" onclick="document.forms[0].action = 'adminaddedexternaluseraccounts' ;return validateForm();"/>
 <!-- <a class="btn btn-primary" href="adminaddedexternaluseraccounts" type="submit">Save</a> -->
