@@ -17,23 +17,18 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2>Admin Page</h2>
-<p>Only admins have access to this page.</p><br>
-<p>${sessionScope.USERNAME}</p>
-
+<center><h1>SYNNOVATION</h1></center>
+<h2>NOTIFICATIONS</h2>
 <ul class="nav nav-tabs">
     <li class="active"><a href="#">Notifications</a></li>
     <li><a href="admininternaluseraccounts">Internal User Accounts</a></li>
     <li><a href="adminexternaluseraccounts">External User Accounts</a></li>
 	<li><a href="adminpiirequests">PII Requests</a></li>
     <li><a href="admincriticaltransactions">Critical Transactions</a></li>
-    <li><a href="adminsystemlog">System Log</a></li>   
-    <li><a href="adminchangepassword">Change Password</a></li>
-    <li><a href="../pki/fileUploader">pki</a></li>
+      
+    
 </ul>
-
-<br><br>
-
+<br>
 <form action="admin" commandName="getadminnotifications" method="post" >
 <table class="table" class ="table table-striped">
         <thead>
@@ -53,10 +48,13 @@
           <td>${adminNotifFormBean.getNotifications}</td>
           <!-- <td align="center"><input style="width:75px;" name="approve" type="submit" value= "Approve" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = '/notificationAccepted';;return true;"/></td>  
           <td align="center"><input  style="width:75px;" name="deny" type="submit" value= "Deny" class = "btn btn-primary"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoDenied.html?authUsername=${person.ID}'; ;return true;"/></td>--> 
+        
         </tr>
       </c:forEach>
       </tbody>
+      
       </table>
+      <a class="btn btn-deafult" href="javascript:formSubmit()">Logout</a>
       </form>
 
 <!-- <table class="table">
@@ -109,14 +107,11 @@
 	</form>
 	
 	<script>
-		/* This code detects the tab/window close of the browser and we are performing logout function on it */
-		/* window.onbeforeunload = function(){ formSubmit(); } */
-	
 		function formSubmit() {
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-<br><a href="javascript:formSubmit()"> Logout</a>
+<br>
 
 </body>
 </html>

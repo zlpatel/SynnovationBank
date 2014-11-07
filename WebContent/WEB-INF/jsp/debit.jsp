@@ -59,12 +59,14 @@
 <li><a href="techAccountAccess">Technical Account Access</a></li>
 <li><a href="payMerchant">Pay Merchant</a></li>
 </ul>
-<br><br>
+<br>
 <form  commandName="debitFormBean" method="post">
 <input id="debitAmount" type="text" name="debitAmount" maxlength= "4" class = "form-control" placeholder="Enter the amount to be debitted(in USD)" style="width:500px;" value="${debitFormBean.debitAmount}"/>
 <br>
 <input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="document.forms[0].action = 'debitrequest' ;return validateForm();"/>
-
+<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />	
+<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
 </form>
 
 
@@ -79,14 +81,10 @@
 	</form>
 	
 	<script>
-		/* This code detects the tab/window close of the browser and we are performing logout function on it */
-		/* window.onbeforeunload = function(){ formSubmit(); } */
-	
 		function formSubmit() {
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-<br><a href="javascript:formSubmit()"> Logout</a>
 
 
 

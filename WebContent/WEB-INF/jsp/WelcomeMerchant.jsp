@@ -17,9 +17,8 @@
 </head>
 
 <body>
-<center><h1> Hi ${username} ! </h1> </center>
-<h2> &#10047 Welcome to SYNNOVATION bank &#10047
-</h2>
+<center><h1>SYNNOVATION</h1></center>
+<center><h2> Hi ${username} ! </h2> </center>
 
 <ul class="nav nav-tabs">
 
@@ -27,14 +26,14 @@
 <li><a href="MerchantDebit">Debit Amount</a> </li>
 <li><a href="MerchantTransfer">Transfers</a></li>
 <li><a href="ViewMerchantTransactions">View Transactions</a></li>
-<li><a href="MerchantNotifications">Notifications</a></li>
+<!-- <li><a href="MerchantNotifications">Notifications</a></li> -->
 <li><a href="ChangeMerchantInfo">Change information</a></li>
-<li><a href="MerchantTechAccountAccess">Technical Account Access</a></li>
+<!-- <li><a href="MerchantTechAccountAccess">Technical Account Access</a></li> -->
 <li><a href="MerchantAcceptNotification">Accept Customer Notifications</a><li>
 <li><a href="MerchantSubmitPayment">Submit Payment</a></li>
 </ul>
 
-
+<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
 
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
@@ -47,14 +46,11 @@
 	</form>
 	
 	<script>
-		/* This code detects the tab/window close of the browser and we are performing logout function on it */
-		/* window.onbeforeunload = function(){ formSubmit(); } */
-	
 		function formSubmit() {
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-<br><a href="javascript:formSubmit()"> Logout</a>
+
 
 
 </body>

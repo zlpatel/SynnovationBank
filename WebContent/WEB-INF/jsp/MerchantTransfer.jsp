@@ -67,9 +67,7 @@
 
 <body>
 <center><h1> SYNNOVATION </h1> </center>
-
 <h2> TRANSFER AMOUNT PAGE</h2>
-
 <div id="otp-error"><font color="red">${error}</font></div>
 
 <ul class="nav nav-tabs">
@@ -77,21 +75,13 @@
 <li><a href="MerchantDebit">Debit Amount</a> </li>
 <li class="active"><a href="#">Transfers</a></li>
 <li><a href="ViewMerchantTransactions">View Transactions</a></li>
-<li><a href="MerchantNotifications">Notifications</a></li>
+<!-- <li><a href="MerchantNotifications">Notifications</a></li> -->
 <li><a href="ChangeMerchantInfo">Change information</a></li>
-<li><a href="MerchantTechAccountAccess">Technical Account Access</a></li>
+<!-- <li><a href="MerchantTechAccountAccess">Technical Account Access</a></li> -->
 <li><a href="MerchantAcceptNotification">Accept Customer Notifications</a><li>
 <li><a href="MerchantSubmitPayment">Submit Payment</a></li>
 </ul>
-
-
-<br><br>
-
-<br><br>
-
-
-
-
+<br>
 <form action="merchanttransferrequest" commandName="transferFormBean" method="post">
 <input id="receiverID" type="text" name="receiverID" maxlength="15" placeholder="Enter the userid to which you want to tranfer the amount" style="width:800px;" value="${transferFormBean.receiverID}"/><br>
 <input id="transferAmount" type="text" name="transferAmount" maxlength="4" placeholder="Enter the amount which you want to tranfer" style="width:800px;" value="${transferFormBean.transferAmount}"/><br>
@@ -99,8 +89,8 @@
 <input class="btn btn-lg btn-primary" type="submit" value="Submit"  onclick="document.forms[0].action = 'merchanttransferrequest' ;return validateForm();"/>
 <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	
+<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
 </form>
-
 
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
@@ -113,14 +103,11 @@
 	</form>
 	
 	<script>
-		/* This code detects the tab/window close of the browser and we are performing logout function on it */
-		/* window.onbeforeunload = function(){ formSubmit(); } */
-	
 		function formSubmit() {
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-<br><a href="javascript:formSubmit()"> Logout</a>
+
 
 
 

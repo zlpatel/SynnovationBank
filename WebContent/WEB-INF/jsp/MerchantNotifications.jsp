@@ -21,16 +21,17 @@
 
 <body>
 <center><h1> SYNNOVATION </h1> </center>
-
-<h2> Merchant Notifications Page !!</h2>
+<h2>NOTIFICATIONS</h2>
 <ul class="nav nav-tabs">
 <li><a href="MerchantCredit">Credit Amount</a> </li>
 <li><a href="MerchantDebit">Debit Amount</a> </li>
 <li><a href="MerchantTransfer">Transfers</a></li>
 <li><a href="ViewMerchantTransactions">View Transactions</a></li>
-<li><a href="MerchantNotifications">Notifications</a></li>
+<!-- <li><a href="MerchantNotifications">Notifications</a></li> -->
 <li><a href="ChangeMerchantInfo">Change information</a></li>
-<li><a href="MerchantTechAccountAccess">Technical Account Access</a></li>
+<!-- <li><a href="MerchantTechAccountAccess">Technical Account Access</a></li> -->
+<li><a href="MerchantAcceptNotification">Accept Customer Notifications</a><li>
+<li><a href="MerchantSubmitPayment">Submit Payment</a></li>
 </ul>
 
 <p align="center">Merchant Notifications</p>
@@ -67,14 +68,11 @@
 	</form>
 	
 	<script>
-		/* This code detects the tab/window close of the browser and we are performing logout function on it */
-		/* window.onbeforeunload = function(){ formSubmit(); } */
-	
 		function formSubmit() {
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-<br><a href="javascript:formSubmit()"> Logout</a>
+
 
 
 

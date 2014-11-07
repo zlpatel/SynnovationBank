@@ -16,20 +16,18 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2>Admin Page</h2>
-<p>Only admins have access to this page.</p><br>
-
+<center><h1>SYNNOVATION</h1></center>
+<h2>CRITICAL TRANSACTIONS</h2>
 <ul class="nav nav-tabs">
     <li><a href="../admin/home">Notifications</a></li>
     <li><a href="../admin/admininternaluseraccounts">Internal User Accounts</a></li>
     <li><a href="../admin/adminexternaluseraccounts">External User Accounts</a></li>
     <li><a href="../admin/adminpiirequests">PII Requests</a></li>
     <li class="active"><a href="#">Critical Transactions</a></li>
-    <li><a href="../admin/adminsystemlog">System Log</a></li>   
-    <li><a href="../admin/adminchangepassword">Change Password</a></li>
+   
+    
 </ul>
-
-<br><br>
+<br>
 <form method="post" >
 <table class ="table table-striped">
 <thead>

@@ -17,25 +17,20 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2>Merchant Page</h2>
-<p>Only merchants have access to this page.</p><br>
-
+<center><h1>SYNNOVATION</h1></center>
+<h2>SUBMIT PAYMENT PAGE</h2>
 <ul class="nav nav-tabs">
     <li><a href="../merchant/MerchantCredit">Credit Amount</a> </li>
 <li><a href="../merchant/MerchantDebit">Debit Amount</a> </li>
 <li><a href="../merchant/MerchantTransfer">Transfers</a></li>
 <li><a href="../merchant/ViewMerchantTransactions">View Transactions</a></li>
-<li><a href="../merchant/MerchantNotifications">Notifications</a></li>
+<!-- <li><a href="../merchant/MerchantNotifications">Notifications</a></li> -->
 <li><a href="../merchant/ChangeMerchantInfo">Change information</a></li>
-<li><a href="../merchant/MerchantTechAccountAccess">Technical Account Access</a></li>
+<!-- <li><a href="../merchant/MerchantTechAccountAccess">Technical Account Access</a></li> -->
 <li><a href="../merchant/MerchantAcceptNotification">Accept Customer Notifications</a><li>
 <li class="active"><a href="#">Submit Payment</a></li>
 </ul>
-
-<br><br>
-
-
-
+<br>
 <div id="certificate-error"><font color="red">${error}</font></div>
 
 <form:form action="submitpayment" modelAttribute="merchantPaymentFormBean" method="post" enctype="multipart/form-data">
@@ -47,10 +42,8 @@
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	
 			
-				
+		<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>		
     </form:form>
-<input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
-
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  
 	<!-- csrf for log out-->
@@ -65,9 +58,9 @@
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-<br> <a href="javascript:formSubmit()"> Logout</a>
 
-!-- Latest compiled and minified JavaScript -->
+
+
 
 <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 <script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>

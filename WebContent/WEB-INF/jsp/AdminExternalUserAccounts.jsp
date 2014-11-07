@@ -18,23 +18,18 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2>Admin Page</h2>
-<p>Only admins have access to this page.</p><br>
-
+<center><h1>SYNNOVATION</h1></center>
+<h2>EXTERNAL USER ACCOUNTS PAGE</h2>
 <p>${message} </p>
-
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
     <li><a href="admininternaluseraccounts">Internal User Accounts</a></li>
     <li class="active"><a href="#">External User Accounts</a></li>
     <li><a href="adminpiirequests">PII Requests</a></li>
     <li><a href="admincriticaltransactions">Critical Transactions</a></li>
-    <li><a href="adminsystemlog">System Log</a></li>   
-    <li><a href="adminchangepassword">Change Password</a></li>
+   
 </ul>
-
-<br><br>
-
+<br>
 <form action="adminexternaluseraccounts" commandName="getexternaluseraccounts" method="post" >
 <table class ="table table-striped">
         <thead>
@@ -44,6 +39,7 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Balance</th>
+                <th></th>
                 <th>Action</th>
             </tr>
         </thead>
