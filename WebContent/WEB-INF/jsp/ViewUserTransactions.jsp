@@ -46,8 +46,8 @@
 <h2> VIEW CUSTOMER TRANSACTIONS PAGE</h2>
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
-    <li><a href="employeeuseraccounts">User Accounts</a></li>
-    <li><a href="employeeviewmerchanttransactions">Merchant Requests</a></li>
+<!--     <li><a href="employeeuseraccounts">User Accounts</a></li>
+ -->    <li><a href="employeeviewmerchanttransactions">Merchant Requests</a></li>
     <li class="active"><a href="#">View Customer Transactions</a></li>
 </ul>
 <br>

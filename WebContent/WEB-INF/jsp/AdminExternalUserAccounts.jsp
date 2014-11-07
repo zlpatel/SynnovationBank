@@ -6,6 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<noscript>
+  <META HTTP-EQUIV="Refresh" CONTENT="0;URL=../admin/enablejavascript">
+</noscript>
 
 <title>Admin Page</title>
 <!-- Latest compiled and minified CSS -->

@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<noscript>
+  <META HTTP-EQUIV="Refresh" CONTENT="0;URL=../merchant/enablejavascript">
+</noscript>
 <title>Merchant Accept Notifications Page</title>
 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
@@ -23,10 +26,11 @@
 <li><a href="../merchant/MerchantDebit">Debit Amount</a> </li>
 <li><a href="../merchant/MerchantTransfer">Transfers</a></li>
 <li><a href="../merchant/ViewMerchantTransactions">View Transactions</a></li>
-<!-- <li><a href="../merchant/MerchantNotifications">Notifications</a></li> -->
+<li><a href="../merchant/MerchantNotifications">Notifications</a></li>
 <li><a href="../merchant/ChangeMerchantInfo">Change information</a></li>
+<li><a href="MerchantTechAccountAccess">Technical Account Access</a></li>
 <li class="active"><a href="#">Accept Customer Notifications</a><li>
-<li><a href="MerchantSubmitPayment">Submit Payment</a></li>
+<!-- <li><a href="MerchantSubmitPayment">Submit Payment</a></li> -->
 </ul>
 <br>
 <form  method="post" >
