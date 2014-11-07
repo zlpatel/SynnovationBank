@@ -1,5 +1,6 @@
 package edu.asu.secure.SynnovationBank.Controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -106,6 +107,16 @@ public class OTPController {
 		}
 		
 	}
+	
+	@RequestMapping(value = "/enablejavascript", method =  RequestMethod.GET)
+    public String getEnableJavascriptPage(ModelMap model, HttpServletRequest request){
+    		
+//        public String adminTransactionAccepted(@RequestParam(value="notification", required=true) AdminCriticalTransactionsFormBean notification, HttpServletRequest request,  
+//                HttpServletResponse response, ModelMap model) {
+    	
+    	
+        	return "EnableJavascript";
+    }
 	
 
 }

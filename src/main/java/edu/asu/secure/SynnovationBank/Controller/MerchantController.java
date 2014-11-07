@@ -526,6 +526,16 @@ public class MerchantController {
     	return "WelcomeMerchant";
 	}
 	
+	@RequestMapping(value = "/enablejavascript", method =  RequestMethod.GET)
+    public String getEnableJavascriptPage(ModelMap model, HttpServletRequest request){
+    		
+//        public String adminTransactionAccepted(@RequestParam(value="notification", required=true) AdminCriticalTransactionsFormBean notification, HttpServletRequest request,  
+//                HttpServletResponse response, ModelMap model) {
+    	
+    	
+        	return "EnableJavascript";
+    }
+	
 	
 	
     

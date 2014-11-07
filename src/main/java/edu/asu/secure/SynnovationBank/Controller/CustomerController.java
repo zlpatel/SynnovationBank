@@ -664,17 +664,16 @@ public class CustomerController {
 
 		
 		// just to check the flow go to paymerchant page
-		return "payMerchantActual";
 		
 		//include this service layer call later
 		
-		/*if(pkiService.verifyCertificate(fileUploadFormBean.getFile(),(String)session.getAttribute("USERNAME"))){
-			return "changepasswordsuccessfulpage";
+		if(pkiService.verifyCertificate(fileUploadFormBean.getFile(),(String)session.getAttribute("USERNAME"))){
+			return "payMerchantActual";
 		}
 		else{
 			model.put("error",true);
 			return "redirect:fileUploader";
-		}*/
+		}
 	}
 
     
@@ -712,6 +711,16 @@ public class CustomerController {
 			return "redirect:fileUploader";
 		}*/
 	}
+	
+	@RequestMapping(value = "/enablejavascript", method =  RequestMethod.GET)
+    public String getEnableJavascriptPage(ModelMap model, HttpServletRequest request){
+    		
+//        public String adminTransactionAccepted(@RequestParam(value="notification", required=true) AdminCriticalTransactionsFormBean notification, HttpServletRequest request,  
+//                HttpServletResponse response, ModelMap model) {
+    	
+    	
+        	return "EnableJavascript";
+    }
 
 
 	
