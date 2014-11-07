@@ -52,7 +52,8 @@
 
 <input class="btn btn-lg btn-primary" type="submit" value="Login"/>
 
-<a href="../otp/forgotpassword">ForgetPassword</a>
+<a class="btn btn-default" href="../otp/forgotpassword">Change/ Forgot Password</a>
+
 
 <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	
