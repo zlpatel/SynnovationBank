@@ -365,11 +365,11 @@ public class AdminController {
 	}   
     
     
-    @RequestMapping(value = "/admintransactiondeclined/{userId}/{notificationId}", method = {RequestMethod.POST, RequestMethod.GET})
-    public String adminTransactionDeclined(@PathVariable("userId") String userId, @PathVariable("notificationId") Long notificationId, ModelMap model, HttpServletRequest request) {
+    @RequestMapping(value = "/admintransactiondeclined/{userId}/{transactionId}/{notificationId}", method = {RequestMethod.POST, RequestMethod.GET})
+    public String adminTransactionDeclined(@PathVariable("userId") String userId, @PathVariable("transactionId") Long transactionId, @PathVariable("notificationId") Long notificationId, ModelMap model, HttpServletRequest request) {
     	logger.debug("Received request to decline transaction for user with Id: " + userId);
     	
-    	adminNotificationService.sendTransactionDeclinedNotification(userId, notificationId);
+    	adminNotificationService.sendTransactionDeclinedNotification(userId,transactionId, notificationId);
         	return "redirect:/secure/admin/admincriticaltransactions";
     	
 //    	else
