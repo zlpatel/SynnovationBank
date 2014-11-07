@@ -301,11 +301,9 @@ public class CustomerController {
 			System.out.println("Send from:" +userName); 
 			System.out.println("Send to :"+transferFormBean.getReceiverID());
 			System.out.println("Transfer amount :"+transferFormBean.getTransferAmount());
-			Person person=personDao.fetchUserById("merchant");
-			System.out.println(person);
-			String role=person.getRole();
-			System.out.println(role);
-			if(!person.getRole().equals("ROLE_MERC")){
+			
+			if(!transferService.getReceiverRole(transferFormBean.getReceiverID()).equalsIgnoreCase("ROLE_MERC"))
+			{
 			if(transferService.performTransfer(userName, transferFormBean.getReceiverID(),transferFormBean.getTransferAmount()))
 			{
 				

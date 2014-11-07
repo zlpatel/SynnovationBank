@@ -1,4 +1,3 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -14,13 +13,13 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap-theme.min.css">
 	
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js">	</script>
+	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 	
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/jquery-ui.css" />
 	<script src="${pageContext.request.contextPath}/bootstrap/js/jquery-1.9.1.js"></script>
 	<script src="${pageContext.request.contextPath}/bootstrap/js/jquery-ui.js"></script>
 	<script src="${pageContext.request.contextPath}/bootstrap/js/jquery.validate.js"></script>
-
+	
 	<script type="text/javascript">
 	
 	function validateForm()
@@ -33,20 +32,16 @@
 	 var username = document.getElementById("username").value;
 	 var password = document.getElementById("password").value;
 	 var selectedDate = $('#datepicker1').datepicker('getDate');
-	 
-	 alert(document.getElementById("role").value);
-	 
+	 	 
 	 var now = new Date();
-	 alert("IN IN");
-	 alert(now);
-	alert(selectedDate);
-	 if (selectedDate > now) {
+	
+	 if (selectedDate > now ) {
 	 alert("date is invalid");
 	 return false;
 	 // selected date is in the past
 	 }
 	 
-	  if (fname === "" || lname === "" || address === "" || email === "" || username === "" || password === "") 
+	  if (fname === "" || lname === "" || address === "" || email === "" || username === "" || password === "" || selectedDate === "") 
 	  {
 	  	alert("Please fill all fields.");
 	  	return false;
@@ -93,9 +88,9 @@ changeYear: true
 </head>
 <body>
 <center><h1>SYNNOVATION</h1></center>
-<h2>ADD EXTERNAL USER PAGE</h2>
+<center><h3>ADD EXTERNAL USER PAGE</h3></center>
 <ul class="nav nav-tabs">
-    <li><a href="home">Notifications</a></li>
+   <!--  <li><a href="home">Notifications</a></li> -->
     <li><a href="admininternaluseraccounts">Internal User Accounts</a></li>
     <li class="active"><a href="#">External User Accounts</a></li>
     <li><a href="adminpiirequests">PII Requests</a></li>
@@ -135,13 +130,9 @@ changeYear: true
 <form:options items="${rolesList}" />
 </form:select> --%>
 
-<INPUT TYPE="radio" NAME="radios" VALUE="ROLE_CUST">
-             Customer
-            <BR>
-            <INPUT TYPE="radio" NAME="radios" VALUE="ROLE_MERC">
-             Merchant
-            <BR>
-
+<!-- <INPUT TYPE="radio" checked NAME="radios" VALUE="ROLE_CUST"/> Customer<BR>
+<INPUT TYPE="radio" NAME="radios" VALUE="ROLE_MERC"/> Merchant<BR>
+ -->
 <br>
 <input class="btn btn-lg btn-primary" type="submit" value="Add User" onclick="document.forms[0].action = 'adminaddedexternaluseraccounts' ;return validateForm();"/>
 <!-- <a class="btn btn-primary" href="adminaddedexternaluseraccounts" type="submit">Save</a> -->

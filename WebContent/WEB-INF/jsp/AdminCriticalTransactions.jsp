@@ -17,10 +17,10 @@
 </head>
 <body>
 <center><h1>SYNNOVATION</h1></center>
-<h2>CRITICAL TRANSACTIONS</h2>
+<center><h3>CRITICAL TRANSACTIONS</h3></center>
 <ul class="nav nav-tabs">
-    <li><a href="../admin/home">Notifications</a></li>
-    <li><a href="../admin/admininternaluseraccounts">Internal User Accounts</a></li>
+<!--     <li><a href="../admin/home">Notifications</a></li>
+ -->    <li><a href="../admin/admininternaluseraccounts">Internal User Accounts</a></li>
     <li><a href="../admin/adminexternaluseraccounts">External User Accounts</a></li>
     <li><a href="../admin/adminpiirequests">PII Requests</a></li>
     <li class="active"><a href="#">Critical Transactions</a></li>
@@ -49,7 +49,7 @@
           <td>${notification.transactionAmount}</td>
           <td>${notification.transactionId}</td>
            <td align="center"><input style="width:75px;" name="Accept" type="submit" value= "Accept" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'admintransactionaccepted/${notification.userName}/${notification.transactionId}/${notification.notificationId}'; ;return true;"/></td>  
-          <td align="center"><input  style="width:75px;" name="Decline" type="submit" value= "Decline" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'admintransactiondeclined/${notification.userName}/${notification.notificationId}'; ;return true;"/></td> 
+          <td align="center"><input  style="width:75px;" name="Decline" type="submit" value= "Decline" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'admintransactiondeclined/${notification.userName}/${notification.transactionId}/${notification.notificationId}'; ;return true;"/></td> 
           <!-- <td align="center"><input style="width:75px;" name="approve" type="submit" value= "Approve" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = '/notificationAccepted';;return true;"/></td>  
           <td align="center"><input  style="width:75px;" name="deny" type="submit" value= "Deny" class = "btn btn-primary"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoDenied.html?authUsername=${person.ID}'; ;return true;"/></td>--> 
         </tr>
@@ -75,7 +75,8 @@
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-<br> <a href="javascript:formSubmit()"> Logout</a>
+<br> <a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
+
 
 </body>
 </html>

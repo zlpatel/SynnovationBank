@@ -89,10 +89,10 @@ changeYear: true
 </head>
 <body>
 <center><h1>SYNNOVATION</h1></center>
-<h2>ADD INTERNAL USER PAGE</h2>
+<center><h3>ADD INTERNAL USER PAGE</h3></center>
 <ul class="nav nav-tabs">
-    <li><a href="home">Notifications</a></li>
-    <li class="active"><a href="#">Internal User Accounts</a></li>
+<!--     <li><a href="home">Notifications</a></li>
+ -->    <li class="active"><a href="#">Internal User Accounts</a></li>
     <li><a href="adminexternaluseraccounts">External User Accounts</a></li>
     <li><a href="adminpiirequests">PII Requests</a></li>
     <li><a href="admincriticaltransactions">Critical Transactions</a></li>

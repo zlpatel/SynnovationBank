@@ -17,10 +17,11 @@
 </head>
 <body>
 <center><h1>SYNNOVATION</h1></center>
-<h2>PII REQUESTS PAGE</h2>
+<center><h3>PII REQUESTS PAGE</h3></center>
+
 <ul class="nav nav-tabs">
-    <li><a href="home">Notifications</a></li>
-    <li><a href="admininternaluseraccounts">Internal User Accounts</a></li>
+<!--     <li><a href="home">Notifications</a></li>
+ -->    <li><a href="admininternaluseraccounts">Internal User Accounts</a></li>
     <li><a href="adminexternaluseraccounts">External User Accounts</a></li>
     <li class="active"><a href="#">PII Requests</a></li>
     <li><a href="admincriticaltransactions">Critical Transactions</a></li>

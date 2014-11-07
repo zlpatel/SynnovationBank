@@ -65,7 +65,7 @@ public class AdminController {
 		 
 		 
     	// This will resolve to /WEB-INF/jsp/adminpage.jsp
-    	return "adminpage";
+    	return "redirect:admininternaluseraccounts";
 	}
     
     

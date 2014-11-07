@@ -69,8 +69,8 @@ public class AddExternalUserServiceImpl implements AddExternalUserService{
 
 	 if(personDao.insertUser(person))
 	 {
-		 PKICertificateHandler.generateCertificate(person.getFirstName().concat(" ").concat(person.getLastName()), person.getUserId());
-		 PKICertificateHandler.sendCertificate(person.getUserId(), person.getEmail());
+//		 PKICertificateHandler.generateCertificate(person.getFirstName().concat(" ").concat(person.getLastName()), person.getUserId());
+//		 PKICertificateHandler.sendCertificate(person.getUserId(), person.getEmail());
 		 
 		 return true;
 
