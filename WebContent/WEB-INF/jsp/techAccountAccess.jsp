@@ -27,6 +27,7 @@
 <li><a href="changeCustomerInfo">Change information</a></li>
 <li class="active"><a href="#">Technical Account Access</a></li>
 <li><a href="payMerchant">Pay Merchant</a></li>
+<li><a href="criticalTransfer">Critical Transfers (greater than $500)</a></li>
 </ul>
 <br>
 <form action="techaccountaccess" method="post">

@@ -392,14 +392,4 @@ public class TransferServiceImpl implements TransferService {
 		return true;
 	}
 
-
-	@Override
-	public String getReceiverRole(String receiverID) {
-		// TODO Auto-generated method stub
-		
-		Person person=personDAO.fetchUserById(receiverID);
-		return person.getRole();
-		
-	}
-
 }
