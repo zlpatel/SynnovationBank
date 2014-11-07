@@ -676,6 +676,7 @@ public class CustomerController {
 		}
 	}
 
+	
     
     
 	@RequestMapping(value = "/fileUploader1" ,method = RequestMethod.GET)
@@ -697,19 +698,16 @@ public class CustomerController {
 	@RequestMapping(value = "/uploadfile1", method=RequestMethod.POST)
 	public String uploadFileHandler1(@ModelAttribute("fileuploadformbean") FileUploadFormBean fileUploadFormBean,HttpSession session,BindingResult result,ModelMap model) {
 
-		
-		// just to check the flow go to paymerchant page
-		return "transfercrit";
-		
-		//include this service layer call later
-		
-		/*if(pkiService.verifyCertificate(fileUploadFormBean.getFile(),(String)session.getAttribute("USERNAME"))){
-			return "changepasswordsuccessfulpage";
-		}
-		else{
-			model.put("error",true);
-			return "redirect:fileUploader";
-		}*/
+
+
+
+	if(pkiService.verifyCertificate(fileUploadFormBean.getFile(),(String)session.getAttribute("USERNAME"))){
+	return "transfercrit";
+	}
+	else{
+	model.put("error",true);
+	return "redirect:fileUploader";
+	}
 	}
 	
 	@RequestMapping(value = "/enablejavascript", method =  RequestMethod.GET)
