@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.asu.secure.SynnovationBank.DTO.Person;
+import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
 import edu.asu.secure.SynnovationBank.FormBean.CreditFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.CustomerInfoChangeFormBean;
 import edu.asu.secure.SynnovationBank.FormBean.CustomertransactionFormBean;
@@ -49,6 +51,8 @@ public class CustomerController {
 	private CustomerTransactionService customerTransactionService;
 	@Autowired
 	private CustomerNotificationService customerNotificationService; 
+	@Autowired
+	private PersonDAO personDao;
 	/**
      * Handles and retrieves the employee JSP page that only employees can see
      * 
@@ -297,7 +301,11 @@ public class CustomerController {
 			System.out.println("Send from:" +userName); 
 			System.out.println("Send to :"+transferFormBean.getReceiverID());
 			System.out.println("Transfer amount :"+transferFormBean.getTransferAmount());
-				
+			Person person=personDao.fetchUserById("merchant");
+			System.out.println(person);
+			String role=person.getRole();
+			System.out.println(role);
+			if(!person.getRole().equals("ROLE_MERC")){
 			if(transferService.performTransfer(userName, transferFormBean.getReceiverID(),transferFormBean.getTransferAmount()))
 			{
 				
@@ -307,6 +315,11 @@ public class CustomerController {
 			{
 				model.put("error","TRANSFER UNSUCCESSFULL (or) PENDING FOR APPROVAL FROM ADMINISTRATOR --- CHECK ''VIEW TRANSACTIONS'' TAB TO SEE IF A TRANSACTION IS CREATED FOR YOUR REQUEST (Your account balance won't be updated until approval from bank admin)");
 					return "transfer";
+			}
+			}else
+			{
+				model.put("error","Use Merchant Payment to pay to merchant)");
+				return "transfer";
 			}
 	    	
 		}

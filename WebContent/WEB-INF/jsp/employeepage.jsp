@@ -59,8 +59,10 @@
       </c:forEach>
       </tbody>
       </table>
+      <a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
       <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	
+      <a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
       </form>
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
@@ -77,7 +79,5 @@
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-	<br><p><a href="javascript:formSubmit()"> Logout</a></p>
-
 </body>
 </html>

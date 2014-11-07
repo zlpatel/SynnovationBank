@@ -64,6 +64,7 @@
     </table>
     <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	
+<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
 </form>
 
 
@@ -82,7 +83,6 @@
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-	<br><p><a href="javascript:formSubmit()"> Logout</a></p>
 
 </body>
 </html>

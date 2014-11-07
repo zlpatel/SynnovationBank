@@ -16,21 +16,17 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<center><h1>SYNNOVATION</h1></center>
+<h2>PII REQUESTS PAGE</h2>
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
     <li><a href="admininternaluseraccounts">Internal User Accounts</a></li>
     <li><a href="adminexternaluseraccounts">External User Accounts</a></li>
     <li class="active"><a href="#">PII Requests</a></li>
     <li><a href="admincriticaltransactions">Critical Transactions</a></li>
-    <li><a href="adminsystemlog">System Log</a></li>   
-    <li><a href="adminchangepassword">Change Password</a></li>
+    
 </ul>
-
-<h3>PII Requests Accepted</h3>
-
-<br><br>
-
+<br>
 <form action="adminpiirequests" method="post">
 <table class ="table table-striped">
         <thead>

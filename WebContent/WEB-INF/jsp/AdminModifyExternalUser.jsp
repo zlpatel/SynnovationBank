@@ -63,22 +63,18 @@
 	
 </head>
 <body>
-<h2>Admin Page</h2>
-
+<center><h1>SYNNOVATION</h1></center>
+<h2>MODIFY EXTERNAL USER ACCOUNTS PAGE</h2>
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
     <li><a href="admininternaluseraccounts">Internal User Accounts</a></li>
     <li class="active"><a href="#">External User Accounts</a></li>
     <li><a href="adminpiirequests">PII Requests</a></li>
     <li><a href="admincriticaltransactions">Critical Transactions</a></li>
-    <li><a href="adminsystemlog">System Log</a></li>   
-    <li><a href="adminchangepassword">Change Password</a></li>
+  
+    
 </ul>
-
 <br>
-<h3>Modify User Account Details</h3>
-<br>
-
 <form commandName="modifyexternaluserformbean" method="post" >
 
 <input name="fname" id="fname"  class = "form-control" style="width:200px;" placeholder = "First Name" maxlength="15" value="${modifyexternaluserformbean.fname}"/>

@@ -17,9 +17,7 @@
 </head>
 <body>
 <h1>Customer Page</h1>
-<p>Only customers have access to this page.</p>
-
-
+<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  
 	<!-- csrf for log out-->
