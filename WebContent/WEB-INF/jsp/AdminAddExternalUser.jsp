@@ -37,7 +37,9 @@
 	 alert(document.getElementById("role").value);
 	 
 	 var now = new Date();
-	 
+	 alert("IN IN");
+	 alert(now);
+	alert(selectedDate);
 	 if (selectedDate > now) {
 	 alert("date is invalid");
 	 return false;
