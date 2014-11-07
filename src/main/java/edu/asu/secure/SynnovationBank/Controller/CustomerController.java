@@ -281,6 +281,37 @@ public class CustomerController {
 
 	
 	
+		
+		
+
+		
+		@RequestMapping(value = "/criticalTransfer", method = RequestMethod.GET)
+	    public String getcriticalTrans(@RequestParam(value="error", required=false) boolean error, ModelMap model) {
+			if(error==true){
+				model.put("error", "TRANSFER NOT SUCCESSFULL !!");	
+			}else{
+				model.put("error","");
+			}
+			
+			logger.debug("Received request to show merchant payment page");
+	    
+	    	// Do your work here. Whatever you like
+	    	// i.e call a custom service to do your business
+	    	// Prepare a model to be used by the JSP page
+	    	
+	    	// This will resolve to /WEB-INF/jsp/commonpage.jsp
+	    	return "fileUpload1";
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 	
 	
@@ -324,7 +355,63 @@ public class CustomerController {
 			}
 	    	
 		}
-	
+
+		
+		
+		
+		@RequestMapping(value = "/transferrequest1", method = RequestMethod.POST)
+	    public String getTransferRqstPage1(@RequestParam(value="error", required=false) boolean error, ModelMap model,@ModelAttribute("transferFormBean") TransferFormBean transferFormBean, HttpServletRequest request, HttpSession session) {
+			
+			String userName="";
+			session = request.getSession(false);
+	        if (session != null) {
+	            userName=(String)request.getSession().getAttribute("USERNAME");
+	        }
+
+			logger.debug("Received request to show critial transfer rqst page");
+			System.out.println("Send from:" +userName); 
+			System.out.println("Send to :"+transferFormBean.getReceiverID());
+			System.out.println("Transfer amount :"+transferFormBean.getTransferAmount());
+			Person person=personDao.fetchUserById("merchant");
+		System.out.println(person);
+		String role=person.getRole();
+		System.out.println(role);
+		if(!person.getRole().equals("ROLE_MERC")){
+			if(transferService.performTransfer(1,userName, transferFormBean.getReceiverID(),transferFormBean.getTransferAmount()))
+			{
+				
+				return "welcomeUser";
+			}
+			else
+			{
+				model.put("error","TRANSFER UNSUCCESSFULL (or) PENDING FOR APPROVAL FROM ADMINISTRATOR --- CHECK ''VIEW TRANSACTIONS'' TAB TO SEE IF A TRANSACTION IS CREATED FOR YOUR REQUEST (Your account balance won't be updated until approval from bank admin)");
+					return "transfer";
+			}
+			}else
+			{
+				model.put("error","Use Merchant Payment to pay to merchan//t)");
+				return "transfer";
+			}
+	    	
+		}
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 	 @RequestMapping(value = "/debit", method = RequestMethod.GET)
 	    public String getDebit(@RequestParam(value="error", required=false) boolean error,ModelMap model) {
@@ -592,7 +679,61 @@ public class CustomerController {
 
     
     
-    
+	@RequestMapping(value = "/fileUploader1" ,method = RequestMethod.GET)
+	public String getUploadFilePage1(@RequestParam(value="error", required=false) boolean error,ModelMap model ) {
+		
+		if(error==true){
+			model.put("error", "Certificate is not valid");	
+		}else{
+			model.put("error","");
+		}
+		logger.debug("Received request to show fileUpload page");
+    	return "fileUpload1";
+	}
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/uploadfile1", method=RequestMethod.POST)
+	public String uploadFileHandler1(@ModelAttribute("fileuploadformbean") FileUploadFormBean fileUploadFormBean,HttpSession session,BindingResult result,ModelMap model) {
+
+		
+		// just to check the flow go to paymerchant page
+		return "transfercrit";
+		
+		//include this service layer call later
+		
+		/*if(pkiService.verifyCertificate(fileUploadFormBean.getFile(),(String)session.getAttribute("USERNAME"))){
+			return "changepasswordsuccessfulpage";
+		}
+		else{
+			model.put("error",true);
+			return "redirect:fileUploader";
+		}*/
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
     
     
     
