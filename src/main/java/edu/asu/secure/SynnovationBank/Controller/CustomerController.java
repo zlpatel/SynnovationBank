@@ -332,11 +332,11 @@ public class CustomerController {
 			System.out.println("Send from:" +userName); 
 			System.out.println("Send to :"+transferFormBean.getReceiverID());
 			System.out.println("Transfer amount :"+transferFormBean.getTransferAmount());
-		//	Person person=personDao.fetchUserById("merchant");
-	//		System.out.println(person);
-		//	String role=person.getRole();
-	//		System.out.println(role);
-		//	if(!person.getRole().equals("ROLE_MERC")){
+			Person person=personDao.fetchUserById("merchant");
+		System.out.println(person);
+		String role=person.getRole();
+		System.out.println(role);
+			if(!person.getRole().equals("ROLE_MERC")){
 			if(transferService.performTransfer(userName, transferFormBean.getReceiverID(),transferFormBean.getTransferAmount()))
 			{
 				
@@ -347,11 +347,11 @@ public class CustomerController {
 				model.put("error","TRANSFER UNSUCCESSFULL (or) You have a critical transaction..Go to critical transaction section to make the transaction !");
 					return "transfer";
 			}
-		//	}else
-			//{
-			//	model.put("error","Use Merchant Payment to pay to merchant)");
-			//	return "transfer";
-		//	}
+		}else
+			{
+				model.put("error","Use Merchant Payment to pay to merchant)");
+				return "transfer";
+			}
 	    	
 		}
 
@@ -371,11 +371,11 @@ public class CustomerController {
 			System.out.println("Send from:" +userName); 
 			System.out.println("Send to :"+transferFormBean.getReceiverID());
 			System.out.println("Transfer amount :"+transferFormBean.getTransferAmount());
-			//Person person=personDao.fetchUserById("merchant");
-		//	System.out.println(person);
-	//		String role=person.getRole();
-//			System.out.println(role);
-	//		if(!person.getRole().equals("ROLE_MERC")){
+			Person person=personDao.fetchUserById("merchant");
+		System.out.println(person);
+		String role=person.getRole();
+		System.out.println(role);
+		if(!person.getRole().equals("ROLE_MERC")){
 			if(transferService.performTransfer(1,userName, transferFormBean.getReceiverID(),transferFormBean.getTransferAmount()))
 			{
 				
@@ -386,11 +386,11 @@ public class CustomerController {
 				model.put("error","TRANSFER UNSUCCESSFULL (or) PENDING FOR APPROVAL FROM ADMINISTRATOR --- CHECK ''VIEW TRANSACTIONS'' TAB TO SEE IF A TRANSACTION IS CREATED FOR YOUR REQUEST (Your account balance won't be updated until approval from bank admin)");
 					return "transfer";
 			}
-		//	}else
-			//{
-			//	model.put("error","Use Merchant Payment to pay to merchan//t)");
-			//	return "transfer";
-		//	}
+			}else
+			{
+				model.put("error","Use Merchant Payment to pay to merchan//t)");
+				return "transfer";
+			}
 	    	
 		}
 
