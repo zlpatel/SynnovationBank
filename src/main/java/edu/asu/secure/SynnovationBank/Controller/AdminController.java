@@ -1,6 +1,7 @@
 package edu.asu.secure.SynnovationBank.Controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -220,6 +221,10 @@ public class AdminController {
     	logger.debug("Received request to show ADDED external user page ......");
        	
 //    	System.out.println(request.getParameter("radios"));
+    	if(addexternaluserformbean.getDateOfBirth() == null)
+    	{
+    		addexternaluserformbean.setDateOfBirth(new Date(000000001));
+    	}
     	addexternaluserformbean.setRole(request.getParameter("radios"));
     	
     	if(addExternalUserService.addExternalUser(addexternaluserformbean))
@@ -244,6 +249,11 @@ public class AdminController {
     	logger.debug("Received request to show ADDED internal user page ......");
        	
     	System.out.println(addinternaluserformbean.getFname());
+    	
+    	if(addinternaluserformbean.getDateOfBirth() == null)
+    	{
+    		addinternaluserformbean.setDateOfBirth(new Date(000000001));
+    	}
     	
     	if(addInternalUserService.addInternalUser(addinternaluserformbean))
     	{
