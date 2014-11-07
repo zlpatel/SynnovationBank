@@ -32,6 +32,7 @@
 <li><a href="changeCustomerInfo">Change information</a></li>
 <li><a href="techAccountAccess">Technical Account Access</a></li>
 <li class="active"><a href="#">Pay Merchant</a></li>
+<li><a href="criticalTransfer">Critical Transfers (greater than $500)</a></li>
 </ul>
 <br>
 <form action="merchanttransferrequest" commandName="merchanttransferFormBean" method="get">
