@@ -65,10 +65,11 @@
 </head>
 <body>
 <center><h1>SYNNOVATION</h1></center>
-<h2>MODIFY INTERNAL USER ACCOUNTS PAGE</h2>
+<center><h3>MODIFY INTERNAL USER ACCOUNTS PAGE</h3></center>
+
 <ul class="nav nav-tabs">
-    <li><a href="home">Notifications</a></li>
-    <li class="active"><a href="#">Internal User Accounts</a></li>
+<!--     <li><a href="home">Notifications</a></li>
+ -->    <li class="active"><a href="#">Internal User Accounts</a></li>
     <li><a href="adminexternaluseraccounts">External User Accounts</a></li>
     <li><a href="adminpiirequests">PII Requests</a></li>
     <li><a href="admincriticaltransactions">Critical Transactions</a></li>
@@ -97,8 +98,8 @@
 <br>
 <input class="btn btn-lg btn-primary" type="submit" value="Submit"  onclick="document.forms[0].action = 'adminmodifiedinternaluseraccounts' ;return validateForm();"/>
 <!-- <a class="btn btn-primary" href="adminaddedexternaluseraccounts" type="submit">Save</a> -->
-<a class="btn btn-deafult" href="admininternaluseraccounts">Cancel</a>
-<a class="btn btn-deafult" href="javascript:formSubmit()">Logout</a>
+<a class="btn btn-default" href="admininternaluseraccounts">Cancel</a>
+<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
 
 <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Customer Page</title>
+<title>Merchant Page</title>
 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
 	
@@ -15,30 +15,11 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
-
-
-
-
-
-
-
-
 <body>
-<center><h1> SYNNOVATION </h1></center>
-<h2> Hi ${username} ! </h2> 
-<ul class="nav nav-tabs">
-<li><a href="credit_debit">Credit Amount</a> </li>
-<li><a href="debit">Debit Amount</a> </li>
-<li><a href="transfer">Transfers</a></li>
-<li><a href="viewTransactions">View Transactions</a></li>
-<li><a href="customerNotifications">Notifications</a></li>
-<li><a href="changeCustomerInfo">Change information</a></li>
-<li><a href="techAccountAccess">Technical Account Access</a></li>
-<li><a href="payMerchant">Pay Merchant</a></li>
-<li><a href="criticalTransfer">Critical Transfers (greater than $500)</a></li>
-</ul>
+<h1>Merchant Page</h1>
+<p>Only merchants have access to this page.</p>
 
-<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
+
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  
 	<!-- csrf for log out-->
@@ -53,15 +34,7 @@
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-<br>
-
-
-
+	<a href="javascript:formSubmit()"> Logout</a>
 
 </body>
-
-
-
-
-
 </html>

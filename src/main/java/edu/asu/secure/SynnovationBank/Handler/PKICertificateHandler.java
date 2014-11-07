@@ -11,7 +11,7 @@ import edu.asu.secure.SynnovationBank.ServiceImpl.SendMailTLS;
 
 public class PKICertificateHandler {
 	
-	public static void generateCertificate(String commonName,String ou,String alias){
+	public static void generateCertificate(String commonName,String alias){
 		try {
         	String keystorePath="C:/Users/MEGHNA/Desktop/KeyStore/sb_keystore.jks";
         	String strCom = "keytool -genkeypair -dname \"cn="+commonName+", ou=SynnovationBank, o=SynnovationBank, c=US\" -alias "+alias+" -keypass 123456 -keystore +"+keystorePath+" -storepass 123456 -validity 180";

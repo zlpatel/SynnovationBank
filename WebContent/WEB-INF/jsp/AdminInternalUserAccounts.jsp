@@ -18,10 +18,11 @@
 </head>
 <body>
 <center><h1>SYNNOVATION</h1></center>
-<h2>INTERNAL USER ACCOUNTS PAGE</h2>
+<center><h3>INTERNAL USER ACCOUNTS PAGE</h3></center>
+
 <p>${message} </p>
 <ul class="nav nav-tabs">
-    <li><a href="home">Notifications</a></li>
+    <!-- <li><a href="home">Notifications</a></li> -->
     <li class="active"><a href="#">Internal User Accounts</a></li>
     <li><a href="adminexternaluseraccounts">External User Accounts</a></li>
     <li><a href="adminpiirequests">PII Requests</a></li>
