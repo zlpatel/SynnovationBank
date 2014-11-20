@@ -13,7 +13,7 @@ public class PKICertificateHandler {
 	
 	public static void generateCertificate(String commonName,String alias){
 		try {
-        	String keystorePath="C:/Users/MEGHNA/Desktop/KeyStore/sb_keystore.jks";
+        	String keystorePath="C:/Users/synnovation/sb_keystore.jks";
         	String strCom = "keytool -genkeypair -dname \"cn="+commonName+", ou=SynnovationBank, o=SynnovationBank, c=US\" -alias "+alias+" -keypass 123456 -keystore +"+keystorePath+" -storepass 123456 -validity 180";
         	 
         // run the Unix "ps -ef" command
@@ -27,14 +27,14 @@ public class PKICertificateHandler {
 	
 	public static void sendCertificate(String alias,String emailId){
 		KeyStore ks = null;
-		String filePath="C:/Users/MEGHNA/Desktop/Certificate/";
+		String filePath="C:/Users/synnovation/";
 		String fileName=alias+"Cert.cer";
 		try{
 			ks = KeyStore.getInstance("JKS");
 			
 		 
 		 java.io.FileInputStream fis = null; try { fis = new
-		 java.io.FileInputStream("C:/Users/MEGHNA/Desktop/KeyStore/sb_keystore.jks"); 
+		 java.io.FileInputStream("C:/Users/synnovation/sb_keystore.jks"); 
 		 ks.load(fis,"123456".toCharArray());}  
 		 
 		 finally {

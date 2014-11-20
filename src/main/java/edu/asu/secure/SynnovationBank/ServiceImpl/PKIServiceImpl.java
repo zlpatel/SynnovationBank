@@ -41,7 +41,7 @@ public class PKIServiceImpl implements PKIService {
 					
 					 
 					 java.io.FileInputStream fis = null; try { fis = new
-					 java.io.FileInputStream("/Users/zeel/sb_keystore.jks"); 
+					 java.io.FileInputStream("C:/Users/synnovation/sb_keystore.jks"); 
 					 ks.load(fis,"123456".toCharArray()); 
 					 }  
 					 
