@@ -4,6 +4,7 @@ public class TransferFormBean {
 
 	private String receiverID;
 	private String transferAmount;
+	private String roleId;
 
 	public String getReceiverID() {
 		return receiverID;
@@ -20,6 +21,16 @@ public class TransferFormBean {
 	
 	public void setTransferAmount(String transferAmount) {
 		this.transferAmount = transferAmount ;
+	}
+
+
+	public String getRoleId() {
+		return roleId;
+	}
+
+
+	public void setRoleId(String roleId) {
+		this.roleId = roleId;
 	}
 
 

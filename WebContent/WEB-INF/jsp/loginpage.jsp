@@ -12,6 +12,10 @@
 </script> -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<noscript>
+  <META HTTP-EQUIV="Refresh" CONTENT="0;URL=../otp/enablejavascript">
+</noscript>
+
 <title>Synnovation Bank</title>
 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
@@ -48,7 +52,8 @@
 
 <input class="btn btn-lg btn-primary" type="submit" value="Login"/>
 
-<a href="../otp/forgotpassword">ForgetPassword</a>
+<a class="btn btn-default" href="../otp/forgotpassword">Change/ Forgot Password</a>
+
 
 <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	

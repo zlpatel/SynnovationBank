@@ -35,9 +35,10 @@
 <li><a href="changeCustomerInfo">Change information</a></li>
 <li><a href="techAccountAccess">Technical Account Access</a></li>
 <li><a href="payMerchant">Pay Merchant</a></li>
+<li><a href="criticalTransfer">Critical Transfers (greater than $500)</a></li>
 </ul>
 
-
+<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  
 	<!-- csrf for log out-->
@@ -54,26 +55,6 @@
 	</script>
 <br>
 
-
-
-<c:url value="/j_spring_security_logout" var="logoutUrl" />
- 
-	<!-- csrf for log out-->
-	<form action="${logoutUrl}" method="post" id="logoutForm">
-	  <input type="hidden" 
-		name="${_csrf.parameterName}"
-		value="${_csrf.token}" />
-	</form>
-	
-	<script>
-		/* This code detects the tab/window close of the browser and we are performing logout function on it */
-		/* window.onbeforeunload = function(){ formSubmit(); } */
-	
-		function formSubmit() {
-			document.getElementById("logoutForm").submit();
-		}
-	</script>
-<br><a href="javascript:formSubmit()"> Logout</a>
 
 
 

@@ -1,4 +1,3 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,6 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<noscript>
+  <META HTTP-EQUIV="Refresh" CONTENT="0;URL=../admin/enablejavascript">
+</noscript>
 <title>Admin Page</title>
 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
@@ -14,13 +16,13 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap-theme.min.css">
 	
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js">	</script>
+	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 	
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/jquery-ui.css" />
 	<script src="${pageContext.request.contextPath}/bootstrap/js/jquery-1.9.1.js"></script>
 	<script src="${pageContext.request.contextPath}/bootstrap/js/jquery-ui.js"></script>
 	<script src="${pageContext.request.contextPath}/bootstrap/js/jquery.validate.js"></script>
-
+	
 	<script type="text/javascript">
 	
 	function validateForm()
@@ -33,18 +35,16 @@
 	 var username = document.getElementById("username").value;
 	 var password = document.getElementById("password").value;
 	 var selectedDate = $('#datepicker1').datepicker('getDate');
-	 
-	 alert(document.getElementById("role").value);
-	 
+	 	 
 	 var now = new Date();
-	 
-	 if (selectedDate > now) {
+	
+	 if (selectedDate > now ) {
 	 alert("date is invalid");
 	 return false;
 	 // selected date is in the past
 	 }
 	 
-	  if (fname === "" || lname === "" || address === "" || email === "" || username === "" || password === "") 
+	  if (fname === "" || lname === "" || address === "" || email === "" || username === "" || password === "" || selectedDate === "") 
 	  {
 	  	alert("Please fill all fields.");
 	  	return false;
@@ -63,10 +63,10 @@
 				return false;
 		}
 		
-		var regex3 = new RegExp("^[a-zA-Z0-9]+$");
+		 var regex3 = new RegExp("^[a-zA-Z]+$");	  
 		 if(!regex3.test(username))
 		{
-			alert('Please remove special characters and spaces from Username');
+			alert('Please enter only alphabets for Username');
 			return false; 
 		}
 	  	    
@@ -90,23 +90,19 @@ changeYear: true
 	
 </head>
 <body>
-<h2>Admin Page</h2>
-<p>Only admins have access to this page.</p><br>
-
+<center><h1>SYNNOVATION</h1></center>
+<center><h3>ADD EXTERNAL USER PAGE</h3></center>
 <ul class="nav nav-tabs">
-    <li><a href="home">Notifications</a></li>
+   <!--  <li><a href="home">Notifications</a></li> -->
     <li><a href="admininternaluseraccounts">Internal User Accounts</a></li>
     <li class="active"><a href="#">External User Accounts</a></li>
     <li><a href="adminpiirequests">PII Requests</a></li>
     <li><a href="admincriticaltransactions">Critical Transactions</a></li>
-    <li><a href="adminsystemlog">System Log</a></li>   
-    <li><a href="adminchangepassword">Change Password</a></li>
+    
+
 </ul>
-
-<br><br>
-
-<form action="adminaddedexternaluseraccounts" commandName="addexternaluserformbean" method="post" >
-
+<br>
+<form  commandName="addexternaluserformbean" method="post" >
 <input name="fname" id="fname"  class = "form-control" style="width:200px;" placeholder = "First Name" maxlength="15" value="${addexternaluserformbean.fname}"/>
 <br>
 <input name="lname" id="lname"  type="text" class = "form-control" style="width:200px;" placeholder = "Last Name" maxlength="14" value="${addexternaluserformbean.lname}"/>
@@ -137,13 +133,8 @@ changeYear: true
 <form:options items="${rolesList}" />
 </form:select> --%>
 
-<INPUT TYPE="radio" NAME="radios" VALUE="ROLE_CUST">
-             Customer
-            <BR>
-            <INPUT TYPE="radio" NAME="radios" VALUE="ROLE_MERC">
-             Merchant
-            <BR>
-
+<INPUT TYPE="radio" checked NAME="radios" VALUE="ROLE_CUST"/> Customer<BR>
+<INPUT TYPE="radio" NAME="radios" VALUE="ROLE_MERC"/> Merchant<BR>
 <br>
 <input class="btn btn-lg btn-primary" type="submit" value="Add User" onclick="document.forms[0].action = 'adminaddedexternaluseraccounts' ;return validateForm();"/>
 <!-- <a class="btn btn-primary" href="adminaddedexternaluseraccounts" type="submit">Save</a> -->

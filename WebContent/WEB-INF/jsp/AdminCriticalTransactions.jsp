@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<noscript>
+  <META HTTP-EQUIV="Refresh" CONTENT="0;URL=../admin/enablejavascript">
+</noscript>
 <title>Admin Page</title>
 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
@@ -16,20 +19,18 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2>Admin Page</h2>
-<p>Only admins have access to this page.</p><br>
-
+<center><h1>SYNNOVATION</h1></center>
+<center><h3>CRITICAL TRANSACTIONS</h3></center>
 <ul class="nav nav-tabs">
-    <li><a href="../admin/home">Notifications</a></li>
-    <li><a href="../admin/admininternaluseraccounts">Internal User Accounts</a></li>
+<!--     <li><a href="../admin/home">Notifications</a></li>
+ -->    <li><a href="../admin/admininternaluseraccounts">Internal User Accounts</a></li>
     <li><a href="../admin/adminexternaluseraccounts">External User Accounts</a></li>
     <li><a href="../admin/adminpiirequests">PII Requests</a></li>
     <li class="active"><a href="#">Critical Transactions</a></li>
-    <li><a href="../admin/adminsystemlog">System Log</a></li>   
-    <li><a href="../admin/adminchangepassword">Change Password</a></li>
+   
+    
 </ul>
-
-<br><br>
+<br>
 <form method="post" >
 <table class ="table table-striped">
 <thead>
@@ -51,7 +52,7 @@
           <td>${notification.transactionAmount}</td>
           <td>${notification.transactionId}</td>
            <td align="center"><input style="width:75px;" name="Accept" type="submit" value= "Accept" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = 'admintransactionaccepted/${notification.userName}/${notification.transactionId}/${notification.notificationId}'; ;return true;"/></td>  
-          <td align="center"><input  style="width:75px;" name="Decline" type="submit" value= "Decline" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'admintransactiondeclined/${notification.userName}/${notification.notificationId}'; ;return true;"/></td> 
+          <td align="center"><input  style="width:75px;" name="Decline" type="submit" value= "Decline" class = "btn btn-danger"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'admintransactiondeclined/${notification.userName}/${notification.transactionId}/${notification.notificationId}'; ;return true;"/></td> 
           <!-- <td align="center"><input style="width:75px;" name="approve" type="submit" value= "Approve" class = "btn btn-primary" onclick="document.forms[0].method = 'post';document.forms[0].action = '/notificationAccepted';;return true;"/></td>  
           <td align="center"><input  style="width:75px;" name="deny" type="submit" value= "Deny" class = "btn btn-primary"  onclick="document.forms[0].method = 'post';document.forms[0].action = 'ExtToDoDenied.html?authUsername=${person.ID}'; ;return true;"/></td>--> 
         </tr>
@@ -77,7 +78,8 @@
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-<br> <a href="javascript:formSubmit()"> Logout</a>
+<br> <a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
+
 
 </body>
 </html>

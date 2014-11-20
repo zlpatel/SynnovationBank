@@ -75,9 +75,9 @@ public class AdminNotificationsServiceImpl implements AdminNotificationsService 
 	    }
 	    
 	    @Override
-	    public void sendTransactionDeclinedNotification(String userId, long nId) {
+	    public void sendTransactionDeclinedNotification(String userId, long tId,long nId) {
 	    // TODO Auto-generated method stub
-
+	    	
 	    //send new notification to user	
 	    System.out.println("The username in service layer " + userId);
 	    Notifications n=new Notifications();
@@ -92,8 +92,11 @@ public class AdminNotificationsServiceImpl implements AdminNotificationsService 
 	    
 	    //update this CT notification. set resolved.
 	    Person person = personDAO.fetchUserById(userId);
-	    notificationsDAO.updateResolveNotification(nId, person);	    
-	    //
+	    notificationsDAO.updateResolveNotification(nId, person);	
+	    
+	  //get transaction from transaction id
+		Transactions transactions =  transactionDAO.fetchTransactionById(tId);
+		transactions.setCompleteFlag("D");		
 }
 	    
 	    @Override
@@ -207,5 +210,6 @@ public class AdminNotificationsServiceImpl implements AdminNotificationsService 
 				notificationsDAO.insertNotification(modifyexternaluserformbean.getUsername(),n);
 		    }
 		}
+
 	    
 	    }

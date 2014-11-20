@@ -5,7 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Admin Page</title>
+<noscript>
+  <META HTTP-EQUIV="Refresh" CONTENT="0;URL=../merchant/enablejavascript">
+</noscript>
+<title>Merchant Accept Notifications Page</title>
 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
 	
@@ -16,21 +19,23 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2>Admin Page</h2>
-<p>Only admins have access to this page.</p><br>
-
+<center><h1>SYNNOVATION</h1></center>
+<h2>PAYMENT REQUEST SENT TO EMPLOYEE</h2>
 <ul class="nav nav-tabs">
-    <li><a href="home">Notifications</a></li>
-    <li><a href="admininternaluseraccounts">Internal User Accounts</a></li>
-    <li><a href="adminexternaluseraccounts">External User Accounts</a></li>
-    <li><a href="adminpiirequests">PII Requests</a></li>
-    <li><a href="admincriticaltransactions">Critical Transactions</a></li>
-    <li><a href="adminsystemlog">System Log</a></li>   
-    <li class="active"><a href="#">Change Password</a></li>
+    <li><a href="../MerchantCredit">Credit Amount</a> </li>
+<li><a href="../MerchantDebit">Debit Amount</a> </li>
+<li><a href="../MerchantTransfer">Transfers</a></li>
+<li><a href="../ViewMerchantTransactions">View Transactions</a></li>
+<!-- <li><a href="../merchant/MerchantNotifications">Notifications</a></li> -->
+<li><a href="../ChangeMerchantInfo">Change information</a></li>
+<li><a href="../MerchantAcceptNotification">Accept Customer Notifications</a><li>
+<!-- <li><a href="MerchantSubmitPayment">Submit Payment</a></li> -->
 </ul>
+<br>
 
-<br><br><p>Change Password Screen</p>
-
+<form>
+<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
+</form>
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  
 	<!-- csrf for log out-->
@@ -45,7 +50,6 @@
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-<br><a href="javascript:formSubmit()"> Logout</a>
 
 </body>
 </html>

@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<noscript>
+  <META HTTP-EQUIV="Refresh" CONTENT="0;URL=../merchant/enablejavascript">
+</noscript>
 <title>Merchant Page</title>
 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
@@ -75,7 +78,7 @@
 <li class="active"><a href="#">Change information</a></li>
 <li><a href="MerchantTechAccountAccess">Technical Account Access</a></li>
 <li><a href="MerchantAcceptNotification">Accept Customer Notifications</a><li>
-<li><a href="MerchantSubmitPayment">Submit Payment</a></li>
+<!-- <li><a href="MerchantSubmitPayment">Submit Payment</a></li> -->
 </ul>
 <br>
 <form commandName="customerInfoChangeFormBean" method="post">
@@ -90,6 +93,7 @@
 <input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="document.forms[0].action = 'changemerchantinforequest' ;return validateForm();"/>
 <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	
+<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
 </form>
 
 
@@ -106,15 +110,10 @@
 	</form>
 	
 	<script>
-		/* This code detects the tab/window close of the browser and we are performing logout function on it */
-		/* window.onbeforeunload = function(){ formSubmit(); } */
-	
 		function formSubmit() {
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-<br><a href="javascript:formSubmit()"> Logout</a>
-
 
 
 

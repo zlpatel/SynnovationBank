@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<noscript>
+  <META HTTP-EQUIV="Refresh" CONTENT="0;URL=../admin/enablejavascript">
+</noscript>
 <title>Admin Page</title>
 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
@@ -16,21 +19,18 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
+<center><h1>SYNNOVATION</h1></center>
+<center><h3>PII REQUESTS PAGE</h3></center>
 
 <ul class="nav nav-tabs">
-    <li><a href="home">Notifications</a></li>
-    <li><a href="admininternaluseraccounts">Internal User Accounts</a></li>
+<!--     <li><a href="home">Notifications</a></li>
+ -->    <li><a href="admininternaluseraccounts">Internal User Accounts</a></li>
     <li><a href="adminexternaluseraccounts">External User Accounts</a></li>
     <li class="active"><a href="#">PII Requests</a></li>
     <li><a href="admincriticaltransactions">Critical Transactions</a></li>
-    <li><a href="adminsystemlog">System Log</a></li>   
-    <li><a href="adminchangepassword">Change Password</a></li>
+    
 </ul>
-
-<h3>PII Requests Accepted</h3>
-
-<br><br>
-
+<br>
 <form action="adminpiirequests" method="post">
 <table class ="table table-striped">
         <thead>

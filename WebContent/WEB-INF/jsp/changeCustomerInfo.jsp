@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<noscript>
+  <META HTTP-EQUIV="Refresh" CONTENT="0;URL=../customer/enablejavascript">
+</noscript>
 <title>Customer Page</title>
 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
@@ -66,9 +69,9 @@
 <li><a href="changeCustomerInfo">Change information</a></li>
 <li><a href="techAccountAccess">Technical Account Access</a></li>
 <li><a href="payMerchant">Pay Merchant</a></li>
+<li><a href="criticalTransfer">Critical Transfers (greater than $500)</a></li>
 </ul>
 <br>
-<h3>IF YOU DO NOT WISH TO CHANGE YOUR INFORMATION </h3>
 <form commandName="customerInfoChangeFormBean" method="get">
 <input id="firstName" type="text" name="firstName" class="form-control" maxlength= "15" placeholder="First Name" style="width:200px;" value="${customerInfoChangeFormBean.firstName}"/>
 <br>
@@ -81,9 +84,11 @@
 <input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="document.forms[0].action = 'changecustomerinforequest' ;return validateForm();"/>
 <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	
-
+<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
 </form>
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
+ 
+	<c:url value="/j_spring_security_logout" var="logoutUrl" />
  
 	<!-- csrf for log out-->
 	<form action="${logoutUrl}" method="post" id="logoutForm">
@@ -93,14 +98,10 @@
 	</form>
 	
 	<script>
-		/* This code detects the tab/window close of the browser and we are performing logout function on it */
-		/* window.onbeforeunload = function(){ formSubmit(); } */
-	
 		function formSubmit() {
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-<br><a href="javascript:formSubmit()"> Logout</a>
 
 
 

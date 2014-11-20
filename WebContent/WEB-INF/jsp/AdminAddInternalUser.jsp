@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<noscript>
+  <META HTTP-EQUIV="Refresh" CONTENT="0;URL=../admin/enablejavascript">
+</noscript>
 <title>Admin Page</title>
 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
@@ -60,10 +63,11 @@
 				return false;
 		}
 		
-		var regex3 = new RegExp("^[a-zA-Z0-9]+$");
+		 var regex3 = new RegExp("^[a-zA-Z]+$");	  
+		  
 		 if(!regex3.test(username))
 		{
-			alert('Please remove special characters and spaces from Username');
+			alert('Please insert only alphabets for username');
 			return false; 
 		}
 	  	    
@@ -87,21 +91,18 @@ changeYear: true
 	
 </head>
 <body>
-<h2>Admin Page</h2>
-<p>Only admins have access to this page.</p><br>
-
+<center><h1>SYNNOVATION</h1></center>
+<center><h3>ADD INTERNAL USER PAGE</h3></center>
 <ul class="nav nav-tabs">
-    <li><a href="home">Notifications</a></li>
-    <li class="active"><a href="#">Internal User Accounts</a></li>
+<!--     <li><a href="home">Notifications</a></li>
+ -->    <li class="active"><a href="#">Internal User Accounts</a></li>
     <li><a href="adminexternaluseraccounts">External User Accounts</a></li>
     <li><a href="adminpiirequests">PII Requests</a></li>
     <li><a href="admincriticaltransactions">Critical Transactions</a></li>
-    <li><a href="adminsystemlog">System Log</a></li>   
-    <li><a href="adminchangepassword">Change Password</a></li>
+   
+    
 </ul>
-
-<br><br>
-
+<br>
 <form action ="adminaddedinternaluseraccounts" commandName="addinternaluserformbean" method="post" >
 
 <input name="fname" id="fname"  class = "form-control" style="width:200px;" placeholder = "First Name" maxlength="15" value="${addinternaluserformbean.fname}"/>
@@ -126,6 +127,7 @@ changeYear: true
 <br>
 
 <input class="btn btn-lg btn-primary" type="submit" value="Add User" onclick="document.forms[0].action = 'adminaddedinternaluseraccounts' ;return validateForm();"/>
+
 <!-- <a class="btn btn-primary" href="adminaddedexternaluseraccounts" type="submit">Save</a> -->
 <a class="btn btn-default" href="admininternaluseraccounts">Cancel</a>
 <a class="btn btn-default" href="javascript:formSubmit()">Logout</a>

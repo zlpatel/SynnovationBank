@@ -1,6 +1,7 @@
 package edu.asu.secure.SynnovationBank.Controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -65,7 +66,7 @@ public class AdminController {
 		 
 		 
     	// This will resolve to /WEB-INF/jsp/adminpage.jsp
-    	return "adminpage";
+    	return "redirect:admininternaluseraccounts";
 	}
     
     
@@ -220,6 +221,10 @@ public class AdminController {
     	logger.debug("Received request to show ADDED external user page ......");
        	
 //    	System.out.println(request.getParameter("radios"));
+    	if(addexternaluserformbean.getDateOfBirth() == null)
+    	{
+    		addexternaluserformbean.setDateOfBirth(new Date(000000001));
+    	}
     	addexternaluserformbean.setRole(request.getParameter("radios"));
     	
     	if(addExternalUserService.addExternalUser(addexternaluserformbean))
@@ -244,6 +249,11 @@ public class AdminController {
     	logger.debug("Received request to show ADDED internal user page ......");
        	
     	System.out.println(addinternaluserformbean.getFname());
+    	
+    	if(addinternaluserformbean.getDateOfBirth() == null)
+    	{
+    		addinternaluserformbean.setDateOfBirth(new Date(000000001));
+    	}
     	
     	if(addInternalUserService.addInternalUser(addinternaluserformbean))
     	{
@@ -365,11 +375,11 @@ public class AdminController {
 	}   
     
     
-    @RequestMapping(value = "/admintransactiondeclined/{userId}/{notificationId}", method = {RequestMethod.POST, RequestMethod.GET})
-    public String adminTransactionDeclined(@PathVariable("userId") String userId, @PathVariable("notificationId") Long notificationId, ModelMap model, HttpServletRequest request) {
+    @RequestMapping(value = "/admintransactiondeclined/{userId}/{transactionId}/{notificationId}", method = {RequestMethod.POST, RequestMethod.GET})
+    public String adminTransactionDeclined(@PathVariable("userId") String userId, @PathVariable("transactionId") Long transactionId, @PathVariable("notificationId") Long notificationId, ModelMap model, HttpServletRequest request) {
     	logger.debug("Received request to decline transaction for user with Id: " + userId);
     	
-    	adminNotificationService.sendTransactionDeclinedNotification(userId, notificationId);
+    	adminNotificationService.sendTransactionDeclinedNotification(userId,transactionId, notificationId);
         	return "redirect:/secure/admin/admincriticaltransactions";
     	
 //    	else
@@ -390,6 +400,16 @@ public class AdminController {
     	
     	adminNotificationService.sendTransactionAcceptedNotification(userId, transactionId, notificationId);
         	return "redirect:/secure/admin/admincriticaltransactions";
+    }
+    
+    @RequestMapping(value = "/enablejavascript", method =  RequestMethod.GET)
+    public String getEnableJavascriptPage(ModelMap model, HttpServletRequest request){
+    		
+//        public String adminTransactionAccepted(@RequestParam(value="notification", required=true) AdminCriticalTransactionsFormBean notification, HttpServletRequest request,  
+//                HttpServletResponse response, ModelMap model) {
+    	
+    	
+        	return "EnableJavascript";
     }
     
 }

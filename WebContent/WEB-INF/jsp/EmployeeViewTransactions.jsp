@@ -9,6 +9,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<noscript>
+  <META HTTP-EQUIV="Refresh" CONTENT="0;URL=../employee/enablejavascript">
+</noscript>
 <title>Employee Page</title>
 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
@@ -50,8 +53,8 @@
 <h2> VIEW CUSTOMER TRANSACTIONS PAGE</h2>
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
-    <li><a href="employeeuseraccounts">User Accounts</a></li>
-     <li><a href="employeeviewmerchanttransactions">Merchant Requests</a></li>
+<!--     <li><a href="employeeuseraccounts">User Accounts</a></li>
+ -->     <li><a href="employeeviewmerchanttransactions">Merchant Requests</a></li>
     <li class="active"><a href="#">View Customer Transactions</a></li>
 </ul>
 <br>
@@ -65,7 +68,7 @@
 <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	
 			
-			
+<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>		
 </form>
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
  
@@ -81,6 +84,5 @@
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-	<br><p><a href="javascript:formSubmit()"> Logout</a></p>
 </body>
 </html>

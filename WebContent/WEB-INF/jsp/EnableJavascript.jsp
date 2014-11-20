@@ -1,11 +1,22 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<!-- <script type="text/javascript">
+    window.history.forward();
+    function noBack() { window.history.forward(); }
+</script> -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Common Page</title>
+<!-- <noscript>
+  <META HTTP-EQUIV="Refresh" CONTENT="0;URL=../otp/forgotpassword">
+</noscript> -->
+
+<title>Synnovation Bank</title>
 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
 	
@@ -15,25 +26,13 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
+
 <body>
 
-<h1>Common Page</h1>
-<p>Everyone has access to this page.</p>
+<center><h1>Please enable JavaScript to continue using the application.</h1></center>
 
-<c:url value="/j_spring_security_logout" var="logoutUrl" />
- 
-	<!-- csrf for log out-->
-	<form action="${logoutUrl}" method="post" id="logoutForm">
-	  <input type="hidden" 
-		name="${_csrf.parameterName}"
-		value="${_csrf.token}" />
-	</form>
-	
-	<script>
-		function formSubmit() {
-			document.getElementById("logoutForm").submit();
-		}
-	</script>
-<a href="admin">admin |</a> <a href="javascript:formSubmit()"> Logout</a>
+
+
 </body>
 </html>
+

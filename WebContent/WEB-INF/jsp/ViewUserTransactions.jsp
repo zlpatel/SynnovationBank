@@ -46,8 +46,8 @@
 <h2> VIEW CUSTOMER TRANSACTIONS PAGE</h2>
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
-    <li><a href="employeeuseraccounts">User Accounts</a></li>
-    <li><a href="employeeviewmerchanttransactions">Merchant Requests</a></li>
+<!--     <li><a href="employeeuseraccounts">User Accounts</a></li>
+ -->    <li><a href="employeeviewmerchanttransactions">Merchant Requests</a></li>
     <li class="active"><a href="#">View Customer Transactions</a></li>
 </ul>
 <br>
@@ -81,6 +81,7 @@
       <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	
   <input class="btn btn-lg btn-primary" type="submit" value="Back" onclick="document.forms[0].action = 'employeeviewtransactions' ;"/>    
+      <a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
       </form>
     
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
@@ -97,7 +98,7 @@
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-	<br><p><a href="javascript:formSubmit()"> Logout</a></p>
+
 </body>
 </html>
 

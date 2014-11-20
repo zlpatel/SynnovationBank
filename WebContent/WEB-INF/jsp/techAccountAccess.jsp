@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<noscript>
+  <META HTTP-EQUIV="Refresh" CONTENT="0;URL=../customer/enablejavascript">
+</noscript>
 <title>Customer Page</title>
 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
@@ -25,21 +28,22 @@
 <li><a href="viewTransactions">View Transactions</a></li>
 <li><a href="customerNotifications">Notifications</a></li>
 <li><a href="changeCustomerInfo">Change information</a></li>
-<li><a href="techAccountAccess">Technical Account Access</a></li>
+<li class="active"><a href="#">Technical Account Access</a></li>
 <li><a href="payMerchant">Pay Merchant</a></li>
+<li><a href="criticalTransfer">Critical Transfers (greater than $500)</a></li>
 </ul>
 <br>
 <form action="techaccountaccess" method="post">
 <INPUT TYPE="radio" NAME="radios" VALUE="radio1">
              Allow
             <BR>
-            <INPUT TYPE="radio" NAME="radios" VALUE="radio2">
+            <INPUT TYPE="radio" checked NAME="radios" VALUE="radio2">
              Disallow
             <BR>
 <input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
 <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	
-
+<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
 </form>
 
 
@@ -54,14 +58,10 @@
 	</form>
 	
 	<script>
-		/* This code detects the tab/window close of the browser and we are performing logout function on it */
-		/* window.onbeforeunload = function(){ formSubmit(); } */
-	
 		function formSubmit() {
 			document.getElementById("logoutForm").submit();
 		}
 	</script>
-<br><a href="javascript:formSubmit()"> Logout</a>
 
 
 

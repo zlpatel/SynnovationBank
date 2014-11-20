@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<noscript>
+  <META HTTP-EQUIV="Refresh" CONTENT="0;URL=../admin/enablejavascript">
+</noscript>
 <title>Admin Page</title>
 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
@@ -64,23 +67,19 @@
 	
 </head>
 <body>
-<h2>Admin Page</h2>
-<p>Only admins have access to this page.</p><br>
+<center><h1>SYNNOVATION</h1></center>
+<center><h3>MODIFY INTERNAL USER ACCOUNTS PAGE</h3></center>
 
 <ul class="nav nav-tabs">
-    <li><a href="home">Notifications</a></li>
-    <li class="active"><a href="#">Internal User Accounts</a></li>
+<!--     <li><a href="home">Notifications</a></li>
+ -->    <li class="active"><a href="#">Internal User Accounts</a></li>
     <li><a href="adminexternaluseraccounts">External User Accounts</a></li>
     <li><a href="adminpiirequests">PII Requests</a></li>
     <li><a href="admincriticaltransactions">Critical Transactions</a></li>
-    <li><a href="adminsystemlog">System Log</a></li>   
-    <li><a href="adminchangepassword">Change Password</a></li>
+      
+    
 </ul>
-
 <br>
-<h3>Modify User Account Details</h3>
-<br>
-
 <form action="adminmodifiedinternaluseraccounts" commandName="modifyinternaluserformbean" method="post" >
 
 <input name="fname" id="fname"  class = "form-control" style="width:200px;" placeholder = "First Name" maxlength="15" value="${modifyinternaluserformbean.fname}"/>
@@ -102,8 +101,8 @@
 <br>
 <input class="btn btn-lg btn-primary" type="submit" value="Submit"  onclick="document.forms[0].action = 'adminmodifiedinternaluseraccounts' ;return validateForm();"/>
 <!-- <a class="btn btn-primary" href="adminaddedexternaluseraccounts" type="submit">Save</a> -->
-<a class="btn btn-deafult" href="admininternaluseraccounts">Cancel</a>
-<a class="btn btn-deafult" href="javascript:formSubmit()">Logout</a>
+<a class="btn btn-default" href="admininternaluseraccounts">Cancel</a>
+<a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
 
 <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	
