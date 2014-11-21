@@ -98,6 +98,9 @@
 --%><input name="email" id="email"  type="text" class = "form-control" style="width:200px;" placeholder = "Email" maxlength="30" value="${modifyexternaluserformbean.email}"/>
 <br><input name="username" id="username"  class = "form-control" style="width:200px;" placeholder = "Username" maxlength="15" value="${modifyexternaluserformbean.username}" readonly/>
 <br>
+<INPUT TYPE="radio" checked NAME="radios" VALUE="unblock"/> Unblock Account<BR>
+<INPUT TYPE="radio" NAME="radios" VALUE="block"/> Block Account<BR>
+<br>
 <input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="document.forms[0].action = 'adminmodifiedexternaluseraccounts' ;return validateForm();"/>
 
 <input class="btn btn-info" type="submit" value="Request PII" onclick="document.forms[0].action = 'addadminpiirequest' ;return true;"/>

@@ -8,7 +8,7 @@
 <noscript>
   <META HTTP-EQUIV="Refresh" CONTENT="0;URL=../customer/enablejavascript">
 </noscript>
-<title>Customer Page</title>
+<title>Transactions Page</title>
 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
 	

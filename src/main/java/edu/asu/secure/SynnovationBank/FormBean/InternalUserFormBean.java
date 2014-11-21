@@ -27,6 +27,14 @@ public class InternalUserFormBean {
 	private Set<Notifications> notifications;
 	private Account account;
 	private Set<ReportedIssues> issues;
+	private boolean accountLockedFlag;
+    
+    public boolean isAccountLockedFlag() {
+        return accountLockedFlag;
+    }
+    public void setAccountLockedFlag(boolean accountLockedFlag) {
+        this.accountLockedFlag = accountLockedFlag;
+    }	
 
 	public String getAllowAccessFlag() {
 		return allowAccessFlag;

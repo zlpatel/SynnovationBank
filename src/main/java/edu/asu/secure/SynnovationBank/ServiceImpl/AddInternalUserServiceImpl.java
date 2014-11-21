@@ -11,6 +11,7 @@ import edu.asu.secure.SynnovationBank.Service.AddInternalUserService;
 import edu.asu.secure.SynnovationBank.Dao.AccountDAO;
 import edu.asu.secure.SynnovationBank.Dao.AddUserDao;
 import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
+import edu.asu.secure.SynnovationBank.Dao.UsernamesDAO;
 import edu.asu.secure.SynnovationBank.FormBean.InternalUserFormBean;
 import edu.asu.secure.SynnovationBank.DTO.Account;
 import edu.asu.secure.SynnovationBank.DTO.Person;
@@ -26,29 +27,48 @@ public class AddInternalUserServiceImpl implements AddInternalUserService{
 	private PersonDAO personDao; 
 	@Autowired
 	private AccountDAO accountDao;
-	
+	@Autowired
+	private UsernamesDAO usernamesDao;
+
 	@Override
 	public boolean addInternalUser(InternalUserFormBean addinternaluserformbean) 
 	{
-		Person person = new Person();
+		try
+		{
+			System.out.println("internal username = " + addinternaluserformbean.getUsername());
 
-		person.setFirstName(addinternaluserformbean.getFname());
-		person.setLastName(addinternaluserformbean.getLname());
-		person.setAddress(addinternaluserformbean.getAddress());
-		person.setEmail(addinternaluserformbean.getEmail());
-		person.setUserId(addinternaluserformbean.getUsername());
-		person.setPassword(HashCode.getHashPassword(addinternaluserformbean.getPassword()));
-		
-		person.setDateOfBirth(addinternaluserformbean.getDateOfBirth());
-		//get role from form bean
-		person.setRole("ROLE_BNK_EMPL");
-		person.setAllowAccessFlag(false);
-		person.setAccountLockedFlag(false);
-		person.setLoginAttempts(0);
-		person.setPiiRequestFlag(false);
+			if(!usernamesDao.fetchUsername(addinternaluserformbean.getUsername()))
+			{
+				Person person = new Person();
 
-		return personDao.insertUser(person);
-		
+				person.setFirstName(addinternaluserformbean.getFname());
+				person.setLastName(addinternaluserformbean.getLname());
+				person.setAddress(addinternaluserformbean.getAddress());
+				person.setEmail(addinternaluserformbean.getEmail());
+				person.setUserId(addinternaluserformbean.getUsername());
+				person.setPassword(HashCode.getHashPassword(addinternaluserformbean.getPassword()));
+
+				person.setDateOfBirth(addinternaluserformbean.getDateOfBirth());
+				//get role from form bean
+				person.setRole("ROLE_BNK_EMPL");
+				person.setAllowAccessFlag(false);
+				person.setAccountLockedFlag(false);
+				person.setLoginAttempts(0);
+				person.setPiiRequestFlag(false);
+
+				usernamesDao.insertUsername(addinternaluserformbean.getUsername());
+
+				return personDao.insertUser(person);
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println("some exception creating user " + e);
+			return false;
+		}
+
+		return false;
+
 	}
 
 

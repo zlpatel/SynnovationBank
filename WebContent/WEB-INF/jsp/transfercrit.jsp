@@ -69,7 +69,8 @@
 
 <body>
 <center><h1> SYNNOVATION </h1> </center>
-<h2> TRANSFER AMOUNT PAGE</h2>
+<center><h3> TRANSFER AMOUNT PAGE </h3> </center>
+
 <div id="otp-error"><font color="red">${error}</font></div>
 <ul class="nav nav-tabs">
 <li><a href="credit_debit">Credit Amount</a> </li>
@@ -80,10 +81,11 @@
 <li><a href="changeCustomerInfo">Change information</a></li>
 <li><a href="techAccountAccess">Technical Account Access</a></li>
 <li><a href="payMerchant">Pay Merchant</a></li>
+<li><a href="criticalTransfer">Critical Transfers (greater than $500)</a></li>
 </ul>
 <br>
 <form  commandName="transferFormBean" method="post">
-<input id="receiverID" type="text" name="receiverID" maxlength= "15" class = "form-control" placeholder="Enter the User ID to which you want to tranfer the amount" style="width:800px;" value="${transferFormBean.receiverID}"/>
+<input id="receiverID" type="text" name="receiverID" maxlength= "15" class = "form-control" placeholder="Enter the User ID to which you want to tranfer the amount" style="width:800px;text-transform: lowercase;" value="${transferFormBean.receiverID}"/>
 <br>
 <input id="transferAmount" type="text" name="transferAmount" maxlength= "4" class = "form-control" placeholder="Enter the amount which you want to tranfer" style="width:800px;" value="${transferFormBean.transferAmount}"/><br>
 <br>

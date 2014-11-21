@@ -63,7 +63,7 @@ public class MerchantController {
      */
 
 	@RequestMapping(value = "/changemerchantinforequest", method = RequestMethod.POST)
-    public String getNewCustomerInfo(@ModelAttribute("merchantInfoChangeFormBean") MerchantInfoChangeFormBean merchantInfoChangeFormBean, HttpServletRequest request, HttpSession session) {
+    public String getNewCustomerInfo(@ModelAttribute("merchantInfoChangeFormBean") MerchantInfoChangeFormBean merchantInfoChangeFormBean,ModelMap model, HttpServletRequest request, HttpSession session) {
 
 		String userName="";
 		session = request.getSession(false);
@@ -91,11 +91,15 @@ public class MerchantController {
 		if(email=="")
 			email=null;
 		
-		if(merchantInfoChangeService.changeCustomerInformation(userName, firstName, middleName,lastName,address,email))
-				return "WelcomeMerchant";
-			
-			else
+		if(merchantInfoChangeService.changeCustomerInformation(userName, firstName, middleName,lastName,address,email)){
+				model.put("error","Information Change Successful");
 				return "ChangeMerchantInfo";
+		}
+			else{
+				model.put("error","Information Change UnSuccessful");
+				
+				return "ChangeMerchantInfo";
+			}
     	
 	}
 	
@@ -105,7 +109,7 @@ public class MerchantController {
 	
 
 	@RequestMapping(value = "/merchanttechaccountaccess", method = RequestMethod.POST)
-	public String env(HttpServletRequest request, HttpSession session){
+	public String env(HttpServletRequest request, HttpSession session,ModelMap model){
 
 		String userName="";
 		session = request.getSession(false);
@@ -129,25 +133,18 @@ public class MerchantController {
              System.out.println("*****************************************");
              }
              
-             if(techAccountAccessService.setAccessFlag(userName, selection))
-            	 	return "WelcomeMerchant";
-             else
+             if(techAccountAccessService.setAccessFlag(userName, selection)){
+            	    model.put("error", "Access Flag Set");
+            	 	return "MerchantTechAccountAccess";
+             }
+             else{
+            	    model.put("error", "Access Flag Not Set");
             	    return "MerchantTechAccountAccess";
+             }
 
     }
 	
-	//Controller for redirecting when accept notification  by merchant
-/*	@RequestMapping(value = "/admintransactionaccepted/{userId}/{transactionId}/{notificationId}", method = {RequestMethod.POST, RequestMethod.GET})
-    public String adminTransactionAccepted(@PathVariable("userId") String userId, @PathVariable("transactionId") Long transactionId, @PathVariable("notificationId") Long notificationId, ModelMap model, HttpServletRequest request){
-    		
-//        public String adminTransactionAccepted(@RequestParam(value="notification", required=true) AdminCriticalTransactionsFormBean notification, HttpServletRequest request,  
-//                HttpServletResponse response, ModelMap model) {
-    	
-    	logger.debug("Received request to accept critical transaction");
-    	
-    	adminNotificationService.sendTransactionAcceptedNotification(userId, transactionId, notificationId);
-        	return "redirect:/secure/admin/admincriticaltransactions";
-    }*/
+
 	
 	@RequestMapping(value = "/merchantacceptexternaluser/{userName}/{notification_id}/{transaction_id}", method =RequestMethod.POST)
     public String getMerchantAccept(@PathVariable("userName") String userName, @PathVariable("transaction_id") Long transaction_id, @PathVariable("notification_id") Long notification_id, ModelMap model, HttpServletRequest request) {
@@ -182,20 +179,7 @@ public class MerchantController {
     	
 	}
 	
-	/*
-	 *@RequestMapping(value = "/uploadfile", method=RequestMethod.POST)
-	public String uploadFileHandler(@ModelAttribute("fileuploadformbean") FileUploadFormBean fileUploadFormBean,HttpSession session,BindingResult result,ModelMap model) {
-
-		if(pkiService.verifyCertificate(fileUploadFormBean.getFile(),(String)session.getAttribute("USERNAME"))){
-			return "CertificateVerified";
-		}
-		else{
-			model.put("error",true);
-			return "redirect:fileUploader";
-		}
-	}
 	
-	*/
 	//Controller for redirecting when accept notification  by merchant
 		@RequestMapping(value = "/submitpayment/{notification_id}", method = RequestMethod.POST)
 	    public @ResponseBody String getSubmitPayment(@ModelAttribute("merchantPaymentFormBean") MerchantPaymentFormBean merchantPaymentFormBean,ModelMap model, @PathVariable("notification_id") Long notification_id, HttpServletRequest request, HttpSession session) {
@@ -270,7 +254,7 @@ public class MerchantController {
 		
 			if(creditService.creditAmount(userName,creditFormBean.getCreditAmount())){
 				model.put("error","CREDIT SUCCESSFUL");
-				return "WelcomeMerchant";
+				return "MerchantCredit";
 				
 			}
 				
@@ -300,8 +284,12 @@ public class MerchantController {
 			
 			logger.debug("Received request to show debitrequest page");
 			System.out.println("Debited amount :"+debitFormBean.getDebitAmount()+"to Account:" +userName );
-				if(debitService.debitAmount(userName, debitFormBean.getDebitAmount()))
-					return "WelcomeMerchant";
+				if(debitService.debitAmount(userName, debitFormBean.getDebitAmount())){
+					
+					model.put("error","DEBIT SUCCESSFULL");
+					return "MerchantDebit";
+				}
+					
 				
 				else
 				{
@@ -333,12 +321,13 @@ public class MerchantController {
 			if(transferService.performTransfer(userName, transferFormBean.getReceiverID(),transferFormBean.getTransferAmount()))
 			{
 				
-				return "WelcomeMerchant";
+				model.put("error", "TRANSFER SUCCESSFULL");
+				 return "MerchantTransfer";
 			}
 			else
 			{
-				model.put("error","TRANSFER UNSUCCESSFULL");
-					return "MerchantTransfer";
+				model.put("error","TRANSFER UNSUCCESSFULL OR CRITICAL TRANSACTION REQUEST TO ADMIN--> CHECK VIEW TRANSACTIONS");
+			    return "MerchantTransfer";
 			}
 	    	
 		}
@@ -346,12 +335,12 @@ public class MerchantController {
 	
 	 @RequestMapping(value = "/MerchantDebit", method = {RequestMethod.POST, RequestMethod.GET})
 	    public String getDebit(@RequestParam(value="error", required=false) boolean error,ModelMap model) {
-		 if(error==true){
-				model.put("error", "DEBIT NOT SUCCESSFULL !!");	
-			}else{
-				model.put("error","");
-			}
-	    
+//		 if(error==true){
+//				model.put("error", "DEBIT NOT SUCCESSFULL !!");	
+//			}else{
+//				model.put("error","");
+//			}
+//	    
 		 
 		 logger.debug("Received request to show credit/debit page");
 	    
@@ -373,11 +362,11 @@ public class MerchantController {
     
     @RequestMapping(value = "/MerchantCredit", method = {RequestMethod.POST, RequestMethod.GET})
     public String getCreditDebit(@RequestParam(value="error", required=false) boolean error, ModelMap model) {
-    	if(error==true){
-			model.put("error", "CREDIT NOT SUCCESSFULL !!");	
-		}else{
-			model.put("error","");
-		}
+//    	if(error==true){
+//			model.put("error", "CREDIT NOT SUCCESSFULL !!");	
+//		}else{
+//			model.put("error","");
+//		}
     	logger.debug("Received request to show credit/debit page");
     
     	return "MerchantCredit";
@@ -459,12 +448,12 @@ public class MerchantController {
 	
 	@RequestMapping(value = "/MerchantTransfer", method = {RequestMethod.POST, RequestMethod.GET})
     public String gettransfer(@RequestParam(value="error", required=false) boolean error, ModelMap model) {
-		if(error==true){
-			model.put("error", "TRANSFER NOT SUCCESSFULL !!");	
-		}else{
-			model.put("error","");
-		}
-		
+//		if(error==true){
+//			model.put("error", "TRANSFER NOT SUCCESSFULL !!");	
+//		}else{
+//			model.put("error","");
+//		}
+//		
 		logger.debug("Received request to show transfer page");
     
     	return "MerchantTransfer";
@@ -486,7 +475,7 @@ public class MerchantController {
     	*/
     	model.put("mercAcc", merchantTransactionService.getTransactions(userName));
     	model.put("balance", merchantTransactionService.availableBalance(userName));
-    	logger.debug("Received request to show employee user accounts page");
+    	logger.debug("Received request to show merchant user accounts page");
     
     	
     	return "ViewMerchantTransactions";
@@ -503,7 +492,6 @@ public class MerchantController {
             userName=(String)request.getSession().getAttribute("USERNAME");
         }
 		
-        System.out.println("herre ---"+userName);
     	model.put("username", userName);
     	return "WelcomeMerchant";
 	}

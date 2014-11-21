@@ -36,7 +36,7 @@
 	  }
 	 
 		
-		var regex3 = new RegExp("^[a-zA-Z0-9]+$");
+		var regex3 = new RegExp("^[a-zA-Z]+$");
 		 if(!regex3.test(username))
 		{
 			alert('Please remove special characters and spaces from Username');
@@ -50,7 +50,8 @@
 </head>
 <body>
 <center><h1> SYNNOVATION </h1> </center>
-<h2> VIEW CUSTOMER TRANSACTIONS PAGE</h2>
+<center><h3>VIEW CUSTOMER TRANSACTIONS PAGE</h3> </center>
+
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
 <!--     <li><a href="employeeuseraccounts">User Accounts</a></li>
@@ -60,7 +61,7 @@
 <br>
 <div id="error"><font color="red">${error}</font></div>
 <form action ="viewtransactions" method="post" commandName="usertransactionformbean">
-<input name="userName"  id="username" class = "form-control" style="width:200px;" placeholder = "User Name" type="text" maxlength="15" value="${usertransactionformbean.userName}">
+<input name="userName"  id="username" class = "form-control" style="width:200px;text-transform: lowercase;" placeholder = "User Name" type="text" maxlength="15" value="${usertransactionformbean.userName}">
 <br>
 <input class="btn btn-lg btn-primary" type="submit" value="Submit" onclick="document.forms[0].action = 'viewtransactions' ;return validateForm();"/>
 <!-- <input class="btn btn-lg btn-primary" type="submit" value="Submit"/>-->

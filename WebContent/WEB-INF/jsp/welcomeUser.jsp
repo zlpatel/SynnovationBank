@@ -25,7 +25,8 @@
 
 <body>
 <center><h1> SYNNOVATION </h1></center>
-<h2> Hi ${username} ! </h2> 
+<center><h3> Hi ${username} ! </h3></center>
+
 <ul class="nav nav-tabs">
 <li><a href="credit_debit">Credit Amount</a> </li>
 <li><a href="debit">Debit Amount</a> </li>

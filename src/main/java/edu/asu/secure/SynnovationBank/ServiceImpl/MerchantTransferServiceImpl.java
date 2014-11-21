@@ -73,7 +73,28 @@ public class MerchantTransferServiceImpl implements MerchantTransferService {
 						
 						
 						Person sender = personDAO.fetchUserById(senderID);
-						Account a=(Account) sender.getAccount();
+						
+						if(sender==null){
+							return false;
+						}
+							
+						System.out.println("sender "+sender);
+						
+						//a.setBalance(new_balance);
+						
+						Person receiver = personDAO.fetchUserById(receiverID);
+						
+						if(receiver==null){
+							
+							System.out.println("Null pointer handled");
+							return false;
+					 	}
+                        Account a=(Account) sender.getAccount();
+						
+						if(a ==null){
+							return false;
+						}
+						
 						float balance=a.getBalance();
 						float debit=Float.parseFloat(amount);
 						float new_balance=balance-debit;
@@ -85,10 +106,12 @@ public class MerchantTransferServiceImpl implements MerchantTransferService {
 						
 							return false;
 						}
-						//a.setBalance(new_balance);
 						
-						Person receiver = personDAO.fetchUserById(receiverID);
+						System.out.println("receiver "+receiver);
 						Account b=(Account) receiver.getAccount();
+						if(receiver.getRole().equalsIgnoreCase("ROLE_MERC") || receiver.getRole().equalsIgnoreCase("ROLE_CUST") ){
+							
+						
 						float balanceB=b.getBalance();
 						float credit=Float.parseFloat(amount);
 						float new_balanceB=balanceB+credit;
@@ -163,9 +186,7 @@ public class MerchantTransferServiceImpl implements MerchantTransferService {
 						
 						
 						
-						
-						
-
+				 }
 						
 						return false;
 		}
@@ -176,10 +197,39 @@ public class MerchantTransferServiceImpl implements MerchantTransferService {
 		
 		
 		Person sender = personDAO.fetchUserById(senderID);
-		Account a=(Account) sender.getAccount();
+		if(sender ==null){
+			return false;
+		}
+		
+		
+		Person receiver = personDAO.fetchUserById(receiverID);
+		
+		if(receiver==null){
+			System.out.println("Null pointer handled");
+			return false;
+			
+		}
+		
+		System.out.println("role"+receiver.getRole());
+		
+		if(receiver.getRole().equalsIgnoreCase("ROLE_MERC") || receiver.getRole().equalsIgnoreCase("ROLE_CUST") ){
+	
+	
+		System.out.println("receiver  "+receiver);
+		Account b=(Account) receiver.getAccount();
+		if(b==null){
+			return false;
+		}
+		
+      Account a=(Account) sender.getAccount();
+		
+		if(a==null){
+			return false;
+		}
 		float balance=a.getBalance();
 		float debit=Float.parseFloat(amount);
 		float new_balance=balance-debit;
+		
 		if(new_balance<0)
 		{
 			System.out.println("***************************************************");
@@ -189,9 +239,6 @@ public class MerchantTransferServiceImpl implements MerchantTransferService {
 			return false;
 		}
 		a.setBalance(new_balance);
-		
-		Person receiver = personDAO.fetchUserById(receiverID);
-		Account b=(Account) receiver.getAccount();
 		float balanceB=b.getBalance();
 		float credit=Float.parseFloat(amount);
 		float new_balanceB=balanceB+credit;
@@ -252,9 +299,11 @@ public class MerchantTransferServiceImpl implements MerchantTransferService {
 		
 		System.out.println("New 2 way credit and a debit transaction is populated with ID: "+transactionID);
 		
-
+        System.out.println("return true");
 		return true;
-
+		}
+		System.out.println("Return false");
+    return false;
 	}
 
 }

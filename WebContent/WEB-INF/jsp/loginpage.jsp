@@ -27,11 +27,36 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
+<script type="text/javascript">
+
+function validateForm()
+	{
+
+	 var username = document.getElementById("j_username").value;
+	 var password = document.getElementById("j_password").value;
+	 
+	  if (username === "" || password === "") 
+	  {
+	  	alert("Please enter username and password.");
+	  	return false;
+	  }
+		
+		 var regex3 = new RegExp("^[a-zA-Z]+$");	  
+		  
+		 if(!regex3.test(username))
+		{
+			alert('Please insert only alphabets for username');
+			return false; 
+		}
+	  	    
+	  
+	 }</script>
+
 <body>
 
 <h1>Login</h1>
 
-<div id="login-error">${error}</div>
+<div id="login-error"><font color="red">${error}</font></div>
 
 <%-- <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
       <font color="red">
@@ -40,17 +65,18 @@
       </font>
     </c:if> --%>
 
-<form action="../../j_spring_security_check" method="post" >
+<form method="post" >
 
 <p>	
-	<input id="j_username" name="j_username" placeholder="username" type="text" />
+	<input id="j_username" name="j_username" placeholder="username" type="text" style="text-transform: lowercase;"/>
 </p>
 
 <p>
 	<input id="j_password" name="j_password" placeholder="password" type="password" />
 </p>
 
-<input class="btn btn-lg btn-primary" type="submit" value="Login"/>
+<input class="btn btn-lg btn-primary" type="submit" value="Login" onclick="document.forms[0].action = '../../j_spring_security_check' ;return validateForm();"/>
+
 
 <a class="btn btn-default" href="../otp/forgotpassword">Change/ Forgot Password</a>
 

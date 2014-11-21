@@ -86,7 +86,7 @@
 </ul>
 <br>
 <form action="merchanttransferrequest" commandName="transferFormBean" method="post">
-<input id="receiverID" type="text" name="receiverID" maxlength="15" placeholder="Enter the userid to which you want to tranfer the amount" style="width:800px;" value="${transferFormBean.receiverID}"/><br>
+<input id="receiverID" type="text" name="receiverID" maxlength="15" placeholder="Enter the userid to which you want to tranfer the amount" style="width:800px;text-transform: lowercase;" value="${transferFormBean.receiverID}"/><br>
 <input id="transferAmount" type="text" name="transferAmount" maxlength="4" placeholder="Enter the amount which you want to tranfer" style="width:800px;" value="${transferFormBean.transferAmount}"/><br>
 
 <input class="btn btn-lg btn-primary" type="submit" value="Submit"  onclick="document.forms[0].action = 'merchanttransferrequest' ;return validateForm();"/>

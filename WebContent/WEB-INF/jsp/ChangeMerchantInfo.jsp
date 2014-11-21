@@ -68,6 +68,7 @@
 <body>
 <center><h1> SYNNOVATION </h1> </center>
 <h2>UPDATE INFORMATION PAGE</h2>
+<div id="otp-error"><font color="red">${error}</font></div>
 <br>
 <ul class="nav nav-tabs">
 <li><a href="MerchantCredit">Credit Amount</a> </li>

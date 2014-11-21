@@ -74,6 +74,9 @@ public class EmployeeUserTransactionServiceImpl implements EmployeeUserTransacti
 		public boolean checkFlag(String userName) {
 			System.out.println("This is checking the flag");
 			Person person= personDao.fetchUserById(userName);
+			if (person==null){
+				return false;
+			}
 			long accNum=person.getAccount().getAccountNumber();
 			return accountDao.fetchAllowAccessFlag(accNum);
 

@@ -75,7 +75,31 @@ public class TransferServiceImpl implements TransferService {
 						
 						
 						Person sender = personDAO.fetchUserById(senderID);
+						if(sender==null){
+					
+							return false;
+						}
+						
+						
+						//a.setBalance(new_balance);
+						
+						Person receiver = personDAO.fetchUserById(receiverID);
+						if(receiver==null){
+							return false;
+						}
+				 if(!receiver.getRole().equalsIgnoreCase("ROLE_CUST")){
+					 return false;
+				 }
+							
+						Account b=(Account) receiver.getAccount();
+						if(b==null){
+							return false;
+						}
+						
 						Account a=(Account) sender.getAccount();
+						if(a==null){
+							return false;
+						}
 						float balance=a.getBalance();
 						float debit=Float.parseFloat(amount);
 						float new_balance=balance-debit;
@@ -87,10 +111,6 @@ public class TransferServiceImpl implements TransferService {
 						
 							return false;
 						}
-						//a.setBalance(new_balance);
-						
-						Person receiver = personDAO.fetchUserById(receiverID);
-						Account b=(Account) receiver.getAccount();
 						float balanceB=b.getBalance();
 						float credit=Float.parseFloat(amount);
 						float new_balanceB=balanceB+credit;
@@ -156,6 +176,11 @@ public class TransferServiceImpl implements TransferService {
 						
 						Notifications notification = new Notifications();
 						Person person=personDAO.fetchUserById(receiverID);
+						
+						if(person==null){
+							return false;
+						}
+						
 						if(person.getRole().equals("ROLE_CUST")){
 						notification.setEmpAdminFlag("A");
 						}
@@ -171,21 +196,36 @@ public class TransferServiceImpl implements TransferService {
 						System.out.println("Successfully generated critical transaction notification request!\n");
 						
 						
-						
-						
-						
+									
 
 						
 						return false;
-		}
 		
-		
-
+	}
 		
 		
 		
 		Person sender = personDAO.fetchUserById(senderID);
+		if(sender==null){
+			return false;
+		}
+		
+		
+		Person receiver = personDAO.fetchUserById(receiverID);
+		if(receiver==null){
+			return false;
+		}
+		
+	if(!receiver.getRole().equalsIgnoreCase("ROLE_CUST")){
+		return false;
+	}
+	
+		
 		Account a=(Account) sender.getAccount();
+		if(a==null){
+			return false;
+		}
+		
 		float balance=a.getBalance();
 		float debit=Float.parseFloat(amount);
 		float new_balance=balance-debit;
@@ -199,8 +239,10 @@ public class TransferServiceImpl implements TransferService {
 		}
 		a.setBalance(new_balance);
 		
-		Person receiver = personDAO.fetchUserById(receiverID);
 		Account b=(Account) receiver.getAccount();
+		if(b==null){
+			return false;
+		}
 		float balanceB=b.getBalance();
 		float credit=Float.parseFloat(amount);
 		float new_balanceB=balanceB+credit;
@@ -272,7 +314,7 @@ public class TransferServiceImpl implements TransferService {
 			String amount) {
 		// TODO Auto-generated method stub
 		
-		
+	 try{	
 		
 		if(i==0)
 		{
@@ -320,7 +362,16 @@ public class TransferServiceImpl implements TransferService {
 		//a.setBalance(new_balance);
 		
 		Person receiver = personDAO.fetchUserById(receiverID);
+		if(receiver==null){
+			return false;
+		}
+		if(!receiver.getRole().equalsIgnoreCase("ROLE_CUST")){
+			return false;
+		}
 		Account b=(Account) receiver.getAccount();
+		if(b==null){
+			return false;
+		}
 		float balanceB=b.getBalance();
 		float credit=Float.parseFloat(amount);
 		float new_balanceB=balanceB+credit;
@@ -556,6 +607,12 @@ public class TransferServiceImpl implements TransferService {
 			a.setBalance(new_balance);
 			
 			Person receiver = personDAO.fetchUserById(receiverID);
+			if(receiver==null){
+				return false;
+			}
+	    if(!receiver.getRole().equalsIgnoreCase("ROLE_CUST")){
+		 return false;
+	     }
 			Account b=(Account) receiver.getAccount();
 			float balanceB=b.getBalance();
 			float credit=Float.parseFloat(amount);
@@ -627,6 +684,12 @@ public class TransferServiceImpl implements TransferService {
 			
 		
 		}
+	 }
+	 catch(Exception e){
+		 System.out.println("Error"+e);
+		 return false;
+		
+	 }
 		
 	}
 	
@@ -634,10 +697,16 @@ public class TransferServiceImpl implements TransferService {
 	@Override
 	public String getReceiverRole(String receiverID) {
 	// TODO Auto-generated method stub
+	
 
 	Person person=personDAO.fetchUserById(receiverID);
+	if(person==null){
+		return "Role Not Found";
+	}
 	return person.getRole();
 
-	}
+
+    } 
+	
 
 }

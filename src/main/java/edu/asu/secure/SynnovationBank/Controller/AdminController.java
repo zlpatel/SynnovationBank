@@ -79,7 +79,7 @@ public class AdminController {
      * @return the name of the JSP page
      */
     @RequestMapping(value = "/admininternaluseraccounts", method = {RequestMethod.GET, RequestMethod.POST})
-    public String getAdminInternalUserAccountsPage(ModelMap model) {
+    public String getAdminInternalUserAccountsPage( ModelMap model) {
     	logger.debug("Received request to show admin internal user accounts page");
     	
     	model.put("internaluserslist",adminUserAccountsService.getInternalUserAccounts());
@@ -229,14 +229,14 @@ public class AdminController {
     	
     	if(addExternalUserService.addExternalUser(addexternaluserformbean))
     	{
-    		model.put("message", "User Added Successfuly");
+//    		model.put("message", "User Added Successfuly");
 			logger.debug("User Added Successfuly");
 	    	return "redirect: adminexternaluseraccounts";
 		}
     	
     	else
     	{
-			model.put("error","true");
+//			model.put("error","true");
 			logger.debug("Some error adding new user!");
 			return "redirect:adminaddedexternaluseraccounts";
 		}
@@ -257,14 +257,14 @@ public class AdminController {
     	
     	if(addInternalUserService.addInternalUser(addinternaluserformbean))
     	{
-    		model.put("message", "User Added Successfuly");
+//    		model.put("error", "User Added Successfuly");
 			logger.debug("User Added Successfuly");
 	    	return "redirect:admininternaluseraccounts";
 		}
     	
     	else
     	{
-			model.put("error","true");
+//			model.put("error","could not add new user");
 			logger.debug("Some error adding new user!");
 			return "redirect:adminaddedinternaluseraccounts";
 		}
@@ -296,22 +296,31 @@ public class AdminController {
     public String modifyExternalUserAccounts(@ModelAttribute("modifyexternaluserformbean")
     ExternalUserFormBean modifyexternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
     	logger.debug("Received request to show modified external user page ......");
-       	
-    	System.out.println(modifyexternaluserformbean.getFname());
-    	
-    	if(adminUserAccountsService.updateExternalUserDetails(modifyexternaluserformbean))
-    	{
-    		model.put("message", "User Modified Successfuly");
-			logger.debug("User Modified Successfuly");
-	    	return "redirect: adminexternaluseraccounts";
-		}
-    	
-    	else
-    	{
-			model.put("error","true");
-			logger.debug("Some error modifying user!");
-			return "AdminExternalUserAccounts";
-		}
+        
+        System.out.println(modifyexternaluserformbean.getFname());
+        
+        if(request.getParameter("radios").equalsIgnoreCase("unblock"))
+        {
+            modifyexternaluserformbean.setAccountLockedFlag(false);
+            logger.debug("Received request to Unblock user account");
+        }
+        else
+            modifyexternaluserformbean.setAccountLockedFlag(true);
+        
+        
+        if(adminUserAccountsService.updateExternalUserDetailsWithFlag(modifyexternaluserformbean))
+        {
+            model.put("message", "User Modified Successfuly");
+            logger.debug("User Modified Successfuly");
+            return "redirect: adminexternaluseraccounts";
+        }
+        
+        else
+        {
+            model.put("error","true");
+            logger.debug("Some error modifying user!");
+            return "AdminExternalUserAccounts";
+        }
     	
 	}
     
@@ -319,22 +328,30 @@ public class AdminController {
     public String modifyInternalUserAccounts(@ModelAttribute("modifyinternaluserformbean")
     InternalUserFormBean modifyinternaluserformbean, BindingResult result,ModelMap model, HttpSession session, HttpServletRequest request) {
     	logger.debug("Received request to show modified internal user page ......");
-       	
-    	System.out.println(modifyinternaluserformbean.getFname());
-    	
-    	if(adminUserAccountsService.updateInternalUserDetails(modifyinternaluserformbean))
-    	{
-    		model.put("message", "User Modified Successfuly");
-			logger.debug("User Modified Successfuly");
-	    	return "redirect: admininternaluseraccounts";
-		}
-    	
-    	else
-    	{
-			model.put("error","true");
-			logger.debug("Some error modifying user!");
-			return "AdminInternalUserAccounts";
-		}
+        
+        System.out.println(modifyinternaluserformbean.getFname());
+        
+        if(request.getParameter("radios").equalsIgnoreCase("unblock"))
+        {
+            modifyinternaluserformbean.setAccountLockedFlag(false);
+            logger.debug("Received request to Unblock user account");
+        }
+        else
+            modifyinternaluserformbean.setAccountLockedFlag(true);
+        
+        if(adminUserAccountsService.updateInternalUserDetailsWithFlag(modifyinternaluserformbean))
+        {
+            model.put("message", "User Modified Successfuly");
+            logger.debug("User Modified Successfuly");
+            return "redirect: admininternaluseraccounts";
+        }
+        
+        else
+        {
+            model.put("error","true");
+            logger.debug("Some error modifying user!");
+            return "AdminInternalUserAccounts";
+        }
     	
 	}
     

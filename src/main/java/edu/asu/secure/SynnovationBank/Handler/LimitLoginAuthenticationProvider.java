@@ -1,7 +1,5 @@
 package edu.asu.secure.SynnovationBank.Handler;
 
-import java.util.Date;
-
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -48,10 +46,9 @@ public class LimitLoginAuthenticationProvider extends DaoAuthenticationProvider{
 		Person person = 
                     userDetailsDao.getUserAttempts(authentication.getName());
  
-               if(person!=null){
-			Date lastAttempts = person.getLastLoginFailure();
-			error = "User account is locked! <br><br>Username : " 
-                           + authentication.getName() + "<br>Last Attempts : " + lastAttempts;
+        if(person!=null){
+			//Date lastAttempts = person.getLastLoginFailure();
+			error = "User account is locked!";
 		}else{
 			error = e.getMessage();
 		}

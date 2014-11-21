@@ -39,7 +39,7 @@
 </ul>
 <br>
 <form action="merchanttransferrequest" commandName="merchanttransferFormBean" method="get">
-<input id="receiverID" type="text" name="receiverID" placeholder="Enter the Merchant ID to whom you want to pay" style="width:800px;" value="${transferFormBean.receiverID}"/><br>
+<input id="receiverID" type="text" name="receiverID" placeholder="Enter the Merchant ID to whom you want to pay" style="width:800px;text-transform: lowercase;" value="${transferFormBean.receiverID}"/><br>
 <input id="transferAmount" type="text" name="transferAmount" placeholder="Enter the amount which you want to pay" style="width:800px;" value="${transferFormBean.transferAmount}"/><br>
 
 <input class="btn btn-lg btn-primary" type="submit" value="Submit"/>
