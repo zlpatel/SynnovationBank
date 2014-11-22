@@ -99,6 +99,9 @@
 --%><input name="email" id="email"  type="text" class = "form-control" style="width:200px;" placeholder = "Email" maxlength="30" value="${modifyinternaluserformbean.email}"/>
 <br><input name="username" id="username"  class = "form-control" style="width:200px;" placeholder = "Username" maxlength="15" value="${modifyinternaluserformbean.username}" readonly/>
 <br>
+<INPUT TYPE="radio" checked NAME="radios" VALUE="unblock"/> Unblock Account<BR>
+<INPUT TYPE="radio" NAME="radios" VALUE="block"/> Block Account<BR>
+<br>
 <input class="btn btn-lg btn-primary" type="submit" value="Submit"  onclick="document.forms[0].action = 'adminmodifiedinternaluseraccounts' ;return validateForm();"/>
 <!-- <a class="btn btn-primary" href="adminaddedexternaluseraccounts" type="submit">Save</a> -->
 <a class="btn btn-default" href="admininternaluseraccounts">Cancel</a>

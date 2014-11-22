@@ -24,7 +24,8 @@
 </head>
 <body>
 <center><h1> SYNNOVATION </h1> </center>
-<h2> USER ACCOUNTS PAGE</h2>
+<center><h3>USER ACCOUNTS PAGE</h3> </center>
+
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
     <li class="active"><a href="#">User Accounts</a></li>

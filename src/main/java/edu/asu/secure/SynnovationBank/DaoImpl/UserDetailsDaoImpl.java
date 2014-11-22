@@ -2,6 +2,7 @@ package edu.asu.secure.SynnovationBank.DaoImpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
@@ -13,6 +14,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.stereotype.Repository;
+
 
 
 import edu.asu.secure.SynnovationBank.DTO.Person;
@@ -28,6 +30,7 @@ public class UserDetailsDaoImpl extends JdbcDaoSupport implements UserDetailsDao
 	private static final String SQL_USER_ATTEMPTS_INSERT = "INSERT INTO USER_ATTEMPTS (USERNAME, ATTEMPTS, LASTMODIFIED) VALUES(?,?,?)";
 
 	private static final String SQL_USER_ATTEMPTS_UPDATE_ATTEMPTS = "UPDATE PERSON SET login_attempts = login_attempts + 1, lastlogin_failure = ? WHERE user_id = ?";
+	private static final String SQL_USER_RESET_ATTEMPTS_UPDATE_ATTEMPTS = "UPDATE PERSON SET login_attempts = 1, lastlogin_failure = ? WHERE user_id = ?";
 	private static final String SQL_USER_ATTEMPTS_RESET_ATTEMPTS = "UPDATE PERSON SET login_attempts = 0, lastlogin_failure = null, account_locked_flag = false WHERE user_id = ?";
 
 	private static final int MAX_ATTEMPTS = 3;
@@ -52,8 +55,25 @@ public class UserDetailsDaoImpl extends JdbcDaoSupport implements UserDetailsDao
 		} else {
 
 			if (isUserExists(username)) {
-				// update attempts count, +1
-				getJdbcTemplate().update(SQL_USER_ATTEMPTS_UPDATE_ATTEMPTS, new Object[] { new Date(), username });
+				if(user.getLastLoginFailure()==null){
+					getJdbcTemplate().update(SQL_USER_RESET_ATTEMPTS_UPDATE_ATTEMPTS, new Object[] { new Date(), username });
+				}
+				else{
+					Calendar c = Calendar.getInstance();
+					c.setTime(user.getLastLoginFailure());
+					c.add(Calendar.DATE, 1);
+					Calendar cal = Calendar.getInstance();
+					Date currentDate = cal.getTime();
+					
+					if(currentDate.compareTo(c.getTime())>=0){
+						getJdbcTemplate().update(SQL_USER_RESET_ATTEMPTS_UPDATE_ATTEMPTS, new Object[] { new Date(), username });
+					}
+					else if(currentDate.compareTo(c.getTime())<0){
+						getJdbcTemplate().update(SQL_USER_ATTEMPTS_UPDATE_ATTEMPTS, new Object[] { new Date(), username });
+					}
+						
+				}
+				
 			}
 
 			if (user.getLoginAttempts() + 1 >= MAX_ATTEMPTS) {

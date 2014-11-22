@@ -12,7 +12,9 @@ public interface AdminUserAccountsService {
 	List<ExternalUserFormBean> getExternalUserAccounts();
 	ExternalUserFormBean fetchPersonById(String userId);
 	boolean updateExternalUserDetails(ExternalUserFormBean externalUserFormBean);
-	boolean updateInternalUserDetails(InternalUserFormBean internalUserFormBean);	
+	boolean updateInternalUserDetails(InternalUserFormBean internalUserFormBean);
+	boolean updateExternalUserDetailsWithFlag(ExternalUserFormBean externalUserFormBean);
+    boolean updateInternalUserDetailsWithFlag(InternalUserFormBean internalUserFormBean);
 	boolean deleteUserDetails(String userId);
 
 }

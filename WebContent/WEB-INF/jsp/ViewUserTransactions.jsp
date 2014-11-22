@@ -43,7 +43,8 @@
 </head>
 <body>
 <center><h1> SYNNOVATION </h1> </center>
-<h2> VIEW CUSTOMER TRANSACTIONS PAGE</h2>
+<center><h3>VIEW CUSTOMER TRANSACTIONS PAGE</h3> </center>
+
 <ul class="nav nav-tabs">
     <li><a href="home">Notifications</a></li>
 <!--     <li><a href="employeeuseraccounts">User Accounts</a></li>

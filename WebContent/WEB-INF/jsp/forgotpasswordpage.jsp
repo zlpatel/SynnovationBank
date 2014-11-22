@@ -31,7 +31,7 @@
 	  	return false;
 	  }
 	  
-		var regex3 = new RegExp("^[a-zA-Z0-9]+$");
+		var regex3 = new RegExp("^[a-zA-Z]+$");
 		 if(!regex3.test(username))
 		{
 			alert('Please remove special characters and spaces from Username');
@@ -57,7 +57,7 @@
 <form action="../otp/otprequest" commandName="forgotpasswordformbean" method="post" >
 
 <p>	
-	<input id="username" name="username" placeholder="username" type="text" value="${forgotpasswordformbean.username}"/>
+	<input id="username" name="username" placeholder="username" type="text" value="${forgotpasswordformbean.username}" style="text-transform: lowercase;"/>
 </p>
 <p>
 	<input id="email" name="email" placeholder="email" type="text" value="${forgotpasswordformbean.email}"/>

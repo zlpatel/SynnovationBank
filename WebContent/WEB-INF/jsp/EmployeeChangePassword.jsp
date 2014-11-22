@@ -24,7 +24,8 @@
 </head>
 <body>
 <center><h1> SYNNOVATION </h1> </center>
-<h2> MERCHANT REQUESTS PAGE</h2>
+<center><h3>MERCHANT REQUESTS PAGE</h3></center>>
+
 <ul class="nav nav-tabs">
     <li><a href="../employee/home">Notifications</a></li>
 <!--     <li><a href="../employee/employeeuseraccounts">User Accounts</a></li>

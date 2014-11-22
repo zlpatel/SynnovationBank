@@ -18,7 +18,7 @@
 
 <body>
 <center><h1>SYNNOVATION</h1></center>
-<center><h2> Hi ${username} ! </h2> </center>
+<center><h3> Hi ${username} ! </h3> </center>
 
 <ul class="nav nav-tabs">
 

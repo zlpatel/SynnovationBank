@@ -128,8 +128,8 @@ public class CustomerController {
 		
 
 	
-	@RequestMapping(value = "/changecustomerinforequest", method = RequestMethod.GET)
-    public String getNewCustomerInfo(@ModelAttribute("customerInfoChangeFormBean") CustomerInfoChangeFormBean customerInfoChangeFormBean, HttpServletRequest request, HttpSession session) {
+	@RequestMapping(value = "/changecustomerinforequest", method = RequestMethod.POST)
+    public String getNewCustomerInfo(@ModelAttribute("customerInfoChangeFormBean") CustomerInfoChangeFormBean customerInfoChangeFormBean,ModelMap model, HttpServletRequest request, HttpSession session) {
 
 		String userName="";
 		session = request.getSession(false);
@@ -178,17 +178,23 @@ public class CustomerController {
 		
 		
 		if(customerInfoChangeService.changeCustomerInformation(userName, firstName, middleName,lastName,address,email))
-				return "welcomeUser";
+		{
 			
-			else
+            model.put("error","Information Changed");
+			return "changeCustomerInfo";
+		}	
+			
+			
+			else{
+				model.put("error","Information Not Changed");
 				return "changeCustomerInfo";
-    	
+			}
 	}
 	
 
 
 	@RequestMapping(value = "/techaccountaccess", method = RequestMethod.POST)
-	public String env(HttpServletRequest request, HttpSession session){
+	public String env(HttpServletRequest request, HttpSession session, ModelMap model){
 
 		String userName="";
 		session = request.getSession(false);
@@ -212,10 +218,15 @@ public class CustomerController {
              System.out.println("*****************************************");
              }
              
-             if(techAccountAccessService.setAccessFlag(userName, selection))
-            	 	return "welcomeUser";
-             else
+             if(techAccountAccessService.setAccessFlag(userName, selection)){
+            	 model.put("error"," Flag set");
+            	 return "techAccountAccess";
+             }
+             else{
+            	 //model.put("error"," Flag Not set");
+            	
             	    return "techAccountAccess";
+             }
 
     }
 	
@@ -239,9 +250,10 @@ public class CustomerController {
         }
 		logger.debug("Received request to show creditrequest page");
 		System.out.println("credited amount :"+creditFormBean.getCreditAmount()+"to Account:" +userName );
-			if(creditService.creditAmount(userName,creditFormBean.getCreditAmount()))
-				return "welcomeUser";
-			
+			if(creditService.creditAmount(userName,creditFormBean.getCreditAmount())){
+				model.put("error","DEPOSIT SUCCESSFULL");
+				return "credit_debit";
+			}
 			else
 			{
 				model.put("error","DEPOSIT UNSUCCESSFULL");
@@ -267,9 +279,10 @@ public class CustomerController {
 			
 			logger.debug("Received request to show debitrequest page");
 			System.out.println("Debited amount :"+debitFormBean.getDebitAmount()+"to Account:" +userName );
-				if(debitService.debitAmount(userName, debitFormBean.getDebitAmount()))
-					return "welcomeUser";
-				
+				if(debitService.debitAmount(userName, debitFormBean.getDebitAmount())){
+					model.put("error","WITHDRAWAL SUCCESSFULL");
+					return "debit";
+				}
 				else
 				{
 					model.put("error","WITHDRAWAL UNSUCCESSFULL");
@@ -339,7 +352,9 @@ public class CustomerController {
 			if(transferService.performTransfer(userName, transferFormBean.getReceiverID(),transferFormBean.getTransferAmount()))
 			{
 				
-				return "welcomeUser";
+				model.put("error","TRANSFER SUCCESSFULL");
+				return "transfer";
+				
 			}
 			
 			else
@@ -380,7 +395,8 @@ public class CustomerController {
 			if(transferService.performTransfer(1,userName, transferFormBean.getReceiverID(),transferFormBean.getTransferAmount()))
 			{
 				
-				return "welcomeUser";
+				model.put("error","TRANSFER SUCCESSFULL");
+				return "transfer";
 			}
 			else
 			{

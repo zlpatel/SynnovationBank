@@ -128,5 +128,34 @@ public class AdminUserAccountsServiceImpl implements AdminUserAccountsService {
 	{
 		return personDAO.deleteUser(userId);
 	}
+	
+	@Override
+    public boolean updateExternalUserDetailsWithFlag(ExternalUserFormBean externalUserFormBean) 
+    {
+        String userId = externalUserFormBean.getUsername();
+        String fname = externalUserFormBean.getFname();
+        String mname = "";
+        String lname = externalUserFormBean.getLname();
+        String email = externalUserFormBean.getEmail();
+        String address = externalUserFormBean.getAddress();
+        boolean accountLockedFlag = externalUserFormBean.isAccountLockedFlag();
+        
+        return personDAO.updateUserDetails(userId, fname, mname, lname, email, address, accountLockedFlag);
+    }
+
+    @Override
+    public boolean updateInternalUserDetailsWithFlag(InternalUserFormBean internalUserFormBean) 
+    {
+        String userId = internalUserFormBean.getUsername();
+        String fname = internalUserFormBean.getFname();
+        String mname = "";
+        String lname = internalUserFormBean.getLname();
+        String email = internalUserFormBean.getEmail();
+        String address = internalUserFormBean.getAddress();
+        boolean accountLockedFlag = internalUserFormBean.isAccountLockedFlag();
+        
+        return personDAO.updateUserDetails(userId, fname, mname, lname, email, address, accountLockedFlag);    
+        
+    }
 
 }

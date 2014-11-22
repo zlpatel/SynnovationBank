@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -48,18 +49,21 @@ public class OTPController {
 //	}
 	
 	@RequestMapping(value = "/otprequest", method = {RequestMethod.POST,RequestMethod.GET})
-    public String getOTPPage(@RequestParam(value="error", required=false) boolean error,@ModelAttribute("forgotPasswordFormBean")
-    ForgotPasswordFormBean forgotPasswordFormBean, BindingResult result,ModelMap model,HttpSession session) {
+    public String getOTPPage(@RequestParam(value="error", required=false) boolean error,@ModelAttribute("forgotpasswordformbean")
+    ForgotPasswordFormBean forgotPasswordFormBean, BindingResult result,ModelMap model,HttpSession session,HttpRequest request) {
 
+		System.out.println(session.getAttribute("username").toString() + session.getAttribute("email").toString());
 		if(error==true){
 			model.put("error", "The OTP you have entered is not correct!");
 		}else{
 			model.put("error","");
-			if(otpService.validateUser(forgotPasswordFormBean.getUsername(),forgotPasswordFormBean.getEmail())){
+			if(otpService.validateUser(session.getAttribute("username").toString(),session.getAttribute("email").toString())){
 				
-	            if (session != null) {
-	                session.setAttribute("USERNAME", forgotPasswordFormBean.getUsername());
-	            }
+	    if(session!=null){
+	    	session.setAttribute("USERNAME", forgotPasswordFormBean.getUsername());
+	    }
+	                
+
 				logger.debug("Received request to show otp page");
 			}else{
 				model.put("error", true);

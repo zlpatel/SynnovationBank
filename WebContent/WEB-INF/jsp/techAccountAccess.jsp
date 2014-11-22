@@ -8,7 +8,7 @@
 <noscript>
   <META HTTP-EQUIV="Refresh" CONTENT="0;URL=../customer/enablejavascript">
 </noscript>
-<title>Customer Page</title>
+<title>Tech Account Access Page</title>
 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
 	
@@ -20,7 +20,8 @@
 </head>
 <body>
 <center><h1> SYNNOVATION </h1> </center>
-<h2> TECHNICAL ACCOUNT ACCESS PAGE</h2>
+<center><h3> TECHNICAL ACCOUNT ACCESS PAGE </h3> </center>
+
 <ul class="nav nav-tabs">
 <li><a href="credit_debit">Credit Amount</a> </li>
 <li><a href="debit">Debit Amount</a> </li>

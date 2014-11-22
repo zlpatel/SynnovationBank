@@ -60,6 +60,7 @@
 <body>
 <center><h1> SYNNOVATION </h1> </center>
 <h2> UPDATE INFORMATION PAGE</h2>
+<div id="otp-error"><font color="red">${error}</font></div>
 <ul class="nav nav-tabs">
 <li><a href="credit_debit">Credit Amount</a> </li>
 <li><a href="debit">Debit Amount</a> </li>
@@ -72,7 +73,7 @@
 <li><a href="criticalTransfer">Critical Transfers (greater than $500)</a></li>
 </ul>
 <br>
-<form commandName="customerInfoChangeFormBean" method="get">
+<form commandName="customerInfoChangeFormBean" method="post">
 <input id="firstName" type="text" name="firstName" class="form-control" maxlength= "15" placeholder="First Name" style="width:200px;" value="${customerInfoChangeFormBean.firstName}"/>
 <br>
 <input id="lastName" type="text" name="lastName" class="form-control" maxlength= "15" placeholder="Last Name" style="width:200px;" value="${customerInfoChangeFormBean.lastName}"/>

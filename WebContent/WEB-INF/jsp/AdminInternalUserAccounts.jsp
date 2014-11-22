@@ -23,7 +23,7 @@
 <center><h1>SYNNOVATION</h1></center>
 <center><h3>INTERNAL USER ACCOUNTS PAGE</h3></center>
 
-<p>${message} </p>
+<p>${error} </p>
 <ul class="nav nav-tabs">
     <!-- <li><a href="home">Notifications</a></li> -->
     <li class="active"><a href="#">Internal User Accounts</a></li>

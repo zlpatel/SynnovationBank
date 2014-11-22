@@ -28,8 +28,9 @@
 <li><a href="../../ViewMerchantTransactions">View Transactions</a></li>
 <li><a href="../merchant/MerchantNotifications">Notifications</a></li>
 <li><a href="../../ChangeMerchantInfo">Change information</a></li>
+<li><a href="MerchantTechAccountAccess">Technical Account Access</a></li>
 <li><a href="../../MerchantAcceptNotification">Accept Customer Notifications</a><li>
-<li><a href="MerchantSubmitPayment">Submit Payment</a></li>
+<!-- <li><a href="MerchantSubmitPayment">Submit Payment</a></li> -->
 </ul>
 <br>
 

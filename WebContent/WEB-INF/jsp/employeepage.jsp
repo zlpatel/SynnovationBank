@@ -23,7 +23,8 @@
 </head>
 <body>
 <center><h1> SYNNOVATION </h1> </center>
-<h2> NOTIFICATIONS PAGE</h2>
+<center><h3>NOTIFICATIONS PAGE</h3> </center>
+
 <ul class="nav nav-tabs">
     <li class="active"><a href="#">Notifications</a></li>
 <!--     <li><a href="employeeuseraccounts">User Accounts</a></li>
@@ -65,7 +66,6 @@
       <a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
       <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />	
-      <a class="btn btn-default" href="javascript:formSubmit()">Logout</a>
       </form>
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />

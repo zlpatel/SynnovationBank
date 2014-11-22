@@ -73,7 +73,7 @@ public class SendMailTLS {
 		}
 	}
 	
-	public void sendMailWithAttachment(String emailId, String data,String filePath,String input){
+	public void sendMailWithAttachment(String emailId, String data,String filePath,String fileName,String input){
 		final String username = "synnovationbank@gmail.com";
 		final String password = "bank@secure";
  
@@ -111,10 +111,10 @@ public class SendMailTLS {
 		         multipart.addBodyPart(messageBodyPart);
 		         
 		         messageBodyPart = new MimeBodyPart();
-		         String filename = filePath;
-		         DataSource source = new FileDataSource(filename);
+		        
+		         DataSource source = new FileDataSource(filePath);
 		         messageBodyPart.setDataHandler(new DataHandler(source));
-		         messageBodyPart.setFileName(filename);
+		         messageBodyPart.setFileName(fileName);
 		         multipart.addBodyPart(messageBodyPart);
 		         
 		         message.setContent(multipart);

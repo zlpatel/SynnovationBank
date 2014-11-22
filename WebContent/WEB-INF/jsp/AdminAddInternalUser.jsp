@@ -122,7 +122,7 @@ changeYear: true
 <br><input name="cell"  type="text" class = "form-control" style="width:200px;" placeholder = "Cell" maxlength="10" value="${addinternaluserformbean.cell}"/>
 <br>
 --%><input name="email" id="email"  type="text" class = "form-control" style="width:200px;" placeholder = "Email" maxlength="30" value="${addinternaluserformbean.email}"/>
-<br><input name="username" id="username"  class = "form-control" style="width:200px;" placeholder = "Username" maxlength="15" value="${addinternaluserformbean.username}"/>
+<br><input name="username" id="username"  class = "form-control" style="width:200px; text-transform: lowercase;" placeholder = "Username" maxlength="15" value="${addinternaluserformbean.username}"/>
 <br><input name="password" id="password" type="password" class="form-control" style="width:200px;" placeholder="Password" maxlength="15" value="${addinternaluserformbean.password}"/>
 <br>
 

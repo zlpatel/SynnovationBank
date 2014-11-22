@@ -112,6 +112,33 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 
 	@Override
+	public boolean updateUserDetails(String userId, String fname, String mname,	String lname, String email, String address,
+			boolean accountLockedFlag) {
+		Session session = null;
+		try{
+			session = factory.getCurrentSession();
+			Person person = (Person)session.get(Person.class, userId);
+			if(person != null){
+				if(fname!=null) person.setFirstName(fname);
+				if(mname!=null) person.setMiddleName(mname);
+				if(lname!=null) person.setLastName(lname);
+				if(email!=null) person.setEmail(email);
+				if(address!=null) person.setAddress(address);
+				person.setAccountLockedFlag(accountLockedFlag);
+			}
+			session.update(person);
+			return true;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+		finally{
+			//HibernateUtil.shutdown();
+		}
+	}
+
+	@Override
 	public boolean updatePassword(String userId, String password) {
 		Session session = null;
 		try{

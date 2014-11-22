@@ -50,10 +50,11 @@
 
 <body>
 <center><h1> SYNNOVATION </h1> </center>
-<h2> CREDIT PAGE</h2>
+<center><h3>CREDIT PAGE</h3></center>>
+
 <div id="otp-error"><font color="red">${error}</font></div>
 <ul class="nav nav-tabs">
-<li><a href="credit_debit">Credit Amount</a> </li>
+<li class="active"><a href="#">Credit Amount</a> </li>
 <li><a href="debit">Debit Amount</a> </li>
 <li><a href="transfer">Transfers</a></li>
 <li><a href="viewTransactions">View Transactions</a></li>

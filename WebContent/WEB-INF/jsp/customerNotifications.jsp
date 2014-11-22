@@ -8,7 +8,7 @@
 <noscript>
   <META HTTP-EQUIV="Refresh" CONTENT="0;URL=../customer/enablejavascript">
 </noscript>
-<title>Customer Page</title>
+<title>Notifications Page</title>
 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
 	
@@ -21,13 +21,14 @@
 
 <body>
 <center><h1> SYNNOVATION </h1> </center>
-<h2> NOTIFICATIONS PAGE</h2>
+<center><h3>NOTIFICATIONS PAGE</h3></center>>
+
 <ul class="nav nav-tabs">
 <li><a href="credit_debit">Credit Amount</a> </li>
 <li><a href="debit">Debit Amount</a> </li>
 <li><a href="transfer">Transfers</a></li>
 <li><a href="viewTransactions">View Transactions</a></li>
-<li><a href="customerNotifications">Notifications</a></li>
+<li class="active"><a href="#">Notifications</a></li>
 <li><a href="changeCustomerInfo">Change information</a></li>
 <li><a href="techAccountAccess">Technical Account Access</a></li>
 <li><a href="payMerchant">Pay Merchant</a></li>

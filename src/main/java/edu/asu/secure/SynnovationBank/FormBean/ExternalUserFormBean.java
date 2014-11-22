@@ -23,6 +23,14 @@ public class ExternalUserFormBean {
 	private Date otpExpiry;
 	private String allowAccessFlag;
 	private String role;
+	private boolean accountLockedFlag;
+    
+    public boolean isAccountLockedFlag() {
+        return accountLockedFlag;
+    }
+    public void setAccountLockedFlag(boolean accountLockedFlag) {
+        this.accountLockedFlag = accountLockedFlag;
+    }
 	
 	private long accountNumber;
 	private float accountBalance;

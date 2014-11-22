@@ -12,6 +12,7 @@ import edu.asu.secure.SynnovationBank.Service.AddExternalUserService;
 import edu.asu.secure.SynnovationBank.Dao.AccountDAO;
 import edu.asu.secure.SynnovationBank.Dao.AddUserDao;
 import edu.asu.secure.SynnovationBank.Dao.PersonDAO;
+import edu.asu.secure.SynnovationBank.Dao.UsernamesDAO;
 import edu.asu.secure.SynnovationBank.FormBean.ExternalUserFormBean;
 import edu.asu.secure.SynnovationBank.Handler.PKICertificateHandler;
 import edu.asu.secure.SynnovationBank.DTO.Account;
@@ -28,56 +29,78 @@ public class AddExternalUserServiceImpl implements AddExternalUserService{
 	private PersonDAO personDao; 
 	@Autowired
 	private AccountDAO accountDao;
-	
+	@Autowired
+	private UsernamesDAO usernamesDao;
+
 	@Override
 
 	public boolean addExternalUser(ExternalUserFormBean addexternaluserformbean) 
 
 	{
+		try
+		{
+		if(!usernamesDao.fetchUsername(addexternaluserformbean.getUsername()))
+		{
 
-	Person person = new Person();
+			Person person = new Person();
 
-	person.setFirstName(addexternaluserformbean.getFname());
-	person.setLastName(addexternaluserformbean.getLname());
-	person.setAddress(addexternaluserformbean.getAddress());
-	person.setEmail(addexternaluserformbean.getEmail());
-	person.setUserId(addexternaluserformbean.getUsername());
-	person.setPassword(HashCode.getHashPassword(addexternaluserformbean.getPassword()));
-	person.setDateOfBirth(addexternaluserformbean.getDateOfBirth());
-	person.setRole(addexternaluserformbean.getRole());
-//	person.setRole("ROLE_CUST");
-	person.setAllowAccessFlag(false);
-	person.setAccountLockedFlag(false);
-	person.setLoginAttempts(0);
-	person.setPiiRequestFlag(false);
-	
-	Long uuid = UUID.randomUUID().getLeastSignificantBits();
-	if(uuid < 0) {
-		uuid = uuid * -1;
+			person.setFirstName(addexternaluserformbean.getFname());
+			person.setLastName(addexternaluserformbean.getLname());
+			person.setAddress(addexternaluserformbean.getAddress());
+			person.setEmail(addexternaluserformbean.getEmail());
+			person.setUserId(addexternaluserformbean.getUsername());
+			person.setPassword(HashCode.getHashPassword(addexternaluserformbean.getPassword()));
+			person.setDateOfBirth(addexternaluserformbean.getDateOfBirth());
+			person.setRole(addexternaluserformbean.getRole());
+			//	person.setRole("ROLE_CUST");
+			person.setAllowAccessFlag(false);
+			person.setAccountLockedFlag(false);
+			person.setLoginAttempts(0);
+			person.setPiiRequestFlag(false);
+
+			Long uuid = UUID.randomUUID().getLeastSignificantBits();
+			if(uuid < 0) {
+				uuid = uuid * -1;
+			}
+			String ssn = uuid.toString().substring(0, 9);
+			person.setSsn(ssn);
+
+			Account account = new Account();
+			account.setPerson(person);
+			account.setRoutingNumber(12345);
+			account.setAccountType("Checking");
+
+
+
+			person.setAccount(account);
+
+			if(personDao.insertUser(person))
+			{
+				if(usernamesDao.insertUsername(addexternaluserformbean.getUsername()))
+				{
+					PKICertificateHandler.genCert(person.getFirstName().concat(" ").concat(person.getLastName()), person.getUserId());
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					PKICertificateHandler.sendCertificate(person.getUserId(), person.getEmail());
+
+					return true;
+				}
+
+			}
+
 		}
-	String ssn = uuid.toString().substring(0, 9);
-	person.setSsn(ssn);
-	
-	Account account = new Account();
-	account.setPerson(person);
-	account.setRoutingNumber(12345);
-	account.setAccountType("Checking");
-	
-	
+	}
+	catch(Exception e)
+	{
+		System.out.println("some exception creating user " + e);
+		return false;
+	}
+		return false;
 
-	person.setAccount(account);
-
-	 if(personDao.insertUser(person))
-	 {
-		 PKICertificateHandler.generateCertificate(person.getFirstName().concat(" ").concat(person.getLastName()), person.getUserId());
-		 PKICertificateHandler.sendCertificate(person.getUserId(), person.getEmail());
-		 
-		 return true;
-
-	 }
-	 
-	 return false;
-	 
 	}
 
 }

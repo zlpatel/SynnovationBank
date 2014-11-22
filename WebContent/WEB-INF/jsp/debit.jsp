@@ -7,7 +7,7 @@
 <noscript>
   <META HTTP-EQUIV="Refresh" CONTENT="0;URL=../customer/enablejavascript">
 </noscript>
-<title>Credit Page</title>
+<title>Debit Page</title>
 <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
 	
@@ -50,11 +50,12 @@
 
 <body>
 <center><h1> SYNNOVATION </h1> </center>
-<h2> DEBIT PAGE</h2>
+<center><h3>DEBIT PAGE</h3></center>>
+
 <div id="otp-error"><font color="red">${error}</font></div>
 <ul class="nav nav-tabs">
 <li><a href="credit_debit">Credit Amount</a> </li>
-<li><a href="debit">Debit Amount</a> </li>
+<li class="active"><a href="#">Debit Amount</a> </li>
 <li><a href="transfer">Transfers</a></li>
 <li><a href="viewTransactions">View Transactions</a></li>
 <li><a href="customerNotifications">Notifications</a></li>
